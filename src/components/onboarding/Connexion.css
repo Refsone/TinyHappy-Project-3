@@ -1,6 +1,6 @@
 *{padding:0; margin: 0; }
 
-.connexion-backgroud{
+.connexion-background{
     height: 100vh;
     background-color: #F5F9FD;
     width: 100%;
@@ -11,40 +11,25 @@
     flex-direction: column;
     justify-content: center; 
 }
-.connexion-backgroud .logo-top{
-    height: 50px;
-    background-color: #ffffff;
-    text-align: center;
-    margin-bottom: 50px;
-}
-.connexion-form{
+
+.connexion-container .connexion-form{
     width:90vw;
     color: #7180AC;
 }
 
-.connexion-form input, label{
+.connexion-container .connexion-form input, label{
     display: block;
-    padding: 20px 20px 10px 10px;
+    padding: 20px 0px 10px 0px;
     font-size: 12px;
-    margin-left: 25px;
+    margin-left: 15px;
 }
-.connexion-form input placeholder{
-    font-size: 12px;
-    font-weight: 500;
-    font-style: italic;
-}
-.connexion-form .mdp{
-    background-image: url('../../images/eye-slash-regular\ 1.svg');
-    background-repeat: no-repeat;
-    background-position: right;
-}
+
 .connexion-form .connexion-input{
     display: block;
-    width: 90%;
+    width: 95%;
     height: 35px;
     border: solid 1px #E9EAFA;
     border-radius: 5px;
-    padding: 10px 5px 10px 10px;
     background-color: #ffffff;
 }
 
@@ -52,6 +37,19 @@
     text-transform: uppercase;
     text-align: left;
     font-weight: 700;
+}
+
+.connexion-container .connexion-form .plholder{
+    font-style: italic;
+    font-weight: 500;
+    padding-left: 20px;
+}
+
+.connexion-container .connexion-form .mdp{
+    background-image: url('../../images/eye-slash-regular\ 1.svg');
+    background-repeat: no-repeat;
+    background-position: 300px center;
+    padding-left: 20px;
 }
 
 .connexion-form .connexion-lien a{
