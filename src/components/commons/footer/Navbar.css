@@ -2,7 +2,10 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  background-color: #f5f9fd;
+  background-color: #FFFFFF;
+  border-top: 2px outset #E9EFFA;
+  box-shadow: 0 -.6em .5em #E9EFFA;
+  margin-top: .5em;
 }
 
 .item-flex-navbar {
@@ -12,10 +15,10 @@
   font-weight: 600;
   padding: 16px;
   font-family: roboto;
-  font-size:12px;
-  height: 3em;
+  font-size: 12px;
 }
 
 img {
   height: 2em;
+  width: 2em;
 }
