@@ -10,11 +10,12 @@ import logoHeart from '../../images/menu-params-heart.svg'
 import logoLibra from '../../images/menu-params-libra.svg'
 import logoMask from '../../images/menu-params-mask.svg'
 import logoLogOut from '../../images/menu-params-close.svg'
+import logoMB from '../../images/menu-burger-logo.svg'
 
 export default function SideMenu () {
   return (
     <div className='SideMenu'>
-      <Menu width='85%'>
+      <Menu width='85%' customBurgerIcon={<img src={logoMB} />}>
         <img className='logo-th' src={logoTH} alt='Logo Tinny Happy' />
 
         <div className='block-link'>
