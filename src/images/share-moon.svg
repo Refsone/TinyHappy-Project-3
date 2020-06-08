@@ -1,0 +1,18 @@
+<svg width="165" height="118" viewBox="0 0 165 118" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="90" cy="73" r="43.5" stroke="#7180AC" stroke-width="3"/>
+<ellipse cx="106.5" cy="58" rx="7.5" ry="9" transform="rotate(-37.2833 106.5 58)" fill="#7180AC"/>
+<ellipse cx="63.3909" cy="94.7841" rx="2.62426" ry="4" transform="rotate(-33.3438 63.3909 94.7841)" fill="#7180AC"/>
+<ellipse cx="118.207" cy="97.1554" rx="9" ry="5.3992" transform="rotate(-44.42 118.207 97.1554)" fill="#7180AC"/>
+<ellipse cx="80" cy="42.5" rx="6" ry="4.5" transform="rotate(-14.2429 80 42.5)" fill="#7180AC"/>
+<circle cx="84" cy="81" r="6" fill="#7180AC"/>
+<ellipse cx="60.7736" cy="63.5921" rx="7.70752" ry="9" transform="rotate(18.3965 60.7736 63.5921)" fill="#7180AC"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M13 11.9589V14.0411C18.8298 14.522 23.478 19.1702 23.9589 25H26.0411C26.522 19.1702 31.1702 14.522 37 14.0411V11.9589C31.1702 11.478 26.522 6.8298 26.0411 1H23.9589C23.478 6.8298 18.8298 11.478 13 11.9589Z" fill="#7180AC"/>
+<line x1="37" y1="13" x2="13" y2="13" stroke="#7180AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="25" y1="25" x2="25" y2="1" stroke="#7180AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M152.5 92.9794V94.0205C155.415 94.2611 157.739 96.5851 157.979 99.5H159.02C159.261 96.5851 161.585 94.2609 164.5 94.0205V92.9795C161.585 92.739 159.261 90.4149 159.02 87.5H157.979C157.739 90.4148 155.415 92.7389 152.5 92.9794Z" fill="#7180AC"/>
+<line x1="164.5" y1="93.5" x2="152.5" y2="93.5" stroke="#7180AC" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="158.5" y1="99.5" x2="158.5" y2="87.5" stroke="#7180AC" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.499878 40.9794V42.0205C3.41473 42.2611 5.73876 44.5851 5.97922 47.5H7.02029C7.26076 44.5851 9.58492 42.2609 12.4999 42.0205V40.9795C9.58493 40.739 7.26078 38.4149 7.02029 35.5H5.97922C5.73874 38.4148 3.41471 40.7389 0.499878 40.9794Z" fill="#7180AC"/>
+<line x1="12.5" y1="41.5" x2="0.5" y2="41.5" stroke="#7180AC" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="6.49988" y1="47.5" x2="6.49988" y2="35.5" stroke="#7180AC" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
