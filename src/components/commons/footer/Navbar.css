@@ -1,1 +1,21 @@
+.cont-flex-navbar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #f5f9fd;
+}
 
+.item-flex-navbar {
+  text-align: center;
+  color: #7180AC;
+  line-height: 1.5em;
+  font-weight: 600;
+  padding: 16px;
+  font-family: roboto;
+  font-size:12px;
+  height: 3em;
+}
+
+img {
+  height: 2em;
+}
