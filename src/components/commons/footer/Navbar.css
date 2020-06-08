@@ -3,19 +3,27 @@
   justify-content: center;
   width: 100%;
   background-color: #FFFFFF;
-  border-top: 2px outset #E9EFFA;
+  border-top: 1px solid #E9EFFA;
   box-shadow: 0 -.6em .5em #E9EFFA;
   margin-top: .5em;
+}
+
+.cont-flex-navbar a {
+  text-decoration: none;
+}
+
+.active {
+  background-color: #D4E0F6;
 }
 
 .item-flex-navbar {
   text-align: center;
   color: #7180AC;
-  line-height: 1.5em;
+  line-height: 1.5rem;
   font-weight: 600;
-  padding: 16px;
-  font-family: roboto;
-  font-size: 12px;
+  padding: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: .75rem;
 }
 
 img {
