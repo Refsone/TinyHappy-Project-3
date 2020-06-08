@@ -1,0 +1,78 @@
+*{padding:0; margin: 0; }
+
+.connexion-backgroud{
+    height: 100vh;
+    background-color: #F5F9FD;
+    width: 100%;
+
+}
+.connexion-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+.connexion-backgroud .logo-top{
+    height: 50px;
+    background-color: #ffffff;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.connexion-form{
+    width:90vw;
+    color: #7180AC;
+}
+
+.connexion-form input, label{
+    display: block;
+    padding: 20px 20px 10px 10px;
+    font-size: 12px;
+    margin-left: 25px;
+}
+.connexion-form input placeholder{
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
+}
+.connexion-form .mdp{
+    background-image: url('../../images/eye-slash-regular\ 1.svg');
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.connexion-form .connexion-input{
+    display: block;
+    width: 90%;
+    height: 35px;
+    border: solid 1px #E9EAFA;
+    border-radius: 5px;
+    padding: 10px 5px 10px 10px;
+    background-color: #ffffff;
+}
+
+.connexion-form .connexion-label{
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 700;
+}
+
+.connexion-form .connexion-lien a{
+    position: absolute;
+    right: 10px;
+    padding-top: 10px;
+    padding-right: 15px;
+    font-weight: 500;
+    color: #7180AC;
+}
+
+.connexion-form .btn-connexion{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border: none;
+    height: 60px;
+    text-transform: uppercase;
+    background-color: #D4E0F6;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+}
+
