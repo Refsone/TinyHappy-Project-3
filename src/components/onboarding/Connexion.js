@@ -9,12 +9,12 @@ class Connexion extends Component {
         <div className='connexion-container'>
           <Logo />
           <form className='connexion-form'>
-            <label className='connexion-label'>email</label>
-            <input className='connexion-input plholder' placeholder='mon@email.com' />
-            <label className='connexion-label'>mot de passe</label>
-            <input className='connexion-input mdp' placeholder='**********' />
+            <label htmlFor='email' name='email' className='connexion-label'>email</label>
+            <input name='email' type='text' className='connexion-input plholder' placeholder='mon@email.com' required />
+            <label htmlFor='password' className='connexion-label'>mot de passe</label>
+            <input name='password' type='password' className='connexion-input mdp' placeholder='**********' required />
             <p className='connexion-lien'><a href='#'>Mot de passe perdu ?</a></p>
-            <button className='btn-connexion'>se connecter</button>
+            <button type='button' className='btn-connexion'>se connecter</button>
           </form>
         </div>
       </div>

@@ -19,7 +19,7 @@
 
 .connexion-container .connexion-form input, label{
     display: block;
-    padding: 20px 0px 10px 0px;
+    padding: 20px 0px 10px 20px;
     font-size: 12px;
     margin-left: 15px;
 }
@@ -30,7 +30,7 @@
     height: 35px;
     border: solid 1px #E9EAFA;
     border-radius: 5px;
-    background-color: #ffffff;
+    background-color: #ffffff;    
 }
 
 .connexion-form .connexion-label{
@@ -39,10 +39,9 @@
     font-weight: 700;
 }
 
-.connexion-container .connexion-form .plholder{
+.connexion-container .connexion-form .plholder::placeholder{
     font-style: italic;
     font-weight: 500;
-    padding-left: 20px;
 }
 
 .connexion-container .connexion-form .mdp{
