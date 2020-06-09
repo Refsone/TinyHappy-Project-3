@@ -1,0 +1,11 @@
+.access{
+    background-color: #91E9FE;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.logo{
+    position: relative;
+    top: 30vh;  
+}
