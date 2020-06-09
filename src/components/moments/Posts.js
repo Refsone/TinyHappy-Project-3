@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Moment from 'moment'
 import 'moment/locale/fr'
 import CardPost from './CardPost'
@@ -58,21 +58,36 @@ export default function Post () {
       family_firstname: [{ name: 'Louise', color: 'cyan' }]
     }
   ])
+  let date = ''
 
   const formatDate = (date) => {
     Moment.locale('fr')
     return Moment(date).format('LL')
   }
 
+  useEffect(() => {
+    console.log('change')
+  }, [date])
+
   return (
-    <div className='Post'>
+    <div className='Posts'>
       {moments.map((moment, key) => {
-        return (
-          <>
-            <p key={key}>{formatDate(moment.moment_event_date)}</p>
-            <CardPost moment={moment} key={key} marginStyle={{ marginTop: '40px' }} />
-          </>
-        )
+        if (date !== moment.moment_event_date) {
+          date = moment.moment_event_date
+          return (
+            <>
+              <p className='moment-date'>{formatDate(moment.moment_event_date)}</p>
+              <CardPost moment={moment} key={key} style={{ borderLeft: '0.4rem solid #91E9FE' }} />
+            </>
+          )
+        } else {
+          date = moment.moment_event_date
+          return (
+            <>
+              <CardPost moment={moment} key={key} style={{ marginTop: '8px', borderLeft: '0.4rem solid #D3FF9B' }} />
+            </>
+          )
+        }
       })}
     </div>
   )
