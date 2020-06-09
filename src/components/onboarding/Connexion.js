@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import './Connexion.css'
-import Logo from '../commons/header/HeaderMogramme'
+//import Logo from '../commons/header/HeaderMogramme'
 
 class Connexion extends Component {
   render () {
     return (
       <div className='connexion-background'>
         <div className='general-form-container'>
-          <Logo />
+          {/* <Logo /> */}
           <form className='general-form'>
             <label htmlFor='user_mail' name='user_mail' className='general-label'>email</label>
             <input name='user_mail' type='text' className='general-input plholder' placeholder='mon@email.com' required />
