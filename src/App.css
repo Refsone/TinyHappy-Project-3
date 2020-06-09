@@ -41,7 +41,7 @@ body {
 .general-input-mdp-close{
   background-image: url('./images/eye-slash-regular1.svg');
   background-repeat: no-repeat;
-  background-position: 333px center;
+  background-position: 95%;
   border-radius: 5px;
   background-color: #ffffff;
   border: none;
