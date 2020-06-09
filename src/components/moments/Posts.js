@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Moment from 'moment'
+import 'moment/locale/fr'
 import CardPost from './CardPost'
 import './Posts.css'
 
@@ -57,10 +59,20 @@ export default function Post () {
     }
   ])
 
+  const formatDate = (date) => {
+    Moment.locale('fr')
+    return Moment(date).format('LL')
+  }
+
   return (
     <div className='Post'>
       {moments.map((moment, key) => {
-        return <CardPost moment={moment} key={key} marginStyle={{ marginTop: '40px' }} />
+        return (
+          <>
+            <p key={key}>{formatDate(moment.moment_event_date)}</p>
+            <CardPost moment={moment} key={key} marginStyle={{ marginTop: '40px' }} />
+          </>
+        )
       })}
     </div>
   )

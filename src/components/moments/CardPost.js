@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './CardPost.css'
-
 import fullHeart from '../../images/favoris-heart-pink.svg'
 import emptyHeart from '../../images/favori-heart.svg'
 
@@ -10,7 +9,9 @@ export default function CardPost (props) {
   const handleClickFavorite = () => setFavorite(!favorite)
 
   return (
+
     <div className='CardPost' style={marginStyle}>
+
       <div className='block-names-favorite'>
         <div>
           {moment.family_firstname.map((family, key) => <p className={`${family.color} family-name`} key={key}>{family.name}</p>)}
