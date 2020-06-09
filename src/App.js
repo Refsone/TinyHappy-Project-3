@@ -1,12 +1,10 @@
 import React from 'react'
 
-import Navbar from './components/commons/footer/Navbar'
-
 import './App.css'
 
 function App () {
   return (
-    <Navbar />
+    <p>Ici avait le compo logo pour le voir efface-moi !</p>
   )
 }
 
