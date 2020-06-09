@@ -8,6 +8,9 @@
   box-shadow: 0 -.6em .5em #E9EFFA;
   margin-top: .5em;
   height: 4em;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .cont-flex-navbar a {
