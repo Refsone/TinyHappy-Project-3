@@ -1,0 +1,23 @@
+.momentNavbar a {
+  width: 50%;
+  display: inline-block;
+  padding: 10px 0;
+  height: 18px ;
+  text-decoration: none;
+}
+
+.activeCitation {
+    background-color: #91E9FE;
+    color: #7180AC ;
+    
+}
+
+.activeFait {
+    background-color: #D3FF9B ;
+}
+
+.momentNavbar img {
+  padding-right: 10px;
+  height: 15px;
+}
+
