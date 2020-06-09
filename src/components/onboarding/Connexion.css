@@ -4,8 +4,23 @@
     height: 100vh;
     background-color: #F5F9FD;
     width: 100%;
-
 }
+.general-form .mdp-forbiden{
+    background-image: url('../../images/eye-slash-regular\ 1.svg');
+    background-repeat: no-repeat;
+    background-position: 300px center;
+    padding-left: 20px;
+}
+
+.general-form .connexion-lien a{
+    position: absolute;
+    right: 10px;
+    padding-top: 10px;
+    padding-right: 15px;
+    font-weight: 500;
+    color: #7180AC;
+}
+/* 
 .connexion-container{
     display: flex;
     flex-direction: column;
@@ -27,7 +42,7 @@
 .connexion-form .connexion-input{
     display: block;
     width: 95%;
-    height: 35px;
+    height: 30px;
     border: solid 1px #E9EAFA;
     border-radius: 5px;
     background-color: #ffffff;    
@@ -73,3 +88,4 @@
     font-size: 14px;
 }
 
+ */

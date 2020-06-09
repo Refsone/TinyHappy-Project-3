@@ -1,9 +1,9 @@
-.connexion-container .logo-monogramme{
+.form-container .logo-monogramme{
     height: 50px;
     text-align: center;
     margin-bottom: 50px;
     background-image: url('../../../images/monogrammeTH.svg');
     background-repeat: no-repeat;
     background-position: center;
-    margin-top: 10px;
+    margin-top: 3%;
 }

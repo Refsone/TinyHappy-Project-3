@@ -2,4 +2,57 @@
 
 body{
   font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
 }
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.general-form{
+    width:90vw;
+    color: #7180AC;
+}
+
+.general-form input, label{
+    display: block;
+    padding: 20px 0px 10px 20px;
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+.general-form .general-input{
+    display: block;
+    width: 95%;
+    height: 30px;
+    border: solid 1px #E9EAFA;
+    border-radius: 5px;
+    background-color: #ffffff;    
+}
+
+.general-form .general-label{
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 700;
+}
+
+.general-form .plholder::placeholder{
+    font-style: italic;
+    font-weight: 500;
+}
+
+.general-form .btn-connexion{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border: none;
+    height: 60px;
+    text-transform: uppercase;
+    background-color: #D4E0F6;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+}
+
