@@ -1,11 +1,11 @@
 import React from 'react'
-import Post from './components/moments/Post'
+import Posts from './components/moments/Posts'
 import './App.css'
 
 function App () {
   return (
     <div className='App'>
-      <Post />
+      <Posts />
     </div>
   )
 }
