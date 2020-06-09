@@ -1,28 +1,23 @@
 import React from 'react'
-import './SignUp.css'
 
 const SignUp = () => {
   return (
-    <div className='signUp'>
-      <div className='signUp_input'>
-        <label>Prénom</label>
-        <input type='text' name='Prénom' placeholder='Elise' />
-      </div>
+    <div className='connexion-container'>
+      <form className='general-connexion-form'>
+        <label htmlFor='firstname' name='user_firstname' className='general-label'>prénom</label>
+        <input type='text' name='user_firstname' className='general-input' placeholder='Elise' />
 
-      <div className='signUp_input'>
-        <label>Nom</label>
-        <input type='text' name='Nom' placeholder='Durand' />
-      </div>
+        <label htmlFor='last' name='user_lastname' className='general-label'>nom</label>
+        <input type='text' name='user_lastname' className='general-input' placeholder='Durand' />
 
-      <div className='signUp_input'>
-        <label>Email</label>
-        <input type='text' name='Email' placeholder='prenom@exemple.com' />
-      </div>
+        <label htmlFor='email' name='user_mail' className='general-label'>email</label>
+        <input name='user_mail' type='text' className='general-input' placeholder='mon@email.com' required />
 
-      <div className='signUp_input'>
-        <label>MOT DE PASSE</label>
-        <input type='password' name='mot de passe' placeholder='' />
-      </div>
+        <label htmlFor='password' className='general-label' name='user_password'>mot de passe</label>
+        <input name='password' type='password' className='general-input-mdp-close' placeholder='**********' required />
+
+        <button type='button' className='btn-connexion'>s'inscrire</button>
+      </form>
     </div>
   )
 }
