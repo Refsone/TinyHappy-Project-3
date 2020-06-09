@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Connexion.css'
-//import Logo from '../commons/header/HeaderMogramme'
 
 class Connexion extends Component {
   render () {
