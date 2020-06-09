@@ -4,18 +4,15 @@ body{
   font-family: 'Roboto', sans-serif;
   font-size: 0.75rem;
 }
-
-.form-container{
+.general-form-container{
     display: flex;
     flex-direction: column;
     justify-content: center; 
 }
-
 .general-form{
     width:90vw;
     color: #7180AC;
 }
-
 .general-form input, label{
     display: block;
     padding: 20px 0px 10px 20px;
@@ -38,19 +35,19 @@ body{
     font-weight: 700;
 }
 
-.general-form .plholder::placeholder{
+.plholder::placeholder{
     font-style: italic;
     font-weight: 500;
 }
 
-.general-form .btn-connexion{
+.general-form .general-btn{
     position: absolute;
     bottom: 0;
     width: 100%;
     border: none;
     height: 60px;
     text-transform: uppercase;
-    background-color: #D4E0F6;
+    /* background-color: #D4E0F6; */
     color: #ffffff;
     font-weight: 700;
     font-size: 14px;

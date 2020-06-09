@@ -1,9 +1,10 @@
-.form-container .logo-monogramme{
+.logo-monogramme{
     height: 50px;
     text-align: center;
     margin-bottom: 50px;
     background-image: url('../../../images/monogrammeTH.svg');
     background-repeat: no-repeat;
     background-position: center;
-    margin-top: 3%;
+    /*Mrgin appliqué sur la css du composant*/
+    /* margin-top: 3%; */
 }

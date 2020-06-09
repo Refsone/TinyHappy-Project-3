@@ -5,14 +5,16 @@
     background-color: #F5F9FD;
     width: 100%;
 }
-.general-form .mdp-forbiden{
+.logo-monogramme{
+    margin-top: 3%;
+}
+.mdp-forbiden{
     background-image: url('../../images/eye-slash-regular\ 1.svg');
     background-repeat: no-repeat;
     background-position: 300px center;
     padding-left: 20px;
 }
-
-.general-form .connexion-lien a{
+.connexion-lien a{
     position: absolute;
     right: 10px;
     padding-top: 10px;
@@ -20,72 +22,6 @@
     font-weight: 500;
     color: #7180AC;
 }
-/* 
-.connexion-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-}
-
-.connexion-container .connexion-form{
-    width:90vw;
-    color: #7180AC;
-}
-
-.connexion-container .connexion-form input, label{
-    display: block;
-    padding: 20px 0px 10px 20px;
-    font-size: 12px;
-    margin-left: 15px;
-}
-
-.connexion-form .connexion-input{
-    display: block;
-    width: 95%;
-    height: 30px;
-    border: solid 1px #E9EAFA;
-    border-radius: 5px;
-    background-color: #ffffff;    
-}
-
-.connexion-form .connexion-label{
-    text-transform: uppercase;
-    text-align: left;
-    font-weight: 700;
-}
-
-.connexion-container .connexion-form .plholder::placeholder{
-    font-style: italic;
-    font-weight: 500;
-}
-
-.connexion-container .connexion-form .mdp{
-    background-image: url('../../images/eye-slash-regular\ 1.svg');
-    background-repeat: no-repeat;
-    background-position: 300px center;
-    padding-left: 20px;
-}
-
-.connexion-form .connexion-lien a{
-    position: absolute;
-    right: 10px;
-    padding-top: 10px;
-    padding-right: 15px;
-    font-weight: 500;
-    color: #7180AC;
-}
-
-.connexion-form .btn-connexion{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    border: none;
-    height: 60px;
-    text-transform: uppercase;
+.connexion-btn{
     background-color: #D4E0F6;
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 14px;
 }
-
- */
