@@ -1,13 +1,10 @@
 
 .activeCitation {
   background-color: #91E9FE;
-  
-  
 }
 
 .activeFait {
-  background-color: #D3FF9B ;
-  
+  background-color: #D3FF9B ;  
 }
 
 .imgCitation {
@@ -16,17 +13,29 @@
   right: -4px;
 }
 
+.imgFait {
+  position: relative;
+  top: 2px;
+  left: 3px;
+}
+
+.momentNavbar {
+  margin-bottom: 20px;
+}
+
 .momentNavbar a {
   width: 50%;
   display: inline-block;
-  padding: 10px 0;
+  padding: 8px 0;
   text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
   color: #7180AC;
+  text-align: center;
 }
 
 .momentNavbar img {
   padding-right: 10px;
   height: 15px;
-  color: #7180AC;
 }
 
