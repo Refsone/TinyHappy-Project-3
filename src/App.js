@@ -1,13 +1,12 @@
 import React from 'react'
-import './App.css'
 
-import Connexion from './components/onboarding/Connexion'
+import Navbar from './components/commons/footer/Navbar'
+
+import './App.css'
 
 function App () {
   return (
-    <div className='App'>
-      <Connexion />
-    </div>
+    <Navbar />
   )
 }
 
