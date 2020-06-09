@@ -1,10 +1,12 @@
 import React from 'react'
-import MomentNavbar from './components/moments/MomentNavbar'
 import './App.css'
+// import Access from './components/onboarding/Access'
+import MomentNavbar from './components/moments/MomentNavbar'
 
 function App () {
   return (
     <div className='App'>
+      {/* <Access /> */}
       <MomentNavbar />
     </div>
   )

@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 const MomentNavbar = () => {
   return (
     <div className='momentNavbar'>
-      <Link className='activeCitation'><img src={citation} />citation</Link>
-      <Link className='activeFait'><img src={faitNotable} />fait notable</Link>
+      <Link className='activeCitation'><img className='imgCitation' src={citation} />citation</Link>
+      <Link className='activeFait'><img className='imgFait' src={faitNotable} />fait notable</Link>
     </div>
   )
 }
