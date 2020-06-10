@@ -1,11 +1,14 @@
 import React from 'react'
-import Posts from './components/moments/Posts'
+
+import Navbar from 'src/components/commons/footer/Navbar'
+
 import './App.css'
+import '../src/components/commons/Fonts.css'
 
 function App () {
   return (
     <div className='App'>
-      <Posts />
+      <Navbar />
     </div>
   )
 }
