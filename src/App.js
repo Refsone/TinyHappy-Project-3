@@ -1,24 +1,13 @@
 import React from 'react'
-import logo from './logo.svg'
-import './App.css';
+import CardContacts from './components/share/CardContacts'
+
+import './App.css'
+import '../src/components/commons/Fonts.css'
 
 function App () {
   return (
     <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn
-        </a>
-      </header>
+      <CardContacts />
     </div>
   )
 }
