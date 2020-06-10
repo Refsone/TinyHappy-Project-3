@@ -1,10 +1,11 @@
 import React from 'react'
+import Logo from './components/commons/header/LogoHeader'
 
 import './App.css'
 
 function App () {
   return (
-    <p>Ici avait le compo logo pour le voir efface-moi !</p>
+    <Logo />
   )
 }
 
