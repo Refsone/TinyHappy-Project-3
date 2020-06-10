@@ -4,6 +4,7 @@
 }
 
 .CardPost {
+    max-width: 800px;
     position: relative;
     text-align: center;
     border: solid 1px #E9EFFA;
