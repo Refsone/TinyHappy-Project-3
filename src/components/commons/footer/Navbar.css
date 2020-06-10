@@ -22,7 +22,7 @@
 }
 
 .cont-flex-navbar a {
-  flex:1;
+  flex: 1;
 }
 
 .item-flex-navbar {
@@ -35,8 +35,7 @@
   padding: 1em 0 0;
 }
 
-img {
+.item-flex-navbar img {
   height: 2em;
   width: 2em;
 }
-

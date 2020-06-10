@@ -2,6 +2,13 @@
   width: 6em;
   height: 7em;
 }
+
 .cont-noMoment {
   text-align: center;
+  margin-top: 8em;
+}
+
+.cont-noMoment p {
+  width: 65%;
+  margin: 3em auto;
 }
