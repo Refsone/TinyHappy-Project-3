@@ -1,0 +1,127 @@
+/* Ici se trouvent toutes les polices de Tinyhappy, classées de la plus petite et fine et la plus grande et épaisse*/
+/* Enjoy ;) */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.bold-10px-grey {
+  font-weight: 700;
+  font-size: 0.625em;
+  color: #7180AC;
+}
+
+.black-10px-blue {
+  font-weight: 900;
+  font-size: 0.625em;
+  color: #2E3080;
+}
+
+.regular-12px-lightgrey {
+  font-weight: 400;
+  font-size: 0.75em;
+  color: #98A7CD;
+}
+
+.medium-12px-lightgrey {
+  font-weight:500;
+  font-size: 0.75em;
+  color: #98A7CD;
+}
+
+.mediumitalic-12px-lightgrey {
+  font-weight: 500;
+  font-style: italic;
+  font-size: 0.75em;
+  color: #98A7CD;
+}
+
+.bold-12px-grey {
+  font-weight: 700;
+  font-size: 0.75em;
+  color: #7180AC;
+}
+
+.regular-14px-white {
+  font-weight: 400;
+  font-size: 0.875em;
+  color: #FFFFFF;
+}
+
+.medium-14px-grey {
+  font-weight: 500;
+  font-size: 0.875em;
+  color: #7180AC;
+}
+
+.bold-14px-grey {
+  font-weight: 700;
+  font-size: 0.875em;
+  color: #7180AC;
+}
+
+.bold-14px-white {
+  font-weight: 700;
+  font-size: 0.875em;
+  color: #FFFFFF;
+}
+
+.mediumitalic-14px-grey {
+  font-weight: 500;
+  font-style: italic;
+  font-size: 0.875em;
+  color: #7180AC;
+}
+
+.regular-16px-grey {
+  font-weight: 400;
+  font-size: 1em;
+  color: #7180AC;
+}
+
+.regular-16px-white {
+  font-weight: 400;
+  font-size: 1em;
+  color: #ffffff;
+}
+
+.medium-16px-grey {
+  font-weight: 500;
+  font-size: 1em;
+  color: #7180AC;
+}
+
+.medium-16px-white {
+  font-weight: 500;
+  font-size: 1em;
+  color: #ffffff;
+}
+
+.bold-16px-grey {
+  font-weight: 700;
+  font-size: 1em;
+  color: #7180AC;
+}
+
+.regular-20px-white {
+  font-weight: 400;
+  font-size: 1.25em;
+  color: #ffffff;
+}
+
+.bold-20px-grey {
+  font-weight: 700;
+  font-size: 1.25em;
+  color: #7180AC;
+}
+
+.bold-20px-white {
+  font-weight: 700;
+  font-size: 1.25em;
+  color: #ffffff;
+}
+
+
+
