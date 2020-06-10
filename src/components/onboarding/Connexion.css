@@ -1,0 +1,27 @@
+*{padding:0; margin: 0; }
+
+.connexion-background{
+    height: 100vh;
+    background-color: #F5F9FD;
+    width: 100%;
+}
+.logo-monogramme{
+    margin-top: 3%;
+}
+.mdp-forbiden{
+    background-image: url('../../images/eye-slash-regular\ 1.svg');
+    background-repeat: no-repeat;
+    background-position: 300px center;
+    padding-left: 20px;
+}
+.connexion-lien a{
+    position: absolute;
+    right: 10px;
+    padding-top: 10px;
+    padding-right: 15px;
+    font-weight: 500;
+    color: #7180AC;
+}
+.connexion-btn{
+    background-color: #D4E0F6;
+}

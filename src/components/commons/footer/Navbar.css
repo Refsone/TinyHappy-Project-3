@@ -1,0 +1,42 @@
+.cont-flex-navbar {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-top: 1px solid #E9EFFA;
+  box-shadow: 0 -.6em .5em #E9EFFA;
+  margin-top: .5em;
+  height: 4em;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.cont-flex-navbar a {
+  text-decoration: none;
+}
+
+.cont-flex-navbar .active {
+  background-color: #D4E0F6;
+}
+
+.cont-flex-navbar a {
+  flex:1;
+}
+
+.item-flex-navbar {
+  text-align: center;
+  color: #7180AC;
+  line-height: .75rem;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  font-size: .625rem;
+  padding: 1em 0 0;
+}
+
+img {
+  height: 2em;
+  width: 2em;
+}
+
