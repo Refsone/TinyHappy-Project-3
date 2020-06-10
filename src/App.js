@@ -1,10 +1,16 @@
 import React from 'react'
 
+import SideMenu from './components/commons/SideMenu'
+import Navbar from './components/commons/footer/Navbar'
+
 import './App.css'
 
 function App () {
   return (
-    <p>Ici avait le compo logo pour le voir efface-moi !</p>
+    <div className='App'>
+      <SideMenu />
+      <Navbar />
+    </div>
   )
 }
 
