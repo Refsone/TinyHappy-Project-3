@@ -1,8 +1,14 @@
 import React from 'react'
+import './ChampTexte.css'
 
-const ChampTexte = () => {
+const ChampTexte = (props) => {
   return (
-    <div />
+    <div>
+      <form className='champ'>
+        <label for='text'>{props.title}</label>
+        <textarea id='text' name='text' rows='8' cols='35' placeholder={props.placeholder} />
+      </form>
+    </div>
   )
 }
 
