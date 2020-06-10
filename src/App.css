@@ -1,12 +1,63 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
-.App {
-  text-align: center;
+
+body {
+    background-color: #F5F9FD;
 }
 
-*, ::before, ::after {
-  box-sizing: border-box;
+.general-connexion-form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: #7180AC;
 }
 
-html {
-  font-size: 16px;
+.general-connexion-form input, label{
+  margin: 10px 20px 5px 20px;
+  padding: 10px 0px 10px 15px;
+}
+
+.general-connexion-form .general-input{
+  
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffffff;    
+}
+
+.general-connexion-form .general-label{
+  text-transform: uppercase;
+  text-align: left;
+  font-weight: 700;
+  margin: 10px 20px 0px 20px;
+  padding: 10px 0px 0px 0px;
+}
+
+.general-connexion-form .plholder::placeholder{
+  font-style: italic;
+  font-weight: 500;
+  padding: 10px;
+}
+
+.general-input-mdp-close{
+  background-image: url('./images/eye-slash-regular1.svg');
+  background-repeat: no-repeat;
+  background-position: 95%;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: none;
+  height: 35px;
+}
+
+
+.general-connexion-form .btn-connexion{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border: none;
+  height: 60px;
+  text-transform: uppercase;
+  background-color: #FF89D2;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
 }
