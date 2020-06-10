@@ -1,44 +1,55 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
+/* -----  Général Css, do not delete it ----- */
 
-body {
-    background-color: #F5F9FD;
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.general-connexion-form{
+html {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* --------------------------------------- */
+
+.general-connexion-form {
   display: flex;
   flex-direction: column;
   width: 100%;
   color: #7180AC;
 }
 
-.general-connexion-form input, label{
+.general-connexion-form input, label {
   margin: 10px 20px 5px 20px;
   padding: 10px 0px 10px 15px;
+  font-size: .75em;
 }
 
-.general-connexion-form .general-input{
-  
-  height: 35px;
+.general-connexion-form .general-input {
+  width: 90%;
+  height: 5em;
   border: none;
-  border-radius: 5px;
-  background-color: #ffffff;    
+  background-color: #ffffff;
+  margin: auto;
+  padding-left: 2.5em;
 }
 
-.general-connexion-form .general-label{
+.general-connexion-form .general-label {
   text-transform: uppercase;
   text-align: left;
   font-weight: 700;
-  margin: 10px 20px 0px 20px;
-  padding: 10px 0px 0px 0px;
+  margin: 16px 0 5px 20px;
 }
 
-.general-connexion-form .plholder::placeholder{
+.general-connexion-form .plholder::placeholder {
   font-style: italic;
   font-weight: 500;
-  padding: 10px;
+  color: #98A7CD;
 }
 
-.general-input-mdp-close{
+.general-input-mdp-close {
   background-image: url('./images/eye-slash-regular1.svg');
   background-repeat: no-repeat;
   background-position: 95%;
@@ -48,8 +59,7 @@ body {
   height: 35px;
 }
 
-
-.general-connexion-form .btn-connexion{
+.general-connexion-form .btn-connexion {
   position: absolute;
   bottom: 0;
   width: 100%;
