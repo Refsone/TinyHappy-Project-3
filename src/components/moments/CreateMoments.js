@@ -1,16 +1,19 @@
 import React from 'react'
 import MomentNavbar from './MomentNavbar'
-import SelectAuteur from './SelectAuteur'
-import ChampTexte from './ChampTexte'
 import Calendar from './Calendar'
+import Citation from './Citation'
+import FaitNotable from './FaitNotable'
+import { Route, Switch } from 'react-router-dom'
+import './CreateMoment.css'
 
 const CreateMoment = () => {
   return (
-    <div>
+    <div className='create'>
       <MomentNavbar />
-      <SelectAuteur />
-      <ChampTexte title='citation' placeholder='Ajouter une citation' />
-      <ChampTexte title='contexte' placeholder='Ajouter un contexte (facultatif)' />
+      <Switch>
+        <Route path='/quote' component={Citation} />
+        <Route path='/milestone' component={FaitNotable} />
+      </Switch>
       <Calendar />
     </div>
   )

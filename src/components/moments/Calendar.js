@@ -10,7 +10,7 @@ const Calendar = () => {
   return (
     <div className='calendar'>
       <img src={calendar} />
-      {dateLocal}
+      <p>{dateLocal}</p>
     </div>
   )
 }

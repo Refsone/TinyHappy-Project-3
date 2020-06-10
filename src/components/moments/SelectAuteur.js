@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './SelectAuteur.css'
 
-const SelectAuteur = () => {
+const SelectAuteur = (props) => {
   const [auteurs] = useState([
     { name: 'Marie', color: '#DAFFD7' },
     { name: 'Jerome', color: '#F6EAFF' },
@@ -11,7 +11,7 @@ const SelectAuteur = () => {
 
   return (
     <div className='selectAuteur'>
-      <p className='titleAuteur'>SELECTIONNER L'AUTEUR</p>
+      <p className='titleAuteur'>{props.title}</p>
       <div className='listAuteur'>
         {auteurs.map((auteur, index) =>
           <p key={index} className='auteur'>{auteur.name}</p>
