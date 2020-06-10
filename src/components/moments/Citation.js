@@ -5,7 +5,7 @@ import SelectAuteur from './SelectAuteur'
 const Citation = () => {
   return (
     <>
-      <SelectAuteur title='selectionner l\`auteur' />
+      <SelectAuteur title='selectionner l auteur' />
       <ChampTexte title='citation' placeholder='Ajouter une citation' />
       <ChampTexte title='contexte' placeholder='Ajouter un contexte (facultatif)' />
     </>
