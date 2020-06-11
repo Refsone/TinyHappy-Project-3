@@ -1,14 +1,14 @@
 import React from 'react'
 
-import NoMoment from './components/moments/NoMoment'
+import CreateFamily from './components/family/CreateFamily'
 
 import './App.css'
 import '../src/components/commons/Fonts.css'
 
 function App () {
   return (
-    <div>
-      <NoMoment />
+    <div className='App'>
+      <CreateFamily />
     </div>
   )
 }
