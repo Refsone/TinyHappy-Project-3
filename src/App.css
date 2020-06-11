@@ -59,8 +59,7 @@ body {
   height: 35px;
 }
 
-
-.general-connexion-form .btn-connexion{
+.btn-connexion{
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -68,6 +67,19 @@ body {
   height: 60px;
   text-transform: uppercase;
   background-color: #FF89D2;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.btn-connexion-none{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border: none;
+  height: 60px;
+  text-transform: uppercase;
+  background-color: #D4E0F6;
   color: #ffffff;
   font-weight: 700;
   font-size: 14px;
