@@ -45,16 +45,16 @@ const CreateFamily = () => {
     <div className='cont-family-create'>
       <form className='general-connexion-form' onSubmit={submitForm}>
         <label htmlFor='family_firstname' className='general-label'>prénom</label>
-        <input type='text' name='family_firstname' id='family_firstname' className='general-input bold-12px-grey plholder' placeholder='Elise' onChange={(e) => handleChange(e)} required />
+        <input type='text' name='family_firstname' id='family_firstname' className='general-input bold-12px-grey plholder' placeholder='Elise' onChange={(e) => handleChange(e)} required autoComplete='off' />
 
         <label htmlFor='family_lastname' className='general-label'>nom</label>
-        <input type='text' name='family_lastname' id='family_lastname' className='general-input bold-12px-grey plholder' placeholder='Durand' onChange={(e) => handleChange(e)} />
+        <input type='text' name='family_lastname' id='family_lastname' className='general-input bold-12px-grey plholder' placeholder='Durand' onChange={(e) => handleChange(e)} autoComplete='off' />
 
         <label htmlFor='family_surname' className='general-label'>surnom</label>
-        <input name='family_surname' type='text' id='family_surname' className='general-input bold-12px-grey plholder' placeholder='Lili' onChange={(e) => handleChange(e)} />
+        <input name='family_surname' type='text' id='family_surname' className='general-input bold-12px-grey plholder' placeholder='Lili' onChange={(e) => handleChange(e)} autoComplete='off' />
 
         <label htmlFor='family_birthday' className='general-label'>date de naissance</label>
-        <input name='family_birthday' type='text' id='family_birthday' className='general-input bold-12px-grey plholder' placeholder='22/01/2016' onChange={(e) => handleChange(e)} pattern='[0-9]{2}/[0-9]{2}/[0-9]{4}' />
+        <input name='family_birthday' type='text' id='family_birthday' className='general-input bold-12px-grey plholder' placeholder='22/01/2016' onChange={(e) => handleChange(e)} pattern='[0-9]{2}/[0-9]{2}/[0-9]{4}' autoComplete='off' />
 
         <label className='general-label label-color'>COULEUR</label>
         <fieldset className='family_palette'>
@@ -67,7 +67,7 @@ const CreateFamily = () => {
           <input type='radio' id='F6EAFF' name='color_family_id' value='7' className='purple' onChange={(e) => handleChange(e)} />
           <input type='radio' id='DAFFD7' name='color_family_id' value='8' className='mint' onChange={(e) => handleChange(e)} />
         </fieldset>
-        <p><a title='Ouvrir la palette' href='#'>Couleur personnalisée</a></p>
+        <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
 
       </form>
     </div>

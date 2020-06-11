@@ -4,7 +4,9 @@ import './LogoHeader.css'
 
 function Logo () {
   return (
-    <img className='logo-monogramme' src={monogramme} alt='Logo Tiny Happy' />
+    <div className='header'>
+      <img className='logo-monogramme' src={monogramme} alt='Logo Tiny Happy' />
+    </div>
   )
 }
 
