@@ -1,9 +1,12 @@
 .calendar {
-    margin: 20px 0 0 5vw;
+    margin-left: 5vw;
     display: flex;
+    padding-bottom: 40px;
 }
 
 .calendar p {
     margin-left:10px ;
     font-size: 13px;
+    color: #7180AC;
+    font-weight: bold;
 }

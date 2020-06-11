@@ -1,6 +1,6 @@
-*, ::before, ::after {
-  background-color: #F5F9FD;
-}
+/* *, ::before, ::after {
+  background-color: #F5F9FD;    ça creer des problemes sur mon composant. NICO
+} */
 
 .moon {
   margin-top: 8em;

@@ -1,12 +1,12 @@
-
 .champ textarea {
     resize: none;
     border: solid 1px #E9EFFA;
     border-radius: 4px;
     width: 90vw;
-    margin-top: 10px;
+    margin-top: 5px;
     padding:20px 15px;
     margin-left: 5vw;
+    margin-bottom: 12px;
 }
 
 .champ label {
@@ -14,9 +14,11 @@
     font-weight: bold;
     margin-left: 5vw ;
     padding-left: 0;
+    font-size: 12px;
 }
 
 .champ ::placeholder {
     color: #98A7CD;
-    font-weight: bold;
+    font-weight: 500;
+    font-style: italic;
 }

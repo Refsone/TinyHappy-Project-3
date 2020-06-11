@@ -4,22 +4,27 @@
     padding: 5px 10px;
     margin-right: 10px;
     background-color: white;
+    font-size: 10px;
 }
 
 .listAuteur {
     display: flex;
+    margin-bottom: 20px;
 }
 
-p {
+.selectAuteur button {
     color: #7180AC;
     font-weight: bold;
-    font-size: 10px;
 }
 
 .selectAuteur {
     padding-left: 5vw;
+    margin-bottom: 10px;
 }
 
-.titletAuteur {
-    margin-bottom: 0;
+.titleAuteur {
+    margin-bottom: 10px;
+    color: #7180AC;
+    font-weight: bold;
+    font-size: 12px;
 }

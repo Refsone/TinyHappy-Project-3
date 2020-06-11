@@ -3,10 +3,10 @@ import './SelectAuteur.css'
 
 const SelectAuteur = (props) => {
   const [auteurs] = useState([
-    { name: 'Marie', color: '#DAFFD7' },
-    { name: 'Jerome', color: '#F6EAFF' },
-    { name: 'Louise', color: '#FEFFC5' },
-    { name: 'Violette', color: '#FFEDD7' }
+    { id: 1, name: 'MARIE', color: '#DAFFD7' },
+    { id: 2, name: 'JEROME', color: '#F6EAFF' },
+    { id: 3, name: 'LOUISE', color: '#FEFFC5' },
+    { id: 4, name: 'VIOLETTE', color: '#FFEDD7' }
   ])
 
   return (
@@ -14,7 +14,7 @@ const SelectAuteur = (props) => {
       <p className='titleAuteur'>{props.title}</p>
       <div className='listAuteur'>
         {auteurs.map((auteur, index) =>
-          <p key={index} className='auteur'>{auteur.name}</p>
+          <button key={index} className='auteur' id={auteur.id}>{auteur.name}</button>
         )}
       </div>
     </div>
