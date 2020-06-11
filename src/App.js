@@ -1,13 +1,14 @@
 import React from 'react'
-import './App.css'
-import CreateMoment from './components/moments/CreateMoments'
 
+import NoMoment from './components/moments/NoMoment'
+
+import './App.css'
 import '../src/components/commons/Fonts.css'
 
 function App () {
   return (
-    <div className='App'>
-      <CreateMoment />
+    <div>
+      <NoMoment />
     </div>
   )
 }
