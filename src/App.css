@@ -1,7 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
 
+*, ::before, ::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}
+
 body {
-    background-color: #F5F9FD;
+  background-color: #F5F9FD;
 }
 
 .general-connexion-form{
@@ -48,12 +59,7 @@ body {
   height: 35px;
 }
 
-<<<<<<< HEAD
 .btn-connexion{
-=======
-
-.general-connexion-form .btn-connexion{
->>>>>>> ab960fcb1af49ef191a6afa7865657e2b0b0cd0e
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -65,7 +71,6 @@ body {
   font-weight: 700;
   font-size: 14px;
 }
-<<<<<<< HEAD
 
 .btn-connexion-none{
   position: absolute;
@@ -79,5 +84,3 @@ body {
   font-weight: 700;
   font-size: 14px;
 }
-=======
->>>>>>> ab960fcb1af49ef191a6afa7865657e2b0b0cd0e
