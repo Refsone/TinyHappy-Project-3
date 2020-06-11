@@ -1,7 +1,7 @@
 .family_palette {
   border: none;
   white-space: nowrap;
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
   margin: -.2em 0 .2em 2em;
 }
 
