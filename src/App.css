@@ -14,6 +14,12 @@ html {
 
 /* --------------------------------------- */
 
+  .general-form-container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+
 .general-connexion-form {
   display: flex;
   flex-direction: column;
@@ -59,7 +65,7 @@ html {
   height: 35px;
 }
 
-.general-connexion-form .btn-connexion {
+.btn-connexion{
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -67,6 +73,19 @@ html {
   height: 60px;
   text-transform: uppercase;
   background-color: #FF89D2;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.btn-connexion-none{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border: none;
+  height: 60px;
+  text-transform: uppercase;
+  background-color: #D4E0F6;
   color: #ffffff;
   font-weight: 700;
   font-size: 14px;
