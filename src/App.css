@@ -7,6 +7,10 @@
   padding: 0;
 }
 
+body {
+  background-color: #F5F9FD;
+}
+
 html {
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
@@ -25,6 +29,8 @@ html {
   flex-direction: column;
   width: 100%;
   color: #7180AC;
+  background-color: #F5F9FD;
+  padding-top: 70px; /* default not here !!*/
 }
 
 .general-connexion-form input, label {
@@ -59,15 +65,15 @@ html {
   background-image: url('./images/eye-slash-regular1.svg');
   background-repeat: no-repeat;
   background-position: 95%;
-  border-radius: 5px;
+  border-radius: 4px;
   background-color: #ffffff;
   border: none;
-  height: 35px;
+  height: 5em;
 }
 
 .btn-connexion{
   position: absolute;
-  bottom: 0;
+  bottom: -1485px; /*default 0*/
   width: 100%;
   border: none;
   height: 60px;
@@ -80,7 +86,7 @@ html {
 
 .btn-connexion-none{
   position: absolute;
-  bottom: 0;
+  bottom: -1485px; /*default 0*/
   width: 100%;
   border: none;
   height: 60px;

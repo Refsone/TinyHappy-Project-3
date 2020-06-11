@@ -3,14 +3,12 @@ import MomentNavbar from './MomentNavbar'
 import Calendar from './Calendar'
 import Citation from './Citation'
 import FaitNotable from './FaitNotable'
-import LogoHeader from '../commons/header/LogoHeader'
 import { Route, Switch } from 'react-router-dom'
 import './CreateMoment.css'
 
 const CreateMoment = () => {
   return (
     <div className='create'>
-      <LogoHeader />
       <MomentNavbar />
       <Switch>
         <Route path='/quote' component={Citation} />
