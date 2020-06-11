@@ -1,13 +1,13 @@
 import React from 'react'
-
 import './App.css'
+import CreateMoment from './components/moments/CreateMoments'
 
-import SignUp from './components/onboarding/SignUp'
+import '../src/components/commons/Fonts.css'
 
 function App () {
   return (
     <div className='App'>
-      <SignUp />
+      <CreateMoment />
     </div>
   )
 }

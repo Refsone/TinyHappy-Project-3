@@ -11,8 +11,10 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
-body {
-  background-color: #F5F9FD;
+.general-form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .general-connexion-form{

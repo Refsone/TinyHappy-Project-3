@@ -21,7 +21,6 @@ export default function CardMembers () {
       color_family_id: '#FFE7EC'
     }
   ])
-
   const [user] = useState([
     {
       isUser: true,
@@ -32,12 +31,10 @@ export default function CardMembers () {
       color_family_id: '#E9FEFC'
     }
   ])
-
   const formatDate = (date) => {
     Moment.locale('fr')
     if (date !== '') return Moment(date).format('LL')
   }
-
   return (
     <div className='CardMembers'>
       {members.map((member, key) => {
