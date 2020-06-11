@@ -48,7 +48,12 @@ body {
   height: 35px;
 }
 
+<<<<<<< HEAD
 .btn-connexion{
+=======
+
+.general-connexion-form .btn-connexion{
+>>>>>>> ab960fcb1af49ef191a6afa7865657e2b0b0cd0e
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -60,6 +65,7 @@ body {
   font-weight: 700;
   font-size: 14px;
 }
+<<<<<<< HEAD
 
 .btn-connexion-none{
   position: absolute;
@@ -73,3 +79,5 @@ body {
   font-weight: 700;
   font-size: 14px;
 }
+=======
+>>>>>>> ab960fcb1af49ef191a6afa7865657e2b0b0cd0e
