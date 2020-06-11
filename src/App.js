@@ -1,7 +1,7 @@
 import React from 'react'
 import CardMembers from './components/family/CardMembers'
 import Access from './components/onboarding/Access'
-import MomentNavbar from './components/moments/MomentNavbar'
+//import MomentNavbar from './components/moments/MomentNavbar'
 import Logo from './components/commons/header/LogoHeader'
 import Navbar from 'src/components/commons/footer/Navbar'
 import CardContacts from './components/share/CardContacts'
@@ -15,7 +15,7 @@ function App () {
     <div className='App'>
       <CardMembers />
       <Access />
-      <MomentNavbar />
+      {/* <MomentNavbar /> */}
       <CardContacts />
       <SignUp />
       <Logo />
