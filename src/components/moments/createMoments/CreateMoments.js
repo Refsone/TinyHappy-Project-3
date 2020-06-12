@@ -5,7 +5,7 @@ import Citation from './Citation'
 import FaitNotable from './FaitNotable'
 import LogoHeader from '../../commons/header/LogoHeader'
 import { Route, Switch } from 'react-router-dom'
-import './CreateMoment.css'
+import './CreateMoments.css'
 
 const CreateMoment = () => {
   return (

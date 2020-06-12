@@ -3,6 +3,7 @@ import Moment from 'moment'
 import 'moment/locale/fr'
 import CardPost from './CardPost'
 import './Posts.css'
+import AddNewMoment from './AddNewMoment'
 
 export default function Post () {
   const [moments] = useState([
@@ -89,6 +90,7 @@ export default function Post () {
           )
         }
       })}
+      <AddNewMoment />
     </div>
   )
 }

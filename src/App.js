@@ -6,6 +6,7 @@ import Access from '../src/components/onboarding/Access'
 import SignUp from '../src/components/onboarding/SignUp'
 import Connexion from '../src/components/onboarding/Connexion'
 import Post from '../src/components/moments/Posts'
+import CreateMoments from '../src/components/moments/createMoments/CreateMoments'
 
 function App () {
   return (
@@ -15,6 +16,7 @@ function App () {
         <Route path='/sign-up' component={SignUp} />
         <Route path='/connect' component={Connexion} />
         <Route path='/moments' component={Post} />
+        <Route path='/create-moment' component={CreateMoments} />
         {/* <CreateFamily /> */}
       </Switch>
     </div>
