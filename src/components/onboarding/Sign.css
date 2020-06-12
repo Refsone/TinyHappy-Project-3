@@ -1,6 +1,4 @@
-a{
-    border: none;
-    background-color: white;
+.sign a{
     text-decoration: none;
     font-weight: 500;
 }

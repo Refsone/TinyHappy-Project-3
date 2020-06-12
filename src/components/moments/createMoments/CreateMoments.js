@@ -3,7 +3,7 @@ import MomentNavbar from './MomentNavbar'
 import Calendar from './Calendar'
 import Citation from './Citation'
 import FaitNotable from './FaitNotable'
-import LogoHeader from '../commons/header/LogoHeader'
+import LogoHeader from '../../commons/header/LogoHeader'
 import { Route, Switch } from 'react-router-dom'
 import './CreateMoment.css'
 

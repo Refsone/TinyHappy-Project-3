@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import './Connexion.css'
 
 class Connexion extends Component {
@@ -13,7 +14,7 @@ class Connexion extends Component {
             <label htmlFor='user_password' className='general-label'>mot de passe</label>
             <input name='user_password' type='user_password' className='general-input mdp-forbiden' placeholder='**********' required />
             <p className='connexion-lien'><a href='#'>Mot de passe perdu ?</a></p>
-            <button type='button' className='general-btn connexion-btn'>se connecter</button>
+            <Link to='/moments'><button type='button' className='general-btn connexion-btn'>se connecter</button></Link>
           </form>
         </div>
       </div>

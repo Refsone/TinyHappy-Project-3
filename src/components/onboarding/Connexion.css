@@ -1,5 +1,3 @@
-*{padding:0; margin: 0; }
-
 .connexion-background{
     height: 100vh;
     background-color: #F5F9FD;
@@ -9,7 +7,7 @@
     margin-top: 3%;
 }
 .mdp-forbiden{
-    background-image: url('../../images/eye-slash-regular\ 1.svg');
+    background-image: url('../../images/eye-slash-regular1.svg');
     background-repeat: no-repeat;
     background-position: 300px center;
     padding-left: 20px;
