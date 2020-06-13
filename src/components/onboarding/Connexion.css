@@ -63,30 +63,34 @@
     color: #7180AC
 }
 
-.general-form-connexion .general-btn {
+.general-form-connexion .connexion-btn{
     position: absolute;
-    bottom: -735px;
+    bottom: 0px;
     /* For the demonstration Default:0 */
     width: 100%;
     border: none;
     height: 60px;
     text-transform: uppercase;
-    /* background-color: #D4E0F6; */
     color: #ffffff;
     font-weight: 700;
     font-size: 14px;
 }
 
-.actif {
-    background-color: pink;
+.general-form-connexion .connexion-btn .actif {
+    background-color: #FF89D2;
 }
 
-.inactif {
-    background-color: black;
+.general-form-connexion .connexion-btn .inactif {
+    background-color: #D4E0F6;
 }
 
-.logo-monogramme {
-    margin-top: 3%;
+.msg-error{
+    display: block;
+    width: 90%;
+    margin-left: 35px;
+    padding-top: 5px;
+    text-transform: uppercase;
+    color: orange;
 }
 
 .connexion-lien a {
@@ -97,12 +101,4 @@
     font-weight: 500;
     color: #7180AC;
     font-size: small;/* style maquette client */
-}
-
-.logo-monogramme {
-    margin-top: 3%;
-}
-
-.connexion-btn {
-    background-color: #D4E0F6;
 }
