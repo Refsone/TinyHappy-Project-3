@@ -63,7 +63,7 @@
     color: #7180AC
 }
 
-.general-form-connexion .connexion-btn{
+.general-form-connexion .connexion-btn-inactif{
     position: absolute;
     bottom: 0px;
     /* For the demonstration Default:0 */
@@ -74,14 +74,20 @@
     color: #ffffff;
     font-weight: 700;
     font-size: 14px;
-}
-
-.general-form-connexion .connexion-btn .actif {
-    background-color: #FF89D2;
-}
-
-.general-form-connexion .connexion-btn .inactif {
     background-color: #D4E0F6;
+}
+
+.general-form-connexion .connexion-btn-actif{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    border: none;
+    height: 60px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    background-color: #FF89D2;
 }
 
 .msg-error{
@@ -108,11 +114,7 @@
     border: solid 1px #ff0000;
     border-radius: 4px;
     background-color: #ffffff;
-    height: 5em;
-    background-image: url('../../images/eye-slash-regular1.svg');
-    background-repeat: no-repeat;
-    background-position: 90% center;
-    padding-left: 20px;
+    height: 5em; 
 }
 
 .general-form-connexion .input-psw-default {
@@ -122,10 +124,10 @@
     border-radius: 4px;
     background-color: #ffffff;
     height: 5em;
-    background-image: url('../../images/eye-open.svg');
+    background-image: url('../../images/eye-slash-regular1.svg');
     background-repeat: no-repeat;
     background-position: 90% center;
-    padding-left: 20px;
+    padding-left: 20px; 
 }
 .connexion-lien a {
     position: absolute;

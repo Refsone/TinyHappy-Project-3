@@ -8,8 +8,9 @@ import './Connexion.css'
 const Connexion = () => {
   const { handleChange, handleSubmit, values, errors } = useForm(submit, validationLogIn)
   function submit () {
-    console.log('Your login is well done')
+    console.log('sent succesfully')
   }
+
   return (
     <div className='connexion-background'>
       <Logo />
@@ -20,12 +21,13 @@ const Connexion = () => {
         {errors.user_mail && <p className='msg-error'>{errors.user_mail}</p>}
 
         <label htmlFor='user_password' className='label-connexion'>mot de passe</label>
-        <input name='user_password' type='password' id='user_password' value={values.password} onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-connexion mdp-open plholder bold-12px-grey'}`} placeholder='**********' />
+        <input name='user_password' type='password' id='user_password' value={values.password} onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-psw-default mdp-open plholder bold-12px-grey'}`} placeholder='**********' />
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
 
         <p className='connexion-lien'><a href='/'>Mot de passe perdu ?</a></p>
 
-        <button type='submit' className={`${!handleSubmit ? 'connexion-btn inactif' : 'connexion-btn actif'}`}>se connecter</button>
+        {errors && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif'>se connecter</button>}
+
       </form>
     </div>
   )
