@@ -89,10 +89,44 @@
     width: 90%;
     margin-left: 35px;
     padding-top: 5px;
-    text-transform: uppercase;
-    color: orange;
+    color: #ff0000;
+    font-weight: 500;
+    font-size: 12px;
 }
 
+.general-form-connexion .input-connexion-error{
+    display: block;
+    width: 100%;
+    border: solid 1px #ff0000;
+    border-radius: 4px;
+    background-color: #ffffff;
+    height: 5em;
+}
+.general-form-connexion .input-pws-error{
+    display: block;
+    width: 100%;
+    border: solid 1px #ff0000;
+    border-radius: 4px;
+    background-color: #ffffff;
+    height: 5em;
+    background-image: url('../../images/eye-slash-regular1.svg');
+    background-repeat: no-repeat;
+    background-position: 90% center;
+    padding-left: 20px;
+}
+
+.general-form-connexion .input-psw-default {
+    display: block;
+    width: 100%;
+    border: solid 1px #E9EAFA;
+    border-radius: 4px;
+    background-color: #ffffff;
+    height: 5em;
+    background-image: url('../../images/eye-open.svg');
+    background-repeat: no-repeat;
+    background-position: 90% center;
+    padding-left: 20px;
+}
 .connexion-lien a {
     position: absolute;
     right: 10px;
