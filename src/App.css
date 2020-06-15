@@ -1,9 +1,14 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
+/* -----  Général Css, do not delete it ----- */
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
 *, ::before, ::after {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #F5F9FD;
 }
 
 html {
@@ -11,63 +16,82 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
-body {
-  background-color: #F5F9FD;
-}
+/* --------------------------------------- */
 
-.general-connexion-form{
+  .general-form-container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+.general-connexion-form {
   display: flex;
   flex-direction: column;
   width: 100%;
   color: #7180AC;
+  background-color: #F5F9FD;
+  padding-top: 70px; /* default not here !!*/
 }
 
-.general-connexion-form input, label{
+.general-connexion-form input, label {
   margin: 10px 20px 5px 20px;
   padding: 10px 0px 10px 15px;
+  font-size: .75em;
 }
 
-.general-connexion-form .general-input{
-  
-  height: 35px;
+.general-connexion-form .general-input {
+  width: 90%;
+  height: 5em;
   border: none;
-  border-radius: 5px;
-  background-color: #ffffff;    
+  background-color: #ffffff;
+  margin: auto;
+  padding-left: 2.5em;
 }
 
-.general-connexion-form .general-label{
+.general-connexion-form .general-label {
   text-transform: uppercase;
   text-align: left;
   font-weight: 700;
-  margin: 10px 20px 0px 20px;
-  padding: 10px 0px 0px 0px;
+  margin: 16px 0 5px 20px;
 }
 
-.general-connexion-form .plholder::placeholder{
+.general-connexion-form .plholder::placeholder {
   font-style: italic;
   font-weight: 500;
-  padding: 10px;
+  color: #98A7CD;
 }
 
-.general-input-mdp-close{
+.general-input-mdp-close {
   background-image: url('./images/eye-slash-regular1.svg');
   background-repeat: no-repeat;
   background-position: 95%;
-  border-radius: 5px;
+  border-radius: 4px;
   background-color: #ffffff;
   border: none;
-  height: 35px;
+  height: 5em;
 }
 
-
-.general-connexion-form .btn-connexion{
+.btn-connexion{
   position: absolute;
-  bottom: 0;
+  bottom: -1485px; /*default 0*/
   width: 100%;
   border: none;
   height: 60px;
   text-transform: uppercase;
   background-color: #FF89D2;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.btn-connexion-none{
+  position: absolute;
+  bottom: -1485px; /*default 0*/
+  width: 100%;
+  border: none;
+  height: 60px;
+  text-transform: uppercase;
+  background-color: #D4E0F6;
   color: #ffffff;
   font-weight: 700;
   font-size: 14px;

@@ -1,9 +1,5 @@
-*, ::before, ::after {
-  background-color: #F5F9FD;
-}
-
 .moon {
-  margin-top: 8em;
+  margin-top: 6em;
 }
 
 .CardContacts-h3 {
@@ -12,4 +8,10 @@
 
 .CardContacts-p {
   margin: 3em 1em 1em;
+}
+
+.card-contacts {
+  text-align: center;
+  background-color: #F5F9FD;
+  padding-bottom: 200px;
 }
