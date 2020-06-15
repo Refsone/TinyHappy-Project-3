@@ -1,11 +1,11 @@
 import React from 'react'
 import ChampTexte from './ChampTexte'
-import SelectAuteur from './SelectAuteur'
+import SelectAuthor from './SelectAuthor'
 
-const Citation = () => {
+const Citation = (props) => {
   return (
     <>
-      <SelectAuteur title={'SELECTIONNER L\'AUTEUR'} />
+      <SelectAuthor familyMember={props.familyMember} title={'SELECTIONNER L\'AUTEUR'} />
       <ChampTexte title='CITATION' placeholder='Ajouter une citation' idCitation='citation' idContext='contextQuote' />
     </>
   )

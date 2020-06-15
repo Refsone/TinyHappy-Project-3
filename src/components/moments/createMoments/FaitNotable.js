@@ -1,11 +1,11 @@
 import React from 'react'
 import ChampTexte from './ChampTexte'
-import SelectAuteur from './SelectAuteur'
+import SelectAuthor from './SelectAuthor'
 
-const FaitNotable = () => {
+const FaitNotable = (props) => {
   return (
     <>
-      <SelectAuteur title='SELECTIONNER LE(S) PARTICIPANT(S)' />
+      <SelectAuthor familyMember={props.familyMember} title='SELECTIONNER LE(S) PARTICIPANT(S)' />
       <ChampTexte title='DESCRIPTION' placeholder='Ajouter une description' idCitation='description' idContext='contextMilestone' />
     </>
   )
