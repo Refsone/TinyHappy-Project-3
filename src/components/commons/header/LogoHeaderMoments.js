@@ -9,7 +9,7 @@ function LogoHeaderMoments () {
       <Sidemenu />
       <div className='header-container'>
         <img className='logo-monogramme' src={monogramme} alt='Logo Tiny Happy' />
-        <a href='/'><p className='action-link'>texte action</p></a>
+        <a href='/'><p className='action-link'>txt action</p></a>
       </div>
     </>
   )
