@@ -28,6 +28,7 @@ const routes = (props) => {
       {/* <Route path='/family/delete' component={DeleteFamily} /> */}
       {/* <Route path='/family/modify' component={ModifyFamily} /> */}
       <Route exact path='/moments' component={Post} />
+      <Route path='/moments/favoris' component={Post} /> {/* Path to modify when the card will exist */}
       <Route path='/moments/create/quote' component={CreateMoments} />
       <Route path='/moments/create/milestone' component={CreateMoments} />
       <Route path='/onboarding/login' component={Connexion} />

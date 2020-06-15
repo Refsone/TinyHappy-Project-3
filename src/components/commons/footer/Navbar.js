@@ -18,7 +18,7 @@ const Navbar = () => {
         </div>
       </NavLink>
       <NavLink to='/family'><div className='item-flex-navbar'><img alt='Un visage en smiley' src={family} /><p>FAMILLE</p></div></NavLink>
-      <NavLink to='/favoris'><div className='item-flex-navbar'><img alt='Un coeur' src={heart} /><p>FAVORIS</p></div></NavLink>
+      <NavLink to='/moments/favoris'><div className='item-flex-navbar'><img alt='Un coeur' src={heart} /><p>FAVORIS</p></div></NavLink>
       <NavLink to='/moments'><div className='item-flex-navbar'><img alt='Une étoile' src={star} /><p>MOMENTS</p></div></NavLink>
     </footer>
   )

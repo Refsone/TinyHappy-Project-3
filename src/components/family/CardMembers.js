@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 
+import AddNewFamily from './AddNewFamily'
 import Header from '../commons/header/Header'
-import Moment from 'moment'
-import 'moment/locale/fr'
-
 import Member from './Member'
+import Navbar from '../commons/footer/Navbar'
+
+import 'moment/locale/fr'
+import Moment from 'moment'
 
 import './CardMembers.css'
 
@@ -48,6 +50,8 @@ const CardMembers = () => {
         })}
         <Member member={user[0]} familyBirthday={formatDate(user[0].family_birthday)} />
       </div>
+      <AddNewFamily />
+      <Navbar />
     </>
   )
 }

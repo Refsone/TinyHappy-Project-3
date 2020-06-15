@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
+
+import AddNewMoment from './AddNewMoment'
+import CardPost from './CardPost'
+import Header from './../commons/header/Header'
+import Navbar from '../commons/footer/Navbar'
+
 import Moment from 'moment'
 import 'moment/locale/fr'
 
-import CardPost from './CardPost'
-
 import './Posts.css'
-import AddNewMoment from './AddNewMoment'
-import Navbar from '../commons/footer/Navbar'
 
 const Posts = () => {
   const [moments] = useState([
@@ -70,32 +72,35 @@ const Posts = () => {
   }
 
   useEffect(() => {
-    console.log('change')
+    console.log('change') // Est-ce utile ???
   }, [date])
 
   return (
-    <div className='Posts'>
-      {moments.map((moment, key) => {
-        if (date !== moment.moment_event_date) {
-          date = moment.moment_event_date
-          return (
-            <>
-              <p className='moment-date'>{formatDate(moment.moment_event_date)}</p>
-              <CardPost moment={moment} key={key} style={{ borderLeft: '0.4rem solid #91E9FE' }} />
-            </>
-          )
-        } else {
-          date = moment.moment_event_date
-          return (
-            <>
-              <CardPost moment={moment} key={key} style={{ marginTop: '8px', borderLeft: '0.4rem solid #D3FF9B' }} />
-            </>
-          )
-        }
-      })}
-      <AddNewMoment />
-      <Navbar />
-    </div>
+    <>
+      <Header burger />
+      <div className='Posts'>
+        {moments.map((moment, key) => {
+          if (date !== moment.moment_event_date) {
+            date = moment.moment_event_date
+            return (
+              <>
+                <p className='moment-date'>{formatDate(moment.moment_event_date)}</p>
+                <CardPost moment={moment} key={key} style={{ borderLeft: '0.4rem solid #91E9FE' }} />
+              </>
+            )
+          } else {
+            date = moment.moment_event_date
+            return (
+              <>
+                <CardPost moment={moment} key={key} style={{ marginTop: '8px', borderLeft: '0.4rem solid #D3FF9B' }} />
+              </>
+            )
+          }
+        })}
+        <AddNewMoment />
+        <Navbar />
+      </div>
+    </>
   )
 }
 

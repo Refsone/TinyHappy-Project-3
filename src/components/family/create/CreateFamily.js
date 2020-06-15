@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
+import Header from '../../commons/header/Header'
 import ValidateButton from '../../commons/footer/ValidateButton'
-import Header from '../commons/header/Header'
 
 import './CreateFamily.css'
 

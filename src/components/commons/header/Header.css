@@ -3,13 +3,17 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: #F5F9FD;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
 }
 
 .logo-monogramme {
   width: 40px;
   padding: 0;
   margin-top: 5%;
-  margin-left: 40%;
 }
 
 .action-link {
