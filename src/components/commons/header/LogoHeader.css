@@ -1,0 +1,14 @@
+.header{
+    text-align: center;
+    background-color: #F5F9FD;
+    position: fixed;
+    z-index: 10;
+    height: 80px;
+    width: 100%;
+}
+
+.logo-monogramme{
+    width: 50px;
+    line-height: 40px;
+    text-align: center;
+}

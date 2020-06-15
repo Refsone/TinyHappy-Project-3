@@ -1,0 +1,96 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.SideMenu .scalable-mb-logo{
+  width: 60%!important;
+  user-select: none;
+}
+
+/* MENU AND CROSS BUTTON */
+
+.SideMenu .bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 5%;
+  top: 25px;
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+  left: 16px;
+}
+
+.bm-cross {
+  background: #fff;
+}
+
+/* INSIDE OF MENU */
+
+.SideMenu .bm-menu {
+  position: relative;
+  background: #7180AC;
+  color: #fff;
+  padding: 16px;
+}
+
+.SideMenu .bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.SideMenu .logo-th {
+  width: 15%;
+  margin: auto;
+}
+
+.SideMenu .block-link {
+  margin-top: 56px;
+}
+
+.SideMenu .menu-item {
+  margin-top: 24px;
+}
+
+.SideMenu .menu-item img {
+  margin-right: 16px;
+  width: 16px;
+}
+
+.SideMenu .menu-item p {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.SideMenu .block-love {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  bottom: 16px;
+  background-color: #FF89D2;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.SideMenu .block-love img {
+  width: 16px;
+}
+
+.SideMenu .block-love p, .SideMenu .block-love h4 {
+  margin-top: 8px;
+}
+
+.SideMenu .block-love p:nth-of-type(1) {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.SideMenu .block-love p {
+  font-size: 12px;
+}

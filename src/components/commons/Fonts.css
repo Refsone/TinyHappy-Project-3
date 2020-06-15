@@ -31,6 +31,12 @@
   color: #98A7CD;
 }
 
+.medium-12px-grey {
+  font-weight:500;
+  font-size: 0.75em;
+  color: #7180AC;
+}
+
 .mediumitalic-12px-lightgrey {
   font-weight: 500;
   font-style: italic;

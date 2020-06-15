@@ -1,3 +1,20 @@
 .card-contacts {
   background-color: #D4E0F6;
 }
+.moon {
+  margin-top: 6em;
+}
+
+.CardContacts-h3 {
+  margin-top: 3em;
+}
+
+.CardContacts-p {
+  margin: 3em 1em 1em;
+}
+
+.card-contacts {
+  text-align: center;
+  background-color: #F5F9FD;
+  padding-bottom: 200px;
+}

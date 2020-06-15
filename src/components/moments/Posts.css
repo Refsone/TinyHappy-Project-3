@@ -1,0 +1,14 @@
+.Posts {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+    background-color: #F5F9FD;
+}
+
+.Posts .moment-date {
+    color: #98A7CD;
+    margin-top: 32px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 2px;
+}

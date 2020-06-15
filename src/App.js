@@ -1,5 +1,6 @@
 import React from 'react'
-import CardContacts from './components/share/CardContacts'
+
+import LogoHeaderMoments from './components/commons/header/LogoHeaderMoments'
 
 import './App.css'
 import '../src/components/commons/Fonts.css'
@@ -7,7 +8,7 @@ import '../src/components/commons/Fonts.css'
 function App () {
   return (
     <div className='App'>
-      <CardContacts />
+      <LogoHeaderMoments />
     </div>
   )
 }
