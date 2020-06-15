@@ -8,13 +8,13 @@ import './CreateMoments.css'
 import axios from 'axios'
 
 const CreateMoment = (props) => {
-  console.log('props', props.location.data)
+  const path = props.location.pathname
   axios.get('http://localhost:8080/').then((res) => console.log('res axios', res.data))
   return (
     <div className='create'>
       <LogoHeader />
       <MomentNavbar />
-      {props.location.data ? <Citation /> : <FaitNotable />}
+      {path === '/moments/create/milestone' ? <FaitNotable /> : <Citation />}
       <Calendar />
     </div>
   )
