@@ -15,7 +15,7 @@ import logoMB from '../../images/menu-burger-logo.svg'
 const SideMenu = () => {
   return (
     <div className='SideMenu'>
-      <Menu width='85%' customBurgerIcon={<img src={logoMB} alt='icon menu burger' />}>
+      <Menu width='85%' disableAutoFocus customBurgerIcon={<img className='scalable-mb-logo' src={logoMB} alt='icon menu burger' />}>
         <img className='logo-th' src={logoTH} alt='Logo Tinny Happy' />
 
         <div className='block-link'>
