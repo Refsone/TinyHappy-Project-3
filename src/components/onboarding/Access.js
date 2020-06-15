@@ -13,7 +13,7 @@ const Access = () => {
 
   return (
     <div className='access'>
-      <img className='logo' src={LOGO} />
+      <img className='logo' src={LOGO} alt='' />
       {load && <Sign />}
     </div>
   )
