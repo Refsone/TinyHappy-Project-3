@@ -7,7 +7,7 @@ import Member from './Member'
 import './CardMembers.css'
 
 const CardMembers = () => {
-  const [members] = useState ([
+  const [members] = useState([
     {
       family_firstname: 'Louise',
       family_lastname: 'Memand',
