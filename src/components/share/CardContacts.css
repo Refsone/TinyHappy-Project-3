@@ -1,25 +1,3 @@
-*, ::before, ::after {
-  background-color: #F5F9FD;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 16px;
-}
-
-html {
-  font-size: 16px;
-  font-family: 'Roboto', sans-serif;
-}
-
-.moon {
-  margin-top: 8em;
-}
-
-.CardContacts-h3 {
-  margin-top: 3em;
-}
-
-.CardContacts-p {
-  margin: 3em 1em 1em;
+.card-contacts {
+  background-color: #D4E0F6;
 }

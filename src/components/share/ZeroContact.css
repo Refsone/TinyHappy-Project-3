@@ -1,0 +1,16 @@
+.moon {
+  margin-top: 8em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%
+}
+
+.CardContacts-h3 {
+  margin-top: 3em;
+  text-align: center;
+}
+
+.CardContacts-p {
+  margin: 3em 1em 1em;
+  text-align: center;
+}
