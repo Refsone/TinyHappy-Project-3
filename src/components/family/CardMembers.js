@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import Moment from 'moment'
 import 'moment/locale/fr'
+
 import Member from './Member'
+
 import './CardMembers.css'
 
-export default function CardMembers () {
-  const [members] = useState ([
+const CardMembers = () => {
+  const [members] = useState([
     {
       family_firstname: 'Louise',
       family_lastname: 'Memand',
@@ -44,3 +46,5 @@ export default function CardMembers () {
     </div>
   )
 }
+
+export default CardMembers

@@ -1,25 +1,34 @@
 import React from 'react'
+
+import Access from './components/onboarding/Access'
+import CardContacts from './components/share/CardContacts'
+import Connexion from './components/onboarding/Connexion'
+import CreateFamily from './components/family/CreateFamily'
+import CreateMoment from './components/moments/CreateMoments'
+import LogoHeader from './components/commons/header/LogoHeader'
+import Navbar from './components/commons/footer/Navbar'
+import NoMoment from './components/moments/NoMoment'
+import Post from './components/moments/Posts'
+import SideMenu from './components/commons/SideMenu'
+import SignUp from './components/onboarding/SignUp'
+
 import './App.css'
 import '../src/components/commons/Fonts.css'
-import { Switch, Route } from 'react-router-dom'
-import Access from '../src/components/onboarding/Access'
-import SignUp from '../src/components/onboarding/SignUp'
-import Connexion from '../src/components/onboarding/Connexion'
-import Post from '../src/components/moments/Posts'
-import CreateMoments from '../src/components/moments/createMoments/CreateMoments'
 
 function App () {
   return (
     <div className='App'>
-      <Switch>
-        <Route exact path='/' component={Access} />
-        <Route path='/sign-up' component={SignUp} />
-        <Route path='/connect' component={Connexion} />
-        <Route exact path='/moments' component={Post} />
-        <Route path='/moments/create/quote' component={CreateMoments} />
-        <Route path='/moments/create/milestone' component={CreateMoments} />
-        {/* <CreateFamily /> */}
-      </Switch>
+      <SideMenu />
+      <LogoHeader />
+      <Access />
+      <Connexion />
+      <SignUp />
+      <CreateFamily />
+      <NoMoment />
+      <Post />
+      <CreateMoment />
+      <CardContacts />
+      <Navbar />
     </div>
   )
 }

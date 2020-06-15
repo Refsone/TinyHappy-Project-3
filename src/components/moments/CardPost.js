@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+
 import './CardPost.css'
+
 import fullHeart from '../../images/favoris-heart-pink.svg'
 import emptyHeart from '../../images/favori-heart.svg'
 
-export default function CardPost (props) {
+const CardPost = (props) => {
   const { moment, style } = props
   const [favorite, setFavorite] = useState(moment.moment_favorite)
   const handleClickFavorite = () => setFavorite(!favorite)
@@ -22,3 +24,5 @@ export default function CardPost (props) {
     </div>
   )
 }
+
+export default CardPost
