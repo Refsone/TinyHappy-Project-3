@@ -4,7 +4,7 @@ import './Member.css'
 
 import pencilLogo from '../../images/family-pencil.svg'
 
-export default function Member (props) {
+const Member = (props) => {
   const { member, familyBirthday } = props
   return (
     <div className='Member'>
@@ -20,3 +20,5 @@ export default function Member (props) {
     </div>
   )
 }
+
+export default Member

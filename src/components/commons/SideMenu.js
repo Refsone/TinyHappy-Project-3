@@ -12,10 +12,10 @@ import logoMask from '../../images/menu-params-mask.svg'
 import logoLogOut from '../../images/menu-params-close.svg'
 import logoMB from '../../images/menu-burger-logo.svg'
 
-export default function SideMenu () {
+const SideMenu = () => {
   return (
     <div className='SideMenu'>
-      <Menu width='85%' customBurgerIcon={<img src={logoMB} />}>
+      <Menu width='85%' customBurgerIcon={<img src={logoMB} alt='icon menu burger' />}>
         <img className='logo-th' src={logoTH} alt='Logo Tinny Happy' />
 
         <div className='block-link'>
@@ -53,3 +53,5 @@ export default function SideMenu () {
     </div>
   )
 }
+
+export default SideMenu

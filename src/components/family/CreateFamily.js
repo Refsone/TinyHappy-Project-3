@@ -8,6 +8,16 @@ const CreateFamily = () => {
   const [surname, setSurname] = useState()
   const [birthday, setBirthday] = useState()
   const [color, setColor] = useState()
+  const [colorBdd] = useState([
+    { color: '#E9FEFC' },
+    { color: '#F2FFD7' },
+    { color: '#E9EFFA' },
+    { color: '#FFE7EC' },
+    { color: '#FFEDD7' },
+    { color: '#FEFFC5' },
+    { color: '#F6EAFF' },
+    { color: '#DAFFD7' }
+  ])
 
   const handleChange = (e) => {
     const name = e.target.name
@@ -58,14 +68,9 @@ const CreateFamily = () => {
 
         <label className='general-label label-color'>COULEUR</label>
         <fieldset className='family_palette'>
-          <input type='radio' id='E9FEFC' name='color_family_id' value='1' className='cyan' onChange={(e) => handleChange(e)} />
-          <input type='radio' id='F2FFD7' name='color_family_id' value='2' className='green' onChange={(e) => handleChange(e)} />
-          <input type='radio' id='E9EFFA' name='color_family_id' value='3' className='navy' onChange={(e) => handleChange(e)} />
-          <input type='radio' id='FFE7EC' name='color_family_id' value='4' className='pink' onChange={(e) => handleChange(e)} />
-          <input type='radio' id='FFEDD7' name='color_family_id' value='5' className='peach' onChange={(e) => handleChange(e)} />
-          <input type='radio' id='FEFFC5' name='color_family_id' value='6' className='yellow' onChange={(e) => handleChange(e)} />
-          <input type='radio' id='F6EAFF' name='color_family_id' value='7' className='purple' onChange={(e) => handleChange(e)} />
-          <input type='radio' id='DAFFD7' name='color_family_id' value='8' className='mint' onChange={(e) => handleChange(e)} />
+          {colorBdd.map((color, id) => {
+            return <input key={id} type='radio' id={color.color.slice(1)} name='color_family_id' value={id + 1} style={{ backgroundColor: color.color, margin: '.5em' }} onChange={(e) => handleChange(e)} />
+          })}
         </fieldset>
         <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
 

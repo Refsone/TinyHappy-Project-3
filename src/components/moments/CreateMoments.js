@@ -1,9 +1,11 @@
 import React from 'react'
-import MomentNavbar from './MomentNavbar'
-import Calendar from './Calendar'
-import Citation from './Citation'
-import FaitNotable from './FaitNotable'
 import { Route, Switch } from 'react-router-dom'
+
+import Calendar from './Calendar'
+import Milestone from './Milestone'
+import MomentNavbar from './MomentNavbar'
+import Quote from './Quote'
+
 import './CreateMoment.css'
 
 const CreateMoment = () => {
@@ -11,8 +13,8 @@ const CreateMoment = () => {
     <div className='create'>
       <MomentNavbar />
       <Switch>
-        <Route path='/quote' component={Citation} />
-        <Route path='/milestone' component={FaitNotable} />
+        <Route path='/quote' component={Quote} />
+        <Route path='/milestone' component={Milestone} />
       </Switch>
       <Calendar />
     </div>
