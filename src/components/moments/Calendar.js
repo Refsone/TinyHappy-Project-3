@@ -1,6 +1,8 @@
 import React from 'react'
-import calendar from '../../images/calendrier.svg'
+
 import './Calendar.css'
+
+import calendar from '../../images/calendrier.svg'
 
 const Calendar = () => {
   const date = new Date()
@@ -9,7 +11,7 @@ const Calendar = () => {
 
   return (
     <div className='calendar'>
-      <img src={calendar} />
+      <img src={calendar} alt='calendar icon' />
       <p>{dateLocal}</p>
     </div>
   )
