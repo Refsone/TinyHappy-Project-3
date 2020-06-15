@@ -1,0 +1,14 @@
+.addMoment {
+    background-color:#FF89D2 ;
+    border-radius: 50%;
+    width: 55px;
+    position: fixed;
+    right: 18px;
+    bottom: 85px;
+}
+
+.addMoment a {
+    text-decoration: none;
+    font-size: 45px;
+    color: white;
+}

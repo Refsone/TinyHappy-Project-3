@@ -1,5 +1,5 @@
 function validationLogIn (values) {
-  let errors = {}
+  const errors = {}
   if (!values.user_mail) {
     errors.user_mail = 'Votre email est requis!'
   } else if (!/\S+@\S+\.\S+/.test(values.user_mail)) {

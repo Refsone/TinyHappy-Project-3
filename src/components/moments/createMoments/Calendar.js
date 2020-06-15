@@ -1,5 +1,4 @@
 import React from 'react'
-
 import './Calendar.css'
 
 import calendar from '../../images/calendrier.svg'
