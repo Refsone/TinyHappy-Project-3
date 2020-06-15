@@ -13,7 +13,7 @@ export default function CardPost (props) {
     <div className='CardPost' style={style}>
       <div className='block-names-favorite'>
         <div>
-          {moment.family_firstname.map((family, key) => <p className={`${family.color} family-name`} key={key}>{family.name}</p>)}
+          <p className='family-name' style={{ backgroundColor: moment.color }}>{moment.family_firstname}</p>
         </div>
         <img onClick={handleClickFavorite} src={favorite ? fullHeart : emptyHeart} alt='favorite' />
       </div>
