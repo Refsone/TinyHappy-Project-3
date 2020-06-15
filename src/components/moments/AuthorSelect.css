@@ -1,0 +1,30 @@
+.author {
+    border: solid 1px #E9EFFA;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    background-color: white;
+    font-size: 10px;
+}
+
+.authorList {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.authorSelect button {
+    color: #7180AC;
+    font-weight: bold;
+}
+
+.authorSelect {
+    padding-left: 5vw;
+    margin-bottom: 10px;
+}
+
+.authorTitle {
+    margin-bottom: 10px;
+    color: #7180AC;
+    font-weight: bold;
+    font-size: 12px;
+}

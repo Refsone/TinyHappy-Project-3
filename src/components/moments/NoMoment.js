@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './NoMoment.css'
+
 import mailBox from '../../images/mailbox.svg'
 
 const NoMoment = () => {

@@ -1,16 +1,18 @@
 .sign a{
+    border: none;
+    background-color: white;
     text-decoration: none;
     font-weight: 500;
 }
 
-.connect{
+.sign .connect{
     padding: 18px 0;
     width: 50%;
     background-color: white;
-    color: #7180AC;    
+    color: #7180AC;
 }
 
-.register {
+.sign .register {
     background-color: #FF89D2;
     padding: 18px 0;
     width: 50%;
@@ -21,5 +23,5 @@
     display: flex;
     position: absolute;
     bottom: 0;
-    width: 100%;   
+    width: 100%;
 }

@@ -1,25 +1,108 @@
-.connexion-background{
+.connexion-background {
     height: 100vh;
     background-color: #F5F9FD;
     width: 100%;
 }
-.logo-monogramme{
-    margin-top: 3%;
+
+.general-form-connexion-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.mdp-forbiden{
+
+.general-form-connexion {
+    width: 90vw;
+    color: #7180AC;
+}
+
+.general-form-connexion input, label {
+    display: block;
+    padding: 20px 0px 20px 20px;
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+.general-form-connexion .input-connexion {
+    display: block;
+    width: 100%;
+    border: solid 1px #E9EAFA;
+    border-radius: 4px;
+    background-color: #ffffff;
+    height: 5em;
+}
+
+.general-form-connexion .label-connexion {
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 700;
+}
+
+.mdp-forbiden {
     background-image: url('../../images/eye-slash-regular1.svg');
     background-repeat: no-repeat;
-    background-position: 300px center;
+    background-position: 90% center;
     padding-left: 20px;
 }
-.connexion-lien a{
+
+.mdp-open {
+    background-image: url('../../images/eye-open.svg');
+    background-repeat: no-repeat;
+    background-position: 90% center;
+    padding-left: 20px;
+}
+
+.general-form-connexion .general-label {
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 700;
+}
+
+.plholder::placeholder {
+    font-style: italic;
+    font-weight: 500;
+    color: #7180AC
+}
+
+.general-form-connexion .general-btn {
+    position: absolute;
+    bottom: -735px;
+    /* For the demonstration Default:0 */
+    width: 100%;
+    border: none;
+    height: 60px;
+    text-transform: uppercase;
+    /* background-color: #D4E0F6; */
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.actif {
+    background-color: pink;
+}
+
+.inactif {
+    background-color: black;
+}
+
+.logo-monogramme {
+    margin-top: 3%;
+}
+
+.connexion-lien a {
     position: absolute;
     right: 10px;
     padding-top: 10px;
     padding-right: 15px;
     font-weight: 500;
     color: #7180AC;
+    font-size: small;/* style maquette client */
 }
-.connexion-btn{
+
+.logo-monogramme {
+    margin-top: 3%;
+}
+
+.connexion-btn {
     background-color: #D4E0F6;
 }

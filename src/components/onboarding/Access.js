@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+
+import './Access.css'
+
 import LOGO from '../../images/LOGO.svg'
 import Sign from './Sign'
-import './Access.css'
 
 const Access = () => {
   const [load, setLoad] = useState(false)
@@ -13,7 +15,7 @@ const Access = () => {
 
   return (
     <div className='access'>
-      <img className='logo' src={LOGO} alt='' />
+      <img className='logo' src={LOGO} alt='logo tinyhappy' />
       {load && <Sign />}
     </div>
   )
