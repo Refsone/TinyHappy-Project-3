@@ -19,7 +19,7 @@ import Post from '../moments/Posts'
 // import Privacy from '../menu/Privacy'
 import SignUp from '../onboarding/SignUp'
 
-const routes = () => {
+const routes = (props) => {
   return (
     <Switch>
       <Route exact path='/' component={Access} />
@@ -39,7 +39,7 @@ const routes = () => {
       {/* <Route path='/settings/modify/password' component={ModifySettings} /> */}
       {/* <Route path='/settings/privacy' component={Privacy} /> */}
       <Route exact path='/share' component={CardContacts} />
-      {/* <Route exact path='/share/moment' component={MomentSelection} /> */}
+      {/* <Route exact path='/share/moments' component={MomentSelection} /> */}
       {/* <Route exact path='/share/send' component={MomentSend} /> */}
     </Switch>
   )
