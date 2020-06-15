@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 
 import ValidateButton from '../../commons/footer/ValidateButton'
-import LogoHeaderMoments from '../../commons/header/LogoHeaderMoments'
+import Header from '../commons/header/Header'
 
 import './CreateFamily.css'
 
-const CreateFamily = () => {
+const CreateFamily = (props) => {
+  const location = props.location.pathname
+
   const [firstname, setFirstname] = useState()
   const [lastname, setLastname] = useState()
   const [surname, setSurname] = useState()
@@ -60,7 +62,7 @@ const CreateFamily = () => {
 
   return (
     <div className='cont-family-create'>
-      <LogoHeaderMoments />
+      <Header burger location={location} />
       <form className='general-connexion-form' onSubmit={submitForm}>
         <label htmlFor='family_firstname' className='general-label'>prénom</label>
         <input type='text' name='family_firstname' id='family_firstname' className='general-input bold-12px-grey plholder' placeholder='Elise' onChange={(e) => handleChange(e)} required autoComplete='off' />
