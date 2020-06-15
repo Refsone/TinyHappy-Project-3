@@ -7,8 +7,14 @@ import { NavLink } from 'react-router-dom'
 const MomentNavbar = () => {
   return (
     <div className='momentNavbar'>
-      <NavLink to='/quote' activeClassName='activeCitation'><img className='imgCitation' src={citation} />CITATION</NavLink>
-      <NavLink to='/milestone' activeClassName='activeFait'><img className='imgFait' src={faitNotable} />FAIT NOTABLE</NavLink>
+      <NavLink to='/moments/create/quote' activeClassName='activeCitation'><img className='imgCitation' src={citation} />CITATION</NavLink>
+      <NavLink
+        to={{
+          pathname: '/moments/create/milestone',
+          data: { momentType: 'milestone' }
+        }} activeClassName='activeFait'
+      ><img className='imgFait' src={faitNotable} />FAIT NOTABLE
+      </NavLink>
     </div>
   )
 }

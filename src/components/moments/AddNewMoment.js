@@ -5,7 +5,7 @@ import './AddNewMoment.css'
 const AddNewMoment = () => {
   return (
     <div className='addMoment'>
-      <Link to='/create-moment'>+</Link>
+      <Link to='/moments/create/quote'>+</Link>
     </div>
   )
 }

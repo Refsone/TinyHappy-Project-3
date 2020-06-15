@@ -4,6 +4,7 @@ import 'moment/locale/fr'
 import CardPost from './CardPost'
 import './Posts.css'
 import AddNewMoment from './AddNewMoment'
+import Navbar from '../commons/footer/Navbar'
 
 export default function Post () {
   const [moments] = useState([
@@ -91,6 +92,7 @@ export default function Post () {
         }
       })}
       <AddNewMoment />
+      <Navbar />
     </div>
   )
 }

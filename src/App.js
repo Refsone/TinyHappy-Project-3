@@ -15,8 +15,9 @@ function App () {
         <Route exact path='/' component={Access} />
         <Route path='/sign-up' component={SignUp} />
         <Route path='/connect' component={Connexion} />
-        <Route path='/moments' component={Post} />
-        <Route path='/create-moment' component={CreateMoments} />
+        <Route exact path='/moments' component={Post} />
+        <Route path='/moments/create/quote' component={CreateMoments} />
+        <Route path='/moments/create/milestone' component={CreateMoments} />
         {/* <CreateFamily /> */}
       </Switch>
     </div>
