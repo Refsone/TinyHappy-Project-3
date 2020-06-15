@@ -12,7 +12,7 @@ import logoMask from '../../images/menu-params-mask.svg'
 import logoLogOut from '../../images/menu-params-close.svg'
 import logoMB from '../../images/menu-burger-logo.svg'
 
-export default function SideMenu () {
+const SideMenu = () => {
   return (
     <div className='SideMenu'>
       <Menu width='85%' disableAutoFocus customBurgerIcon={<img className='scalable-mb-logo' src={logoMB} />}>
@@ -53,3 +53,5 @@ export default function SideMenu () {
     </div>
   )
 }
+
+export default SideMenu
