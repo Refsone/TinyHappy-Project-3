@@ -1,0 +1,17 @@
+.settings-container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+    padding-left: 5%;
+}
+
+.settings-title{
+    text-transform: uppercase;
+    margin-top: 15%;
+}
+
+.settings-soutitle{
+    text-transform: uppercase;
+    margin-top: 10%;    
+}

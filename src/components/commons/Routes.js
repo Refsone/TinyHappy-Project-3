@@ -8,7 +8,7 @@ import Connexion from '../onboarding/Connexion'
 import CreateFamily from '../family/CreateFamily'
 import CreateMoments from '../moments/createMoments/CreateMoments'
 // import DeleteFamily from '../family/DeleteFamily'
-// import DisplaySettings from '../menu/DisplaySettings'
+import DisplaySettings from '../menu/DisplaySettings'
 // import Legals from '../menu/Legals'
 // import LostPwd from '../onboarding/LostPwd'
 // import ModifyFamily from '../family/ModifyFamily'
@@ -33,7 +33,7 @@ const routes = () => {
       <Route path='/onboarding/login' component={Connexion} />
       {/* <Route path='/onboarding/lostpwd' component={LostPwd} /> */}
       <Route path='/onboarding/signup' component={SignUp} />
-      {/* <Route exact path='/settings' component={DisplaySettings} /> */}
+      <Route exact path='/settings' component={DisplaySettings} />
       {/* <Route path='/settings/legals' component={Legals} /> */}
       {/* <Route path='/settings/modify/email' component={ModifySettings} /> */}
       {/* <Route path='/settings/modify/password' component={ModifySettings} /> */}
