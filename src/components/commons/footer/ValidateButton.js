@@ -10,7 +10,8 @@ const ValidateButton = (props) => {
       <button
         type='submit'
         className={active ? 'btn-active' : 'btn-inactive'}
-        disabled={!active && 'disabled'} onClick={() => { handleClick() }}
+        disabled={!active && 'disabled'}
+        onClick={() => { handleClick() }}
       >
         {name}
       </button>
