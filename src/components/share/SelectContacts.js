@@ -7,12 +7,35 @@ import './SelectContacts.css'
 class SelectContacts extends React.Component {
   render () {
     return (
-      <div>
-        <p className='bold-16px-grey'>SÉLECTION DE VOS CONTACTS</p>
-        <div>
-          <input className='radiobox' type='checkbox' id='checkbox' value='checkbox' />
-          <p>vincent@gmail.com</p>
-          <img alt='bin' src={bin} />
+      <div className='select-contact-page'>
+        <p className='bold-16px-grey title'>SÉLECTION DE VOS CONTACTS</p>
+        <div className='field'>
+          <div className='group'>
+            <input className='radiobox' type='radio' />
+            <p className='medium-16px-grey email'>vincent@gmail.com</p>
+          </div>
+          <img className='bin' alt='bin' src={bin} />
+        </div>
+        <div className='field'>
+          <div className='group'>
+            <input className='radiobox' type='radio' />
+            <p className='medium-16px-grey email'>vincent@gmail.com</p>
+          </div>
+          <img className='bin' alt='bin' src={bin} />
+        </div>
+        <div className='field'>
+          <div className='group'>
+            <input className='radiobox' type='radio' />
+            <p className='medium-16px-grey email'>nicole.bernard@yahoo.com</p>
+          </div>
+          <img className='bin' alt='bin' src={bin} />
+        </div>
+        <div className='field'>
+          <div className='group'>
+            <input className='radiobox' type='radio' />
+            <p className='medium-16px-grey email'>tony111@gmail.com</p>
+          </div>
+          <img className='bin' alt='bin' src={bin} />
         </div>
       </div>
     )
