@@ -1,6 +1,8 @@
 import React from 'react'
-import monogramme from '../../../images/monogrammeTH.svg'
+
 import './LogoHeader.css'
+
+import monogramme from '../../../images/monogrammeTH.svg'
 
 function Logo () {
   return (

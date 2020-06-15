@@ -1,4 +1,4 @@
-.auteur {
+.author {
     border: solid 1px #E9EFFA;
     border-radius: 20px;
     padding: 5px 10px;
@@ -7,22 +7,22 @@
     font-size: 10px;
 }
 
-.listAuteur {
+.authorList {
     display: flex;
     margin-bottom: 20px;
 }
 
-.selectAuteur button {
+.authorSelect button {
     color: #7180AC;
     font-weight: bold;
 }
 
-.selectAuteur {
+.authorSelect {
     padding-left: 5vw;
     margin-bottom: 10px;
 }
 
-.titleAuteur {
+.authorTitle {
     margin-bottom: 10px;
     color: #7180AC;
     font-weight: bold;

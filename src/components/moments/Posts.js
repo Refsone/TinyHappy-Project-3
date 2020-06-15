@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Moment from 'moment'
 import 'moment/locale/fr'
+
 import CardPost from './CardPost'
+
 import './Posts.css'
 
-export default function Post () {
+const Posts = () => {
   const [moments] = useState([
     {
       user_isPresent: 0,
@@ -92,3 +94,5 @@ export default function Post () {
     </div>
   )
 }
+
+export default Posts
