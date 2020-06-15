@@ -1,8 +1,9 @@
 import React from 'react'
-import './App.css'
-import '../src/components/commons/Fonts.css'
 
 import Routes from './components/commons/Routes'
+
+import './App.css'
+import '../src/components/commons/Fonts.css'
 
 function App () {
   return (
