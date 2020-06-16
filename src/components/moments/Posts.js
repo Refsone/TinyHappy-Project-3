@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import Moment from 'moment'
+import 'moment/locale/fr'
 
 import AddNewMoment from './AddNewMoment'
 import CardPost from './CardPost'
 import Header from './../commons/header/Header'
 import Navbar from '../commons/footer/Navbar'
-
-import Moment from 'moment'
-import 'moment/locale/fr'
 
 import './Posts.css'
 
