@@ -11,8 +11,8 @@ const ModifySettings = (props) => {
   return (
     <>
       <Logo location={path} />
-      <div className='create'>
-        {path === '../menu/ModifySettings' ? <Email /> : <Password />}
+      <div>
+        {path === '../menu/ModifySettings' ? <Password /> : <Email />}
       </div>
     </>
   )
