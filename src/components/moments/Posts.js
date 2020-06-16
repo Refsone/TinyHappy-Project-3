@@ -36,15 +36,15 @@ const Posts = () => {
             date = moment.moment_event_date
             return (
               <>
-                <p className='moment-date'>{formatDate(moment.moment_event_date)}</p>
-                <CardPost moment={moment} key={key} style={{ borderLeft: '0.4rem solid #91E9FE' }} />
+                <p className='moment-date' key={key}>{formatDate(moment.moment_event_date)}</p>
+                <CardPost moment={moment} key={key} />
               </>
             )
           } else {
             date = moment.moment_event_date
             return (
               <>
-                <CardPost moment={moment} key={key} style={{ marginTop: '8px', borderLeft: '0.4rem solid #D3FF9B' }} />
+                <CardPost moment={moment} key={key} boxStyle='8px' />
               </>
             )
           }
