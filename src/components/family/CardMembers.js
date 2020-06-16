@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
+import Moment from 'moment'
+import 'moment/locale/fr'
 
 import AddNewFamily from './AddNewFamily'
 import Header from '../commons/header/Header'
 import Member from './Member'
 import Navbar from '../commons/footer/Navbar'
-
-import 'moment/locale/fr'
-import Moment from 'moment'
 
 import './CardMembers.css'
 
