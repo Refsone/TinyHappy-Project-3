@@ -1,12 +1,14 @@
 import React from 'react'
+
+import Routes from './components/commons/Routes'
+
 import './App.css'
 import '../src/components/commons/Fonts.css'
-import Post from './components/moments/Posts'
 
-function App () {
+function App (props) {
   return (
     <div className='App'>
-      <Post />
+      <Routes />
     </div>
   )
 }

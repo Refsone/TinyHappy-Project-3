@@ -1,16 +1,20 @@
-* {
-  padding: 0;
-  margin: 0;
+.SideMenu .scalable-mb-logo{
+  width: 60%!important;
+  user-select: none;
 }
 
+
+.SideMenu {
+  margin-top: -50px;
+}
 /* MENU AND CROSS BUTTON */
 
 .SideMenu .bm-burger-button {
   position: fixed;
   width: 36px;
   height: 30px;
-  left: 36px;
-  top: 25px;
+  left: 5%;
+  top: 20px;
 }
 
 .bm-cross-button {
@@ -42,7 +46,7 @@
 }
 
 .SideMenu .block-link {
-  margin-top: 56px;
+  margin-top: 45px;
 }
 
 .SideMenu .menu-item {

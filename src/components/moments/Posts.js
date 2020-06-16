@@ -3,11 +3,14 @@ import axios from 'axios'
 import Moment from 'moment'
 import 'moment/locale/fr'
 
+import AddNewMoment from './AddNewMoment'
 import CardPost from './CardPost'
+import Header from './../commons/header/Header'
+import Navbar from '../commons/footer/Navbar'
 
 import './Posts.css'
 
-const Posts =  () => {
+const Posts = () => {
   const [moments, setMoments] = useState([])
   let date = ''
 
@@ -25,26 +28,31 @@ const Posts =  () => {
   })
 
   return (
-    <div className='Posts'>
-      {moments.map((moment, key) => {
-        if (date !== moment.moment_event_date) {
-          date = moment.moment_event_date
-          return (
-            <>
-              <p className='moment-date'>{formatDate(moment.moment_event_date)}</p>
-              <CardPost moment={moment} key={key} style={{ borderLeft: '0.4rem solid #91E9FE' }} />
-            </>
-          )
-        } else {
-          date = moment.moment_event_date
-          return (
-            <>
-              <CardPost moment={moment} key={key} style={{ marginTop: '8px', borderLeft: '0.4rem solid #D3FF9B' }} />
-            </>
-          )
-        }
-      })}
-    </div>
+    <>
+      <Header burger />
+      <div className='Posts'>
+        {moments.map((moment, key) => {
+          if (date !== moment.moment_event_date) {
+            date = moment.moment_event_date
+            return (
+              <>
+                <p className='moment-date'>{formatDate(moment.moment_event_date)}</p>
+                <CardPost moment={moment} key={key} style={{ borderLeft: '0.4rem solid #91E9FE' }} />
+              </>
+            )
+          } else {
+            date = moment.moment_event_date
+            return (
+              <>
+                <CardPost moment={moment} key={key} style={{ marginTop: '8px', borderLeft: '0.4rem solid #D3FF9B' }} />
+              </>
+            )
+          }
+        })}
+        <AddNewMoment />
+        <Navbar />
+      </div>
+    </>
   )
 }
 

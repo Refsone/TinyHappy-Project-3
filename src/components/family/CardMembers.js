@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import Moment from 'moment'
 import 'moment/locale/fr'
 
+import AddNewFamily from './AddNewFamily'
+import Header from '../commons/header/Header'
 import Member from './Member'
+import Navbar from '../commons/footer/Navbar'
 
 import './CardMembers.css'
 
 const CardMembers = () => {
-  const [members] = useState ([
+  const [members] = useState([
     {
       family_firstname: 'Louise',
       family_lastname: 'Memand',
@@ -38,12 +41,17 @@ const CardMembers = () => {
     if (date !== '') return Moment(date).format('LL')
   }
   return (
-    <div className='CardMembers'>
-      {members.map((member, key) => {
-        return <Member key={key} member={member} familyBirthday={formatDate(member.family_birthday)} />
-      })}
-      <Member member={user[0]} familyBirthday={formatDate(user[0].family_birthday)} />
-    </div>
+    <>
+      <Header burger />
+      <div className='CardMembers'>
+        {members.map((member, key) => {
+          return <Member key={key} member={member} familyBirthday={formatDate(member.family_birthday)} />
+        })}
+        <Member member={user[0]} familyBirthday={formatDate(user[0].family_birthday)} />
+      </div>
+      <AddNewFamily />
+      <Navbar />
+    </>
   )
 }
 

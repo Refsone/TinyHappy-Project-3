@@ -8,7 +8,9 @@ import emptyHeart from '../../images/favori-heart.svg'
 const CardPost = (props) => {
   const { moment, style } = props
   const [favorite, setFavorite] = useState(moment.moment_favorite)
-  const handleClickFavorite = () => setFavorite(!favorite)
+  const handleClickFavorite = () => {
+    setFavorite(!favorite)
+  }
 
   return (
 

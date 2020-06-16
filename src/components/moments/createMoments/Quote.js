@@ -3,13 +3,13 @@ import React from 'react'
 import AuthorSelect from './AuthorSelect'
 import TextArea from './TextArea'
 
-const Citation = () => {
+const Quote = () => {
   return (
     <>
       <AuthorSelect title={'SELECTIONNER L\'AUTEUR'} />
-      <TextArea title='CITATION' placeholder='Ajouter une citation' idCitation='citation' idContext='contextQuote' />
+      <TextArea title='CITATION' placeholder='Ajouter une citation' idQuote='citation' idContext='contextQuote' />
     </>
   )
 }
 
-export default Citation
+export default Quote

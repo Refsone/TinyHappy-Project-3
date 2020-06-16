@@ -2,13 +2,13 @@ import React from 'react'
 
 import './TextArea.css'
 
-const ChampTexte = (props) => {
-  const { idCitation, idContext } = props
+const Textarea = (props) => {
+  const { idQuote, idContext } = props
   return (
     <div>
-      <form className='champ'>
+      <form className='area'>
         <label htmlFor='text'>{props.title}</label>
-        <textarea name='text' rows='4' cols='35' placeholder={props.placeholder} id={idCitation} required />
+        <textarea name='text' rows='4' cols='35' placeholder={props.placeholder} id={idQuote} required />
         <label htmlFor='text'>CONTEXTE</label>
         <textarea name='text' rows='4' cols='35' placeholder='Ajouter un contexte (facultatif)' id={idContext} />
         {/* mettre le bouton pour envoyer */}
@@ -17,4 +17,4 @@ const ChampTexte = (props) => {
   )
 }
 
-export default ChampTexte
+export default Textarea
