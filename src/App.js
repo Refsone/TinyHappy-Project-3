@@ -5,7 +5,7 @@ import Routes from './components/commons/Routes'
 import './App.css'
 import '../src/components/commons/Fonts.css'
 
-function App () {
+function App (props) {
   return (
     <div className='App'>
       <Routes />

@@ -5,7 +5,7 @@ import Access from '../onboarding/Access'
 import CardContacts from '../share/CardContacts'
 import CardMembers from '../family/CardMembers'
 import Connexion from '../onboarding/Connexion'
-import CreateFamily from '../family/CreateFamily'
+import CreateFamily from '../family/create/CreateFamily'
 import CreateMoments from '../moments/createMoments/CreateMoments'
 // import DeleteFamily from '../family/DeleteFamily'
 // import DisplaySettings from '../menu/DisplaySettings'
@@ -19,7 +19,7 @@ import Post from '../moments/Posts'
 // import Privacy from '../menu/Privacy'
 import SignUp from '../onboarding/SignUp'
 
-const routes = () => {
+const routes = (props) => {
   return (
     <Switch>
       <Route exact path='/' component={Access} />
@@ -28,6 +28,7 @@ const routes = () => {
       {/* <Route path='/family/delete' component={DeleteFamily} /> */}
       {/* <Route path='/family/modify' component={ModifyFamily} /> */}
       <Route exact path='/moments' component={Post} />
+      <Route path='/moments/favoris' component={Post} /> {/* Path to modify when the card will exist */}
       <Route path='/moments/create/quote' component={CreateMoments} />
       <Route path='/moments/create/milestone' component={CreateMoments} />
       <Route path='/onboarding/login' component={Connexion} />
@@ -39,7 +40,7 @@ const routes = () => {
       {/* <Route path='/settings/modify/password' component={ModifySettings} /> */}
       {/* <Route path='/settings/privacy' component={Privacy} /> */}
       <Route exact path='/share' component={CardContacts} />
-      {/* <Route exact path='/share/moment' component={MomentSelection} /> */}
+      {/* <Route exact path='/share/moments' component={MomentSelection} /> */}
       {/* <Route exact path='/share/send' component={MomentSend} /> */}
     </Switch>
   )

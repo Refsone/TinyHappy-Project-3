@@ -1,7 +1,8 @@
 import React from 'react'
+
 import './Calendar.css'
 
-import calendar from '../../images/calendrier.svg'
+import calendar from '../../../images/calendrier.svg'
 
 const Calendar = () => {
   const date = new Date()

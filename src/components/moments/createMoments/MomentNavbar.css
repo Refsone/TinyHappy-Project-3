@@ -1,18 +1,18 @@
-.activeCitation {
+.activeQuote {
   background-color: #91E9FE;
 }
 
-.activeFait {
-  background-color: #D3FF9B ;  
+.activeMilestone {
+  background-color: #D3FF9B ;
 }
 
-.imgCitation {
+.imgQuote {
   position: relative;
   top: 3px;
   right: -4px;
 }
 
-.imgFait {
+.imgMilestone {
   position: relative;
   top: 2px;
   left: 3px;

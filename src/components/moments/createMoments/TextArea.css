@@ -1,4 +1,4 @@
-.champ textarea {
+.area textarea {
     resize: none;
     border: solid 1px #E9EFFA;
     border-radius: 4px;
@@ -9,7 +9,7 @@
     margin-bottom: 12px;
 }
 
-.champ label {
+.area label {
     color: #7180AC;
     font-weight: bold;
     margin-left: 5vw ;
@@ -17,7 +17,7 @@
     font-size: 12px;
 }
 
-.champ ::placeholder {
+.area ::placeholder {
     color: #98A7CD;
     font-weight: 500;
     font-style: italic;

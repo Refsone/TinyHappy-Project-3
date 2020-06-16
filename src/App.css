@@ -18,11 +18,11 @@ html {
 
 /* --------------------------------------- */
 
-  .general-form-container{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-  }
+.general-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .general-connexion-form {
   display: flex;
@@ -30,7 +30,6 @@ html {
   width: 100%;
   color: #7180AC;
   background-color: #F5F9FD;
-  padding-top: 70px; /* default not here !!*/
 }
 
 .general-connexion-form input, label {
@@ -71,7 +70,7 @@ html {
   height: 5em;
 }
 
-.btn-connexion{
+.btn-connexion {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -84,9 +83,9 @@ html {
   font-size: 14px;
 }
 
-.btn-connexion-none{
+.btn-connexion-none {
   position: absolute;
-  bottom:  0;
+  bottom: 0;
   width: 100%;
   border: none;
   height: 60px;
