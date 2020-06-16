@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import LogoHeader from '../commons/header/LogoHeader'
+
 const SignUp = () => {
   const data = {
     userFirstname: '',
@@ -22,26 +24,29 @@ const SignUp = () => {
     : <button type='submit' className='btn-connexion'>s'inscrire</button>
 
   return (
-    <div className='connexion-container'>
-      <form className='general-connexion-form'>
-        <label htmlFor='firstname' name='userFirstname' className='general-label'>prénom</label>
-        <input onChange={handleChange} value={userFirstname} type='text' id='userFirstname' className='general-input  bold-12px-grey plholder' autoComplete='off' placeholder='Elise' required />
+    <>
+      <LogoHeader />
+      <div className='connexion-container'>
+        <form className='general-connexion-form'>
+          <label htmlFor='firstname' name='userFirstname' className='general-label'>prénom</label>
+          <input onChange={handleChange} value={userFirstname} type='text' id='userFirstname' className='general-input  bold-12px-grey plholder' autoComplete='off' placeholder='Elise' required />
 
-        <label htmlFor='last' name='userLastname' className='general-label'>nom</label>
-        <input onChange={handleChange} value={userLastname} type='text' id='userLastname' className='general-input  bold-12px-grey plholder' autoComplete='off' placeholder='Durand' required />
+          <label htmlFor='last' name='userLastname' className='general-label'>nom</label>
+          <input onChange={handleChange} value={userLastname} type='text' id='userLastname' className='general-input  bold-12px-grey plholder' autoComplete='off' placeholder='Durand' required />
 
-        <label htmlFor='email' name='userMail' className='general-label'>email</label>
-        <input onChange={handleChange} value={userMail} id='userMail' type='email' className='general-input  bold-12px-grey plholder' autoComplete='off' placeholder='mon@email.com' required />
+          <label htmlFor='email' name='userMail' className='general-label'>email</label>
+          <input onChange={handleChange} value={userMail} id='userMail' type='email' className='general-input  bold-12px-grey plholder' autoComplete='off' placeholder='mon@email.com' required />
 
-        <label htmlFor='password' className='general-label' name='userPassword'>mot de passe</label>
-        <input onChange={handleChange} value={userPassword} id='userPassword' type='password' autoComplete='off' className='general-input-mdp-close  bold-12px-grey plholder' placeholder='**********' required />
+          <label htmlFor='password' className='general-label' name='userPassword'>mot de passe</label>
+          <input onChange={handleChange} value={userPassword} id='userPassword' type='password' autoComplete='off' className='general-input-mdp-close  bold-12px-grey plholder' placeholder='**********' required />
 
-        <label htmlFor='password' className='general-label' name='userConfirmPassword'>confirmer mot de passe</label>
-        <input onChange={handleChange} value={userConfirmPassword} id='userConfirmPassword' type='password' autoComplete='off' className='general-input-mdp-close  bold-12px-grey plholder' placeholder='**********' required />
+          <label htmlFor='password' className='general-label' name='userConfirmPassword'>confirmer mot de passe</label>
+          <input onChange={handleChange} value={userConfirmPassword} id='userConfirmPassword' type='password' autoComplete='off' className='general-input-mdp-close  bold-12px-grey plholder' placeholder='**********' required />
 
-        {btn}
-      </form>
-    </div>
+          {btn}
+        </form>
+      </div>
+    </>
   )
 }
 

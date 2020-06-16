@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 
+import Header from '../../commons/header/Header'
+import ValidateButton from '../../commons/footer/ValidateButton'
+
 import './CreateFamily.css'
 
-const CreateFamily = () => {
+const CreateFamily = (props) => {
+  const location = props.location.pathname
+
   const [firstname, setFirstname] = useState()
   const [lastname, setLastname] = useState()
   const [surname, setSurname] = useState()
@@ -51,8 +56,13 @@ const CreateFamily = () => {
     console.log('color', color)
   }
 
+  const handleClick = () => {
+    // We have to verify the datas here
+  }
+
   return (
     <div className='cont-family-create'>
+      <Header burger location={location} />
       <form className='general-connexion-form' onSubmit={submitForm}>
         <label htmlFor='family_firstname' className='general-label'>prénom</label>
         <input type='text' name='family_firstname' id='family_firstname' className='general-input bold-12px-grey plholder' placeholder='Elise' onChange={(e) => handleChange(e)} required autoComplete='off' />
@@ -73,8 +83,9 @@ const CreateFamily = () => {
           })}
         </fieldset>
         <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
-
+        <ValidateButton name='sauvegarder' active={false} handleClick={handleClick} />
       </form>
+
     </div>
   )
 }
