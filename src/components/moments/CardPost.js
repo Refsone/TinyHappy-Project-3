@@ -15,7 +15,9 @@ const CardPost = (props) => {
     <div className='CardPost' style={style}>
       <div className='block-names-favorite'>
         <div>
-          <p className='family-name' style={{ backgroundColor: moment.color }}>{moment.family_firstname}</p>
+          {moment.firstname_color.map((member, id) => {
+            return <p key={id} className='family-name' style={{ backgroundColor: member.color }}>{member.firstname}</p>
+          })}
         </div>
         <img onClick={handleClickFavorite} src={favorite ? fullHeart : emptyHeart} alt='favorite' />
       </div>
