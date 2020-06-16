@@ -7,7 +7,7 @@ const Milestone = () => {
   return (
     <>
       <AuthorSelect title='SELECTIONNER LE(S) PARTICIPANT(S)' />
-      <TextArea title='DESCRIPTION' placeholder='Ajouter une description' idCitation='description' idContext='contextMilestone' />
+      <TextArea title='DESCRIPTION' placeholder='Ajouter une description' idQuote='description' idContext='contextMilestone' />
     </>
   )
 }
