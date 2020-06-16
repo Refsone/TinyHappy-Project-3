@@ -11,8 +11,6 @@ const Header = (props) => {
   let link = ''
   let text = ''
 
-  console.log(location) // Keep until all the paths are verified please
-
   switch (location) {
     case '/family/create':
       text = 'annuler'
