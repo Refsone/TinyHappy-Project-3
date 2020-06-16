@@ -1,41 +1,28 @@
 import React from 'react'
 
-import bin from '../../images/trash-alt-regular-blue.svg'
+
 import '../commons/Fonts.css'
 import './SelectContacts.css'
+import Contact from './Contact'
 
 class SelectContacts extends React.Component {
+  state= {
+    emails: [{ email_contact: 'vincent@gmail.com' },
+    { email_contact: 'nicole.bernard@yahoo.com' },
+    { email_contact: 'mickael92@hotmail.fr' },
+    { email_contact: 'tony111@gmail.com' }]
+  }
   render () {
     return (
-      <div className='select-contact-page'>
+      <div>
         <p className='bold-16px-grey title'>SÉLECTION DE VOS CONTACTS</p>
-        <div className='field'>
-          <div className='group'>
-            <input className='radiobox' type='radio' />
-            <p className='medium-16px-grey email'>vincent@gmail.com</p>
-          </div>
-          <img className='bin' alt='bin' src={bin} />
-        </div>
-        <div className='field'>
-          <div className='group'>
-            <input className='radiobox' type='radio' />
-            <p className='medium-16px-grey email'>vincent@gmail.com</p>
-          </div>
-          <img className='bin' alt='bin' src={bin} />
-        </div>
-        <div className='field'>
-          <div className='group'>
-            <input className='radiobox' type='radio' />
-            <p className='medium-16px-grey email'>nicole.bernard@yahoo.com</p>
-          </div>
-          <img className='bin' alt='bin' src={bin} />
-        </div>
-        <div className='field'>
-          <div className='group'>
-            <input className='radiobox' type='radio' />
-            <p className='medium-16px-grey email'>tony111@gmail.com</p>
-          </div>
-          <img className='bin' alt='bin' src={bin} />
+        <div className='select-contact-page'>
+          {this.state.emails.map((email, i) => {
+            return (
+              <div key={i} >
+                <Contact email={email.email_contact} />
+              </div>)
+          })}
         </div>
       </div>
     )
