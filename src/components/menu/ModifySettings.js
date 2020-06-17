@@ -12,7 +12,7 @@ const ModifySettings = (props) => {
     <>
       <Logo location={path} />
       <div>
-        {path === '../menu/ModifySettings' ? <Password /> : <Email />}
+        {path === '/settings/modify/email' ? <Email /> : <Password />}
       </div>
     </>
   )
