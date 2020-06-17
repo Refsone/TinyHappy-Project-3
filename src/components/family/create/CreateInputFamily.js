@@ -14,7 +14,8 @@ const CreateInputFamily = (props) => {
         id={id}
         className='general-input bold-12px-grey plholder'
         onChange={handlechange}
-        required autoComplete='off'
+        required={required}
+        autoComplete='off'
         aria-required='true'
       />
       {id.includes('name') && fieldValue.value && fieldValue.error === 1 &&
