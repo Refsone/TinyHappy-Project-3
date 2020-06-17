@@ -3,7 +3,7 @@ import React from 'react'
 import './ValidateButton.css'
 
 const ValidateButton = (props) => {
-  const { active, handleClick } = props
+  const { active, onClick } = props
   const name = props.name.toUpperCase()
 
   return (
@@ -12,7 +12,7 @@ const ValidateButton = (props) => {
         type='submit'
         className={active ? 'btn-active' : 'btn-inactive'}
         // disabled={!active && 'disabled'}
-        onClick={() => { handleClick() }}
+        onClick={() => { onClick() }}
       >
         {name}
       </button>

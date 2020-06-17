@@ -7,7 +7,7 @@ const Milestone = (props) => {
   return (
     <>
       <AuthorSelect familyMember={props.familyMember} title='SELECTIONNER LE(S) PARTICIPANT(S)' />
-      <TextArea title='DESCRIPTION' active={props.active} onClick={props.handleClick} textInArea={props.textInDescriptionArea} placeholder='Ajouter une description' idQuote='description' idContext='contextMilestone' />
+      <TextArea title='DESCRIPTION' active={props.active} onClick={props.handleClick} onChange={props.onChange} placeholder='Ajouter une description' idQuote='description' idContext='contextMilestone' />
     </>
   )
 }

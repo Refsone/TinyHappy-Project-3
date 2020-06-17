@@ -26,8 +26,8 @@ const CreateMoment = (props) => {
   const onClick = () => {
     console.log(quoteArea)
     axios.post('http://localhost:7500/moments', { text: quoteArea })
-      .them(res => res.data)
-      .them(res => {
+      .then(res => res.data)
+      .then(res => {
         console.log('envoie ok')
       })
       .catch(e => {
@@ -50,7 +50,9 @@ const CreateMoment = (props) => {
       <Header location={path} burger />
       <div className='create'>
         <MomentNavbar />
-        {path === '/moments/create/milestone' ? <Milestone active={active} onClick={onClick} textInDescriptionArea={textInDescriptionArea} familyMember={familyMember} /> : <Quote active={active} onClick={onClick} textInQuoteArea={textInQuoteArea} familyMember={familyMember} />}
+        {path === '/moments/create/milestone'
+          ? <Milestone active={active} onClick={onClick} onChange={textInDescriptionArea} familyMember={familyMember} />
+          : <Quote active={active} onClick={onClick} onChange={textInQuoteArea} familyMember={familyMember} />}
         <Calendar />
       </div>
       {/* <ValidateButton name='publier' active={active} handleClick={handleClick} /> */}
