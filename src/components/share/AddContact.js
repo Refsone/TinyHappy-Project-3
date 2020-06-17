@@ -1,15 +1,23 @@
 import React from 'react'
 
+import './AddContact.css'
+import inactifSend from '../../images/send-inactif-btn.svg'
+
 class AddContact extends React.Component {
   render () {
     return (
-      <div className='add-contact'>
+      <div>
         <p className='bold-12px-grey title'>AJOUTER UN CONTACT</p>
-        <div>
-          <input className='' type='email' placeholder='prenom@exemple.com' />
-          <button>OK</button>
-        </div>
+
+        <container className='add-contact-group'>
+          <input className='add-contact-input mediumitalic-12px-lightgrey' type='email' placeholder='prenom@exemple.com' />
+          <button className='add-contact-button'>OK</button>
+        </container>
+        <container className='inactif-send'>
+          <img alt='inactif-send-button' src={inactifSend} />
+        </container>
       </div>
+
     )
   }
 }
