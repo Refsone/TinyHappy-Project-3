@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
+import CreateInputFamily from './CreateInputFamily'
 import Header from '../../commons/header/Header'
 import ValidateButton from '../../commons/footer/ValidateButton'
 
@@ -44,6 +45,7 @@ const CreateFamily = (props) => {
   const handleChange = (e) => {
     const name = e.target.name
     const value = e.target.value
+    console.log(value)
 
     switch (name) {
       case 'family_lastname':
@@ -98,65 +100,10 @@ const CreateFamily = (props) => {
     <div className='cont-family-create'>
       <Header burger location={location} />
       <form className='general-connexion-form' onSubmit={submitForm}>
-
-        <label htmlFor='family_lastname' className='general-label'>prénom *</label>
-        <input
-          type='text'
-          placeholder='Elise'
-          name='family_lastname'
-          id='family_lastname'
-          className='general-input bold-12px-grey plholder'
-          onChange={(e) => handleChange(e)}
-          required autoComplete='off'
-          aria-required='true'
-        />
-        {lastname.value && lastname.error === 1 &&
-          <p className='msg-error'>Le prénom doit contenir au moins 2 caractères</p>}
-        {lastname.value && lastname.error === 2 &&
-          <p className='msg-error'>Chiffres ou caractères spéciaux non-autorisés</p>}
-
-        <label htmlFor='family_firstname' className='general-label'>nom</label>
-        <input
-          type='text'
-          placeholder='Durand'
-          name='family_firstname'
-          id='family_firstname'
-          className='general-input bold-12px-grey plholder'
-          onChange={(e) => handleChange(e)}
-          autoComplete='off'
-        />
-        {firstname.value && firstname.error === 1 &&
-          <p className='msg-error'>Le nom doit contenir au moins 2 caractères</p>}
-        {firstname.value && firstname.error === 2 &&
-          <p className='msg-error'>Chiffres ou caractères spéciaux non-autorisés</p>}
-
-        <label htmlFor='family_surname' className='general-label'>surnom</label>
-        <input
-          name='family_surname'
-          type='text' placeholder='Lili'
-          id='family_surname'
-          className='general-input bold-12px-grey plholder'
-          onChange={(e) => handleChange(e)}
-          autoComplete='off'
-        />
-        {surname.value && surname.error === 1 &&
-          <p className='msg-error'>Le surnom doit contenir au moins 2 caractères</p>}
-        {surname.value && surname.error === 2 &&
-          <p className='msg-error'>Chiffres ou caractères spéciaux non-autorisés</p>}
-
-        <label htmlFor='family_birthday' className='general-label'>date de naissance</label>
-        <input
-          type='text'
-          placeholder='22/01/2016'
-          name='family_birthday'
-          id='family_birthday'
-          className='general-input bold-12px-grey plholder'
-          onChange={(e) => handleChange(e)}
-          pattern='[0-9]{2}/[0-9]{2}/[0-9]{4}'
-          autoComplete='off'
-        />
-        {birthday.value && birthday.error === 1 &&
-          <p className='msg-error'>Le format de la date n'est pas valide (jj/mm/aaa)</p>}
+        <CreateInputFamily name='prénom' placeholder='Elise' id='family_lastname' handlechange={handleChange} fieldValue={lastname} required />
+        <CreateInputFamily name='nom' placeholder='Durand' id='family_firstname' handlechange={handleChange} fieldValue={firstname} />
+        <CreateInputFamily name='surnom' placeholder='Durand' id='family_surname' handlechange={handleChange} fieldValue={surname} />
+        <CreateInputFamily name='date de naissance' placeholder='22/01/2016' id='family_birthday' handlechange={handleChange} fieldValue={birthday} />
 
         <label className='general-label label-color'>COULEUR</label>
         <fieldset className='family_palette'>
