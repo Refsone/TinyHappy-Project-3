@@ -10,9 +10,14 @@ import Navbar from '../commons/footer/Navbar'
 
 import './Posts.css'
 
-const Posts = () => {
+const Posts = (props) => {
   const [moments, setMoments] = useState([])
+  const [refresh, setRefresh] = useState([false])
   let date = ''
+
+  useEffect(() => {
+    fetchUserMoment()
+  }, [refresh])
 
   const fetchUserMoment = () => {
     axios.get('http://localhost:7500/users/1/moments/')
@@ -23,30 +28,51 @@ const Posts = () => {
     return Moment(date).format('LL')
   }
 
-  useEffect(() => {
-    fetchUserMoment()
-  })
+  const refreshMethod = () => {
+    setRefresh(!refresh)
+  }
 
   return (
     <>
       <Header burger />
       <div className='Posts'>
         {moments.map((moment, key) => {
-          if (date !== moment.moment_event_date) {
-            date = moment.moment_event_date
-            return (
-              <>
-                <p className='moment-date' key={key}>{formatDate(moment.moment_event_date)}</p>
-                <CardPost moment={moment} key={key} />
-              </>
-            )
+          if (props.location.pathname === '/moments/favoris') {
+            if (moment.moment_favorite) {
+              if (date !== moment.moment_event_date) {
+                date = moment.moment_event_date
+                return (
+                  <>
+                    <p className='moment-date' key={key}>{formatDate(moment.moment_event_date)}</p>
+                    <CardPost refreshMethod={refreshMethod} locationPath={props.location.pathname} moment={moment} key={key} />
+                  </>
+                )
+              } else {
+                date = moment.moment_event_date
+                return (
+                  <>
+                    <CardPost refreshMethod={refreshMethod} locationPath={props.location.pathname} moment={moment} key={key} boxStyle='8px' />
+                  </>
+                )
+              }
+            }
           } else {
-            date = moment.moment_event_date
-            return (
-              <>
-                <CardPost moment={moment} key={key} boxStyle='8px' />
-              </>
-            )
+            if (date !== moment.moment_event_date) {
+              date = moment.moment_event_date
+              return (
+                <>
+                  <p className='moment-date' key={key}>{formatDate(moment.moment_event_date)}</p>
+                  <CardPost refreshMethod={refreshMethod} locationPath={props.location.pathname} moment={moment} key={key} />
+                </>
+              )
+            } else {
+              date = moment.moment_event_date
+              return (
+                <>
+                  <CardPost refreshMethod={refreshMethod} locationPath={props.location.pathname} moment={moment} key={key} boxStyle='8px' />
+                </>
+              )
+            }
           }
         })}
         <AddNewMoment />
