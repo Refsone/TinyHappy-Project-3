@@ -1,5 +1,5 @@
 import React from 'react'
-import Proptypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 const CreateInputFamily = (props) => {
   const { name, id, placeholder, handlechange, fieldValue, required } = { ...props }
@@ -27,12 +27,12 @@ const CreateInputFamily = (props) => {
   )
 }
 
-CreateInputFamily.prototype = {
-  name: Proptypes.string.isRequired,
-  id: Proptypes.string.isRequired,
-  placeholder: Proptypes.string.isRequired,
-  handleChange: Proptypes.func.isRequired,
-  required: Proptypes.string.isRequired,
-  fieldValue: Proptypes.shape.isRequired
+CreateInputFamily.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  handlechange: PropTypes.func.isRequired,
+  required: PropTypes.bool,
+  fieldValue: PropTypes.object.isRequired
 }
 export default CreateInputFamily

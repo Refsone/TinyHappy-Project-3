@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import CreateInputFamily from './CreateInputFamily'
+import DisplayColors from './DisplayColors'
 import Header from '../../commons/header/Header'
 import ValidateButton from '../../commons/footer/ValidateButton'
 
@@ -31,21 +32,17 @@ const CreateFamily = (props) => {
     error: 0
   })
   const [color, setColor] = useState(1)
-  const [colorBdd] = useState([
-    { color: '#E9FEFC' },
-    { color: '#F2FFD7' },
-    { color: '#E9EFFA' },
-    { color: '#FFE7EC' },
-    { color: '#FFEDD7' },
-    { color: '#FEFFC5' },
-    { color: '#F6EAFF' },
-    { color: '#DAFFD7' }
-  ])
+  const [bddColor, setBddColor] = useState()
+
+  useEffect(() => {
+    axios.get('http://localhost:7500/colors')
+      .then(res => setBddColor(res.data))
+      .catch(err => `L'erreur suivante s'est produite: ${err}`)
+  }, [])
 
   const handleChange = (e) => {
     const name = e.target.name
     const value = e.target.value
-    console.log(value)
 
     switch (name) {
       case 'family_lastname':
@@ -91,7 +88,7 @@ const CreateFamily = (props) => {
     regexSpecial.test(surname.value) && setSurname({ ...surname, error: 2 })
 
     const url = 'http://localhost:7500/family'
-    axios.post(url, { user_id: 1, firstname: firstname, lastname: lastname, surname: surname, birthday: birthday, color: color })
+    axios.post(url, { userId: 1, firstname: firstname, lastname: lastname, surname: surname, birthday: birthday, color: color })
       .then(res => console.log('Data send !'))
       .catch(err => 'an error is occured, the message is:' + err)
   }
@@ -104,13 +101,7 @@ const CreateFamily = (props) => {
         <CreateInputFamily name='nom' placeholder='Durand' id='family_firstname' handlechange={handleChange} fieldValue={firstname} />
         <CreateInputFamily name='surnom' placeholder='Durand' id='family_surname' handlechange={handleChange} fieldValue={surname} />
         <CreateInputFamily name='date de naissance' placeholder='22/01/2016' id='family_birthday' handlechange={handleChange} fieldValue={birthday} />
-
-        <label className='general-label label-color'>COULEUR</label>
-        <fieldset className='family_palette'>
-          {colorBdd.map((color, id) => {
-            return <input key={id} type='radio' id={color.color.slice(1)} name='color_family_id' value={id + 1} style={{ backgroundColor: color.color, margin: '.5em' }} onChange={(e) => handleChange(e)} />
-          })}
-        </fieldset>
+        <DisplayColors colors={bddColor} handlechange={handleChange} />
         <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
         <ValidateButton
           name='sauvegarder' active={lastname.value && firstname.error === 0 && lastname.error === 0 && surname.error === 0 && birthday.error === 0} handleClick={handleClick}
