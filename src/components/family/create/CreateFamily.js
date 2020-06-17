@@ -11,7 +11,7 @@ import './CreateFamily.css'
 const CreateFamily = (props) => {
   const regexInput = /\w{2,}/
   const regexSpecial = /[^a-zA-Z.-]{1}/
-  const regexDate = /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/
+  const regexDate = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/
 
   const location = props.location.pathname
 
@@ -78,7 +78,7 @@ const CreateFamily = (props) => {
     console.log('lastname', lastname)
     console.log('firstName', firstname)
     console.log('surname', surname)
-    console.log('birthday', birthday)
+    console.log('birthday', birthday.value.split('/').reverse().join('-'))
     console.log('color', color)
   }
 
@@ -87,10 +87,11 @@ const CreateFamily = (props) => {
     regexSpecial.test(firstname.value) && setFirstname({ ...firstname, error: 2 })
     regexSpecial.test(surname.value) && setSurname({ ...surname, error: 2 })
 
+    const newFormatDate = birthday.value.split('/').reverse().join('-')
     const url = 'http://localhost:7500/family'
-    axios.post(url, { userId: 1, firstname: firstname, lastname: lastname, surname: surname, birthday: birthday, color: color })
+    axios.post(url, { user_id: 1, family_firstname: firstname.value, family_lastname: lastname.value, family_surname: surname.value, family_birthday: newFormatDate, color_family_id: color })
       .then(res => console.log('Data send !'))
-      .catch(err => 'an error is occured, the message is:' + err)
+      .catch((err) => console.log('an error is occured, the message is:' + err))
   }
 
   return (
