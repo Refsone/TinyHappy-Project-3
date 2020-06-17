@@ -10,7 +10,6 @@ const Header = (props) => {
   const { burger, location } = props
   let link = ''
   let text = ''
-
   switch (location) {
     case '/family/create':
       text = 'annuler'
