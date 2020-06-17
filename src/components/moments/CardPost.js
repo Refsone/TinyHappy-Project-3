@@ -10,10 +10,11 @@ const CardPost = (props) => {
   const { moment, boxStyle } = props
   const [favorite, setFavorite] = useState(moment.moment_favorite)
   const [user, setUser] = useState()
+
   useEffect(() => {
     fetchUser()
-    console.log('ok')
-  }, [favorite])
+  }, [])
+
   const handleClickFavorite = (e) => {
     props.refreshMethod()
     setFavorite(!favorite)
