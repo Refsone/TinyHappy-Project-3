@@ -3,8 +3,8 @@ import axios from 'axios'
 
 import './CardPost.css'
 
-import fullHeart from '../../images/favoris-heart-pink.svg'
 import emptyHeart from '../../images/favori-heart.svg'
+import fullHeart from '../../images/favoris-heart-pink.svg'
 
 const CardPost = (props) => {
   const { moment, boxStyle } = props
