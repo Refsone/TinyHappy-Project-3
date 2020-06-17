@@ -115,6 +115,10 @@
     border-radius: 4px;
     background-color: #ffffff;
     height: 5em; 
+    background-image: url('../../images/eye-slash-regular1.svg');
+    background-repeat: no-repeat;
+    background-position: 90% center;
+    padding-left: 20px;
 }
 
 .general-form-connexion .input-psw-default {
