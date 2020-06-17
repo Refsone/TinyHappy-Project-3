@@ -1,0 +1,26 @@
+.header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.logo-monogramme{
+    width: 40px;
+    padding: 0;
+    margin-top: 5%;
+    margin-left: 40%;
+}
+
+.action-link{
+    display: block;
+    position: absolute;
+    right: 5%;
+    font-weight: 700;
+    font-size: 12px;
+    color: #7180AC;
+    text-transform: uppercase;
+}
+
+.action-link a{
+    text-decoration: none;
+}

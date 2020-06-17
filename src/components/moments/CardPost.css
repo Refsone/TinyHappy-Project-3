@@ -1,0 +1,60 @@
+.CardPost{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.CardPost {
+    max-width: 800px;
+    position: relative;
+    text-align: center;
+    border: solid 1px #E9EFFA;
+    border-radius: 0.5rem;
+    padding: 16px;
+    background-color: #fff;
+}
+
+.CardPost .block-names-favorite {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.CardPost .family-name {
+    display: inline;
+    margin-right: 0.5rem;
+    border-radius: 1rem;
+    font-size: 0.62rem;
+    padding: 0.25rem 1rem;
+    color: #2E3080;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.CardPost h4 {
+    font-size: 0,75rem;
+    font-style: italic;
+    color: #7180AC;
+}
+
+.CardPost .context{
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    color: #98A7CD;
+}
+
+.rose {
+    background-color: #FFE7EC;
+}
+
+.blue{
+    background-color: #E9FEFC;
+}
+
+.cyan{
+    background-color: #E9EFFA;
+}
+
+
+.green{
+    background-color: #F2FFD7;
+}
