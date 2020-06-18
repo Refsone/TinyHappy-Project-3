@@ -7,6 +7,8 @@ import CardMembers from '../family/CardMembers'
 import Connexion from '../onboarding/Connexion'
 import CreateFamily from '../family/create/CreateFamily'
 import CreateMoments from '../moments/createMoments/CreateMoments'
+import DisplaySettings from '../menu/DisplaySettings'
+import ModifySettings from '../menu/ModifySettings'
 import Post from '../moments/Posts'
 import SignUp from '../onboarding/SignUp'
 
@@ -22,6 +24,9 @@ const routes = (props) => {
       <Route path='/moments/create/milestone' component={CreateMoments} />
       <Route path='/onboarding/login' component={Connexion} />
       <Route path='/onboarding/signup' component={SignUp} />
+      <Route exact path='/settings' component={DisplaySettings} />
+      <Route path='/settings/modify/email' component={ModifySettings} />
+      <Route path='/settings/modify/password' component={ModifySettings} />
       <Route exact path='/share' component={CardContacts} />
     </Switch>
   )
