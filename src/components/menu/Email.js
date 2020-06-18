@@ -14,7 +14,7 @@ const Email = () => {
   }
 
   const [visible, setVisible] = useState(false)
-  const showType = visible ? 'text' : 'email'
+  const showType = visible ? 'text' : 'password'
 
   return (
     <div className='settings-container-pwdmail'>
