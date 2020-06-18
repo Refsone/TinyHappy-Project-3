@@ -21,7 +21,7 @@ const Connexion = () => {
         {errors.user_mail && <p className='msg-error'>{errors.user_mail}</p>}
 
         <label htmlFor='user_password' className='label-connexion'>mot de passe</label>
-        <input name='user_password' type='password' id='user_password' value={values.password} onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-psw-default mdp-open plholder bold-12px-grey'}`} placeholder='**********' />
+        <input name='user_password' type='password' id='user_password' value={values.password} onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-psw-default mdp-forbiden plholder bold-12px-grey'}`} placeholder='**********' />
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
 
         <p className='connexion-lien'><a href='/'>Mot de passe perdu ?</a></p>
