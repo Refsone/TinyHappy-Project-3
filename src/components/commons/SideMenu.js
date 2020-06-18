@@ -19,19 +19,19 @@ const SideMenu = () => {
         <img className='logo-th' src={logoTH} alt='Logo Tinny Happy' />
 
         <div className='block-link'>
-          <Link>
+          <Link to='/settings'>
             <div className='menu-item'>
               <img src={logoParam} alt='Logo paramètre' />
               <p>Paramètres</p>
             </div>
           </Link>
-          <Link>
+          <Link to='/settings/legacy'>
             <div className='menu-item'>
               <img src={logoLibra} alt='Logo légale' />
               <p>Mentions légales</p>
             </div>
           </Link>
-          <Link>
+          <Link to='/settings/privacy'>
             <div className='menu-item'>
               <img src={logoMask} alt='Logo masque' />
               <p>Confidentialité</p>

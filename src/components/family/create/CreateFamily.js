@@ -12,7 +12,8 @@ import './CreateFamily.css'
 
 const CreateFamily = (props) => {
   const regexInput = /[A-zÀ-ú]{2,}/
-  const regexSpecial = /[^A-zÀ-ú.-]{1}/
+  const regexNum = /[0-9]{1}/
+  const regexSpecial = /[!$%^&*()_+|~=`{}[:;<>?,@#\]]{1}/
   const regexDate = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/
 
   const location = props.location.pathname
@@ -61,9 +62,13 @@ const CreateFamily = (props) => {
 
     switch (name) {
       case 'family_lastname':
-        !regexInput.test(value) && value
-          ? setLastname({ ...lastname, value: value, error: 1 })
-          : setLastname({ ...lastname, value: value, error: 0 })
+        regexSpecial.test(value) && value
+          ? setLastname({ ...lastname, value: value, error: 2 })
+          : regexNum.test(value)
+            ? setLastname({ ...lastname, value: value, error: 3 })
+            : !regexInput.test(value)
+              ? setLastname({ ...lastname, value: value, error: 1 })
+              : setLastname({ ...lastname, value: value, error: 0 })
         break
       case 'family_firstname':
         !regexInput.test(value) && value

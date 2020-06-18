@@ -39,11 +39,11 @@ const Header = (props) => {
       text = 'annuler'
       link = '/settings'
       break
-    case '/setting/legacy':
+    case '/settings/legacy':
       text = 'retour'
       link = location
       break
-    case '/setting/privacy':
+    case '/settings/privacy':
       text = 'retour'
       link = location
       break
