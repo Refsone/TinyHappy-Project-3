@@ -95,3 +95,24 @@ html {
   font-weight: 700;
   font-size: 14px;
 }
+
+/* Form errors */
+
+.msg-error {
+  display: block;
+  width: 90%;
+  margin-left: 18px;
+  /* padding-top: 5px; */
+  color: #ff0000;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.input-error {
+  display: block;
+  width: 100%;
+  border: solid 1px #ff0000;
+  border-radius: 4px;
+  background-color: #ffffff;
+  height: 5em;
+}
