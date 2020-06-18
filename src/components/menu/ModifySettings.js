@@ -1,8 +1,9 @@
 import React from 'react'
 import axios from 'axios'
+
+import Header from './../commons/header/Header'
 import Email from './Email'
 import Password from './Password'
-import Header from './../commons/header/Header'
 
 const ModifySettings = (props) => {
   const path = props.location.pathname
