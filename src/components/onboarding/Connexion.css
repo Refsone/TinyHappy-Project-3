@@ -64,7 +64,7 @@
 }
 
 .general-form-connexion .connexion-btn-inactif{
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     /* For the demonstration Default:0 */
     width: 100%;
@@ -78,7 +78,7 @@
 }
 
 .general-form-connexion .connexion-btn-actif{
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     width: 100%;
     border: none;
@@ -88,16 +88,6 @@
     font-weight: 700;
     font-size: 14px;
     background-color: #FF89D2;
-}
-
-.msg-error{
-    display: block;
-    width: 90%;
-    margin-left: 18px;
-    padding-top: 5px;
-    color: #ff0000;
-    font-weight: 500;
-    font-size: 12px;
 }
 
 .general-form-connexion .input-connexion-error{
@@ -115,10 +105,6 @@
     border-radius: 4px;
     background-color: #ffffff;
     height: 5em; 
-    background-image: url('../../images/eye-slash-regular1.svg');
-    background-repeat: no-repeat;
-    background-position: 90% center;
-    padding-left: 20px;
 }
 
 .general-form-connexion .input-psw-default {
@@ -128,10 +114,6 @@
     border-radius: 4px;
     background-color: #ffffff;
     height: 5em;
-    background-image: url('../../images/eye-slash-regular1.svg');
-    background-repeat: no-repeat;
-    background-position: 90% center;
-    padding-left: 20px; 
 }
 .connexion-lien a {
     position: absolute;
@@ -140,5 +122,4 @@
     padding-right: 15px;
     font-weight: 500;
     color: #7180AC;
-    font-size: small;/* style maquette client */
 }
