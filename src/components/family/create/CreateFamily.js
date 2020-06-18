@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
+import ConfirmButton from '../../commons/footer/ConfirmButton'
 import CreateInputFamily from './CreateInputFamily'
 import DisplayColors from './DisplayColors'
 import Header from '../../commons/header/Header'
 import ValidateButton from '../../commons/footer/ValidateButton'
-import ConfirmButton from '../../commons/footer/ConfirmButton'
 
 import './CreateFamily.css'
 
@@ -103,6 +103,7 @@ const CreateFamily = (props) => {
     if (newFormatDate !== '') { addToDb.family_birthday = newFormatDate }
 
     const url = 'http://localhost:7500/family'
+
     axios.post(url, addToDb)
       .then(res => console.log('Data send !'))
       .then(setValidate(true))

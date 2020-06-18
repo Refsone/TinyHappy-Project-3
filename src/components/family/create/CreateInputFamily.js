@@ -12,7 +12,7 @@ const CreateInputFamily = (props) => {
         placeholder={placeholder}
         name={id}
         id={id}
-        className='general-input bold-12px-grey plholder'
+        className={fieldValue.error === 2 ? 'input-error' : 'general-input bold-12px-grey plholder'}
         onChange={handlechange}
         required={required}
         autoComplete='off'
