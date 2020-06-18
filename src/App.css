@@ -106,3 +106,12 @@ html {
   font-weight: 500;
   font-size: 12px;
 }
+
+.input-error {
+  display: block;
+  width: 100%;
+  border: solid 1px #ff0000;
+  border-radius: 4px;
+  background-color: #ffffff;
+  height: 5em;
+}
