@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import CreateInputFamily from './CreateInputFamily'
 import DisplayColors from './DisplayColors'
 import Header from '../../commons/header/Header'
 import ValidateButton from '../../commons/footer/ValidateButton'
+import ConfirmButton from '../../commons/footer/ConfirmButton'
 
 import './CreateFamily.css'
 
@@ -33,13 +35,25 @@ const CreateFamily = (props) => {
   })
   const [color, setColor] = useState(1)
   const [bddColor, setBddColor] = useState()
+  const [validate, setValidate] = useState(false)
+  const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
     axios.get('http://localhost:7500/colors')
       .then(res => setBddColor(res.data))
-      .then(console.log('fait'))
       .catch(err => `L'erreur suivante s'est produite: ${err}`)
   }, [])
+
+  useEffect(() => {
+    if (validate) {
+      const timer = setTimeout(() => {
+        setRedirect(true)
+      }, 5000)
+      return () => {
+        clearTimeout(timer)
+      }
+    }
+  }, [validate])
 
   const handleChange = (e) => {
     const name = e.target.name
@@ -88,11 +102,10 @@ const CreateFamily = (props) => {
     const newFormatDate = birthday.value.split('/').reverse().join('-')
     if (newFormatDate !== '') { addToDb.family_birthday = newFormatDate }
 
-    console.log(addToDb)
-
     const url = 'http://localhost:7500/family'
     axios.post(url, addToDb)
       .then(res => console.log('Data send !'))
+      .then(setValidate(true))
       .catch((err) => console.log('an error is occured, the message is:' + err))
   }
 
@@ -110,7 +123,14 @@ const CreateFamily = (props) => {
           name='sauvegarder' active={firstname.value && firstname.error === 0 && lastname.error === 0 && surname.error === 0 && birthday.error === 0} handleClick={handleClick}
         />
       </form>
-
+      {
+        validate &&
+          <ConfirmButton message='Le nouveau membre a été ajouté avec succès.' confirm />
+      }
+      {
+        redirect &&
+          <Redirect to='/family' />
+      }
     </div>
   )
 }
