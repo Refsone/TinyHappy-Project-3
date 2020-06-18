@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import useForm from './../onboarding/useForm'
 import validationLogIn from './../onboarding/validateLogin'
 
-import eyeClosed from '../../images/eye-slash-regular1.svg'
-import eyeOpen from '../../images/eye-open.svg'
 import './../onboarding/Connexion.css'
 import './Password.css'
+
+import eyeClosed from '../../images/eye-slash-regular1.svg'
+import eyeOpen from '../../images/eye-open.svg'
 
 const Email = () => {
   const { handleChange, handleSubmit, values, errors } = useForm(submit, validationLogIn)
