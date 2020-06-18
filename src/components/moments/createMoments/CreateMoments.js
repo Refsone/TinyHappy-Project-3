@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
-import Calendar from './Calendar'
+import DatePicker from 'react-date-picker'
+import '../../../../node_modules/react-calendar/dist/Calendar.css'
 import Header from '../../commons/header/Header'
 import Milestone from './Milestone'
 import MomentNavbar from './MomentNavbar'
@@ -11,23 +11,30 @@ import './CreateMoments.css'
 
 const CreateMoment = (props) => {
   const [familyMember, setFamilyMember] = useState([])
+  const [user, setUser] = useState([])
+  const [date, setDate] = useState(new Date())
   const [active, setActive] = useState(false)
   const [quoteArea, setQuoteArea] = useState('')
+  const memberFamilyIsPresentAtMoment = []
+
   const id = 1
   const path = props.location.pathname
 
   useEffect(() => {
-    axios.get(`http://localhost:7500/${id}/moments/create`)
+    axios.get(`http://localhost:7500/users/${id}/family`)
       .then((res) => {
         setFamilyMember(res.data)
       })
+    axios.get(`http://localhost:7500/users/${id}`)
+      .then((res) => {
+        setUser(res.data)
+      })
   }, [])
 
-  const onClick = () => {
-    console.log(quoteArea)
-    axios.post('http://localhost:7500/moments', { text: quoteArea })
-      .them(res => res.data)
-      .them(res => {
+  const sendCreateMoment = () => {
+    axios.post('http://localhost:7500/moments/create', { user_isPresent: false, moment_text: quoteArea, moment_context: '', moment_event_date: date.toISOString().slice(0, 10), user_id: id, moment_type_id: 1 })
+      .then(res => res.data)
+      .then(res => {
         console.log('envoie ok')
       })
       .catch(e => {
@@ -35,10 +42,15 @@ const CreateMoment = (props) => {
       })
   }
 
+  const buttonSelectAuthor = (AuthorId) => {
+    memberFamilyIsPresentAtMoment.push(AuthorId)
+    console.log('author', memberFamilyIsPresentAtMoment)
+  }
+  console.log(memberFamilyIsPresentAtMoment)
+
   const textInQuoteArea = (e) => {
     e.target.value ? setActive(true) : setActive(false)
     setQuoteArea(e.target.value)
-    console.log(e.target.value)
   }
 
   const textInDescriptionArea = (e) => {
@@ -50,10 +62,11 @@ const CreateMoment = (props) => {
       <Header location={path} burger />
       <div className='create'>
         <MomentNavbar />
-        {path === '/moments/create/milestone' ? <Milestone active={active} onClick={onClick} textInDescriptionArea={textInDescriptionArea} familyMember={familyMember} /> : <Quote active={active} onClick={onClick} textInQuoteArea={textInQuoteArea} familyMember={familyMember} />}
-        <Calendar />
+        {path === '/moments/create/milestone'
+          ? <Milestone buttonSelectAuthor={buttonSelectAuthor} active={active} sendCreateMoment={sendCreateMoment} textInDescriptionArea={textInDescriptionArea} user={user} familyMember={familyMember} />
+          : <Quote buttonSelectAuthor={buttonSelectAuthor} active={active} sendCreateMoment={sendCreateMoment} textInQuoteArea={textInQuoteArea} user={user} familyMember={familyMember} />}
+        <DatePicker onChange={setDate} value={date} format='dd-MM-yy' />
       </div>
-      {/* <ValidateButton name='publier' active={active} handleClick={handleClick} /> */}
     </>
   )
 }

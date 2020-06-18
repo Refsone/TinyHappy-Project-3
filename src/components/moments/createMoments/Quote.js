@@ -6,8 +6,8 @@ import TextArea from './TextArea'
 const Quote = (props) => {
   return (
     <>
-      <AuthorSelect familyMember={props.familyMember} title={'SELECTIONNER L\'AUTEUR'} />
-      <TextArea title='CITATION' active={props.active} onClick={props.onClick} placeholder='Ajouter une citation' textInArea={props.textInQuoteArea} idQuote='quote' idContext='contextQuote' />
+      <AuthorSelect authorButtonIsClicked={props.authorButtonIsClicked} buttonSelectAuthor={props.buttonSelectAuthor} familyMember={props.familyMember} user={props.user} title={'SELECTIONNER L\'AUTEUR'} />
+      <TextArea title='CITATION' active={props.active} sendCreateMoment={props.sendCreateMoment} placeholder='Ajouter une citation' textInArea={props.textInQuoteArea} idQuoteArea='quote' idContextArea='contextQuote' />
     </>
   )
 }

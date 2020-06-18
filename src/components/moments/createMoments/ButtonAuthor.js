@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './ButtonAuthor.css'
 
 const Button = (props) => {
   const [color, setColor] = useState('')
+  const [click, setClick] = useState(false)
 
-  const handleClick = (e) => {
-    color ? setColor('') : setColor(props.color)
-  }
+  useEffect(() => {
+    props.buttonSelectAuthor(props.id)
+    click ? setColor(props.color) : setColor('')
+  }, [click])
 
   return (
     <>
-      <button onClick={(e) => handleClick(e)} style={{ backgroundColor: `${color}` }} className='author'>{props.name}</button>
+      <button onClick={() => setClick(!click)} style={{ backgroundColor: `${color}` }} className='author'>{props.name}</button>
     </>
   )
 }
