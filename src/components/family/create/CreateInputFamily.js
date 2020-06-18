@@ -23,7 +23,7 @@ const CreateInputFamily = (props) => {
       {id.includes('name') && id && fieldValue.error === 2 &&
         <p className='msg-error'>Chiffres ou caractères spéciaux non-autorisés</p>}
       {id.includes('birthday') && fieldValue.value && fieldValue.error === 1 &&
-        <p className='msg-error'>Le format de la date n'est pas valide (jj/mm/aaa)</p>}
+        <p className='msg-error'>Le format de la date n'est pas valide (jj/mm/aaaa)</p>}
     </>
   )
 }

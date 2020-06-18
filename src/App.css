@@ -102,7 +102,7 @@ html {
   display: block;
   width: 90%;
   margin-left: 18px;
-  padding-top: 5px;
+  /* padding-top: 5px; */
   color: #ff0000;
   font-weight: 500;
   font-size: 12px;

@@ -9,8 +9,8 @@ import ValidateButton from '../../commons/footer/ValidateButton'
 import './CreateFamily.css'
 
 const CreateFamily = (props) => {
-  const regexInput = /\w{2,}/
-  const regexSpecial = /[^a-zA-Z.-]{1}/
+  const regexInput = /[A-zÀ-ú]{2,}/
+  const regexSpecial = /[^A-zÀ-ú.-]{1}/
   const regexDate = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/
 
   const location = props.location.pathname
@@ -37,6 +37,7 @@ const CreateFamily = (props) => {
   useEffect(() => {
     axios.get('http://localhost:7500/colors')
       .then(res => setBddColor(res.data))
+      .then(console.log('fait'))
       .catch(err => `L'erreur suivante s'est produite: ${err}`)
   }, [])
 
@@ -74,22 +75,23 @@ const CreateFamily = (props) => {
 
   const submitForm = (e) => {
     e.preventDefault()
-    // For pass the test !!!
-    console.log('lastname', lastname)
-    console.log('firstName', firstname)
-    console.log('surname', surname)
-    console.log('birthday', birthday.value.split('/').reverse().join('-'))
-    console.log('color', color)
   }
 
   const handleClick = () => {
     regexSpecial.test(lastname.value) && setLastname({ ...lastname, error: 2 })
     regexSpecial.test(firstname.value) && setFirstname({ ...firstname, error: 2 })
     regexSpecial.test(surname.value) && setSurname({ ...surname, error: 2 })
+    const addToDb = { user_id: 1, family_firstname: firstname.value, color_family_id: color }
+    if (lastname.value !== '') { addToDb.family_lastname = lastname.value }
+    if (surname.value !== '') { addToDb.family_surname = surname.value }
 
     const newFormatDate = birthday.value.split('/').reverse().join('-')
+    if (newFormatDate !== '') { addToDb.family_birthday = newFormatDate }
+
+    console.log(addToDb)
+
     const url = 'http://localhost:7500/family'
-    axios.post(url, { user_id: 1, family_firstname: firstname.value, family_lastname: lastname.value, family_surname: surname.value, family_birthday: newFormatDate, color_family_id: color })
+    axios.post(url, addToDb)
       .then(res => console.log('Data send !'))
       .catch((err) => console.log('an error is occured, the message is:' + err))
   }
@@ -98,14 +100,14 @@ const CreateFamily = (props) => {
     <div className='cont-family-create'>
       <Header burger location={location} />
       <form className='general-connexion-form' onSubmit={submitForm}>
-        <CreateInputFamily name='prénom' placeholder='Elise' id='family_lastname' handlechange={handleChange} fieldValue={lastname} required />
-        <CreateInputFamily name='nom' placeholder='Durand' id='family_firstname' handlechange={handleChange} fieldValue={firstname} />
+        <CreateInputFamily name='prénom' placeholder='Elise' id='family_firstname' handlechange={handleChange} fieldValue={firstname} required />
+        <CreateInputFamily name='nom' placeholder='Durand' id='family_lastname' handlechange={handleChange} fieldValue={lastname} />
         <CreateInputFamily name='surnom' placeholder='Durand' id='family_surname' handlechange={handleChange} fieldValue={surname} />
         <CreateInputFamily name='date de naissance' placeholder='22/01/2016' id='family_birthday' handlechange={handleChange} fieldValue={birthday} />
         <DisplayColors colors={bddColor} handlechange={handleChange} />
         <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
         <ValidateButton
-          name='sauvegarder' active={lastname.value && firstname.error === 0 && lastname.error === 0 && surname.error === 0 && birthday.error === 0} handleClick={handleClick}
+          name='sauvegarder' active={firstname.value && firstname.error === 0 && lastname.error === 0 && surname.error === 0 && birthday.error === 0} handleClick={handleClick}
         />
       </form>
 
