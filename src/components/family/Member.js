@@ -6,7 +6,6 @@ import pencilLogo from '../../images/family-pencil.svg'
 
 const Member = (props) => {
   const { member, familyBirthday } = props
-  console.log(member)
   if (props.isUser) {
     return (
       <div className='Member'>

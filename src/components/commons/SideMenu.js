@@ -19,35 +19,37 @@ const SideMenu = () => {
         <img className='logo-th' src={logoTH} alt='Logo Tinny Happy' />
 
         <div className='block-link'>
-          <Link>
+          <Link to='/settings'>
             <div className='menu-item'>
               <img src={logoParam} alt='Logo paramètre' />
               <p>Paramètres</p>
             </div>
           </Link>
-          <Link>
+          <Link to='/settings'>
             <div className='menu-item'>
               <img src={logoLibra} alt='Logo légale' />
               <p>Mentions légales</p>
             </div>
           </Link>
-          <Link>
+          <Link to='/settings'>
             <div className='menu-item'>
               <img src={logoMask} alt='Logo masque' />
               <p>Confidentialité</p>
             </div>
           </Link>
-          <Link>
+          <Link to='/'>
             <div className='menu-item'>
               <img src={logoLogOut} alt='Logo déconnexion' />
               <p>Déconnexion</p>
             </div>
           </Link>
-          <div className='block-love'>
-            <img src={logoHeart} alt='heart' />
-            <p>VOUS AIMEZ TINYHAPPY ?</p>
-            <p>Notez TinyHappy sur le store</p>
-          </div>
+          <Link to='/onboarding/login'>
+            <div className='block-love'>
+              <img src={logoHeart} alt='heart' />
+              <p>VOUS AIMEZ TINYHAPPY ?</p>
+              <p>Notez TinyHappy sur le store</p>
+            </div>
+          </Link>
         </div>
       </Menu>
     </div>

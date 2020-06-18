@@ -23,14 +23,14 @@ const Email = () => {
       <form onSubmit={handleSubmit} className='general-form-connexion' noValidate>
         <label htmlFor='user_mail' name='user_mail' className='label-settings bold-12px-grey'>Nouvelle adresse mail</label>
         <div className='settings-container-eye'>
-          <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} />
+          <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
         </div>
         <input name='user_mail' type={showType} id='user_mail' value={values.email} onChange={handleChange} className={`${errors.user_mail ? 'input-pws-error' : 'input-psw-default plholder bold-12px-grey'}`} placeholder='**********' />
         {errors.user_mail && <p className='msg-error'>{errors.user_mail}</p>}
 
         <label htmlFor='user_mail' className='label-settings bold-12px-grey'>confirmation de la nouvelle adresse mail</label>
         <div className='settings-container-eye'>
-          <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} />
+          <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
         </div>
         <input name='user_mail' type={showType} id='user_mail' value={values.email} onChange={handleChange} className={`${errors.user_mail ? 'input-pws-error' : 'input-psw-default plholder bold-12px-grey'}`} placeholder='**********' />
         {errors.user_mail && <p className='msg-error'>{errors.user_mail}</p>}
