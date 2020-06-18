@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+
 import useForm from './../onboarding/useForm'
 import confirmationReset from './confirmationResert'
 
-import eyeClosed from '../../images/eye-slash-regular1.svg'
-import eyeOpen from '../../images/eye-open.svg'
 import './../onboarding/Connexion.css'
 import './Password.css'
+
+import eyeClosed from '../../images/eye-slash-regular1.svg'
+import eyeOpen from '../../images/eye-open.svg'
 
 const Password = () => {
   const { handleChange, handleSubmit, values, errors } = useForm(submit, confirmationReset)
