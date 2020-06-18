@@ -66,7 +66,6 @@
 .general-form-connexion .connexion-btn-inactif{
     position: fixed;
     bottom: 0px;
-    /* For the demonstration Default:0 */
     width: 100%;
     border: none;
     height: 60px;
