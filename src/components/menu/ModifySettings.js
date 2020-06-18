@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Email from './Email'
 import Password from './Password'
-import Logo from './../commons/header/LogoHeader'
+import Header from './../commons/header/Header'
 
 const ModifySettings = (props) => {
   const path = props.location.pathname
@@ -10,7 +10,7 @@ const ModifySettings = (props) => {
 
   return (
     <>
-      <Logo location={path} />
+      <Header location={path} burger />
       <div>
         {path === '/settings/modify/email' ? <Email /> : <Password />}
       </div>
