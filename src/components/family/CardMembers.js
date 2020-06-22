@@ -21,7 +21,7 @@ const CardMembers = () => {
     fetchFamilyMembers()
   }, [])
   const fetchFamilyMembers = (userId = 1) => {
-    axios.get(`http://localhost:7500/family/${userId}`)
+    axios.get(`http://localhost:7500/users/${userId}/family`)
       .then(res => setMembers(res.data))
   }
   const fetchUser = (userId = 1) => {
@@ -30,7 +30,12 @@ const CardMembers = () => {
   }
   const formatDate = (date) => {
     Moment.locale('fr')
-    if (date !== '') return Moment(date).format('LL')
+    if (date !== null) {
+      return Moment(date).format('LL')
+    } else {
+      date = ''
+      return date
+    }
   }
   return (
     <>

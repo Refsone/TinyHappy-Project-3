@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import './CreateInputFamily.css'
+
 const CreateInputFamily = (props) => {
   const { name, id, placeholder, handlechange, fieldValue, required } = { ...props }
 
   return (
-    <>
+    <div className='absolute'>
       <label htmlFor={id} className='general-label'>{name} {required && '*'}</label>
       <input
         type='text'
@@ -26,7 +28,7 @@ const CreateInputFamily = (props) => {
         <p className='msg-error'>Les chiffres ne sont pas autorisés</p>}
       {id.includes('birthday') && fieldValue.value && fieldValue.error === 1 &&
         <p className='msg-error'>Le format de la date n'est pas valide (jj/mm/aaaa)</p>}
-    </>
+    </div>
   )
 }
 

@@ -34,7 +34,7 @@ html {
 
 .general-connexion-form input, label {
   margin: 10px 20px 5px 20px;
-  padding: 10px 0px 10px 15px;
+  padding: 12px 0px 10px 15px;
   font-size: .75em;
 }
 
@@ -98,9 +98,7 @@ html {
 
 .msg-error{
   position: absolute;
-  display: block;
-  width: 90%;
-  margin-left: 18px;
+  left: -2px;
   padding-top: 5px;
   color: #ff0000;
   font-weight: 500;

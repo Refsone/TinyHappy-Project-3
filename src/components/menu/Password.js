@@ -28,13 +28,13 @@ const Password = () => {
       <form onSubmit={handleSubmit} className='general-form-connexion' noValidate>
         <label htmlFor='user_password' name='user_password' className='label-settings bold-12px-grey'>Nouveau mot de passe</label>
         <div className='settings-container-eye'>
-          <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} />
+          <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
         </div>
         <input name='user_password' type={showType} id='user_password' value={values.password} onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-psw-default plholder bold-12px-grey'}`} placeholder='**********' onClick={handleChange} />
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
         <label htmlFor='user_password' className='label-settings bold-12px-grey'>confirmation du nouveau de passe</label>
         <div className='settings-container-eye'>
-          <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} />
+          <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
         </div>
         <input name='confirm_user_password' type={showType} id='confirm_user_password' value={values.confirm_password} onChange={handleChangeConfirm} className={`${errors.user_password ? 'input-pws-error' : 'input-connexion plholder bold-12px-grey'}`} placeholder='**********' />
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}

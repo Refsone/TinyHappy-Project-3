@@ -30,12 +30,12 @@ const Posts = (props) => {
   const getRandom = () => {
     return Math.floor(Math.random() * Math.floor(100))
   }
-  const createCardPost = (moment, key) => {
+  const createCardPost = (moment, id) => {
     if (date !== moment.moment_event_date) {
       date = moment.moment_event_date
       return (
         <>
-          <p className='moment-date' key={key}>{formatDate(moment.moment_event_date)}</p>
+          <p className='moment-date' key={id}>{formatDate(moment.moment_event_date)}</p>
           <CardPost refreshMethod={refreshMethod} locationPath={props.location.pathname} moment={moment} key={getRandom()} />
         </>
       )
@@ -57,12 +57,14 @@ const Posts = (props) => {
       <Header burger />
       <div className='Posts'>
         {moments.map((moment, key) => {
-          if (props.location.pathname === '/moments/favoris') {
+          if (props.location.pathname === '/favoris') {
             if (moment.moment_favorite) {
-              return (createCardPost(moment, key))
+              return createCardPost(moment, key)
+            } else {
+              return ''
             }
           } else {
-            return (createCardPost(moment, key))
+            return createCardPost(moment, key)
           }
         })}
         <AddNewMoment />

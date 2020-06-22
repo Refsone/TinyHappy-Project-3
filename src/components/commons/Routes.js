@@ -19,7 +19,7 @@ const routes = (props) => {
       <Route exact path='/family' component={CardMembers} />
       <Route path='/family/create' component={CreateFamily} />
       <Route exact path='/moments' component={Post} />
-      <Route path='/moments/favoris' component={Post} />
+      <Route path='/favoris' component={Post} />
       <Route path='/moments/create/quote' component={CreateMoments} />
       <Route path='/moments/create/milestone' component={CreateMoments} />
       <Route path='/onboarding/login' component={Connexion} />
