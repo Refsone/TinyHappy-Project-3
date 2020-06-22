@@ -42,7 +42,8 @@ const Member = (props) => {
         <NavLink to={{
           pathname: '/family/create',
           data: {
-            modify: 'member'
+            modify: 'member',
+            memberId: member.member_id
           }
         }}
         >
