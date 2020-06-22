@@ -17,6 +17,7 @@ const CreateInputFamily = (props) => {
         className={fieldValue.error === 2 ? 'input-error' : 'general-input bold-12px-grey plholder'}
         onChange={handlechange}
         required={required}
+        value={fieldValue.value ? fieldValue.value : ''}
         autoComplete='off'
         aria-required='true'
       />

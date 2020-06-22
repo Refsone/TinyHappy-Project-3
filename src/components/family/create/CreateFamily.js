@@ -13,9 +13,9 @@ import './CreateFamily.css'
 const CreateFamily = (props) => {
   const regexInput = /[A-zÀ-ú]{2,}/
   const regexNum = /[0-9]{1}/
-  const regexSpecial = /[!$%^&*()_+|~=`{}[:;<>?,@#\]]{1}/
+  const regexSpecial = /[!$%^&*/()_+|~=`{}[:;<>?,@#\]]{1}/
   const regexDate = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/
-
+  const page = props.location.data.modify
   const location = props.location.pathname
 
   const [lastname, setLastname] = useState({
@@ -46,6 +46,11 @@ const CreateFamily = (props) => {
   }, [])
 
   useEffect(() => {
+    handleUsersDatas()
+    return handleUsersDatas()
+  }, [page])
+
+  useEffect(() => {
     if (validate) {
       const timer = setTimeout(() => {
         setRedirect(true)
@@ -55,6 +60,27 @@ const CreateFamily = (props) => {
       }
     }
   }, [validate])
+
+  const handleUsersDatas = () => {
+    const userId = 1
+    const familyId = 1
+    if (page === 'user') {
+      axios.get(`http://localhost:7500/users/${userId}`)
+        .then(res => {
+          const data = res.data[0]
+          setFirstname({ ...firstname, value: data.user_firstname })
+          setLastname({ ...lastname, value: data.user_lastname })
+          setSurname({ ...surname, value: data.user_surname })
+          setBirthday({ ...birthday, value: data.user_birthday })
+          setColor(data.color_family_id)
+        })
+        .catch(err => `L'erreur suivante s'est produite: ${err}`)
+    } else {
+      axios.get(`http://localhost:7500/users/${userId}/family/${familyId}`)
+        .then(res => console.log(res.data[0]))
+        .catch(err => `L'erreur suivante s'est produite: ${err}`)
+    }
+  }
 
   const handleChange = (e) => {
     const name = e.target.name
@@ -71,14 +97,22 @@ const CreateFamily = (props) => {
               : setLastname({ ...lastname, value: value, error: 0 })
         break
       case 'family_firstname':
-        !regexInput.test(value) && value
-          ? setFirstname({ ...firstname, value: value, error: 1 })
-          : setFirstname({ ...firstname, value: value, error: 0 })
+        regexSpecial.test(value) && value
+          ? setFirstname({ ...firstname, value: value, error: 2 })
+          : regexNum.test(value)
+            ? setFirstname({ ...firstname, value: value, error: 3 })
+            : !regexInput.test(value)
+              ? setFirstname({ ...firstname, value: value, error: 1 })
+              : setFirstname({ ...firstname, value: value, error: 0 })
         break
       case 'family_surname':
-        !regexInput.test(value) && value
-          ? setSurname({ ...surname, value: value, error: 1 })
-          : setSurname({ ...surname, value: value, error: 0 })
+        regexSpecial.test(value) && value
+          ? setSurname({ ...surname, value: value, error: 2 })
+          : regexNum.test(value)
+            ? setSurname({ ...surname, value: value, error: 3 })
+            : !regexInput.test(value)
+              ? setSurname({ ...surname, value: value, error: 1 })
+              : setSurname({ ...surname, value: value, error: 0 })
         break
       case 'family_birthday':
         !regexDate.test(value) && value
@@ -123,7 +157,7 @@ const CreateFamily = (props) => {
         <CreateInputFamily name='nom' placeholder='Durand' id='family_lastname' handlechange={handleChange} fieldValue={lastname} />
         <CreateInputFamily name='surnom' placeholder='Durand' id='family_surname' handlechange={handleChange} fieldValue={surname} />
         <CreateInputFamily name='date de naissance' placeholder='22/01/2016' id='family_birthday' handlechange={handleChange} fieldValue={birthday} />
-        <DisplayColors colors={bddColor} handlechange={handleChange} />
+        <DisplayColors colors={bddColor} handlechange={handleChange} selected={color} />
         <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
         <ValidateButton
           name='sauvegarder' active={firstname.value && firstname.error === 0 && lastname.error === 0 && surname.error === 0 && birthday.error === 0} handleClick={handleClick}

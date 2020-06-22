@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 import './Member.css'
 
@@ -16,7 +17,15 @@ const Member = (props) => {
           </h4>
           {member.user_birthday && <p className='medium-12px-grey' style={{ marginTop: '0' }}>{familyBirthday}</p>}
         </div>
-        <img src={pencilLogo} alt='pencil logo' />
+        <NavLink to={{
+          pathname: '/family/create',
+          data: {
+            modify: 'user'
+          }
+        }}
+        >
+          <img src={pencilLogo} alt='pencil logo' />
+        </NavLink>
       </div>
     )
   } else {
@@ -30,7 +39,15 @@ const Member = (props) => {
           <p className='medium-12px-grey' style={member.family_surname ? {} : { marginTop: '0' }}>{member.family_surname}</p>
           <p className='medium-12px-grey' style={member.familyBirthday ? {} : { marginTop: '0' }}>{familyBirthday}</p>
         </div>
-        <img src={pencilLogo} alt='pencil logo' />
+        <NavLink to={{
+          pathname: '/family/create',
+          data: {
+            modify: 'member'
+          }
+        }}
+        >
+          <img src={pencilLogo} alt='pencil logo' />
+        </NavLink>
       </div>
     )
   }
