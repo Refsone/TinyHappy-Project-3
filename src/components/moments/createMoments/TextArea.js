@@ -16,5 +16,4 @@ const Textarea = (props) => {
     </div>
   )
 }
-
 export default Textarea
