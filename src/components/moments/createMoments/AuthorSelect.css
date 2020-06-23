@@ -1,16 +1,11 @@
 .authorList {
-    display: flex;
     margin-bottom: 20px;
-}
-
-.authorSelect button {
-    color: #7180AC;
-    font-weight: bold;
+    padding-right: 20px;
 }
 
 .authorSelect {
     padding-left: 5vw;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 .authorTitle {

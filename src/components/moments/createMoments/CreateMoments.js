@@ -53,10 +53,6 @@ const CreateMoment = (props) => {
       })
   }
 
-  useEffect(() => {
-    console.log(memberFamilyIsPresentAtMoment)
-  }, [memberFamilyIsPresentAtMoment])
-
   const buttonSelectAuthor = (AuthorId, click) => {
     if (click) {
       AuthorId === user.user_firstname
