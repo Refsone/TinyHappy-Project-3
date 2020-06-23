@@ -33,7 +33,7 @@ const CreateMoment = (props) => {
       })
   }, [])
 
-  const sendCreateMoment = () => {
+  const handleSendCreateMoment = () => {
     axios.post('http://localhost:7500/moments/create',
       {
         user_isPresent: 0,
@@ -87,8 +87,8 @@ const CreateMoment = (props) => {
       <div className='create'>
         <MomentNavbar resetStateOnSwitch={resetStateOnSwitch} />
         {path === '/moments/create/milestone'
-          ? <Milestone buttonSelectAuthor={buttonSelectAuthor} active={active} sendCreateMoment={sendCreateMoment} onChangeTextInDescriptionArea={onChangeTextInDescriptionArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />
-          : <Quote buttonSelectAuthor={buttonSelectAuthor} active={active} sendCreateMoment={sendCreateMoment} onChangeTextInDescriptionArea={onChangeTextInDescriptionArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />}
+          ? <Milestone buttonSelectAuthor={buttonSelectAuthor} active={active} handleSendCreateMoment={handleSendCreateMoment} onChangeTextInDescriptionArea={onChangeTextInDescriptionArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />
+          : <Quote buttonSelectAuthor={buttonSelectAuthor} active={active} handleSendCreateMoment={handleSendCreateMoment} onChangeTextInDescriptionArea={onChangeTextInDescriptionArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />}
         <DatePicker onChange={setDate} value={date} format='dd-MM-yy' />
       </div>
     </>
