@@ -14,8 +14,10 @@ const CreateMoment = (props) => {
   const [user, setUser] = useState([])
   const [date, setDate] = useState(new Date())
   const [active, setActive] = useState(false)
-  const [quoteArea, setQuoteArea] = useState('')
-  const memberFamilyIsPresentAtMoment = []
+  const [textInMomentArea, setTextInMomentArea] = useState('')
+  const [textInDescriptionArea, setTextInDescriptionArea] = useState('')
+  const [memberFamilyIsPresentAtMoment, setMemberFamilyIsPresentAtMoment] = useState([])
+  const [momentTypeId, setMomentTypeId] = useState(1)
 
   const id = 1
   const path = props.location.pathname
@@ -32,39 +34,61 @@ const CreateMoment = (props) => {
   }, [])
 
   const sendCreateMoment = () => {
-    axios.post('http://localhost:7500/moments/create', { user_isPresent: false, moment_text: quoteArea, moment_context: '', moment_event_date: date.toISOString().slice(0, 10), user_id: id, moment_type_id: 1 })
-      .then(res => res.data)
-      .then(res => {
-        console.log('envoie ok')
+    axios.post('http://localhost:7500/moments/create',
+      {
+        user_isPresent: 0,
+        moment_text: textInMomentArea,
+        moment_context: textInDescriptionArea,
+        moment_event_date: date.toISOString().slice(0, 10),
+        moment_type_id: momentTypeId,
+        user_id: id,
+        family_id: memberFamilyIsPresentAtMoment
       })
+      .then(res => res.data)
       .catch(e => {
         console.error(e)
       })
   }
 
-  const buttonSelectAuthor = (AuthorId) => {
-    memberFamilyIsPresentAtMoment.push(AuthorId)
-    console.log('author', memberFamilyIsPresentAtMoment)
-  }
-  console.log(memberFamilyIsPresentAtMoment)
+  useEffect(() => {
+    console.log(memberFamilyIsPresentAtMoment)
+  }, [memberFamilyIsPresentAtMoment])
 
-  const textInQuoteArea = (e) => {
-    e.target.value ? setActive(true) : setActive(false)
-    setQuoteArea(e.target.value)
+  const buttonSelectAuthor = (AuthorId, click) => {
+    if (click) {
+      setMemberFamilyIsPresentAtMoment([...memberFamilyIsPresentAtMoment, AuthorId])
+    } else {
+      const idToDelete = memberFamilyIsPresentAtMoment.indexOf(AuthorId)
+      const newTab = [...memberFamilyIsPresentAtMoment]
+      newTab.splice(idToDelete, 1)
+      setMemberFamilyIsPresentAtMoment(newTab)
+    }
   }
 
-  const textInDescriptionArea = (e) => {
+  const onChangeTextInMomentArea = (e) => {
     e.target.value ? setActive(true) : setActive(false)
+    setTextInMomentArea(e.target.value)
+  }
+
+  const onChangeTextInDescriptionArea = (e) => {
+    setTextInDescriptionArea(e.target.value)
+    console.log(e.target.value)
+  }
+
+  const resetStateOnSwitch = (e) => {
+    setActive(false)
+    setMomentTypeId(e)
+    setMemberFamilyIsPresentAtMoment([])
   }
 
   return (
     <>
       <Header location={path} burger />
       <div className='create'>
-        <MomentNavbar />
+        <MomentNavbar resetStateOnSwitch={resetStateOnSwitch} />
         {path === '/moments/create/milestone'
-          ? <Milestone buttonSelectAuthor={buttonSelectAuthor} active={active} sendCreateMoment={sendCreateMoment} textInDescriptionArea={textInDescriptionArea} user={user} familyMember={familyMember} />
-          : <Quote buttonSelectAuthor={buttonSelectAuthor} active={active} sendCreateMoment={sendCreateMoment} textInQuoteArea={textInQuoteArea} user={user} familyMember={familyMember} />}
+          ? <Milestone buttonSelectAuthor={buttonSelectAuthor} active={active} sendCreateMoment={sendCreateMoment} onChangeTextInDescriptionArea={onChangeTextInDescriptionArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />
+          : <Quote buttonSelectAuthor={buttonSelectAuthor} active={active} sendCreateMoment={sendCreateMoment} onChangeTextInDescriptionArea={onChangeTextInDescriptionArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />}
         <DatePicker onChange={setDate} value={date} format='dd-MM-yy' />
       </div>
     </>

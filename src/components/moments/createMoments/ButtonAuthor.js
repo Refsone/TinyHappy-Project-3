@@ -6,7 +6,7 @@ const Button = (props) => {
   const [click, setClick] = useState(false)
 
   useEffect(() => {
-    props.buttonSelectAuthor(props.id)
+    click ? props.buttonSelectAuthor(props.id, click) : props.buttonSelectAuthor(props.id, click)
     click ? setColor(props.color) : setColor('')
   }, [click])
 
