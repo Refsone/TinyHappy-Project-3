@@ -17,8 +17,9 @@ const regexSpecial = /[!$%^&*/()_+|~=`{}[:;<>?,@#\]]{1}/
 const regexDate = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/
 
 const CreateFamily = (props) => {
-  const { page, memberId } = props.location.data
+  const { modify, memberId } = props.location.data
   const location = props.location.pathname
+  const userId = 1
 
   // Define the state
   const [lastname, setLastname] = useState({
@@ -52,7 +53,7 @@ const CreateFamily = (props) => {
   useEffect(() => {
     handleUsersDatas()
     return handleUsersDatas()
-  }, [page])
+  }, [modify])
 
   // Define a setTimeOut on validation before return to the members family list
   useEffect(() => {
@@ -68,15 +69,16 @@ const CreateFamily = (props) => {
 
   // Function to fetch the bdd datas
   const handleUsersDatas = () => {
-    const userId = 1
-    if (page === 'user') { // Fetch the user datas
+    if (modify === 'user') { // Fetch the user datas
       axios.get(`http://localhost:7500/users/${userId}`)
         .then(res => {
           const data = res.data[0]
+          const dateTemp = data.user_birthday &&
+          new Date(data.user_birthday).toLocaleDateString('fr-FR').split('-').reverse().join('/')
           setFirstname({ ...firstname, value: data.user_firstname })
           setLastname({ ...lastname, value: data.user_lastname })
           setSurname({ ...surname, value: data.user_surname })
-          setBirthday({ ...birthday, value: data.user_birthday })
+          setBirthday({ ...birthday, value: dateTemp })
           setColor(data.color_family_id)
         })
         .catch(err => `L'erreur suivante s'est produite: ${err}`)
@@ -84,10 +86,12 @@ const CreateFamily = (props) => {
       axios.get(`http://localhost:7500/users/${userId}/family-members/${memberId}`)
         .then(res => {
           const data = res.data[0]
+          const dateTemp = data.family_birthday &&
+          new Date(data.family_birthday).toLocaleDateString('fr-FR').split('-').reverse().join('/')
           setFirstname({ ...firstname, value: data.family_firstname })
           setLastname({ ...lastname, value: data.family_lastname })
           setSurname({ ...surname, value: data.family_surname })
-          setBirthday({ ...birthday, value: data.family_birthday })
+          setBirthday({ ...birthday, value: dateTemp })
           setColor(data.color_family_id)
         })
         .catch(err => `L'erreur suivante s'est produite: ${err}`)
@@ -150,21 +154,38 @@ const CreateFamily = (props) => {
     regexSpecial.test(firstname.value) && setFirstname({ ...firstname, error: 2 })
     regexSpecial.test(surname.value) && setSurname({ ...surname, error: 2 })
     // Define the datas to send to the database
-    const addToDb = { user_id: 1, family_firstname: firstname.value, color_family_id: color }
-    if (memberId) { addToDb.id = memberId }
-    if (lastname.value !== '') { addToDb.family_lastname = lastname.value }
-    if (surname.value !== '') { addToDb.family_surname = surname.value }
+    const addToDb = {}
     const newFormatDate = birthday.value ? birthday.value.split('/').reverse().join('-') : ''
-    if (newFormatDate !== '') { addToDb.family_birthday = newFormatDate }
-
-    // If the memberId not exist, send a post request, else send a put request
-    !memberId ? axios.post('http://localhost:7500/family-members/new', addToDb)
-      .then(res => res.status === 201 && (setValidate(true)))
-      .catch((err) => console.log('an error is occured, the message is:' + err))
-      : axios.put('http://localhost:7500/family-members/update', addToDb)
+    if (modify !== 'user') {
+      addToDb.user_id = userId
+      addToDb.family_firstname = firstname.value
+      addToDb.color_family_id = color
+      if (memberId) { addToDb.id = memberId }
+      if (lastname.value !== '') { addToDb.family_lastname = lastname.value }
+      if (surname.value !== '') { addToDb.family_surname = surname.value }
+      if (newFormatDate !== '') { addToDb.family_birthday = newFormatDate }
+      if (modify !== 'member') {
+        return axios.post('http://localhost:7500/family-members/new', addToDb)
+          .then(res => res.status === 201 && (setValidate(true)))
+          .catch((err) => console.log('an error is occured, the message is:' + err))
+      } else {
+        axios.put('http://localhost:7500/family-members/update', addToDb)
+          .then(res => res.status === 200 && (setValidate(true)))
+          .catch((err) => console.log('an error is occured, the message is:' + err))
+      }
+    } else {
+      addToDb.id = userId
+      addToDb.user_firstname = firstname.value
+      addToDb.color_family_id = color
+      if (lastname.value !== '') { addToDb.user_lastname = lastname.value }
+      if (surname.value !== '') { addToDb.user_surname = surname.value }
+      if (newFormatDate !== '') { addToDb.user_birthday = newFormatDate }
+      axios.put('http://localhost:7500/users/update', addToDb)
         .then(res => res.status === 200 && (setValidate(true)))
         .catch((err) => console.log('an error is occured, the message is:' + err))
+    }
   }
+
   return (
     <div className='cont-family-create'>
       <Header burger location={location} />
