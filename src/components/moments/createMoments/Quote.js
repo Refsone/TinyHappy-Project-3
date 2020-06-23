@@ -7,8 +7,8 @@ const Quote = (props) => {
   console.log(props)
   return (
     <>
-      <AuthorSelect familyMember={props.familyMember} title={'SELECTIONNER L\'AUTEUR'} />
-      <TextArea title='CITATION' active={props.active} onClick={props.onClick} placeholder='Ajouter une citation' onChange={props.onChange} idQuote='quote' idContext='contextQuote' />
+      <AuthorSelect authorButtonIsClicked={props.authorButtonIsClicked} buttonSelectAuthor={props.buttonSelectAuthor} familyMember={props.familyMember} user={props.user} title={'SELECTIONNER L\'AUTEUR'} />
+      <TextArea title='CITATION' active={props.active} onClickSendCreateMoment={props.handleSendCreateMoment} placeholder='Ajouter une citation' onChangeTextInDescriptionArea={props.onChangeTextInDescriptionArea} onChangeTextInMomentArea={props.onChangeTextInMomentArea} idQuoteArea='quote' idContextArea='contextQuote' />
     </>
   )
 }
