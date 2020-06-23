@@ -18,7 +18,7 @@ const Member = (props) => {
           {member.user_birthday && <p className='medium-12px-grey' style={{ marginTop: '0' }}>{familyBirthday}</p>}
         </div>
         <NavLink to={{
-          pathname: '/family/create',
+          pathname: '/family/modify',
           data: {
             modify: 'user'
           }
@@ -40,7 +40,7 @@ const Member = (props) => {
           <p className='medium-12px-grey' style={member.familyBirthday ? {} : { marginTop: '0' }}>{familyBirthday}</p>
         </div>
         <NavLink to={{
-          pathname: '/family/create',
+          pathname: '/family/modify',
           data: {
             modify: 'member',
             memberId: member.member_id

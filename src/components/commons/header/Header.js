@@ -8,12 +8,17 @@ import './Header.css'
 
 const Header = (props) => {
   const { burger, location } = props
+  const memberId = location === '/family/modify' && props.memberId
   let link = ''
   let text = ''
   switch (location) {
     case '/family/create':
       text = 'annuler'
       link = '/family'
+      break
+    case '/family/modify':
+      text = 'supprimer'
+      link = '/family/delete'
       break
     case 'moments/create/quote':
       text = 'annuler'
@@ -22,10 +27,6 @@ const Header = (props) => {
     case 'moments/create/milestone':
       text = 'annuler'
       link = '/moments'
-      break
-    case '/family/modify':
-      text = 'supprimer'
-      link = '/family/delete'
       break
     case '/share/moments':
       text = 'retour'
@@ -55,7 +56,6 @@ const Header = (props) => {
       text = 'retour'
       link = location
       break
-
     default:
       text = 'retour'
       link = '/moments'
@@ -68,7 +68,16 @@ const Header = (props) => {
         {burger && <Sidemenu />}
         <img className='logo-monogramme' src={monogramme} alt='Logo Tiny Happy' />
         <div>
-          {location && <Link to={link}><p className='action-link'>{text}</p></Link>}
+          {location &&
+            <Link to={{
+              pathname: link,
+              memberId: memberId
+            }}
+            >
+              <p className='action-link'>
+                {text}
+              </p>
+            </Link>}
         </div>
       </div>
     </>

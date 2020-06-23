@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import ConfirmButton from '../../commons/footer/ConfirmButton'
 import CreateInputFamily from './CreateInputFamily'
+import DeleteMember from './DeleteMember'
 import DisplayColors from './DisplayColors'
 import Header from '../../commons/header/Header'
 import ValidateButton from '../../commons/footer/ValidateButton'
@@ -17,7 +18,9 @@ const regexSpecial = /[!$%^&*/()_+|~=`{}[:;<>?,@#\]]{1}/
 const regexDate = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/
 
 const CreateFamily = (props) => {
-  const { modify, memberId } = props.location.data
+  const memberId = props.location.pathname === '/family/modify' && props.location.data.memberId
+  const modify = props.location.pathname === '/family/modify' && props.location.data.modify
+
   const location = props.location.pathname
   const userId = 1
 
@@ -40,6 +43,7 @@ const CreateFamily = (props) => {
   })
   const [color, setColor] = useState(1)
   const [bddColor, setBddColor] = useState()
+  const [idMember, setIdMember] = useState()
   const [validate, setValidate] = useState(false)
   const [redirect, setRedirect] = useState(false)
 
@@ -60,7 +64,7 @@ const CreateFamily = (props) => {
     if (validate) {
       const timer = setTimeout(() => {
         setRedirect(true)
-      }, 3500)
+      }, 2500)
       return () => {
         clearTimeout(timer)
       }
@@ -74,7 +78,7 @@ const CreateFamily = (props) => {
         .then(res => {
           const data = res.data[0]
           const dateTemp = data.user_birthday &&
-          new Date(data.user_birthday).toLocaleDateString('fr-FR').split('-').reverse().join('/')
+            new Date(data.user_birthday).toLocaleDateString('fr-FR').split('-').reverse().join('/')
           setFirstname({ ...firstname, value: data.user_firstname })
           setLastname({ ...lastname, value: data.user_lastname })
           setSurname({ ...surname, value: data.user_surname })
@@ -87,7 +91,8 @@ const CreateFamily = (props) => {
         .then(res => {
           const data = res.data[0]
           const dateTemp = data.family_birthday &&
-          new Date(data.family_birthday).toLocaleDateString('fr-FR').split('-').reverse().join('/')
+            new Date(data.family_birthday).toLocaleDateString('fr-FR').split('-').reverse().join('/')
+          setIdMember(data.id)
           setFirstname({ ...firstname, value: data.family_firstname })
           setLastname({ ...lastname, value: data.family_lastname })
           setSurname({ ...surname, value: data.family_surname })
@@ -185,30 +190,32 @@ const CreateFamily = (props) => {
         .catch((err) => console.log('an error is occured, the message is:' + err))
     }
   }
-
   return (
-    <div className='cont-family-create'>
-      <Header burger location={location} />
-      <form className='general-connexion-form' onSubmit={submitForm}>
-        <CreateInputFamily name='prénom' placeholder='Elise' id='family_firstname' handlechange={handleChange} fieldValue={firstname} required />
-        <CreateInputFamily name='nom' placeholder='Durand' id='family_lastname' handlechange={handleChange} fieldValue={lastname} />
-        <CreateInputFamily name='surnom' placeholder='Durand' id='family_surname' handlechange={handleChange} fieldValue={surname} />
-        <CreateInputFamily name='date de naissance' placeholder='22/01/2016' id='family_birthday' handlechange={handleChange} fieldValue={birthday} />
-        <DisplayColors colors={bddColor} handlechange={handleChange} selected={color} />
-        <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
-        <ValidateButton
-          name='sauvegarder' active={firstname.value && firstname.error === 0 && lastname.error === 0 && surname.error === 0 && birthday.error === 0} handleClick={handleClick}
-        />
-      </form>
-      {
-        validate &&
-          <ConfirmButton message='Le nouveau membre a été ajouté avec succès.' confirm />
-      }
-      {
-        redirect &&
-          <Redirect to='/family' />
-      }
-    </div>
+    <>
+      {props.location.pathname === '/family/delete' && <DeleteMember id={idMember} name={firstname.value} />}
+      <div className='cont-family-create'>
+        <Header burger location={location} memberId={memberId} />
+        <form className='general-connexion-form' onSubmit={submitForm}>
+          <CreateInputFamily name='prénom' placeholder='Elise' id='family_firstname' handlechange={handleChange} fieldValue={firstname} required />
+          <CreateInputFamily name='nom' placeholder='Durand' id='family_lastname' handlechange={handleChange} fieldValue={lastname} />
+          <CreateInputFamily name='surnom' placeholder='Durand' id='family_surname' handlechange={handleChange} fieldValue={surname} />
+          <CreateInputFamily name='date de naissance' placeholder='22/01/2016' id='family_birthday' handlechange={handleChange} fieldValue={birthday} />
+          <DisplayColors colors={bddColor} handlechange={handleChange} selected={color} />
+          <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
+          <ValidateButton
+            name='sauvegarder' active={firstname.value && firstname.error === 0 && lastname.error === 0 && surname.error === 0 && birthday.error === 0} handleClick={handleClick}
+          />
+        </form>
+        {
+          validate &&
+            <ConfirmButton message='Le nouveau membre a été ajouté avec succès.' confirm />
+        }
+        {
+          redirect &&
+            <Redirect to='/family' />
+        }
+      </div>
+    </>
   )
 }
 
