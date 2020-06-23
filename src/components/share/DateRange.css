@@ -1,0 +1,22 @@
+.DateRange {
+    position: relative;
+    padding: 1em 1em;
+    border-radius: 0.25em;
+    margin-bottom: 1em;
+    background-color: #fff;
+}
+
+.DateRange .date-container {
+    display: flex;
+    align-items: center;
+}
+
+.DateRange .date-container img {
+    margin-right: 1em;
+}
+
+.DateRange .react-datepicker-wrapper{
+    position: absolute;
+    left: 8em;
+    bottom: 0.7em;
+}

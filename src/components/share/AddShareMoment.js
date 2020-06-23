@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Authors from '../commons/Authors'
 import Header from '../commons/header/Header'
 import ValidateButton from '../commons/footer/ValidateButton'
 
 import './AddShareMoment.css'
-import '../images/citation.svg'
+import 'react-datepicker/dist/react-datepicker.css'
+import DateRange from './DateRange'
 
 function AddShareMoment (props) {
-  const handleClick = () => {
-
-  }
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(new Date())
 
   return (
     <>
@@ -22,15 +22,16 @@ function AddShareMoment (props) {
           <Authors />
         </div>
         <h2 className='bold-12px-grey'>Quels type(s) de moments ?</h2>
-        {/* <p className='bold-10px-grey moment-type'><img src={quoteLogo} alt='' />Citation</p>
-        <p className='bold-10px-grey moment-type'><img src={milestoneLogo} alt='' />Fait notable</p> */}
         <input id='quoteCheck' type='checkbox' />
         <label className='bold-10px-grey quote-check' for='quoteCheck'>Citation</label>
         <input id='milestoneCheck' type='checkbox' />
         <label className='bold-10px-grey milestone-check' for='milestoneCheck'>Fait notable</label>
         <h2 className='bold-12px-grey'>Fourchette de date(s)</h2>
+        <DateRange dateType='début' date={startDate} onChange={date => setStartDate(date)} />
+        <DateRange dateType='fin' date={endDate} onChange={date => setEndDate(date)} />
       </div>
-      <ValidateButton name='Envoyer les moments' handleClick={handleClick} />
+
+      <ValidateButton name='Envoyer les moments' />
     </>
   )
 }
