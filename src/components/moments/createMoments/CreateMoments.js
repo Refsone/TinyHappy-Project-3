@@ -18,6 +18,7 @@ const CreateMoment = (props) => {
   const [textInDescriptionArea, setTextInDescriptionArea] = useState('')
   const [memberFamilyIsPresentAtMoment, setMemberFamilyIsPresentAtMoment] = useState([])
   const [momentTypeId, setMomentTypeId] = useState(1)
+  const [userIsPresent, setUserIsPresent] = useState(0)
 
   const id = 1
   const path = props.location.pathname
@@ -29,14 +30,16 @@ const CreateMoment = (props) => {
       })
     axios.get(`http://localhost:7500/users/${id}`)
       .then((res) => {
-        setUser(res.data)
+        setUser(res.data[0])
+        console.log(res.data[0])
       })
   }, [])
 
   const handleSendCreateMoment = () => {
+    console.log('salut')
     axios.post('http://localhost:7500/moments/create',
       {
-        user_isPresent: 0,
+        user_isPresent: userIsPresent,
         moment_text: textInMomentArea,
         moment_context: textInDescriptionArea,
         moment_event_date: date.toISOString().slice(0, 10),
@@ -44,7 +47,7 @@ const CreateMoment = (props) => {
         user_id: id,
         family_id: memberFamilyIsPresentAtMoment
       })
-      .then(res => res.data)
+      .then(console.log('post'))
       .catch(e => {
         console.error(e)
       })
@@ -56,12 +59,18 @@ const CreateMoment = (props) => {
 
   const buttonSelectAuthor = (AuthorId, click) => {
     if (click) {
-      setMemberFamilyIsPresentAtMoment([...memberFamilyIsPresentAtMoment, AuthorId])
+      AuthorId === user.user_firstname
+        ? setUserIsPresent(1)
+        : setMemberFamilyIsPresentAtMoment([...memberFamilyIsPresentAtMoment, AuthorId])
     } else {
-      const idToDelete = memberFamilyIsPresentAtMoment.indexOf(AuthorId)
-      const newTab = [...memberFamilyIsPresentAtMoment]
-      newTab.splice(idToDelete, 1)
-      setMemberFamilyIsPresentAtMoment(newTab)
+      if (AuthorId === user.user_firstname) {
+        setUserIsPresent(0)
+      } else {
+        const idToDelete = memberFamilyIsPresentAtMoment.indexOf(AuthorId)
+        const newTab = [...memberFamilyIsPresentAtMoment]
+        newTab.splice(idToDelete, 1)
+        setMemberFamilyIsPresentAtMoment(newTab)
+      }
     }
   }
 
