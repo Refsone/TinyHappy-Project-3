@@ -10,9 +10,6 @@ const Header = (props) => {
   const { burger, location } = props
   let link = ''
   let text = ''
-
-  console.log(location) // Keep until all the paths are verified please
-
   switch (location) {
     case '/family/create':
       text = 'annuler'
@@ -36,10 +33,18 @@ const Header = (props) => {
       break
     case '/settings':
       text = 'retour'
-      link = location
+      link = '/moments'
       break
     case '/settings/modify':
       text = 'annuler'
+      link = '/settings'
+      break
+    case '/settings/modify/password':
+      text = 'retour'
+      link = '/settings'
+      break
+    case '/settings/modify/email':
+      text = 'retour'
       link = '/settings'
       break
     case '/setting/legacy':
