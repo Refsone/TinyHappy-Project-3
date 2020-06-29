@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import DatePicker from 'react-date-picker'
-import '../../../../node_modules/react-calendar/dist/Calendar.css'
+import DatePicker from 'react-datepicker'
+import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css'
 import Header from '../../commons/header/Header'
 import Milestone from './Milestone'
 import MomentNavbar from './MomentNavbar'
@@ -89,7 +89,7 @@ const CreateMoment = (props) => {
         {path === '/moments/create/milestone'
           ? <Milestone buttonSelectAuthor={buttonSelectAuthor} active={active} handleSendCreateMoment={handleSendCreateMoment} onChangeTextInDescriptionArea={onChangeTextInDescriptionArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />
           : <Quote buttonSelectAuthor={buttonSelectAuthor} active={active} handleSendCreateMoment={handleSendCreateMoment} onChangeTextInDescriptionArea={onChangeTextInDescriptionArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />}
-        <DatePicker onChange={setDate} value={date} format='dd-MM-yy' />
+        <DatePicker onChange={(date) => setDate(date)} onSelect={setDate} selected={date} />
       </div>
     </>
   )
