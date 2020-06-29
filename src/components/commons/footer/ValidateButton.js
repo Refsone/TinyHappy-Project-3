@@ -11,7 +11,7 @@ const ValidateButton = (props) => {
         type='submit'
         className={props.active ? 'btn-active' : 'btn-inactive'}
         disabled={!props.active && 'disabled'}
-        onClick={props.handleSendCreateMoment}
+        onClick={props.SendCreateMoment}
       >
         {name}
       </button>
