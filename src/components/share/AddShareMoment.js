@@ -12,7 +12,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import DateRange from './DateRange'
 
 function AddShareMoment (props) {
-  const [startDate, setStartDate] = useState(new Date())
+  const [startDate, setStartDate] = useState(new Date('2020-05-12'))
   const [endDate, setEndDate] = useState(new Date())
   const [countSelect, setCountSelect] = useState(0)
   const [family, setFamily] = useState([])
@@ -50,8 +50,7 @@ function AddShareMoment (props) {
     //  If the button is not clicked (blank color)
     if (targetStyle.backgroundColor === 'rgb(255, 255, 255)' || targetStyle.backgroundColor === '') {
       targetStyle.backgroundColor = authors[id].color
-      setAuthorSelect([...authorsSelect, { name: authors[id].family_firstname, color: authors[id].color }])
-      // setAuthorSelect([...authorsSelect, { name: authors[id].family_firstname, color: authors[id].color }])
+      setAuthorSelect([...authorsSelect, authors[id].family_firstname || authors[id].user_firstname])
       setCountSelect(countSelect + 1)
     } else {
       targetStyle.backgroundColor = '#fff'
@@ -66,7 +65,7 @@ function AddShareMoment (props) {
     Moment.locale('fr')
     const momentsToSend = moments
       .filter(moment => Moment(moment.moment_event_date).format('L') >= Moment(startDate).format('L') && Moment(moment.moment_event_date).format('L') <= Moment(endDate).format('L'))
-    // .filter(moment => moment.firstname_color.map())
+      .filter(moment => authorsSelect.includes(moment.firstname_color.map(name => name.firstname).join()))
     console.log(momentsToSend)
   }
 
