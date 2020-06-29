@@ -109,30 +109,34 @@ const CreateFamily = (props) => {
     const value = e.target.value
 
     switch (name) {
+      case 'family_firstname':
+        // if a forbidden special character is present
+        regexSpecial.test(value) && value
+          ? setFirstname({ ...firstname, value: value, error: 2 })
+          : regexNum.test(value)
+            // if a forbidden number is present
+            ? setFirstname({ ...firstname, value: value, error: 3 })
+            : !regexInput.test(value)
+              // If the firstname is not present or his length is less of 2 characters
+              ? setFirstname({ ...firstname, value: value, error: 1 })
+              : setFirstname({ ...firstname, value: value, error: 0 })
+        break
       case 'family_lastname':
         regexSpecial.test(value) && value
           ? setLastname({ ...lastname, value: value, error: 2 })
           : regexNum.test(value)
             ? setLastname({ ...lastname, value: value, error: 3 })
-            : !regexInput.test(value)
+            : !regexInput.test(value) && value
+              // If the surname length is present and are less of 2 characters
               ? setLastname({ ...lastname, value: value, error: 1 })
               : setLastname({ ...lastname, value: value, error: 0 })
-        break
-      case 'family_firstname':
-        regexSpecial.test(value) && value
-          ? setFirstname({ ...firstname, value: value, error: 2 })
-          : regexNum.test(value)
-            ? setFirstname({ ...firstname, value: value, error: 3 })
-            : !regexInput.test(value)
-              ? setFirstname({ ...firstname, value: value, error: 1 })
-              : setFirstname({ ...firstname, value: value, error: 0 })
         break
       case 'family_surname':
         regexSpecial.test(value) && value
           ? setSurname({ ...surname, value: value, error: 2 })
           : regexNum.test(value)
             ? setSurname({ ...surname, value: value, error: 3 })
-            : !regexInput.test(value)
+            : !regexInput.test(value) && value
               ? setSurname({ ...surname, value: value, error: 1 })
               : setSurname({ ...surname, value: value, error: 0 })
         break
