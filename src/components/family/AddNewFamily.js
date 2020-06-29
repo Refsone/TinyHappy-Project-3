@@ -6,7 +6,14 @@ import './AddNewFamily.css'
 const AddNewMoment = () => {
   return (
     <div className='addFamily'>
-      <Link to='/family/create'>+</Link>
+      <Link to={{
+        pathname: '/family/create',
+        data: {
+          modify: 'new'
+        }
+      }}
+      >+
+      </Link>
     </div>
   )
 }
