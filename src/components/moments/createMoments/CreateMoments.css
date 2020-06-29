@@ -1,3 +1,16 @@
+.calendar-moment {
+    margin-left: 20px;
+    display: flex;
+}
+
+.calendar-moment img {
+    margin-right: 10px;
+}
+
+.calendar-moment p {
+    margin-top: 5px;
+}
+
 .create {
     background-color: #F5F9FD ;
     margin-top: 5em;

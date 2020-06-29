@@ -6,8 +6,8 @@ import TextArea from './TextArea'
 const Milestone = (props) => {
   return (
     <>
-      <AuthorSelect authorButtonIsClicked={props.authorButtonIsClicked} buttonSelectAuthor={props.buttonSelectAuthor} familyMember={props.familyMember} user={props.user} title='SELECTIONNER LE(S) PARTICIPANT(S)' />
-      <TextArea title='DESCRIPTION' active={props.active} handleSendCreateMoment={props.handleSendCreateMoment} onChangeTextInDescriptionArea={props.onChangeTextInDescriptionArea} onChangeTextInMomentArea={props.onChangeTextInMomentArea} placeholder='Ajouter une description' idQuote='description' idContext='contextMilestone' />
+      <AuthorSelect memberFamilyIsPresentAtMoment={props.memberFamilyIsPresentAtMoment} userIsPresent={props.userIsPresent} textInMomentArea={props.textInMomentArea} authorButtonIsClicked={props.authorButtonIsClicked} buttonSelectAuthor={props.buttonSelectAuthor} familyMember={props.familyMember} user={props.user} title='SELECTIONNER LE(S) PARTICIPANT(S)' />
+      <TextArea textInContextArea={props.textInContextArea} textInMomentArea={props.textInMomentArea} title='DESCRIPTION' active={props.active} SendCreateMoment={props.SendCreateMoment} onChangeTextInContextArea={props.onChangeTextInContextArea} onChangeTextInMomentArea={props.onChangeTextInMomentArea} placeholder='Ajouter une description' idQuote='description' idContext='contextMilestone' />
     </>
   )
 }

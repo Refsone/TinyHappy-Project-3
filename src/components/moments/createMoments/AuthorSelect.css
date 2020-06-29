@@ -1,6 +1,10 @@
 .authorList {
     margin-bottom: 20px;
-    padding-right: 20px;
+}
+
+.authorSelect button {
+    color: #7180AC;
+    font-weight: bold;
 }
 
 .authorSelect {
@@ -13,4 +17,12 @@
     color: #7180AC;
     font-weight: bold;
     font-size: 12px;
+}
+
+.error-author {
+    color: #ff0000;
+    font-weight: 500;
+    font-size: 12px;
+    position: relative;
+    bottom: 22px;
 }

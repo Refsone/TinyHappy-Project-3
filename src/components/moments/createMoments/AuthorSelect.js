@@ -10,13 +10,13 @@ const AuthorSelect = (props) => {
     <div className='authorSelect'>
       <p className='authorTitle'>{props.title}</p>
       <div className='authorList'>
-        {props.user && <ButtonAuthor authorButtonIsClicked={props.authorButtonIsClicked} buttonSelectAuthor={props.buttonSelectAuthor} color={props.user.color} name={props.user.user_firstname} id={props.user.user_firstname} />}
+        {props.user && <ButtonAuthor buttonSelectAuthor={props.buttonSelectAuthor} color={props.user.color} name={props.user.user_firstname} id={props.user.user_firstname} />}
         {authors.map((author, index) =>
-          <ButtonAuthor key={index} authorButtonIsClicked={props.authorButtonIsClicked} buttonSelectAuthor={props.buttonSelectAuthor} color={author.color} name={author.family_firstname} id={author.id} />
+          <ButtonAuthor key={index} buttonSelectAuthor={props.buttonSelectAuthor} color={author.color} name={author.family_firstname} id={author.id} />
         )}
       </div>
+      <p className='error-author' style={props.textInMomentArea.length > 0 && props.memberFamilyIsPresentAtMoment.length === 0 && props.userIsPresent === 0 ? { visibility: 'visible' } : { visibility: 'hidden' }}>Veuillez selectionner au moin un auteur </p>
     </div>
   )
 }
-
 export default AuthorSelect

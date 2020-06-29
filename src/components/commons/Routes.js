@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
+import AddShareMoment from '../share/AddShareMoment'
 import Access from '../onboarding/Access'
 import CardContacts from '../share/CardContacts'
 import CardMembers from '../family/CardMembers'
@@ -13,6 +14,7 @@ import Post from '../moments/Posts'
 import SignUp from '../onboarding/SignUp'
 
 const routes = (props) => {
+  console.log(props.location)
   return (
     <Switch>
       <Route exact path='/' component={Access} />
@@ -28,6 +30,7 @@ const routes = (props) => {
       <Route path='/settings/modify/email' component={ModifySettings} />
       <Route path='/settings/modify/password' component={ModifySettings} />
       <Route exact path='/share' component={CardContacts} />
+      <Route exact path='/share/moments' component={AddShareMoment} />
     </Switch>
   )
 }
