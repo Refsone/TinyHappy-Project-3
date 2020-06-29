@@ -1,5 +1,5 @@
 .validateButton .btn-inactive {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   /* For the demonstration Default:0 */
   width: 100%;
@@ -13,7 +13,7 @@
 }
 
 .validateButton .btn-active {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   width: 100%;
   border: none;

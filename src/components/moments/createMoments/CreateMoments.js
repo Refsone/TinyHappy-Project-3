@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 import calendarIcon from '../../../images/calendrier.svg'
 import DatePicker from 'react-datepicker'
 import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css'
@@ -20,6 +21,9 @@ const CreateMoment = (props) => {
   const [memberFamilyIsPresentAtMoment, setMemberFamilyIsPresentAtMoment] = useState([])
   const [momentTypeId, setMomentTypeId] = useState(1)
   const [userIsPresent, setUserIsPresent] = useState(0)
+  const [sendMomentSucceed, setSendMomentSucceed] = useState(false)
+  const [redirect, setRedirect] = useState(false)
+  const [sendError, setSendError] = useState(false)
 
   const id = 1
   const path = props.location.pathname
@@ -29,11 +33,12 @@ const CreateMoment = (props) => {
       .then((res) => {
         setFamilyMember(res.data)
       })
+      .catch(err => `L'erreur suivante s'est produite: ${err}`)
     axios.get(`http://localhost:7500/users/${id}`)
       .then((res) => {
         setUser(res.data[0])
-        console.log(res.data[0])
       })
+      .catch(err => `L'erreur suivante s'est produite: ${err}`)
   }, [])
 
   const SendCreateMoment = () => {
@@ -47,11 +52,20 @@ const CreateMoment = (props) => {
         user_id: id,
         family_id: memberFamilyIsPresentAtMoment
       })
-      .then(console.log('post'))
-      .catch(e => {
-        console.error(e)
-      })
+      .then(res => res.status === 201 ? setSendMomentSucceed(true) : setSendError(true))
+      .catch(err => console.log('an error is occured, the message is:' + err))
   }
+
+  useEffect(() => {
+    if (sendMomentSucceed || sendError) {
+      const timer = setTimeout(() => {
+        setRedirect(true)
+      }, 2500)
+      return () => {
+        clearTimeout(timer)
+      }
+    }
+  }, [sendMomentSucceed, sendError])
 
   const buttonSelectAuthor = (AuthorId, click) => {
     if (click) {
@@ -103,8 +117,8 @@ const CreateMoment = (props) => {
       <div className='create'>
         <MomentNavbar resetStateOnSwitch={resetStateOnSwitch} />
         {path === '/moments/create/milestone'
-          ? <Milestone memberFamilyIsPresentAtMoment={memberFamilyIsPresentAtMoment} userIsPresent={userIsPresent} textInContextArea={textInContextArea} textInMomentArea={textInMomentArea} buttonSelectAuthor={buttonSelectAuthor} active={active} SendCreateMoment={SendCreateMoment} onChangeTextInContextArea={onChangeTextInContextArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />
-          : <Quote memberFamilyIsPresentAtMoment={memberFamilyIsPresentAtMoment} userIsPresent={userIsPresent} textInContextArea={textInContextArea} textInMomentArea={textInMomentArea} buttonSelectAuthor={buttonSelectAuthor} active={active} SendCreateMoment={SendCreateMoment} onChangeTextInContextArea={onChangeTextInContextArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />}
+          ? <Milestone sendMomentSucceed={sendMomentSucceed} memberFamilyIsPresentAtMoment={memberFamilyIsPresentAtMoment} userIsPresent={userIsPresent} textInContextArea={textInContextArea} textInMomentArea={textInMomentArea} buttonSelectAuthor={buttonSelectAuthor} active={active} SendCreateMoment={SendCreateMoment} onChangeTextInContextArea={onChangeTextInContextArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />
+          : <Quote sendMomentSucceed={sendMomentSucceed} memberFamilyIsPresentAtMoment={memberFamilyIsPresentAtMoment} userIsPresent={userIsPresent} textInContextArea={textInContextArea} textInMomentArea={textInMomentArea} buttonSelectAuthor={buttonSelectAuthor} active={active} SendCreateMoment={SendCreateMoment} onChangeTextInContextArea={onChangeTextInContextArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />}
         <DatePicker
           selected={date}
           locale='fr'
@@ -112,6 +126,8 @@ const CreateMoment = (props) => {
           dateFormat='EEEE dd MMMM yyyy'
           customInput={<CustomInput />}
         />
+        {sendError && <p className='sendError'>Une erreur s'est produite lors de l'envoi</p>}
+        {redirect && <Redirect to='/moments' />}
       </div>
     </>
   )

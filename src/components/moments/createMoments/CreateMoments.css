@@ -15,3 +15,10 @@
     background-color: #F5F9FD ;
     margin-top: 5em;
 }
+
+.sendError {
+    color: #ff0000;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+}
