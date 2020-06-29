@@ -19,6 +19,8 @@ function AddShareMoment (props) {
   const [authors, setAuthor] = useState([])
   const [authorsSelect, setAuthorSelect] = useState([])
   const [moments, setMoments] = useState([])
+  const [onType, setOnType] = useState(false)
+  const form = document.getElementById('formShareMoment')
 
   useEffect(() => {
     fetchMoments()
@@ -62,33 +64,34 @@ function AddShareMoment (props) {
   }
 
   const handleClick = () => {
+    console.log(form.quoteCheck.checked)
     Moment.locale('fr')
     const momentsToSend = moments
       .filter(moment => Moment(moment.moment_event_date).format('L') >= Moment(startDate).format('L') && Moment(moment.moment_event_date).format('L') <= Moment(endDate).format('L'))
       .filter(moment => authorsSelect.includes(moment.firstname_color.map(name => name.firstname).join()))
+      .filter(moment => form.quoteCheck.checked ? moment.type === form.quoteCheck.value : form.milestoneCheck.checked ? moment.type === form.milestoneCheck.value : '')
     console.log(momentsToSend)
   }
 
   return (
     <>
       <Header location={props.location.name} burger />
-      <div className='AddShareMoment'>
+      <form id='formShareMoment' className='AddShareMoment'>
         <h1 className='bold-16px-grey'> Paramètre du partage</h1>
         <h2 className='bold-12px-grey'>Quels Auteur(e)s</h2>
         <div className='block-authors'>
           <Authors clickAuthor={e => clickAuthor(e)} authors={authors} />
         </div>
         <h2 className='bold-12px-grey'>Quels type(s) de moments ?</h2>
-        <input id='quoteCheck' type='checkbox' checked />
+        <input onClick={() => setOnType(!onType)} id='quoteCheck' type='checkbox' value='quote' />
         <label className='bold-10px-grey quote-check' htmlFor='quoteCheck'>Citation</label>
-        <input id='milestoneCheck' type='checkbox' />
+        <input onClick={() => setOnType(!onType)} id='milestoneCheck' type='checkbox' value='milestone' />
         <label className='bold-10px-grey milestone-check' htmlFor='milestoneCheck'>Fait notable</label>
         <h2 className='bold-12px-grey'>Fourchette de date(s)</h2>
         <DateRange dateType='début' date={startDate} onChange={date => setStartDate(date)} />
         <DateRange dateType='fin' date={endDate} onChange={date => setEndDate(date)} />
-      </div>
-
-      <ValidateButton handleClick={handleClick} active={countSelect > 0 && startDate <= endDate} name='Envoyer les moments' />
+      </form>
+      {form && <ValidateButton handleClick={handleClick} active={countSelect > 0 && startDate <= endDate && (form.quoteCheck.checked || form.milestoneCheck.checked)} name='Envoyer les moments' />}
     </>
   )
 }
