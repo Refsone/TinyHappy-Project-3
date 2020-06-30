@@ -16,12 +16,20 @@
 .CardPost .block-names-favorite {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 1rem;
 }
 
+.CardPost .block-names {
+    display: flex;
+    flex-wrap: wrap;
+    width: 17em;
+}
+
 .CardPost .family-name {
-    display: inline;
+    /* display: inline; */
     margin-right: 0.5rem;
+    margin-bottom: 1em;
     border-radius: 1rem;
     font-size: 0.62rem;
     padding: 0.25rem 1rem;
