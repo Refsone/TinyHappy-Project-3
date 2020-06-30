@@ -64,12 +64,14 @@ function AddShareMoment (props) {
   }
 
   const handleClick = () => {
-    console.log(form.quoteCheck.checked)
     Moment.locale('fr')
     const momentsToSend = moments
       .filter(moment => Moment(moment.moment_event_date).format('L') >= Moment(startDate).format('L') && Moment(moment.moment_event_date).format('L') <= Moment(endDate).format('L'))
       .filter(moment => authorsSelect.includes(moment.firstname_color.map(name => name.firstname).join()))
       .filter(moment => form.quoteCheck.checked ? moment.type === form.quoteCheck.value : form.milestoneCheck.checked ? moment.type === form.milestoneCheck.value : '')
+
+    axios.post('/share', { momentsToSend })
+      .catch(error => console.log(error))
     console.log(momentsToSend)
   }
 
