@@ -1,0 +1,35 @@
+.confirm-button .btn-confirm {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 500;
+  width: 100%;
+  border: 1px solid #7FB74E;
+  height: 62px;
+  color: #7180AC;
+  font-size: 1em;
+  background-color: #D3FF9B;
+}
+
+.confirm-button .deleted {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 500;
+  width: 100%;
+  border: 1px solid #7FB74E;
+  height: 5em;
+  color: #7180AC;
+  font-size: 1em;
+  background-color: #D3FF9B;
+}
+
+.confirm-button .btn-confirm .error {
+  border: 1px solid #d12f12;
+  color: #7180AC;
+  background-color: #f37340;
+}

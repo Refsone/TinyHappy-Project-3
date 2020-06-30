@@ -10,10 +10,13 @@ const CardPost = (props) => {
   const { moment, boxStyle } = props
   const [favorite, setFavorite] = useState(moment.moment_favorite)
   const [user, setUser] = useState()
+
   useEffect(() => {
     fetchUser()
-  }, [user])
+  }, [])
+
   const handleClickFavorite = (e) => {
+    props.refreshMethod()
     setFavorite(!favorite)
     axios.put('http://localhost:7500/moments', { moment_favorite: !favorite, id: e.target.id })
   }
@@ -22,7 +25,6 @@ const CardPost = (props) => {
       .then(res => setUser(res.data))
   }
   return (
-
     <div className='CardPost' style={moment.type === 'quote' ? { borderLeft: '0.4rem solid #91E9FE', marginTop: boxStyle } : { borderLeft: '0.4rem solid #D3FF9B', marginTop: boxStyle }}>
       <div className='block-names-favorite'>
         <div>

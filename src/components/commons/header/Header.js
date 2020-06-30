@@ -8,13 +8,17 @@ import './Header.css'
 
 const Header = (props) => {
   const { burger, location } = props
+  const memberId = location === '/family/modify' && props.memberId
   let link = ''
   let text = ''
-
   switch (location) {
     case '/family/create':
       text = 'annuler'
       link = '/family'
+      break
+    case '/family/modify':
+      text = 'supprimer'
+      link = '/family/delete'
       break
     case 'moments/create/quote':
       text = 'annuler'
@@ -24,31 +28,34 @@ const Header = (props) => {
       text = 'annuler'
       link = '/moments'
       break
-    case '/family/modify':
-      text = 'supprimer'
-      link = '/family/delete'
-      break
     case '/share/moments':
       text = 'retour'
       link = '/share'
       break
     case '/settings':
       text = 'retour'
-      link = location
+      link = '/moments'
       break
     case '/settings/modify':
       text = 'annuler'
+      link = '/settings'
+      break
+    case '/settings/modify/password':
+      text = 'retour'
+      link = '/settings'
+      break
+    case '/settings/modify/email':
+      text = 'retour'
       link = '/settings'
       break
     case '/setting/legacy':
       text = 'retour'
       link = location
       break
-    case '/setting/privacy':
+    case '/settings/privacy':
       text = 'retour'
       link = location
       break
-
     default:
       text = 'retour'
       link = '/moments'
@@ -61,7 +68,16 @@ const Header = (props) => {
         {burger && <Sidemenu />}
         <img className='logo-monogramme' src={monogramme} alt='Logo Tiny Happy' />
         <div>
-          {location && <Link to={link}><p className='action-link'>{text}</p></Link>}
+          {location &&
+            <Link to={{
+              pathname: link,
+              memberId: memberId
+            }}
+            >
+              <p className='action-link'>
+                {text}
+              </p>
+            </Link>}
         </div>
       </div>
     </>

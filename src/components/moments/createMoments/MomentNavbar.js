@@ -6,11 +6,11 @@ import './MomentNavbar.css'
 import quoteImg from '../../../images/citation.svg'
 import milestoneImg from '../../../images/faitNotable.svg'
 
-const MomentNavbar = () => {
+const MomentNavbar = (props) => {
   return (
     <div className='momentNavbar'>
-      <NavLink to='/moments/create/quote' activeClassName='activeQuote'><img className='imgQuote' src={quoteImg} alt='' />CITATION</NavLink>
-      <NavLink to='/moments/create/milestone' activeClassName='activeMilestone'><img className='imgMilestone' src={milestoneImg} alt='' />FAIT NOTABLE</NavLink>
+      <NavLink to='/moments/create/quote' onClick={() => props.resetStateOnSwitch(1)} activeClassName='activeQuote'><img className='imgQuote' src={quoteImg} alt='' />CITATION</NavLink>
+      <NavLink to='/moments/create/milestone' onClick={() => props.resetStateOnSwitch(2)} activeClassName='activeMilestone'><img className='imgMilestone' src={milestoneImg} alt='' />FAIT NOTABLE</NavLink>
     </div>
   )
 }
