@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
 import Authors from '../commons/Authors'
+import DateRange from './DateRange'
 import Header from '../commons/header/Header'
 import ValidateButton from '../commons/footer/ValidateButton'
 
 import './AddShareMoment.css'
 import 'react-datepicker/dist/react-datepicker.css'
-import DateRange from './DateRange'
 
 function AddShareMoment (props) {
   const [startDate, setStartDate] = useState(new Date())
