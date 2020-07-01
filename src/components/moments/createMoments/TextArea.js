@@ -1,18 +1,21 @@
 import React from 'react'
+import ValidateButton from '../../commons/footer/ValidateButton'
+import ConfirmButton from '../../commons/footer/ConfirmButton'
 
 import './TextArea.css'
 
 const Textarea = (props) => {
-  const { idQuote, idContext } = props
   return (
     <div>
-      <form className='area'>
+      <form className='area' method='post' id='formCreateMoment'>
         <label htmlFor='text'>{props.title}</label>
-        <textarea name='text' rows='4' cols='35' placeholder={props.placeholder} id={idQuote} required />
+        <textarea name='text' rows='4' cols='35' placeholder={props.placeholder} id={props.idQuoteArea} onChange={props.onChangeTextInMomentArea} required />
+        <p className='error-quote' style={props.textInContextArea.length > 0 && props.textInMomentArea.length === 0 ? { display: 'visible' } : { visibility: 'hidden' }}>Veuillez ajouter une citation</p>
         <label htmlFor='text'>CONTEXTE</label>
-        <textarea name='text' rows='4' cols='35' placeholder='Ajouter un contexte (facultatif)' id={idContext} />
-        {/* mettre le bouton pour envoyer */}
+        <textarea name='text' rows='4' cols='35' placeholder='Ajouter un contexte (facultatif)' id={props.idContextArea} onChange={props.onChangeTextInContextArea} />
       </form>
+      <ValidateButton name='publier' active={props.active} SendCreateMoment={props.SendCreateMoment} />
+      {props.sendMomentSucceed && <ConfirmButton message='Envoie reussi' confirm />}
     </div>
   )
 }

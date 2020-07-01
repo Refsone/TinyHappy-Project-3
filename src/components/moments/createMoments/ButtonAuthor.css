@@ -1,0 +1,10 @@
+.author {
+    border: solid 1px #E9EFFA;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin: 5px 10px 5px 0;
+    background-color: white;
+    font-size: 10px;
+    color: #7180AC;
+    font-weight: bold;
+}
