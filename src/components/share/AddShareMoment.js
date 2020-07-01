@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import DateRange from './DateRange'
 import Moment from 'moment'
 import 'moment/locale/fr'
 
 import Authors from '../commons/Authors'
 import Header from '../commons/header/Header'
+import ShareSend from './ShareSend'
 import ValidateButton from '../commons/footer/ValidateButton'
 
 import './AddShareMoment.css'
 import 'react-datepicker/dist/react-datepicker.css'
-import DateRange from './DateRange'
 
 function AddShareMoment (props) {
   const [startDate, setStartDate] = useState(new Date('2020-05-12'))
@@ -20,6 +21,7 @@ function AddShareMoment (props) {
   const [authorsSelect, setAuthorSelect] = useState([])
   const [moments, setMoments] = useState([])
   const [onType, setOnType] = useState(false)
+  const [isSend, setIsSend] = useState(false)
   const form = document.getElementById('formShareMoment')
 
   useEffect(() => {
@@ -79,10 +81,15 @@ function AddShareMoment (props) {
         }
       })
     axios.post('http://localhost:7500/share', momentsToSend)
-      .catch(error => console.log(error))
+      .catch(error => {
+        console.log(error)
+      })
+    setIsSend(true)
   }
+
   return (
     <>
+      {isSend && <ShareSend />}
       <Header location={props.location.name} burger />
       <form id='formShareMoment' className='AddShareMoment'>
         <h1 className='bold-16px-grey'> Paramètre du partage</h1>
@@ -99,7 +106,7 @@ function AddShareMoment (props) {
         <DateRange dateType='début' date={startDate} onChange={date => setStartDate(date)} />
         <DateRange dateType='fin' date={endDate} onChange={date => setEndDate(date)} />
       </form>
-      {form && <ValidateButton handleClick={handleClick} active={countSelect > 0 && startDate <= endDate && (form.quoteCheck.checked || form.milestoneCheck.checked)} name='Envoyer les moments' />}
+      {form && !isSend && <ValidateButton handleClick={handleClick} active={countSelect > 0 && startDate <= endDate && (form.quoteCheck.checked || form.milestoneCheck.checked)} name='Envoyer les moments' />}
     </>
   )
 }
