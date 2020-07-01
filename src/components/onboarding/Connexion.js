@@ -15,16 +15,15 @@ const Connexion = () => {
   function submit () {
     console.log('sent succesfully')
   }
-
   const [visible, setVisible] = useState(false)
   const showType = visible ? 'text' : 'password'
 
-  const loginUser = (e) => {
+  const userToken = (e) => {
     e.preventDefault()
     axios.post('http://localhost:7500/users/login')
       .then(res => res.data)
-    console.log(loginUser)
   }
+
   return (
     <div className='connexion-background'>
       <Logo />
@@ -42,7 +41,7 @@ const Connexion = () => {
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
 
         <Link to='/' className='connexion-lien'>Mot de passe perdu ?</Link>
-        {errors && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif' onClick={(e) => loginUser(e)}>{<Link to='/moments' />}se connecter</button>}
+        {errors && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif' onClick={(e) => userToken(e)}>{<Link to='/moments' />}se connecter</button>}
       </form>
     </div>
   )
