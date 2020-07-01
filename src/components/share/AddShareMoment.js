@@ -65,16 +65,22 @@ function AddShareMoment (props) {
 
   const handleClick = () => {
     Moment.locale('fr')
+    const format = 'YYYY-MM-DD'
     const momentsToSend = moments
-      .filter(moment => Moment(moment.moment_event_date).format('L') >= Moment(startDate).format('L') && Moment(moment.moment_event_date).format('L') <= Moment(endDate).format('L'))
+      .filter(moment => Moment(moment.moment_event_date).format(format) >= Moment(startDate).format(format) && Moment(moment.moment_event_date).format(format) <= Moment(endDate).format(format))
       .filter(moment => authorsSelect.includes(moment.firstname_color.map(name => name.firstname).join()))
-      .filter(moment => form.quoteCheck.checked ? moment.type === form.quoteCheck.value : form.milestoneCheck.checked ? moment.type === form.milestoneCheck.value : '')
-
-    axios.post('/share', { momentsToSend })
+      .filter(moment => {
+        if (form.quoteCheck.checked && form.milestoneCheck.checked) {
+          return moment.type === form.quoteCheck.value || moment.type === form.milestoneCheck.value
+        } else if (form.quoteCheck.checked) {
+          return moment.type === form.quoteCheck.value
+        } else if (form.milestoneCheck.checked) {
+          return moment.type === form.milestoneCheck.value
+        }
+      })
+    axios.post('http://localhost:7500/share', momentsToSend)
       .catch(error => console.log(error))
-    console.log(momentsToSend)
   }
-
   return (
     <>
       <Header location={props.location.name} burger />
