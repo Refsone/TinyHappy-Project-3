@@ -1,0 +1,14 @@
+.Authors {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Authors p {
+    border-radius: 16px;
+    border: 1px solid #E9EFFA;
+    text-transform: uppercase;
+    background-color: #fff;
+    padding: .5em 1em;
+    margin: 0 .25em;
+    margin-bottom: .5em;
+}
