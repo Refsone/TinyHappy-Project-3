@@ -1,5 +1,12 @@
 import React, { useState } from 'react'
 
+import LogoHeader from '../commons/header/LogoHeader'
+import './Connexion.css'
+import '../menu/Password.css'
+
+import eyeClosed from '../../images/eye-slash-regular1.svg'
+import eyeOpen from '../../images/eye-open.svg'
+
 const SignUp = () => {
   const data = {
     userFirstname: '',
@@ -9,12 +16,13 @@ const SignUp = () => {
     userConfirmPassword: ''
   }
 
-  const [loginData, setLoginData] = useState(data)
-
   const handleChange = e => {
     setLoginData({ ...loginData, [e.target.id]: e.target.value })
   }
 
+  const [visible, setVisible] = useState(false)
+  const [loginData, setLoginData] = useState(data)
+  const showType = visible ? 'text' : 'password'
   const { userFirstname, userLastname, userMail, userPassword, userConfirmPassword } = loginData
 
   const btn = userFirstname === '' || userLastname === '' || userMail === '' || userPassword === '' || userPassword !== userConfirmPassword
@@ -22,26 +30,35 @@ const SignUp = () => {
     : <button type='submit' className='btn-connexion'>s'inscrire</button>
 
   return (
-    <div className='connexion-container'>
-      <form className='general-connexion-form'>
-        <label htmlFor='firstname' name='userFirstname' className='general-label'>prénom</label>
-        <input onChange={handleChange} value={userFirstname} type='text' id='userFirstname' className='general-input  bold-12px-grey plholder' autoComplete='off' placeholder='Elise' required />
+    <>
+      <LogoHeader />
+      <div className='settings-container-pwdmail'>
 
-        <label htmlFor='last' name='userLastname' className='general-label'>nom</label>
-        <input onChange={handleChange} value={userLastname} type='text' id='userLastname' className='general-input  bold-12px-grey plholder' autoComplete='off' placeholder='Durand' required />
+        <form className='general-form-connexion' noValidate>
 
-        <label htmlFor='email' name='userMail' className='general-label'>email</label>
-        <input onChange={handleChange} value={userMail} id='userMail' type='email' className='general-input  bold-12px-grey plholder' autoComplete='off' placeholder='mon@email.com' required />
+          <label htmlFor='userFirstname' className='label-settings bold-12px-grey'>prénom</label>
+          <input name='userFirstname' type='text' id='userFirstname' value={userFirstname} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='Elise' autoComplete='off' required />
 
-        <label htmlFor='password' className='general-label' name='userPassword'>mot de passe</label>
-        <input onChange={handleChange} value={userPassword} id='userPassword' type='password' autoComplete='off' className='general-input-mdp-close  bold-12px-grey plholder' placeholder='**********' required />
+          <label htmlFor='userLastname' className='label-settings bold-12px-grey'>nom</label>
+          <input name='userLastname' type='text' id='userLastname' value={userLastname} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='Durand' autoComplete='off' required />
 
-        <label htmlFor='password' className='general-label' name='userConfirmPassword'>confirmer mot de passe</label>
-        <input onChange={handleChange} value={userConfirmPassword} id='userConfirmPassword' type='password' autoComplete='off' className='general-input-mdp-close  bold-12px-grey plholder' placeholder='**********' required />
+          <label htmlFor='userMail' className='label-settings bold-12px-grey'>email</label>
+          <input name='userMail' type='email' id='userMail' value={userMail} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' autoComplete='off' placeholder='mon@email.com' required />
 
-        {btn}
-      </form>
-    </div>
+          <label htmlFor='userMail' className='label-settings bold-12px-grey'>mot de passe</label>
+          <div className='settings-container-eye'>
+            <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
+          </div>
+          <input name='user_mail' type={showType} id='userPassword' value={userPassword} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
+          <label htmlFor='user_mail' className='label-settings bold-12px-grey'>confirmer le mot de passe </label>
+          <div className='settings-container-eye'>
+            <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
+          </div>
+          <input name='user_mail' type={showType} id='userConfirmPassword' value={userConfirmPassword} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
+          {btn}
+        </form>
+      </div>
+    </>
   )
 }
 
