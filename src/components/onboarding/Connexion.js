@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Logo from '../commons/header/LogoHeader'
 import useForm from './useForm'
@@ -18,6 +19,12 @@ const Connexion = () => {
   const [visible, setVisible] = useState(false)
   const showType = visible ? 'text' : 'password'
 
+  const loginUser = (e) => {
+    e.preventDefault()
+    axios.post('http://localhost:7500/users/login')
+      .then(res => res.data)
+    console.log(loginUser)
+  }
   return (
     <div className='connexion-background'>
       <Logo />
@@ -34,8 +41,8 @@ const Connexion = () => {
         <input name='user_password' type={showType} id='user_password' value={values.password} onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-psw-default plholder bold-12px-grey'}`} placeholder='**********' />
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
 
-        <p className='connexion-lien'><a href='/'>Mot de passe perdu ?</a></p>
-        {errors && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <Link to='/moments'><button type='submit' className='connexion-btn-actif'>se connecter</button></Link>}
+        <Link to='/' className='connexion-lien'>Mot de passe perdu ?</Link>
+        {errors && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif' onClick={(e) => loginUser(e)}>{<Link to='/moments' />}se connecter</button>}
       </form>
     </div>
   )
