@@ -26,7 +26,7 @@ const SignUp = () => {
   const [userConfirmPassword, setUserConfirmPassword] = useState('')
 
   const showType = visible ? 'text' : 'password'
-  const { user_firstname, user_lastname, user_mail, user_password, parameter_id } = loginData
+  const { user_firstname, user_lastname, user_mail, user_password, } = loginData
 
   useEffect(() => {
     if (successfull || error) {
@@ -55,7 +55,7 @@ const SignUp = () => {
           setError(true)
         }
       })
-      .catch(setError(true))
+      .catch(err => err && setError(true))
   }
 
   const btn = user_firstname === '' || user_lastname === '' || user_mail === '' || user_password === '' || user_password !== userConfirmPassword
