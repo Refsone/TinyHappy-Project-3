@@ -79,12 +79,13 @@ function AddShareMoment (props) {
         } else if (form.milestoneCheck.checked) {
           return moment.type === form.milestoneCheck.value
         }
+        return ''
       })
     axios.post('http://localhost:7500/share', momentsToSend)
       .catch(error => {
         console.log(error)
       })
-    setIsSend(true)
+    setTimeout(() => setIsSend(true), 1000)
   }
 
   return (
