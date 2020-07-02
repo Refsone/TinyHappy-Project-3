@@ -13,24 +13,34 @@ const CardContacts = () => {
   const user_id = 1 // TODO: To modify where the id will be in the local storage
 
   const [contacts, SetContacts] = useState()
+  // const [bool, setBool] = useState(false)
 
   useEffect(() => {
-    axios.get(`http://localhost:7500/users/${user_id}/contacts`)
-      .then(res => res.status === 200 && SetContacts(res.data.result))
+    recupEmail()
   }, [])
 
-  const handleclick = (e) => {
+  const recupEmail = () => {
+    axios.get(`http://localhost:7500/users/${user_id}/contacts`)
+      .then(res => res.status === 200 && SetContacts(res.data.result))
+  }
+
+  const handleclick = (email) => {
     const newDatas = {
       user_id: user_id,
-      mail: e
+      mail: email
     }
-    axios.post(`http://localhost:7500/contacts/new/${newDatas}`)
-      .then(res => res.status === 201 && console.log(res.data))
+    axios.post('http://localhost:7500/contacts/new', newDatas)
+      .then(res => res.status === 201 && recupEmail())
       .catch(err => console.log(err))
   }
 
-  useEffect(() => {
-  })
+  const deleteContact = (e) => {
+    console.log(e.target.value)
+  }
+
+  // useEffect(() => {
+
+  // }, [bool])
 
   return (
     <div>
@@ -42,7 +52,7 @@ const CardContacts = () => {
             <AddContact handleclick={handleclick} />
           </>}
         {contacts &&
-          <SelectContacts contacts={contacts} handleclick={handleclick} />}
+          <SelectContacts contacts={contacts} handleclick={handleclick} deleteContact={deleteContact} />}
         <Navbar />
       </div>
     </div>

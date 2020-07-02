@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import './Contact.css'
 import bin from '../../images/trash-alt-regular-blue.svg'
 
-const Contact = ({ mail, id, handleChange, selected }) => {
+const Contact = ({ mail, id, handleChange, selected, deleteContact }) => {
   return (
-    <div className='field'>
-      <div className='group'>
+    <div className='contact-field'>
+      <div className='contact-group'>
         <input
           className='radiobox'
           type='radio'
@@ -17,15 +17,16 @@ const Contact = ({ mail, id, handleChange, selected }) => {
         />
         <p className='medium-16px-grey email'>{mail}</p>
       </div>
-      <img className='bin' alt='bin' src={bin} />
+      <img className='bin' alt='bin' src={bin} id={id} onClick={deleteContact} />
     </div>
   )
 }
 
 Contact.propTypes = {
-  mail: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  deleteContact: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  mail: PropTypes.string.isRequired,
   selected: PropTypes.arrayOf(PropTypes.number)
 }
 

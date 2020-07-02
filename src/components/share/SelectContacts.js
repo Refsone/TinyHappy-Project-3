@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import AddContact from './AddContact'
@@ -7,13 +7,13 @@ import Contact from './Contact'
 import './SelectContacts.css'
 
 const SelectContacts = (props) => {
-  const { contacts, handleclick } = props
+  const { contacts, handleclick, deleteContact } = props
 
   const [selectedIds, setSelectedIds] = useState([])
-  const [change, setChange] = useState(false)
+  const [bool, setBool] = useState([false])
 
   const handleChange = (e) => {
-    setChange(!change)
+    setBool(!bool)
     const tempId = parseInt(e.target.id)
     const tempTable = selectedIds
     const existId = tempTable.indexOf(tempId)
@@ -25,6 +25,9 @@ const SelectContacts = (props) => {
     setSelectedIds(tempTable)
   }
 
+  useEffect(() => {
+  }, [bool])
+
   return (
     <div className='contacts-list'>
       <p className='bold-16px-grey title'>SÉLECTION DE VOS CONTACTS</p>
@@ -32,12 +35,12 @@ const SelectContacts = (props) => {
         {contacts && contacts.map(contact => {
           return (
             <div key={contact.id}>
-              <Contact mail={contact.mail} id={contact.id} handleChange={handleChange} selected={selectedIds} />
+              <Contact mail={contact.mail} id={contact.id} handleChange={handleChange} selected={selectedIds} deleteContact={deleteContact} />
             </div>)
         })}
       </div>
       <div>
-        <p className='bold-12px-grey title'>AJOUTER UN CONTACT</p>
+        <p className='bold-12px-grey title-add'>AJOUTER UN CONTACT</p>
         <AddContact handleclick={handleclick} />
       </div>
     </div>
@@ -45,11 +48,12 @@ const SelectContacts = (props) => {
 }
 
 SelectContacts.propTypes = {
-  handleclick: PropTypes.func.isRequired,
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       mail: PropTypes.string.isRequired
-    }))
+    })),
+  deleteContact: PropTypes.func.isRequired,
+  handleclick: PropTypes.func.isRequired
 }
 export default SelectContacts
