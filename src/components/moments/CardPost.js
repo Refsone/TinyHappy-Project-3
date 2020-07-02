@@ -27,7 +27,7 @@ const CardPost = (props) => {
   return (
     <div className='CardPost' style={moment.type === 'quote' ? { borderLeft: '0.4rem solid #91E9FE', marginTop: boxStyle } : { borderLeft: '0.4rem solid #D3FF9B', marginTop: boxStyle }}>
       <div className='block-names-favorite'>
-        <div>
+        <div className='block-names'>
           {moment.firstname_color.map((member, id) => {
             return <p key={id} className='family-name' style={{ backgroundColor: member.color }}>{member.firstname}</p>
           })}
