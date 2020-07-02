@@ -28,6 +28,7 @@ const AddContact = ({ handleclick }) => {
   }
 
   const submitForm = (e) => {
+    setMail()
     e.preventDefault()
   }
 
@@ -50,7 +51,7 @@ const AddContact = ({ handleclick }) => {
           className='bold-12px-grey plholder add-contact-input'
           type='email'
           id='mail'
-          name='name'
+          name='newMail'
           onChange={handleChange}
           placeholder='prenom@exemple.com'
         />

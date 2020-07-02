@@ -30,12 +30,18 @@ const CardContacts = () => {
       mail: email
     }
     axios.post('http://localhost:7500/contacts/new', newDatas)
-      .then(res => res.status === 201 && recupEmail())
+      .then(res => {
+        res.status === 201 && recupEmail()
+        document.getElementById('mail').value = ''
+      })
+
       .catch(err => console.log(err))
   }
 
   const deleteContact = (e) => {
-    console.log(e.target.value)
+    axios.delete(`http://localhost:7500/contacts/${e.target.id}`)
+      .then(res => res.status === 200 && recupEmail())
+      .catch(err => console.log(err))
   }
 
   // useEffect(() => {
@@ -46,13 +52,13 @@ const CardContacts = () => {
     <div>
       <Header burger />
       <div className='cardContact'>
-        {!contacts &&
+        {!contacts || contacts.length === 0
+          ?
           <>
             <ZeroContact />
             <AddContact handleclick={handleclick} />
-          </>}
-        {contacts &&
-          <SelectContacts contacts={contacts} handleclick={handleclick} deleteContact={deleteContact} />}
+          </>
+          : <SelectContacts contacts={contacts} handleclick={handleclick} deleteContact={deleteContact} />}
         <Navbar />
       </div>
     </div>
