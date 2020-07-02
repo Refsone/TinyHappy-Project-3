@@ -5,7 +5,6 @@ import Moment from 'moment'
 import 'moment/locale/fr'
 
 import Authors from '../commons/Authors'
-import DateRange from './DateRange'
 import Header from '../commons/header/Header'
 import ShareSend from './ShareSend'
 import ValidateButton from '../commons/footer/ValidateButton'
