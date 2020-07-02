@@ -13,7 +13,6 @@ const CardContacts = () => {
   const user_id = 1 // TODO: To modify where the id will be in the local storage
 
   const [contacts, SetContacts] = useState()
-  // const [bool, setBool] = useState(false)
 
   useEffect(() => {
     recupEmail()
@@ -43,10 +42,6 @@ const CardContacts = () => {
       .then(res => res.status === 200 && recupEmail())
       .catch(err => console.log(err))
   }
-
-  // useEffect(() => {
-
-  // }, [bool])
 
   return (
     <div>

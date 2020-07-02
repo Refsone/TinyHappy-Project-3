@@ -6,7 +6,7 @@ import './SendButton.css'
 import ActivePlane from '../../images/send-actif-btn.svg'
 import NonActivePlane from '../../images/send-inactif-btn.svg'
 
-const SendButton = ({ actived, mailsId }) => {
+const SendButton = ({ actived, selectedIds }) => {
   return (
     <div className='share-button'>
       {
@@ -15,7 +15,7 @@ const SendButton = ({ actived, mailsId }) => {
             to={{
               pathname: '/share/moments',
               data: {
-                mailsId: mailsId
+                selectedIds: selectedIds
               }
             }}
             title='Choice moments to send'
