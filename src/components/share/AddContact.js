@@ -64,9 +64,6 @@ const AddContact = ({ handleclick }) => {
           </button>
         </div>
       </form>
-      {/* <div className='inactif-send'>
-          <img alt='inactif-send-button' src={inactifSend} />
-        </div> */}
     </div>
 
   )
