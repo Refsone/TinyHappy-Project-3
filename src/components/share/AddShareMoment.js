@@ -91,7 +91,7 @@ function AddShareMoment (props) {
   return (
     <>
       {isSend && <ShareSend />}
-      <Header location={props.location.name} burger />
+      <Header location={props.location.pathname} burger />
       <form id='formShareMoment' className='AddShareMoment'>
         <h1 className='bold-16px-grey'> Paramètre du partage</h1>
         <h2 className='bold-12px-grey'>Quels Auteur(e)s</h2>

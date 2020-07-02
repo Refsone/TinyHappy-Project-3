@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import AddContact from './AddContact'
 import Contact from './Contact'
+import SendButton from './SendButton'
 
 import './SelectContacts.css'
 
@@ -42,6 +43,7 @@ const SelectContacts = (props) => {
       <div>
         <p className='bold-12px-grey title-add'>AJOUTER UN CONTACT</p>
         <AddContact handleclick={handleclick} />
+        <SendButton actived={selectedIds.length > 0 && 'actived'} selectedIds={selectedIds.length > 0 && selectedIds} />
       </div>
     </div>
   )
