@@ -4,6 +4,16 @@
     width: 100%;
 }
 
+.signUp-error {
+    color: #ff0000;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    position: relative;
+    bottom: -20px;
+    left: 5vw;
+}
+
 .general-form-connexion-container {
     display: flex;
     flex-direction: column;
