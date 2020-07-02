@@ -6,7 +6,8 @@
   justify-content: space-between;
 }
 
-.relative {
+
+.add-contact-group .relative {
   position: relative;
 }
 
@@ -21,20 +22,24 @@
   font-size: .75em;
 }
 
-input::placeholder {
+
+.add-contact-group input::placeholder {
   color: #98A7CD;
 }
 
-input::-webkit-input-placeholder {
+
+.add-contact-group input::-webkit-input-placeholder {
   color: #98A7CD;
 }
 
-input:-moz-placeholder {
+
+.add-contact-group input:-moz-placeholder {
   color: #98A7CD;
   opacity: 1;
 }
 
-input:-ms-input-placeholder {
+
+.add-contact-group input:-ms-input-placeholder {
   color: #98A7CD;
 }
 
@@ -55,10 +60,3 @@ input:-ms-input-placeholder {
 .add-contact-group .true {
   background-color: #FF89D2;
 }
-
-/* .inactif-send {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 1em;
-  margin-bottom: 6em;
-} */
