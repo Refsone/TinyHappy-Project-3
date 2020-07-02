@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import './AddContact.css'
-// import inactifSend from '../../images/send-inactif-btn.svg'
 
 const AddContact = ({ handleclick }) => {
   const [mail, setMail] = useState()
