@@ -15,10 +15,23 @@
     margin-left: 5vw ;
     padding-left: 0;
     font-size: 12px;
+    margin-top: 5px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .area ::placeholder {
     color: #98A7CD;
     font-weight: 500;
     font-style: italic;
+}
+
+.error-quote {
+    color: #ff0000;
+    font-weight: 500;
+    font-size: 12px;
+    margin-left: 5vw;
+    position: relative;
+    bottom: 10px;
 }

@@ -3,11 +3,11 @@ import React from 'react'
 import AuthorSelect from './AuthorSelect'
 import TextArea from './TextArea'
 
-const Quote = () => {
+const Quote = (props) => {
   return (
     <>
-      <AuthorSelect title={'SELECTIONNER L\'AUTEUR'} />
-      <TextArea title='CITATION' placeholder='Ajouter une citation' idQuote='citation' idContext='contextQuote' />
+      <AuthorSelect memberFamilyIsPresentAtMoment={props.memberFamilyIsPresentAtMoment} userIsPresent={props.userIsPresent} textInMomentArea={props.textInMomentArea} authorButtonIsClicked={props.authorButtonIsClicked} buttonSelectAuthor={props.buttonSelectAuthor} familyMember={props.familyMember} user={props.user} title={'SELECTIONNER L\'AUTEUR'} />
+      <TextArea sendMomentSucceed={props.sendMomentSucceed} textInContextArea={props.textInContextArea} textInMomentArea={props.textInMomentArea} title='CITATION' active={props.active} SendCreateMoment={props.SendCreateMoment} placeholder='Ajouter une citation' onChangeTextInContextArea={props.onChangeTextInContextArea} onChangeTextInMomentArea={props.onChangeTextInMomentArea} idQuoteArea='quote' idContextArea='contextQuote' />
     </>
   )
 }
