@@ -142,7 +142,7 @@
     background-color: #ffffff;
     height: 5em;
 }
-.general-form-connexion .connexion-lien{
+.general-form-connexion .connexion-lien a{
     position: absolute;
     right: 10px;
     padding-top: 10%;

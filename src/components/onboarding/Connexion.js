@@ -3,7 +3,6 @@ import axios from 'axios'
 import Header from '../commons/header/Header'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
-import ValidateButton from '../commons/footer/ValidateButton'
 
 import eyeClosed from '../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../images/eye-open.svg'
@@ -44,9 +43,7 @@ const Connexion = (props) => {
         <input name='user_password' type={showType} id='user_password' value={values.password} onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-psw-default plholder bold-12px-grey'}`} placeholder='**********' />
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
         <p className='connexion-lien'><a href='/'>Mot de passe perdu ?</a></p>
-        {errors && values.user_mail === '' && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif'>se connecter</button>}
-        <ValidateButton name='se connecter' handleClick={submit} active />
-
+        {errors && values.user_mail === '' && values.user_password === '' ? <button onClick={handleChange} className='connexion-btn-inactif'> se connecter</button> : <button onClick={submit} className='connexion-btn-actif'>se connecter</button>}
       </form>
     </div>
   )
