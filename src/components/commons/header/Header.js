@@ -9,7 +9,6 @@ import './Header.css'
 const Header = (props) => {
   const { burger, location } = props
   const memberId = location === '/family/modify' && props.memberId
-  console.log(location)
   let link = ''
   let text = ''
   switch (location) {
