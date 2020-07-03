@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import calendarIcon from '../../../images/calendrier.svg'
+import axios from 'axios'
 import DatePicker from 'react-datepicker'
-import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css'
 import Header from '../../commons/header/Header'
 import Milestone from './Milestone'
 import MomentNavbar from './MomentNavbar'
 import Quote from './Quote'
 
 import './CreateMoments.css'
+import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css'
+import calendarIcon from '../../../images/calendrier.svg'
 
 const CreateMoment = (props) => {
   const [familyMember, setFamilyMember] = useState([])
