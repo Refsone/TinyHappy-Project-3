@@ -10,7 +10,7 @@ const Access = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoad(true)
-    }, 3000)
+    }, 1500)
   }, [])
 
   return (

@@ -9,6 +9,7 @@ import './Header.css'
 const Header = (props) => {
   const { burger, location } = props
   const memberId = location === '/family/modify' && props.memberId
+  console.log(location)
   let link = ''
   let text = ''
   switch (location) {
@@ -27,6 +28,14 @@ const Header = (props) => {
     case 'moments/create/milestone':
       text = 'annuler'
       link = '/moments'
+      break
+    case '/onboarding/signup':
+      text = 'annuler'
+      link = '/'
+      break
+    case '/onboarding/login':
+      text = 'annuler'
+      link = '/'
       break
     case '/share/moments':
       text = 'retour'
@@ -65,7 +74,7 @@ const Header = (props) => {
   return (
     <>
       <div className='header-container'>
-        {burger && <Sidemenu />}
+        {burger ? <Sidemenu /> : <div></div>}
         <img className='logo-monogramme' src={monogramme} alt='Logo Tiny Happy' />
         <div>
           {location &&

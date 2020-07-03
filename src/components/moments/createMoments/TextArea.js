@@ -14,7 +14,7 @@ const Textarea = (props) => {
         <label htmlFor='text'>CONTEXTE</label>
         <textarea name='text' rows='4' cols='35' placeholder='Ajouter un contexte (facultatif)' id={props.idContextArea} onChange={props.onChangeTextInContextArea} />
       </form>
-      <ValidateButton name='publier' active={props.active} SendCreateMoment={props.SendCreateMoment} />
+      <ValidateButton name='publier' active={props.active} handleClick={props.SendCreateMoment} />
       {props.sendMomentSucceed && <ConfirmButton message='Envoie reussi' confirm />}
     </div>
   )

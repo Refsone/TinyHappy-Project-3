@@ -1,0 +1,41 @@
+.contact-field {
+  margin: 1em 1em -0.4em 1em;
+  background-color: #ffffff;
+  padding: 1em;
+  border-radius: 0.3em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-group{
+  display: flex;
+}
+
+.contact-field
+.radiobox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  align-self: center;
+  border-radius: 50%;
+  width: 1.4em;
+  height: 1.4em;
+  border: 2px solid #B6C5E6;
+  transition: 0.2s all linear;
+}
+
+.contact-field
+.radiobox:checked {
+  background-color: #D3FF9B;
+  border-color: #7FB74E;
+}
+
+.contact-field
+.email {
+  margin-left: 0.5em;
+}
+
+.contact-field
+.bin {
+  height: 1em;
+}

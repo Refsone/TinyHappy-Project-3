@@ -7,6 +7,7 @@ import Milestone from './Milestone'
 import MomentNavbar from './MomentNavbar'
 import Quote from './Quote'
 
+import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css'
 import './CreateMoments.css'
 import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css'
 import calendarIcon from '../../../images/calendrier.svg'
@@ -68,6 +69,7 @@ const CreateMoment = (props) => {
   }, [sendMomentSucceed, sendError])
 
   const buttonSelectAuthor = (AuthorId, click) => {
+    console.log(AuthorId)
     if (click) {
       AuthorId === user.user_firstname
         ? setUserIsPresent(1)
