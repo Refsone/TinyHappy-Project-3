@@ -69,7 +69,6 @@ const CreateMoment = (props) => {
   }, [sendMomentSucceed, sendError])
 
   const buttonSelectAuthor = (AuthorId, click) => {
-    console.log(AuthorId)
     if (click) {
       AuthorId === user.user_firstname
         ? setUserIsPresent(1)
