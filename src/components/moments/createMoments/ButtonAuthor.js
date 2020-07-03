@@ -6,13 +6,14 @@ const Button = (props) => {
   const [click, setClick] = useState(false)
 
   useEffect(() => {
+    console.log(props.id)
     props.buttonSelectAuthor(props.id, click)
     click ? setColor(props.color) : setColor('')
   }, [click])
 
   return (
     <>
-      <button onClick={() => setClick(!click)} style={{ backgroundColor: `${color}` }} className='author'>{props.name}</button>
+      <button onClick={() => setClick(!click)} id={props.id} style={{ backgroundColor: `${color}` }} className='author'>{props.name}</button>
     </>
   )
 }
