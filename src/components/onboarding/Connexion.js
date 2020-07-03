@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-import Logo from '../commons/header/LogoHeader'
+import Header from '../commons/header/Header'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
+import ValidateButton from '../commons/footer/ValidateButton'
 
 import eyeClosed from '../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../images/eye-open.svg'
 
 import './Connexion.css'
 
-const Connexion = () => {
+const Connexion = (props) => {
   const { handleChange, handleSubmit, values, errors, setErrors } = useForm(submit, validationLogIn)
 
   const [visible, setVisible] = useState(false)
@@ -30,7 +30,7 @@ const Connexion = () => {
 
   return (
     <div className='connexion-background'>
-      <Logo />
+      <Header location={props.location.pathname} />
       <form onSubmit={handleSubmit} className='general-form-connexion' noValidate>
         <label htmlFor='user_mail' name='user_mail' className='label-connexion'>email</label>
         <input name='user_mail' type='email' id='user_mail' className={`${errors.user_mail ? 'input-connexion-error' : 'input-connexion plholder bold-12px-grey'}`} placeholder='mon@email.com' value={values.email} onChange={handleChange} />
@@ -43,9 +43,10 @@ const Connexion = () => {
         </div>
         <input name='user_password' type={showType} id='user_password' value={values.password} onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-psw-default plholder bold-12px-grey'}`} placeholder='**********' />
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
+        <p className='connexion-lien'><a href='/'>Mot de passe perdu ?</a></p>
+        {errors && values.user_mail === '' && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif'>se connecter</button>}
+        <ValidateButton name='se connecter' handleClick={submit} active />
 
-        <Link to='/' className='connexion-lien'>Mot de passe perdu ?</Link>
-        {errors && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif' onClick={submit}>se connecter</button>}
       </form>
     </div>
   )
