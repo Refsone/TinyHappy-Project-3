@@ -28,6 +28,14 @@ const Header = (props) => {
       text = 'annuler'
       link = '/moments'
       break
+    case '/onboarding/signup':
+      text = 'annuler'
+      link = '/'
+      break
+    case '/onboarding/login':
+      text = 'annuler'
+      link = '/'
+      break
     case '/share/moments':
       text = 'retour'
       link = '/share'
@@ -65,7 +73,7 @@ const Header = (props) => {
   return (
     <>
       <div className='header-container'>
-        {burger && <Sidemenu />}
+        {burger ? <Sidemenu /> : <div></div>}
         <img className='logo-monogramme' src={monogramme} alt='Logo Tiny Happy' />
         <div>
           {location &&

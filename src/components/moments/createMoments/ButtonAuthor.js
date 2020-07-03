@@ -12,7 +12,7 @@ const Button = (props) => {
 
   return (
     <>
-      <button onClick={() => setClick(!click)} style={{ backgroundColor: `${color}` }} className='author'>{props.name}</button>
+      <button onClick={() => setClick(!click)} id={props.id} style={{ backgroundColor: `${color}` }} className='author'>{props.name}</button>
     </>
   )
 }

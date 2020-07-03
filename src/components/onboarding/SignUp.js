@@ -3,13 +3,13 @@ import axios from 'axios'
 import ConfirmButton from '../commons/footer/ConfirmButton'
 import eyeClosed from '../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../images/eye-open.svg'
-import LogoHeader from '../commons/header/LogoHeader'
+import Header from '../commons/header/Header'
 import { Redirect } from 'react-router-dom'
 
 import './Connexion.css'
 import '../menu/Password.css'
 
-const SignUp = () => {
+const SignUp = (props) => {
   const data = {
     user_firstname: '',
     user_lastname: '',
@@ -26,7 +26,7 @@ const SignUp = () => {
   const [userConfirmPassword, setUserConfirmPassword] = useState('')
 
   const showType = visible ? 'text' : 'password'
-  const { user_firstname, user_lastname, user_mail, user_password, } = loginData
+  const { user_firstname, user_lastname, user_mail, user_password } = loginData
 
   useEffect(() => {
     if (successfull || error) {
@@ -61,10 +61,9 @@ const SignUp = () => {
   const btn = user_firstname === '' || user_lastname === '' || user_mail === '' || user_password === '' || user_password !== userConfirmPassword
     ? <button type='submit' className='btn-connexion-none' disabled>s'inscrire</button>
     : <button type='submit' className='btn-connexion' onClick={(e) => sendSignUp(e)}>s'inscrire</button>
-
   return (
     <>
-      <LogoHeader />
+      <Header location={props.location.pathname} />
       <div className='settings-container-pwdmail'>
 
         <form className='general-form-connexion' noValidate>

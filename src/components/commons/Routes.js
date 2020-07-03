@@ -14,7 +14,6 @@ import Post from '../moments/Posts'
 import SignUp from '../onboarding/SignUp'
 
 const routes = (props) => {
-  console.log(props.location)
   return (
     <Switch>
       <Route exact path='/' component={Access} />
