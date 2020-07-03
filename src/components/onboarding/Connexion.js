@@ -18,13 +18,11 @@ const Connexion = () => {
 
   async function submit (e) {
     e.preventDefault()
+    console.log(values)
     try {
-      const loginRes = await axios.post('http://localhost:7500/users/login', null, { headers: { 'x-auth-token': values } })
-      values({
-        token: loginRes.token,
-        user: loginRes.user
-      })
-      localStorage.setItem('x-auth-token', loginRes.token)
+      await axios.post('http://localhost:7500/users/login', values)
+        .then(res => res.headers['x-access-token'])
+        .then(data => localStorage.setItem('x-access-token', data))
     } catch (err) {
       errors && setErrors(errors)
     }
@@ -47,7 +45,7 @@ const Connexion = () => {
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
 
         <Link to='/' className='connexion-lien'>Mot de passe perdu ?</Link>
-        {errors && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif' onClick={submit}>{<Link to='/moments' />}se connecter</button>}
+        {errors && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif' onClick={submit}>se connecter</button>}
       </form>
     </div>
   )
