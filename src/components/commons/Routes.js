@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
+import AddShareMoment from '../share/AddShareMoment'
 import Access from '../onboarding/Access'
 import CardContacts from '../share/CardContacts'
 import CardMembers from '../family/CardMembers'
@@ -18,6 +19,9 @@ const routes = (props) => {
       <Route exact path='/' component={Access} />
       <Route exact path='/family' component={CardMembers} />
       <Route path='/family/create' component={CreateFamily} />
+      <Route path='/family/delete' component={CreateFamily} />
+      <Route path='/family/modify' component={CreateFamily} />
+      <Route path='/user/modify' component={CreateFamily} />
       <Route exact path='/moments' component={Post} />
       <Route path='/favoris' component={Post} />
       <Route path='/moments/create/quote' component={CreateMoments} />
@@ -28,6 +32,7 @@ const routes = (props) => {
       <Route path='/settings/modify/email' component={ModifySettings} />
       <Route path='/settings/modify/password' component={ModifySettings} />
       <Route exact path='/share' component={CardContacts} />
+      <Route exact path='/share/moments' component={AddShareMoment} />
     </Switch>
   )
 }

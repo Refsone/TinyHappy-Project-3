@@ -4,10 +4,10 @@ import './ConfirmButton.css'
 import checkImg from '../../../images/check-circle.svg'
 
 const ConfirmButton = (props) => {
-  const { message, confirm } = props
+  const { message, confirm, deleted } = props
   return (
     <div className='confirm-button'>
-      <div className={confirm ? 'btn-confirm' : 'btn-confirm error'}>
+      <div className={!confirm ? 'btn-confirm error' : deleted ? 'deleted' : 'btn-confirm'}>
         <div>
           {confirm && <img src={checkImg} alt='checked' />}
         </div>

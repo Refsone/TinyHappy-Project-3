@@ -1,14 +1,4 @@
-.author {
-    border: solid 1px #E9EFFA;
-    border-radius: 20px;
-    padding: 5px 10px;
-    margin-right: 10px;
-    background-color: white;
-    font-size: 10px;
-}
-
 .authorList {
-    display: flex;
     margin-bottom: 20px;
 }
 
@@ -19,7 +9,6 @@
 
 .authorSelect {
     padding-left: 5vw;
-    margin-bottom: 10px;
 }
 
 .authorTitle {
@@ -27,4 +16,12 @@
     color: #7180AC;
     font-weight: bold;
     font-size: 12px;
+}
+
+.error-author {
+    color: #ff0000;
+    font-weight: 500;
+    font-size: 12px;
+    position: relative;
+    bottom: 22px;
 }

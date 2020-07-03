@@ -1,5 +1,5 @@
 .validateButton .btn-inactive {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   /* For the demonstration Default:0 */
   width: 100%;
@@ -10,10 +10,11 @@
   font-weight: 700;
   font-size: 14px;
   background-color: #D4E0F6;
+  z-index: 2;
 }
 
 .validateButton .btn-active {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   width: 100%;
   border: none;
@@ -23,4 +24,5 @@
   font-weight: 700;
   font-size: 14px;
   background-color: #FF89D2;
+  z-index: 3;
 }
