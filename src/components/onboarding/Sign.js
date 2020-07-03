@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import UserContext from '../../context/UserContext'
-import axios from 'axios'
 
 import './Sign.css'
 
 const Sign = () => {
-  const [userData, setUserData] = useState({
+/*   const [userData, setUserData] = useState({
     user: undefined,
     token: undefined
   })
@@ -30,16 +28,13 @@ const Sign = () => {
       console.log(tokenRes.data)
     }
     checkLoggedIn()
-  }, [])
+  }, []) */
 
   return (
-    <UserContext.Provider value={{ userData, setUserData }}>
-      <div className='sign'>
-        <Link to='/onboarding/login' className='connect'>se connecter</Link>
-        <Link to='/onboarding/signup' className='register'>s'inscrire</Link>
-      </div>
-    </UserContext.Provider>
-
+    <div className='sign'>
+      <Link to='/onboarding/login' className='connect'>se connecter</Link>
+      <Link to='/onboarding/signup' className='register'>s'inscrire</Link>
+    </div>
   )
 }
 

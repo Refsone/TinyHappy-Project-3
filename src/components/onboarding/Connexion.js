@@ -1,7 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import UserContext from '../../context/UserContext'
 import Logo from '../commons/header/LogoHeader'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
@@ -17,22 +16,17 @@ const Connexion = () => {
   const [visible, setVisible] = useState(false)
   const showType = visible ? 'text' : 'password'
 
-  const { setUserData } = useContext(UserContext)
-
   async function submit (e) {
     e.preventDefault()
     try {
-      const loginRes = await axios.post(
-        'http://localhost:7500/users/login',
-        values
-      )
-      setUserData({
-        token: loginRes.data.token,
-        user: loginRes.data.user
+      const loginRes = await axios.post('http://localhost:7500/users/login', null, { headers: { 'x-auth-token': values } })
+      values({
+        token: loginRes.token,
+        user: loginRes.user
       })
-      localStorage.setItem('auth-token', loginRes.data.token)
+      localStorage.setItem('x-auth-token', loginRes.token)
     } catch (err) {
-      err.response.data.msg && setErrors(err.response.data.msg)
+      errors && setErrors(errors)
     }
   }
 
@@ -53,7 +47,7 @@ const Connexion = () => {
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
 
         <Link to='/' className='connexion-lien'>Mot de passe perdu ?</Link>
-        {errors && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif' onClick={(e) => submit(e)}>{<Link to='/moments' />}se connecter</button>}
+        {errors && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif' onClick={submit}>{<Link to='/moments' />}se connecter</button>}
       </form>
     </div>
   )
