@@ -71,7 +71,6 @@ function AddShareMoment(props) {
     const momentsToSend = moments
       .filter(moment => Moment(moment.moment_event_date).format(format) >= Moment(startDate).format(format) && Moment(moment.moment_event_date).format(format) <= Moment(endDate).format(format))
       .filter(moment => {
-        // console.log(moment.firstname_color.map(name => authorsSelect.includes(name.firstname)))
         return moment.firstname_color.map(name => authorsSelect.includes(name.firstname))
       })
       .filter(moment => {
