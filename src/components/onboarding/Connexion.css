@@ -32,6 +32,15 @@
     margin-left: 15px;
 }
 
+.general-connexion-form .general-label {
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 700;
+    margin: 10px 20px 5px 20px;
+    padding: 12px 0px 10px 15px;
+    font-size: .75em;
+}
+
 .general-form-connexion .input-connexion {
     display: block;
     width: 100%;
@@ -69,7 +78,7 @@
     color: #7180AC
 }
 
-.general-form-connexion .connexion-btn-inactif{
+.general-form-connexion .connexion-btn-inactif {
     position: fixed;
     bottom: 0px;
     width: 100%;
@@ -82,7 +91,7 @@
     background-color: #D4E0F6;
 }
 
-.general-form-connexion .connexion-btn-actif{
+.general-form-connexion .connexion-btn-actif {
     position: fixed;
     bottom: 0px;
     width: 100%;
@@ -95,7 +104,7 @@
     background-color: #FF89D2;
 }
 
-.general-form-connexion .input-connexion-error{
+.general-form-connexion .input-connexion-error {
     display: block;
     width: 100%;
     border: solid 1px #ff0000;
@@ -103,16 +112,17 @@
     background-color: #ffffff;
     height: 5em;
 }
-.general-form-connexion .input-pws-error{
+
+.general-form-connexion .input-pws-error {
     display: block;
     width: 100%;
     border: solid 1px #ff0000;
     border-radius: 4px;
     background-color: #ffffff;
-    height: 5em; 
+    height: 5em;
 }
 
-.general-form-connexion .msg-error{
+.general-form-connexion .msg-error {
     position: absolute;
     display: block;
     width: 90%;
@@ -121,8 +131,7 @@
     color: #ff0000;
     font-weight: 500;
     font-size: 12px;
-  }
-  
+}
 
 .general-form-connexion .input-psw-default {
     display: block;
@@ -132,6 +141,7 @@
     background-color: #ffffff;
     height: 5em;
 }
+
 .connexion-lien a {
     position: absolute;
     right: 10px;
