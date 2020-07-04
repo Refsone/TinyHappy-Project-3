@@ -41,8 +41,7 @@ const Connexion = () => {
 
   const handleChange = e => {
     setLoginData({ ...loginData, [e.target.id]: e.target.value })
-  }
-  
+  }  
   const sendSignUp = (e) => {
     e.preventDefault()
     axios.post('http://localhost:7500/sign-up', loginData)
@@ -74,7 +73,6 @@ const Connexion = () => {
             <img src={visibleOne ? eyeOpen : eyeClosed} onClick={() => setVisibleOne(!visibleOne)} alt='' />
           </div>
           <input name='user_mail' type={showTypeOne} id='user_password' value={user_password} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
-        
           {successfull ? <ConfirmButton message='inscription reussie' confirm /> : btn}
           {error && <p className='signUp-error'>Une erreur s'est produite lors de la connection</p>}
           {redirect && <Redirect to='/moments/Posts' />}
