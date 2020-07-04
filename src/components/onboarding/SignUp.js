@@ -18,14 +18,17 @@ const SignUp = () => {
     parameter_id: 1
   }
 
-  const [visible, setVisible] = useState(false)
+  const [visibleOne, setVisibleOne] = useState(false)
+  const [visibleTwo, setVisibleTwo] = useState(false)
   const [loginData, setLoginData] = useState(data)
   const [successfull, setSuccessfull] = useState(false)
   const [error, setError] = useState(false)
   const [redirect, setRedirect] = useState(false)
   const [userConfirmPassword, setUserConfirmPassword] = useState('')
 
-  const showType = visible ? 'text' : 'password'
+  const showTypeOne = visibleOne ? 'text' : 'password'
+  const showTypeTwo = visibleTwo ? 'text' : 'password'
+
   const { user_firstname, user_lastname, user_mail, user_password } = loginData
 
   useEffect(() => {
@@ -80,14 +83,14 @@ const SignUp = () => {
 
           <label htmlFor='user_mail' className='label-settings bold-12px-grey'>mot de passe</label>
           <div className='settings-container-eye'>
-            <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
+            <img src={visibleOne ? eyeOpen : eyeClosed} onClick={() => setVisibleOne(!visibleOne)} alt='' />
           </div>
-          <input name='user_mail' type={showType} id='user_password' value={user_password} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
+          <input name='user_mail' type={showTypeOne} id='user_password' value={user_password} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
           <label htmlFor='user_mail' className='label-settings bold-12px-grey'>confirmer le mot de passe </label>
           <div className='settings-container-eye'>
-            <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
+            <img src={visibleTwo ? eyeOpen : eyeClosed} onClick={() => setVisibleTwo(!visibleTwo)} alt='' />
           </div>
-          <input name='user_mail' type={showType} id='userConfirmPassword' value={userConfirmPassword} onChange={confirmPassword} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
+          <input name='user_mail' type={showTypeTwo} id='userConfirmPassword' value={userConfirmPassword} onChange={confirmPassword} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
           {successfull ? <ConfirmButton message='inscription reussie' confirm /> : btn}
           {error && <p className='signUp-error'>Une erreur s'est produite lors de l'inscription</p>}
           {redirect && <Redirect to='/onboarding/login' />}
