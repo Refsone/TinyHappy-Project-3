@@ -32,13 +32,15 @@ const SignUp = () => {
   const { user_firstname, user_lastname, user_mail, user_password } = loginData
 
   useEffect(() => {
-    if (successfull || error) {
+    if (successfull) {
       const timer = setTimeout(() => {
         setRedirect(true)
-      }, 2500)
+      }, 1500)
       return () => {
         clearTimeout(timer)
       }
+    } else {
+      setRedirect(false)
     }
   }, [successfull, error])
 
