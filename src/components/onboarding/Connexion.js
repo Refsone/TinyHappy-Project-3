@@ -19,15 +19,12 @@ const Connexion = (props) => {
 
   useEffect(() => {
     if (loggedIn) {
-      console.log('salut')
       setRedirect(true)
     }
   }, [loggedIn])
 
   async function submit (e) {
     e.preventDefault()
-    console.log(values)
-    console.log(loggedIn)
     try {
       await axios.post('http://localhost:7500/users/login', values)
         .then(res => res.headers['x-access-token'])
