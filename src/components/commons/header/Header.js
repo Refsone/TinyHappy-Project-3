@@ -29,12 +29,12 @@ const Header = (props) => {
       link = '/moments'
       break
     case '/onboarding/signup':
-      text = 'annuler'
-      link = '/'
+      text = 'se connecter'
+      link = '/onboarding/login'
       break
     case '/onboarding/login':
-      text = 'annuler'
-      link = '/'
+      text = 's\'inscrire'
+      link = '/onboarding/signup'
       break
     case '/share/moments':
       text = 'retour'
