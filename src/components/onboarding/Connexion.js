@@ -4,14 +4,12 @@ import Header from '../commons/header/Header'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
 
+import './Connexion.css'
 import eyeClosed from '../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../images/eye-open.svg'
 
-import './Connexion.css'
-
 const Connexion = (props) => {
   const { handleChange, handleSubmit, values, errors, setErrors } = useForm(submit, validationLogIn)
-
   const [visible, setVisible] = useState(false)
   const showType = visible ? 'text' : 'password'
 
