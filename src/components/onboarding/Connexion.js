@@ -8,6 +8,7 @@ import eyeClosed from '../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../images/eye-open.svg'
 
 import './Connexion.css'
+import { Redirect } from 'react-router-dom'
 
 const Connexion = (props) => {
   const { handleChange, handleSubmit, values, errors, setErrors } = useForm(submit, validationLogIn)
@@ -43,7 +44,8 @@ const Connexion = (props) => {
         <input name='user_password' type={showType} id='user_password' value={values.password} onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-psw-default plholder bold-12px-grey'}`} placeholder='**********' />
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
         <p className='connexion-lien'><a href='/'>Mot de passe perdu ?</a></p>
-        {errors && values.user_mail === '' && values.user_password === '' ? <button onClick={handleChange} className='connexion-btn-inactif'> se connecter</button> : <button onClick={submit} className='connexion-btn-actif'>se connecter</button>}
+
+        {errors && values.user_password === '' ? <button onChange={handleChange} className='connexion-btn-inactif'> se connecter<Redirect to='/onboarding/login' /></button> : <button onChange={handleChange} onClick={submit} className='connexion-btn-actif'>se connecter<Redirect to='/moments' /></button>}
       </form>
     </div>
   )
