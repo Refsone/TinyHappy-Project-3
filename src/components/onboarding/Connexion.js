@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Header from '../commons/header/Header'
 import useForm from './useForm'
@@ -12,22 +12,31 @@ import { Redirect } from 'react-router-dom'
 
 const Connexion = (props) => {
   const { handleChange, handleSubmit, values, errors, setErrors } = useForm(submit, validationLogIn)
-
+  const [redirect, setRedirect] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false)
   const [visible, setVisible] = useState(false)
   const showType = visible ? 'text' : 'password'
+
+  useEffect(() => {
+    if (loggedIn) {
+      console.log('salut')
+      setRedirect(true)
+    }
+  }, [loggedIn])
 
   async function submit (e) {
     e.preventDefault()
     console.log(values)
+    console.log(loggedIn)
     try {
       await axios.post('http://localhost:7500/users/login', values)
         .then(res => res.headers['x-access-token'])
-        .then(data => localStorage.setItem('x-access-token', data))
+        .then(data => localStorage.setItem('x-access-token', data), setLoggedIn(true))
     } catch (err) {
       errors && setErrors(errors)
     }
   }
-
+  console.log('redirect', redirect, 'loggedIn', loggedIn)
   return (
     <div className='connexion-background'>
       <Header location={props.location.pathname} />
@@ -45,7 +54,8 @@ const Connexion = (props) => {
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
         <p className='connexion-lien'><a href='/'>Mot de passe perdu ?</a></p>
 
-        {errors && values.user_password === '' ? <button onChange={handleChange} className='connexion-btn-inactif'> se connecter<Redirect to='/onboarding/login' /></button> : <button onChange={handleChange} onClick={submit} className='connexion-btn-actif'>se connecter<Redirect to='/moments' /></button>}
+        {errors && values.user_password < 8 ? <button onChange={handleChange} className='connexion-btn-inactif'> se connecter</button> : <button onChange={handleChange} onClick={(e) => submit(e)} className='connexion-btn-actif'>se connecter</button>}
+        {redirect && <Redirect to='/moments' />}
       </form>
     </div>
   )
