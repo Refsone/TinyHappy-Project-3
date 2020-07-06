@@ -9,7 +9,6 @@ import './Header.css'
 const Header = (props) => {
   const { burger, location } = props
   const memberId = location === '/family/modify' && props.memberId
-  console.log(location)
   let link = ''
   let text = ''
   switch (location) {
@@ -74,7 +73,7 @@ const Header = (props) => {
   return (
     <>
       <div className='header-container'>
-        {burger ? <Sidemenu /> : <div></div>}
+        {burger ? <Sidemenu /> : <div> </div>}
         <img className='logo-monogramme' src={monogramme} alt='Logo Tiny Happy' />
         <div>
           {location &&

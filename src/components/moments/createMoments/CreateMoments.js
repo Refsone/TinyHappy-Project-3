@@ -12,18 +12,18 @@ import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodul
 import calendarIcon from '../../../images/calendrier.svg'
 
 const CreateMoment = (props) => {
-  const [familyMember, setFamilyMember] = useState([])
-  const [user, setUser] = useState([])
-  const [date, setDate] = useState(new Date())
   const [active, setActive] = useState(false)
-  const [textInMomentArea, setTextInMomentArea] = useState('')
-  const [textInContextArea, setTextInContextArea] = useState('')
+  const [date, setDate] = useState(new Date())
+  const [familyMember, setFamilyMember] = useState([])
   const [memberFamilyIsPresentAtMoment, setMemberFamilyIsPresentAtMoment] = useState([])
   const [momentTypeId, setMomentTypeId] = useState(1)
-  const [userIsPresent, setUserIsPresent] = useState(0)
-  const [sendMomentSucceed, setSendMomentSucceed] = useState(false)
   const [redirect, setRedirect] = useState(false)
   const [sendError, setSendError] = useState(false)
+  const [sendMomentSucceed, setSendMomentSucceed] = useState(false)
+  const [textInContextArea, setTextInContextArea] = useState('')
+  const [textInMomentArea, setTextInMomentArea] = useState('')
+  const [user, setUser] = useState([])
+  const [userIsPresent, setUserIsPresent] = useState(0)
 
   const id = 1
   const path = props.location.pathname
