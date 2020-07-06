@@ -17,17 +17,21 @@ const CardMembers = () => {
   useEffect(() => {
     fetchUser()
   }, [])
+
   useEffect(() => {
     fetchFamilyMembers()
   }, [])
+
   const fetchFamilyMembers = (userId = 1) => {
     axios.get(`http://localhost:7500/users/${userId}/family`)
       .then(res => setMembers(res.data))
   }
+
   const fetchUser = (userId = 1) => {
     axios.get(`http://localhost:7500/users/${userId}`)
       .then(res => setUser(res.data))
   }
+
   const formatDate = (date) => {
     Moment.locale('fr')
     if (date !== null) {
@@ -37,6 +41,7 @@ const CardMembers = () => {
       return date
     }
   }
+
   return (
     <>
       <Header burger />

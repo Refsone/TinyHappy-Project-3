@@ -73,7 +73,7 @@ const Header = (props) => {
   return (
     <>
       <div className='header-container'>
-        {burger ? <Sidemenu /> : <div></div>}
+        {burger ? <Sidemenu /> : <div> </div>}
         <img className='logo-monogramme' src={monogramme} alt='Logo Tiny Happy' />
         <div>
           {location &&
