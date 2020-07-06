@@ -82,16 +82,16 @@ const SignUp = (props) => {
           <label htmlFor='user_mail' className='label-settings bold-12px-grey'>email</label>
           <input name='user_mail' type='email' id='user_mail' value={user_mail} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' autoComplete='off' placeholder='mon@email.com' required />
 
-          <label htmlFor='user_mail' className='label-settings bold-12px-grey'>mot de passe</label>
+          <label htmlFor='user_password' className='label-settings bold-12px-grey'>mot de passe</label>
           <div className='settings-container-eye'>
             <img src={visibleOne ? eyeOpen : eyeClosed} onClick={() => setVisibleOne(!visibleOne)} alt='' />
           </div>
-          <input name='user_mail' type={showTypeOne} id='user_password' value={user_password} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
-          <label htmlFor='user_mail' className='label-settings bold-12px-grey'>confirmer le mot de passe </label>
+          <input name='user_password' type={showTypeOne} id='user_password' value={user_password} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
+          <label htmlFor='user_password' className='label-settings bold-12px-grey'>confirmer le mot de passe </label>
           <div className='settings-container-eye'>
             <img src={visibleTwo ? eyeOpen : eyeClosed} onClick={() => setVisibleTwo(!visibleTwo)} alt='' />
           </div>
-          <input name='user_mail' type={showTypeTwo} id='userConfirmPassword' value={userConfirmPassword} onChange={confirmPassword} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
+          <input name='user_password' type={showTypeTwo} id='userConfirmPassword' value={userConfirmPassword} onChange={confirmPassword} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
           {successfull ? <ConfirmButton message='inscription reussie' confirm /> : btn}
           {error && <p className='signUp-error'>Une erreur s'est produite lors de l'inscription</p>}
           {redirect && <Redirect to='/onboarding/login' />}
