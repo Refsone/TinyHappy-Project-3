@@ -1,0 +1,23 @@
+.contacts-list {
+  margin-bottom: 9.5em;
+}
+
+.contacts-list
+.select-contact-page {
+  margin-bottom: 3em;
+}
+
+.contacts-list
+.title {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 1.2rem;
+  margin-top: 6em;
+}
+
+.contacts-list
+.title-add {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 1.2rem;
+}

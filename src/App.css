@@ -32,7 +32,7 @@ html {
   background-color: #F5F9FD;
 }
 
-.general-connexion-form input, label {
+.general-connexion-form input {
   margin: 10px 20px 5px 20px;
   padding: 12px 0px 10px 15px;
   font-size: .75em;
@@ -51,7 +51,9 @@ html {
   text-transform: uppercase;
   text-align: left;
   font-weight: 700;
-  margin: 16px 0 5px 20px;
+  margin: 10px 20px 5px 20px;
+  padding: 12px 0px 10px 15px;
+  font-size: .75em;
 }
 
 .general-connexion-form .plholder::placeholder {
@@ -96,7 +98,7 @@ html {
   font-size: 14px;
 }
 
-.msg-error{
+.msg-error {
   position: absolute;
   left: -2px;
   padding-top: 5px;

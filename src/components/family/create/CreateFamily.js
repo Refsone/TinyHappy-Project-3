@@ -64,7 +64,7 @@ const CreateFamily = (props) => {
     if (validate) {
       const timer = setTimeout(() => {
         setRedirect(true)
-      }, 2500)
+      }, 1500)
       return () => {
         clearTimeout(timer)
       }
