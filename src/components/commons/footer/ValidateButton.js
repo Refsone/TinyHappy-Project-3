@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import './ValidateButton.css'
 
@@ -17,6 +18,12 @@ const ValidateButton = (props) => {
       </button>
     </div>
   )
+}
+
+ValidateButton.propTypes = {
+  active: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired
 }
 
 export default ValidateButton
