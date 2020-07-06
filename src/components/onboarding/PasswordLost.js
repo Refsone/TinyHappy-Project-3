@@ -13,8 +13,20 @@ const PasswordLost = (props) => {
   const [email, setEmail] = useState()
 
   const handleChange = (value) => {
-    regexMail.test(value) ? setMailError(false) : setMailError(true)
+    if (regexMail.test(value)) {
+      setMailError(false)
+      setIsValidate(true)
+    } else {
+      setMailError(true)
+      setIsValidate(false)
+    }
     setEmail(value)
+  }
+
+  const handleClick = () => {
+    document.getElementById('email').value = ''
+    setIsValidate(false)
+    console.log(`Envoi de l'Email vers ${email} réussi`)
   }
 
   return (
@@ -30,14 +42,20 @@ const PasswordLost = (props) => {
               className={mailError ? 'error bold-12px-grey plholder' : 'bold-12px-grey plholder'}
               type='email'
               onChange={(e) => handleChange(e.target.value)}
-              id='email' value={email} placeholder='prenom@exemple.com'
+              id='email'
+              placeholder='prenom@exemple.com'
             />
             {mailError &&
               <p className='msg-error'>L'adresse E-mail est invalide</p>}
           </div>
         </div>
       </form>
-      <ValidateButton location={props.location.pathname} active={isValidate && true} name='valider' />
+      <ValidateButton
+        location={props.location.pathname}
+        active={isValidate && true}
+        name='valider'
+        handleClick={handleClick}
+      />
     </>
   )
 }
