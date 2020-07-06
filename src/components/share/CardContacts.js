@@ -47,7 +47,8 @@ const CardContacts = () => {
     <div>
       <Header burger />
       <div className='cardContact'>
-        {!contacts || contacts.length === 0 ?
+        {!contacts || contacts.length === 0
+          ?
           <>
             <ZeroContact />
             <AddContact handleclick={handleclick} />

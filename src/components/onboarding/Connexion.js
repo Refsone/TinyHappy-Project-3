@@ -41,7 +41,7 @@ const Connexion = (props) => {
 
   const handleChange = e => {
     setLoginData({ ...loginData, [e.target.id]: e.target.value })
-  }  
+  }
   const sendSignUp = (e) => {
     e.preventDefault()
     axios.post('http://localhost:7500/sign-up', loginData)
@@ -55,7 +55,7 @@ const Connexion = (props) => {
       .catch(err => err && setError(true))
   }
 
-  const btn = user_mail === '' || user_password === '' 
+  const btn = user_mail === '' || user_password === ''
     ? <button type='submit' className='btn-connexion-none' disabled>se connecter</button>
     : <button type='submit' className='btn-connexion' onClick={(e) => sendSignUp(e)}>se connecter</button>
 
