@@ -3,13 +3,13 @@ import axios from 'axios'
 import ConfirmButton from '../commons/footer/ConfirmButton'
 import eyeClosed from '../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../images/eye-open.svg'
-import LogoHeader from '../commons/header/LogoHeader'
+import Header from '../commons/header/Header'
 import { Redirect } from 'react-router-dom'
 
 import '../onboarding/Connexion.css'
 import '../menu/Password.css'
 
-const Connexion = () => {
+const Connexion = (props) => {
   const data = {
     user_mail: '',
     user_password: '',
@@ -61,7 +61,7 @@ const Connexion = () => {
 
   return (
     <>
-      <LogoHeader />
+      <Header location={props.location.pathname} />
       <div className='settings-container-pwdmail'>
 
         <form className='general-form-connexion' noValidate>
