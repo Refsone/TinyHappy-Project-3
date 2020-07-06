@@ -29,14 +29,17 @@
   },
   "lint-staged": {
     "*.js": [
-      "npx standard"
+      "npx standard --fix --env browser"
     ],
     "*.jsx": [
-      "npx standard"
+      "npx standard --fix --env browser"
     ]
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "standard":{
+    "env": "browser"
   },
   "browserslist": {
     "production": [

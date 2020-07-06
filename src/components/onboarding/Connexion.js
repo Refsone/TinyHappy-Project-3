@@ -1,84 +1,60 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import ConfirmButton from '../commons/footer/ConfirmButton'
-import eyeClosed from '../../images/eye-slash-regular1.svg'
-import eyeOpen from '../../images/eye-open.svg'
 import Header from '../commons/header/Header'
 import { Redirect } from 'react-router-dom'
+import useForm from './useForm'
+import validationLogIn from './validateLogin'
 
-import '../onboarding/Connexion.css'
-import '../menu/Password.css'
+import eyeClosed from '../../images/eye-slash-regular1.svg'
+import eyeOpen from '../../images/eye-open.svg'
+
+import './Connexion.css'
 
 const Connexion = (props) => {
-  const data = {
-    user_mail: '',
-    user_password: '',
-    parameter_id: 1
-  }
-
-  const [visibleOne, setVisibleOne] = useState(false)
-  const [loginData, setLoginData] = useState(data)
-  const [successfull, setSuccessfull] = useState(false)
-  const [error, setError] = useState(false)
+  const { handleChange, handleSubmit, values, errors, setErrors } = useForm(submit, validationLogIn)
   const [redirect, setRedirect] = useState(false)
-
-  const showTypeOne = visibleOne ? 'text' : 'password'
-
-  const { user_mail, user_password } = loginData
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [visible, setVisible] = useState(false)
+  const showType = visible ? 'text' : 'password'
 
   useEffect(() => {
-    if (successfull) {
-      const timer = setTimeout(() => {
-        setRedirect(true)
-      }, 1500)
-      return () => {
-        clearTimeout(timer)
-      }
-    } else {
-      setRedirect(false)
+    if (loggedIn) {
+      setRedirect(true)
     }
-  }, [successfull, error])
+  }, [loggedIn])
 
-  const handleChange = e => {
-    setLoginData({ ...loginData, [e.target.id]: e.target.value })
-  }
-  const sendSignUp = (e) => {
+  async function submit (e) {
     e.preventDefault()
-    axios.post('http://localhost:7500/sign-up', loginData)
-      .then(res => {
-        if (res.status === 201) {
-          setSuccessfull(true)
-        } else {
-          setError(true)
-        }
-      })
-      .catch(err => err && setError(true))
+    try {
+      await axios.post('http://localhost:7500/users/login', values)
+        .then(res => res.headers['x-access-token'])
+        .then(data => localStorage.setItem('x-access-token', data), setLoggedIn(true))
+    } catch (err) {
+      errors && setErrors(errors)
+    }
   }
-
-  const btn = user_mail === '' || user_password === ''
-    ? <button type='submit' className='btn-connexion-none' disabled>se connecter</button>
-    : <button type='submit' className='btn-connexion' onClick={(e) => sendSignUp(e)}>se connecter</button>
-
+  console.log('redirect', redirect, 'loggedIn', loggedIn)
   return (
-    <>
+    <div className='connexion-background'>
       <Header location={props.location.pathname} />
-      <div className='settings-container-pwdmail'>
+      <form onSubmit={handleSubmit} className='general-form-connexion' noValidate>
+        <label htmlFor='user_mail' name='user_mail' className='label-connexion'>email</label>
+        <input name='user_mail' type='email' id='user_mail' className={`${errors.user_mail ? 'input-connexion-error' : 'input-connexion plholder bold-12px-grey'}`} placeholder='mon@email.com' value={values.email} onChange={handleChange} />
 
-        <form className='general-form-connexion' noValidate>
-          <label htmlFor='user_mail' className='label-settings bold-12px-grey'>email</label>
-          <input name='user_mail' type='email' id='user_mail' value={user_mail} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' autoComplete='off' placeholder='mon@email.com' required />
+        {errors.user_mail && <p className='msg-error'>{errors.user_mail}</p>}
 
-          <label htmlFor='user_mail' className='label-settings bold-12px-grey'>mot de passe</label>
-          <div className='settings-container-eye'>
-            <img src={visibleOne ? eyeOpen : eyeClosed} onClick={() => setVisibleOne(!visibleOne)} alt='' />
-          </div>
-          <input name='user_mail' type={showTypeOne} id='user_password' value={user_password} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
-          {successfull ? <ConfirmButton message='inscription reussie' confirm /> : btn}
-          {error && <p className='signUp-error'>Une erreur s'est produite lors de la connection</p>}
-          {redirect && <Redirect to='/moments/Posts' />}
-        </form>
-      </div>
-    </>
+        <label htmlFor='user_password' className='label-connexion'>mot de passe</label>
+        <div className='settings-container-eye'>
+          <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
+        </div>
+        <input name='user_password' type={showType} id='user_password' value={values.password} onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-psw-default plholder bold-12px-grey'}`} placeholder='**********' />
+        {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
+        <p className='connexion-lien'><a href='/'>Mot de passe perdu ?</a></p>
+
+        {errors && values.user_password < 8 ? <button onChange={handleChange} className='connexion-btn-inactif'> se connecter</button> : <button onChange={handleChange} onClick={(e) => submit(e)} className='connexion-btn-actif'>se connecter</button>}
+        {redirect && <Redirect to='/moments' />}
+      </form>
+    </div>
   )
 }
 
