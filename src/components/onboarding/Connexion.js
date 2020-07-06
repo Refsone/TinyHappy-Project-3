@@ -4,14 +4,12 @@ import { useHistory } from 'react-router-dom'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
 
-
 import ValidateButton from '../commons/footer/ValidateButton'
 
 import './Connexion.css'
 
 const Connexion = (props) => {
-
-  let history = useHistory()
+  const history = useHistory()
   const { handleChange, handleSubmit, values, errors } = useForm(submit, validationLogIn)
   function submit() {
     console.log('sent succesfully')
@@ -35,7 +33,7 @@ const Connexion = (props) => {
 
           <p className='connexion-lien'><a href='/'>Mot de passe perdu ?</a></p>
           {/* {errors && values.user_mail === '' && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif'>se connecter</button>} */}
-          <ValidateButton name='se connecter' handleClick={handleClick} active/>
+          <ValidateButton name='se connecter' handleClick={handleClick} active />
         </form>
       </div>
     </>
