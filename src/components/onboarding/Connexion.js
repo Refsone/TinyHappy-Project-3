@@ -1,20 +1,18 @@
 import React from 'react'
 import Header from '../commons/header/Header'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
-
 
 import ValidateButton from '../commons/footer/ValidateButton'
 
 import './Connexion.css'
 
 const Connexion = (props) => {
-
-  let history = useHistory()
+  const history = useHistory()
   const { handleChange, handleSubmit, values, errors } = useForm(submit, validationLogIn)
   function submit() {
-    console.log('sent succesfully')
+    console.log ('sent succesfully')
   }
 
   const handleClick = () => history.push('/family')
@@ -33,7 +31,7 @@ const Connexion = (props) => {
           <input name='user_password' type='password' id='user_password' value={values.password} onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-psw-default mdp-forbiden plholder bold-12px-grey'}`} placeholder='**********' />
           {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
 
-          <p className='connexion-lien'><a href='/'>Mot de passe perdu ?</a></p>
+          <p className='connexion-lien'><Link to='/onboarding/lostpwd'>Mot de passe perdu ?</Link></p>
           {/* {errors && values.user_mail === '' && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif'>se connecter</button>} */}
           <ValidateButton name='se connecter' handleClick={handleClick} active/>
         </form>
