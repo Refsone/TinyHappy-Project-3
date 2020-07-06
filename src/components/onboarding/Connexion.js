@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Header from '../commons/header/Header'
+import { Redirect } from 'react-router-dom'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
 
@@ -8,7 +9,6 @@ import eyeClosed from '../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../images/eye-open.svg'
 
 import './Connexion.css'
-import { Redirect } from 'react-router-dom'
 
 const Connexion = (props) => {
   const { handleChange, handleSubmit, values, errors, setErrors } = useForm(submit, validationLogIn)
