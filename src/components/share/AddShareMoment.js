@@ -12,7 +12,7 @@ import ValidateButton from '../commons/footer/ValidateButton'
 import './AddShareMoment.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
-function AddShareMoment(props) {
+function AddShareMoment (props) {
   const [startDate, setStartDate] = useState(new Date('2020-05-12'))
   const [endDate, setEndDate] = useState(new Date())
   const [countSelect, setCountSelect] = useState(0)
