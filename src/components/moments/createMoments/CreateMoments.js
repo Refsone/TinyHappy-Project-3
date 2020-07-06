@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import axios from 'axios'
 
 import DatePicker from 'react-datepicker'
 import Header from '../../commons/header/Header'
-import MomentNavbar from './MomentNavbar'
 import Moment from './Moment'
-import PropTypes from 'prop-types'
+import MomentNavbar from './MomentNavbar'
 
 import './CreateMoments.css'
 import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css'
