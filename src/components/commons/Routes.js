@@ -12,6 +12,7 @@ import DisplaySettings from '../menu/DisplaySettings'
 import ModifySettings from '../menu/ModifySettings'
 import PasswordLost from '../onboarding/PasswordLost'
 import Post from '../moments/Posts'
+import PasswordReset from '../onboarding/PasswordReset'
 import SignUp from '../onboarding/SignUp'
 
 const routes = (props) => {
@@ -29,6 +30,7 @@ const routes = (props) => {
       <Route path='/moments/create/milestone' component={CreateMoments} />
       <Route path='/onboarding/login' component={Connexion} />
       <Route path='/onboarding/lostpwd' component={PasswordLost} />
+      <Route path='/onboarding/resetpwd' component={PasswordReset} />
       <Route path='/onboarding/signup' component={SignUp} />
       <Route exact path='/settings' component={DisplaySettings} />
       <Route path='/settings/modify/email' component={ModifySettings} />

@@ -12,7 +12,7 @@ const Connexion = (props) => {
   const history = useHistory()
   const { handleChange, handleSubmit, values, errors } = useForm(submit, validationLogIn)
   function submit() {
-    console.log ('sent succesfully')
+    console.log('sent succesfully')
   }
 
   const handleClick = () => history.push('/family')
@@ -33,7 +33,7 @@ const Connexion = (props) => {
 
           <p className='connexion-lien'><Link to='/onboarding/lostpwd'>Mot de passe perdu ?</Link></p>
           {/* {errors && values.user_mail === '' && values.user_password === '' ? <button type='submit' className='connexion-btn-inactif'>se connecter</button> : <button type='submit' className='connexion-btn-actif'>se connecter</button>} */}
-          <ValidateButton name='se connecter' handleClick={handleClick} active/>
+          <ValidateButton name='se connecter' handleClick={handleClick} active />
         </form>
       </div>
     </>
