@@ -28,10 +28,6 @@ const Header = (props) => {
       text = 'annuler'
       link = '/moments'
       break
-    case '/onboarding/login':
-      text = 'annuler'
-      link = '/'
-      break
     case '/onboarding/lostpwd':
       text = 'annuler'
       link = '/onboarding/login'
@@ -39,6 +35,14 @@ const Header = (props) => {
     case '/onboarding/resetpwd':
       text = 'accueil'
       link = '/'
+      break
+    case '/onboarding/signup':
+      text = 'se connecter'
+      link = '/onboarding/login'
+      break
+    case '/onboarding/login':
+      text = 's\'inscrire'
+      link = '/onboarding/signup'
       break
     case '/share/moments':
       text = 'retour'

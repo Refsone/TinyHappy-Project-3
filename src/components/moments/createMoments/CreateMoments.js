@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import axios from 'axios'
 
-import calendarIcon from '../../../images/calendrier.svg'
 import DatePicker from 'react-datepicker'
 import Header from '../../commons/header/Header'
-import Milestone from './Milestone'
+import Moment from './Moment'
 import MomentNavbar from './MomentNavbar'
-import Quote from './Quote'
 
-import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css'
 import './CreateMoments.css'
+import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css'
+import calendarIcon from '../../../images/calendrier.svg'
 
 const CreateMoment = (props) => {
-  const [familyMember, setFamilyMember] = useState([])
-  const [user, setUser] = useState([])
-  const [date, setDate] = useState(new Date())
   const [active, setActive] = useState(false)
-  const [textInMomentArea, setTextInMomentArea] = useState('')
-  const [textInContextArea, setTextInContextArea] = useState('')
+  const [date, setDate] = useState(new Date())
+  const [familyMember, setFamilyMember] = useState([])
   const [memberFamilyIsPresentAtMoment, setMemberFamilyIsPresentAtMoment] = useState([])
   const [momentTypeId, setMomentTypeId] = useState(1)
-  const [userIsPresent, setUserIsPresent] = useState(0)
-  const [sendMomentSucceed, setSendMomentSucceed] = useState(false)
   const [redirect, setRedirect] = useState(false)
   const [sendError, setSendError] = useState(false)
+  const [sendMomentSucceed, setSendMomentSucceed] = useState(false)
+  const [textInContextArea, setTextInContextArea] = useState('')
+  const [textInMomentArea, setTextInMomentArea] = useState('')
+  const [user, setUser] = useState([])
+  const [userIsPresent, setUserIsPresent] = useState(0)
 
   const id = 1
   const path = props.location.pathname
@@ -56,6 +56,10 @@ const CreateMoment = (props) => {
       .then(res => res.status === 201 ? setSendMomentSucceed(true) : setSendError(true))
       .catch(err => console.log('an error is occured, the message is:' + err))
   }
+
+  useEffect(() => {
+    (userIsPresent !== 0 || memberFamilyIsPresentAtMoment.length > 0) && textInMomentArea.length > 0 ? setActive(true) : setActive(false)
+  }, [userIsPresent, memberFamilyIsPresentAtMoment, textInMomentArea])
 
   useEffect(() => {
     if (sendMomentSucceed || sendError) {
@@ -93,17 +97,9 @@ const CreateMoment = (props) => {
     setTextInContextArea(e.target.value)
   }
 
-  const resetStateOnSwitch = (e) => {
-    setActive(false)
+  const SwitchMomentType = (e) => {
     setMomentTypeId(e)
-    setMemberFamilyIsPresentAtMoment([])
-    setTextInMomentArea('')
-    setTextInContextArea('')
   }
-
-  useEffect(() => {
-    (userIsPresent > 0 || memberFamilyIsPresentAtMoment.length > 0) && textInMomentArea.length > 0 ? setActive(true) : setActive(false)
-  }, [userIsPresent, memberFamilyIsPresentAtMoment, textInMomentArea])
 
   const CustomInput = ({ value, onClick }) => (
     <div className='calendar-moment bold-12px-grey' onClick={onClick}>
@@ -116,22 +112,31 @@ const CreateMoment = (props) => {
     <>
       <Header location={path} burger />
       <div className='create'>
-        <MomentNavbar resetStateOnSwitch={resetStateOnSwitch} />
-        {path === '/moments/create/milestone'
-          ? <Milestone sendMomentSucceed={sendMomentSucceed} memberFamilyIsPresentAtMoment={memberFamilyIsPresentAtMoment} userIsPresent={userIsPresent} textInContextArea={textInContextArea} textInMomentArea={textInMomentArea} buttonSelectAuthor={buttonSelectAuthor} active={active} SendCreateMoment={SendCreateMoment} onChangeTextInContextArea={onChangeTextInContextArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />
-          : <Quote sendMomentSucceed={sendMomentSucceed} memberFamilyIsPresentAtMoment={memberFamilyIsPresentAtMoment} userIsPresent={userIsPresent} textInContextArea={textInContextArea} textInMomentArea={textInMomentArea} buttonSelectAuthor={buttonSelectAuthor} active={active} SendCreateMoment={SendCreateMoment} onChangeTextInContextArea={onChangeTextInContextArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />}
-        <DatePicker
-          selected={date}
-          locale='fr'
-          onChange={date => setDate(date)}
-          dateFormat='EEEE dd MMMM yyyy'
-          customInput={<CustomInput />}
-        />
+        <MomentNavbar SwitchMomentType={SwitchMomentType} />
+        <Moment momentTypeId={momentTypeId} sendMomentSucceed={sendMomentSucceed} memberFamilyIsPresentAtMoment={memberFamilyIsPresentAtMoment} userIsPresent={userIsPresent} textInContextArea={textInContextArea} textInMomentArea={textInMomentArea} buttonSelectAuthor={buttonSelectAuthor} active={active} SendCreateMoment={SendCreateMoment} onChangeTextInContextArea={onChangeTextInContextArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />
+        <DatePicker selected={date} locale='fr' onChange={date => setDate(date)} dateFormat='EEEE dd MMMM yyyy' customInput={<CustomInput />} />
         {sendError && <p className='sendError'>Une erreur s'est produite lors de l'envoi</p>}
         {redirect && <Redirect to='/moments' />}
       </div>
     </>
   )
+}
+
+CreateMoment.propTypes = {
+  SwitchMomentType: PropTypes.func.isRequired,
+  momentTypeId: PropTypes.number.isRequired,
+  sendMomentSucceed: PropTypes.func.isRequired,
+  memberFamilyIsPresentAtMoment: PropTypes.array.isRequired,
+  userIsPresent: PropTypes.number.isRequired,
+  textInContextArea: PropTypes.string,
+  textInMomentArea: PropTypes.string,
+  buttonSelectAuthor: PropTypes.func.isRequired,
+  active: PropTypes.bool.isRequired,
+  SendCreateMoment: PropTypes.func.isRequired,
+  onChangeTextInContextArea: PropTypes.func.isRequired,
+  onChangeTextInMomentArea: PropTypes.func.isRequired,
+  user: PropTypes.array.isRequired,
+  familyMember: PropTypes.array.isRequired
 }
 
 export default CreateMoment
