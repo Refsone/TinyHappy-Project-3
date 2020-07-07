@@ -12,7 +12,7 @@ import ValidateButton from '../commons/footer/ValidateButton'
 import './AddShareMoment.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
-function AddShareMoment(props) {
+function AddShareMoment (props) {
   const [startDate, setStartDate] = useState(new Date('2020-05-12'))
   const [endDate, setEndDate] = useState(new Date())
   const [countSelect, setCountSelect] = useState(0)
@@ -71,7 +71,6 @@ function AddShareMoment(props) {
     const momentsToSend = moments
       .filter(moment => Moment(moment.moment_event_date).format(format) >= Moment(startDate).format(format) && Moment(moment.moment_event_date).format(format) <= Moment(endDate).format(format))
       .filter(moment => {
-        // console.log(moment.firstname_color.map(name => authorsSelect.includes(name.firstname)))
         return moment.firstname_color.map(name => authorsSelect.includes(name.firstname))
       })
       .filter(moment => {

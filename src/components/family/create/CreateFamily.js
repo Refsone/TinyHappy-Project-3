@@ -179,7 +179,6 @@ const CreateFamily = (props) => {
           .catch((err) => console.log('an error is occured, the message is:' + err))
       } else {
         axios.put('http://localhost:7500/family-members/update', addToDb)
-          .then(console.log('oui'))
           .then(res => res.status === 200 && (setValidate(true)))
           .catch((err) => console.log('an error is occured, the message is:' + err))
       }
