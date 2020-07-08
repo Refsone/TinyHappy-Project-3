@@ -42,7 +42,6 @@ const CardContacts = () => {
       .then(res => res.status === 200 && recupEmail())
       .catch(err => console.log(err))
   }
-  console.log(contacts)
   return (
     <div>
       <Header burger />

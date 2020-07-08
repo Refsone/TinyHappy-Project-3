@@ -68,6 +68,10 @@ function AddShareMoment (props) {
   const handleClick = () => {
     Moment.locale('fr')
     const format = 'YYYY-MM-DD'
+    const userName = 'Jérôme'
+    const { selectedMail } = props.location.data
+    console.log(selectedMail)
+
     const momentsToSend = moments
       .filter(moment => Moment(moment.moment_event_date).format(format) >= Moment(startDate).format(format) && Moment(moment.moment_event_date).format(format) <= Moment(endDate).format(format))
       .filter(moment => {
@@ -83,19 +87,17 @@ function AddShareMoment (props) {
         }
         return ''
       })
-    const userName = 'Jérôme'
     if (authorsSelect.indexOf(userName) !== -1) {
       authorsSelect.splice(authorsSelect.indexOf(userName), 1)
     }
-    axios.post('http://localhost:7500/share', { momentsToSend, userName, authorsSelect })
+    axios.post('http://localhost:7500/share', { momentsToSend, userName, authorsSelect, selectedMail })
       .then(res => {
-        if (res.status === 200)
+        if (res.status === 200) {
           setTimeout(() => setIsSend(true), 1000)
+        }
         console.log(res.status)
       })
-
   }
-
   return (
     <>
       {isSend && <ShareSend />}

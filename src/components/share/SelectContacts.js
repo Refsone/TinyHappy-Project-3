@@ -31,7 +31,6 @@ const SelectContacts = (props) => {
   }
 
   useEffect(() => {
-    console.log(selectedMail)
   }, [bool])
 
   return (
