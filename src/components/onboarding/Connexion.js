@@ -10,6 +10,8 @@ import eyeOpen from '../../images/eye-open.svg'
 
 import './Connexion.css'
 
+const backUrl = process.env.REACT_APP_API_URL
+
 const Connexion = (props) => {
   const { handleChange, handleSubmit, values, errors, setErrors } = useForm(submit, validationLogIn)
   const [redirect, setRedirect] = useState(false)
@@ -26,7 +28,7 @@ const Connexion = (props) => {
   async function submit (e) {
     e.preventDefault()
     try {
-      await axios.post('http://localhost:7500/users/login', values)
+      await axios.post(`${backUrl}/users/login`, values)
         .then(res => res.headers['x-access-token'])
         .then(data => localStorage.setItem('x-access-token', data), setLoggedIn(true))
     } catch (err) {
