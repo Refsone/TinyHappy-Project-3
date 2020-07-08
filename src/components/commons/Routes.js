@@ -10,9 +10,9 @@ import CreateFamily from '../family/create/CreateFamily'
 import CreateMoments from '../moments/createMoments/CreateMoments'
 import DisplaySettings from '../menu/DisplaySettings'
 import ModifySettings from '../menu/ModifySettings'
-import PasswordLost from '../onboarding/PasswordLost'
+import PasswordLost from '../onboarding/passwordLost/PasswordLost'
 import Post from '../moments/Posts'
-import PasswordReset from '../onboarding/PasswordReset'
+import PasswordReset from '../onboarding/passwordLost/PasswordReset'
 import SignUp from '../onboarding/SignUp'
 
 const routes = (props) => {

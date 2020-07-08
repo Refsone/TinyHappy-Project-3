@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
-import Header from '../commons/header/Header'
-import ValidateButton from '../commons/footer/ValidateButton'
+import Header from '../../commons/header/Header'
+import ValidateButton from '../../commons/footer/ValidateButton'
 
-import './PasswordReset.css'
+import './PasswordLost.css'
 import Axios from 'axios'
 
-const PasswordReset = (props) => {
+const PasswordLost = (props) => {
   const regexMail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/
 
   const [isValidate, setIsValidate] = useState(false)
@@ -37,13 +37,17 @@ const PasswordReset = (props) => {
       })
   }
 
+  const submitForm = (e) => {
+    e.preventDefault()
+  }
+
   return (
     <>
       <Header location={props.location.pathname} />
-      <form className='form-passwordReset'>
-        <div className='cont-passwordReset'>
+      <form className='form-passwordLost' onSubmit={submitForm}>
+        <div className='cont-passwordLost'>
           <div className='bold-16px-grey text'>MOT DE PASSE PERDU</div>
-          <div className='regular-16px-grey text'>Indiquez votre email et le mot de passe temporaire reçu.</div>
+          <div className='regular-16px-grey text'>Indiquez votre email pour recevoir un mot de passe temporaire.</div>
           <div>
             <label htmlFor='email' className='bold-12px-grey'>EMAIL</label>
             <input
@@ -68,4 +72,4 @@ const PasswordReset = (props) => {
   )
 }
 
-export default PasswordReset
+export default PasswordLost
