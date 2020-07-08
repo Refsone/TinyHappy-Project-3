@@ -1,28 +1,77 @@
 import React from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 import './InputComponent.css'
 
-import eyeClosed from '../../images/eye-slash-regular1.svg'
-import eyeOpen from '../../images/eye-open.svg'
+import eyeClosed from '../../../images/eye-slash-regular1.svg'
+import eyeOpen from '../../../images/eye-open.svg'
 
 const InputComponent = (props) => {
+  const { handleChange, handleEyes, id, inputError, messageError, pwdShow, onMouseOut } = props
+
+  const definePlaceHolder = id === 'mail' ? 'prenom@exemple.com' : '**********'
+  const labelName = () => {
+    switch (id) {
+      case 'mail':
+        return 'email'
+      case 'tempPwd':
+        return 'mot de passe temporaire'
+      case 'newPwd':
+        return 'Nouveau mot de passe'
+      case 'confirmPwd':
+        return 'confirmer le nouveau mot de passe'
+      default:
+        break
+    }
+  }
+  const inputType = () => {
+    if (id !== 'mail') {
+      return pwdShow[id] ? 'text' : 'password'
+    } else {
+      return 'email'
+    }
+  }
+
   return (
-    <div>
-      {/* <div className='settings-container-eye'>
-        <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
-      </div>
-      <label htmlFor='user_password' className='label-settings bold-12px-grey'>Mot de passe temporaire</label>
-      <input name='user_password' type={!visible ? 'password' : 'text'} id='user_password' onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-psw-default plholder bold-12px-grey'}`} placeholder='**********' onClick={handleChange} />
-      {errors.user_password && <p className='msg-error'>{errors.user_password}</p>} */}
+    <div class='spin-input'>
+      <label htmlFor={id} className='bold-12px-grey'>{labelName().toUpperCase()}</label>
+      <input
+        className={inputError[id] ? 'error bold-12px-grey plholder' : 'bold-12px-grey plholder'}
+        type={inputType()}
+        onChange={(e) => handleChange(e)}
+        id={id}
+        placeholder={definePlaceHolder}
+        onMouseOut={onMouseOut}
+      />
+      {id !== 'mail' &&
+        <img src={pwdShow[id] ? eyeClosed : eyeOpen} alt='' onClick={handleEyes} id={id} />}
+      {inputError[id] &&
+        <p className={id !== 'mail' ? 'msg-error' : 'msg-error-mail'}>{messageError[id]}</p>}
     </div>
   )
 }
 
 InputComponent.propTypes = {
   handleChange: PropTypes.func.isRequired,
-  handleVisible: PropTypes.func.isRequired,
-
+  handleEyes: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  inputError: PropTypes.shape({
+    mail: PropTypes.bool.isRequired,
+    tempPwd: PropTypes.bool.isRequired,
+    newPwd: PropTypes.bool.isRequired,
+    confirmPwd: PropTypes.bool.isRequired
+  }),
+  messageError: PropTypes.shape({
+    mail: PropTypes.string,
+    tempPwd: PropTypes.string,
+    newPwd: PropTypes.string,
+    confirmPwd: PropTypes.string
+  }),
+  pwdShow: PropTypes.shape({
+    tempPwd: PropTypes.bool.isRequired,
+    newPwd: PropTypes.bool.isRequired,
+    confirmPwd: PropTypes.bool.isRequired
+  })
 }
 
 export default InputComponent

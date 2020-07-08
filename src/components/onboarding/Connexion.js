@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Header from '../commons/header/Header'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
 
@@ -49,7 +49,7 @@ const Connexion = (props) => {
         </div>
         <input name='user_password' type={showType} id='user_password' value={values.password} onChange={handleChange} className={`${errors.user_password ? 'input-pws-error' : 'input-psw-default plholder bold-12px-grey'}`} placeholder='**********' />
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
-        <p className='connexion-lien'><a href='/'>Mot de passe perdu ?</a></p>
+        <p className='connexion-lien'><Link to='/onboarding/lostpwd'>Mot de passe perdu ?</Link></p>
 
         {errors && values.user_password < 8 ? <button onChange={handleChange} className='connexion-btn-inactif'> se connecter</button> : <button onChange={handleChange} onClick={(e) => submit(e)} className='connexion-btn-actif'>se connecter</button>}
         {redirect && <Redirect to='/moments' />}
