@@ -21,6 +21,8 @@ const Connexion = (props) => {
     if (loggedIn) {
       setRedirect(true)
     }
+    console.log(values)
+    console.log(loggedIn)
   }, [loggedIn])
 
   async function submit (e) {
@@ -28,8 +30,15 @@ const Connexion = (props) => {
     try {
       await axios.post('http://localhost:7500/users/login', values)
         .then(res => res.headers['x-access-token'])
-        .then(data => localStorage.setItem('x-access-token', data), setLoggedIn(true))
+        .then(data => {
+          if (data) {
+            console.log(data)
+            localStorage.setItem('x-access-token', data)
+            setLoggedIn(true)
+          }
+        })
     } catch (err) {
+      console.log(err)
       errors && setErrors(errors)
     }
   }
