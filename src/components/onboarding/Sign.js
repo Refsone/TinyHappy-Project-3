@@ -6,7 +6,7 @@ import './Sign.css'
 const Sign = () => {
   return (
     <div className='sign'>
-      <Link to='/moments/' className='connect'>se connecter</Link>
+      <Link to='/onboarding/login' className='connect'>se connecter</Link>
       <Link to='/onboarding/signup' className='register'>s'inscrire</Link>
     </div>
   )
