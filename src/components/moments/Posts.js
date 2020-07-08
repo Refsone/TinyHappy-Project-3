@@ -10,6 +10,9 @@ import Navbar from '../commons/footer/Navbar'
 
 import './Posts.css'
 
+
+const backUrl = process.env.REACT_APP_API_URL
+
 const Posts = (props) => {
   const [moments, setMoments] = useState([])
   const [refresh, setRefresh] = useState([false])
@@ -20,7 +23,7 @@ const Posts = (props) => {
   }, [refresh])
 
   const fetchUserMoment = () => {
-    axios.get('http://localhost:7500/users/1/moments/')
+    axios.get(`${backUrl}/users/1/moments/`)
       .then(res => setMoments(res.data))
   }
   const formatDate = (date) => {

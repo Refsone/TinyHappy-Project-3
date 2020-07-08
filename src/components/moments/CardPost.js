@@ -6,6 +6,8 @@ import './CardPost.css'
 import emptyHeart from '../../images/favori-heart.svg'
 import fullHeart from '../../images/favoris-heart-pink.svg'
 
+const backUrl = process.env.REACT_APP_API_URL
+
 const CardPost = (props) => {
   const { moment, boxStyle } = props
   const [favorite, setFavorite] = useState(moment.moment_favorite)
@@ -17,10 +19,10 @@ const CardPost = (props) => {
   const handleClickFavorite = (e) => {
     props.refreshMethod()
     setFavorite(!favorite)
-    axios.put('http://localhost:7500/moments', { moment_favorite: !favorite, id: e.target.id })
+    axios.put(`${backUrl}/moments`, { moment_favorite: !favorite, id: e.target.id })
   }
   const fetchUser = () => {
-    axios.get('http://localhost:7500/users/1')
+    axios.get(`${backUrl}/users/1`)
       .then(res => setUser(res.data))
   }
   return (

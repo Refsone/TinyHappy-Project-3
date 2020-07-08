@@ -9,6 +9,8 @@ import { Redirect } from 'react-router-dom'
 import './Connexion.css'
 import '../menu/Password.css'
 
+const backUrl = process.env.REACT_APP_API_URL
+
 const SignUp = (props) => {
   const data = {
     user_firstname: '',
@@ -47,7 +49,7 @@ const SignUp = (props) => {
   }
   const sendSignUp = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:7500/sign-up', loginData)
+    axios.post(`${backUrl}/sign-up`, loginData)
       .then(res => {
         if (res.status === 201) {
           setSuccessfull(true)
