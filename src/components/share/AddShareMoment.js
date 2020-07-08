@@ -12,7 +12,7 @@ import ValidateButton from '../commons/footer/ValidateButton'
 import './AddShareMoment.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
-function AddShareMoment(props) {
+function AddShareMoment (props) {
   const [startDate, setStartDate] = useState(new Date('2020-05-12'))
   const [endDate, setEndDate] = useState(new Date())
   const [countSelect, setCountSelect] = useState(0)
@@ -83,11 +83,17 @@ function AddShareMoment(props) {
         }
         return ''
       })
-    axios.post('http://localhost:7500/share', momentsToSend)
-      .catch(error => {
-        console.log(error)
+    const userName = 'Jérôme'
+    if (authorsSelect.indexOf(userName) !== -1) {
+      authorsSelect.splice(authorsSelect.indexOf(userName), 1)
+    }
+    axios.post('http://localhost:7500/share', { momentsToSend, userName, authorsSelect })
+      .then(res => {
+        if (res.status === 200)
+          setTimeout(() => setIsSend(true), 1000)
+        console.log(res.status)
       })
-    setTimeout(() => setIsSend(true), 1000)
+
   }
 
   return (
