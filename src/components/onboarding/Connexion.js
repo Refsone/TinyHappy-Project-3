@@ -42,7 +42,11 @@ const Connexion = (props) => {
       errors && setErrors(errors)
     }
   }
-  console.log('redirect', redirect, 'loggedIn', loggedIn)
+  
+  const passToken = () => {
+    
+  }
+
   return (
     <div className='connexion-background'>
       <Header location={props.location.pathname} />
