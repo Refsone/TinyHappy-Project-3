@@ -14,8 +14,7 @@ const SignUp = (props) => {
     user_firstname: '',
     user_lastname: '',
     user_mail: '',
-    user_password: '',
-    parameter_id: 1
+    user_password: ''
   }
 
   const [visibleOne, setVisibleOne] = useState(false)
