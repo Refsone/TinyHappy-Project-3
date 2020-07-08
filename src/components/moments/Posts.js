@@ -10,7 +10,6 @@ import Navbar from '../commons/footer/Navbar'
 
 import './Posts.css'
 
-
 const backUrl = process.env.REACT_APP_API_URL
 
 const Posts = (props) => {
