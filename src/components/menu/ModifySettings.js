@@ -10,7 +10,6 @@ const backUrl = process.env.REACT_APP_API_URL
 const ModifySettings = (props) => {
   const path = props.location.pathname
   axios.get(`${backUrl}`)
-    .then((res) => console.log('res axios', res.data))
 
   return (
     <>
