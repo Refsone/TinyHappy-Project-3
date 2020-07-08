@@ -13,7 +13,7 @@ import './AddShareMoment.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
 function AddShareMoment (props) {
-  const [startDate, setStartDate] = useState(new Date('2020-05-12'))
+  const [startDate, setStartDate] = useState(new Date('2020-01-12'))
   const [endDate, setEndDate] = useState(new Date())
   const [countSelect, setCountSelect] = useState(0)
   const [family, setFamily] = useState([])
@@ -70,12 +70,12 @@ function AddShareMoment (props) {
     const format = 'YYYY-MM-DD'
     const userName = 'Jérôme'
     const { selectedMail } = props.location.data
-    console.log(selectedMail)
-
     const momentsToSend = moments
       .filter(moment => Moment(moment.moment_event_date).format(format) >= Moment(startDate).format(format) && Moment(moment.moment_event_date).format(format) <= Moment(endDate).format(format))
       .filter(moment => {
-        return moment.firstname_color.map(name => authorsSelect.includes(name.firstname))
+        for (const elt of moment.firstname_color) {
+          authorsSelect.includes(elt.firstname)
+        }
       })
       .filter(moment => {
         if (form.quoteCheck.checked && form.milestoneCheck.checked) {
@@ -90,6 +90,7 @@ function AddShareMoment (props) {
     if (authorsSelect.indexOf(userName) !== -1) {
       authorsSelect.splice(authorsSelect.indexOf(userName), 1)
     }
+    console.log(momentsToSend)
     axios.post('http://localhost:7500/share', { momentsToSend, userName, authorsSelect, selectedMail })
       .then(res => {
         if (res.status === 200) {
