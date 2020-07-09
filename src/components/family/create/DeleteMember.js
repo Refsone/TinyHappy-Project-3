@@ -86,7 +86,7 @@ const DeleteMember = (props) => {
       }
       {
         deleted &&
-          <ConfirmButton message={`Le membre ${name} a bien été supprimé.`} confirm deleted />
+          <ConfirmButton message={`${name} a bien été supprimé.`} confirm deleted />
       }
       {
         redirect &&

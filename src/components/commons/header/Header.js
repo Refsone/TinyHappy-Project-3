@@ -17,8 +17,10 @@ const Header = (props) => {
       link = '/family'
       break
     case '/family/modify':
-      text = 'supprimer'
-      link = '/family/delete'
+      if (props.memberId) {
+        text = 'supprimer'
+        link = '/family/delete'
+      }
       break
     case 'moments/create/quote':
       text = 'annuler'

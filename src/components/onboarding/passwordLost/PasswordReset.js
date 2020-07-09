@@ -114,6 +114,11 @@ const PasswordReset = (props) => {
           setInputError({ ...inputError, tempPwd: true })
           setMessageError({ ...messageError, tempPwd: 'Le format du mot de passe temporaire est invalide' })
         } else {
+          Axios.get(`http://localhost:7500/users/tempPwd/?mail=${formData.mail}&tempPwd=${value}`)
+            .then(console.log('It\'s ok!'))
+            .catch(error => {
+              console.log(error)
+            })
           setInputError({ ...inputError, tempPwd: false })
           setMessageError({ ...messageError, tempPwd: '' })
         }

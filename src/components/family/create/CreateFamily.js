@@ -103,6 +103,14 @@ const CreateFamily = (props) => {
     }
   }
 
+  const handleMessage = () => {
+    if (modify) {
+      return modify === 'user' ? 'Vos informations ont bien été modifiées' : `${firstname.value} a bien été modifié`
+    } else {
+      return `${firstname.value} a été ajouté avec succès.`
+    }
+  }
+
   // Manage the fields datas
   const handleChange = (e) => {
     const name = e.target.name
@@ -164,15 +172,15 @@ const CreateFamily = (props) => {
     regexSpecial.test(surname.value) && setSurname({ ...surname, error: 2 })
     // Define the datas to send to the database
     const addToDb = {}
-    const newFormatDate = birthday.value ? birthday.value.split('/').reverse().join('-') : ''
+    const newFormatDate = birthday.value ? birthday.value.split('/').reverse().join('-') : null
     if (modify !== 'user') {
       addToDb.user_id = userId
       addToDb.family_firstname = firstname.value
       addToDb.color_family_id = color
       if (memberId) { addToDb.id = memberId }
-      if (lastname.value !== '') { addToDb.family_lastname = lastname.value }
-      if (surname.value !== '') { addToDb.family_surname = surname.value }
-      if (newFormatDate !== '') { addToDb.family_birthday = newFormatDate }
+      addToDb.family_lastname = lastname.value
+      addToDb.family_surname = surname.value
+      addToDb.family_birthday = newFormatDate
       if (modify !== 'member') {
         return axios.post('http://localhost:7500/family-members/new', addToDb)
           .then(res => res.status === 201 && (setValidate(true)))
@@ -212,7 +220,7 @@ const CreateFamily = (props) => {
         </form>
         {
           validate &&
-            <ConfirmButton message='Le nouveau membre a été ajouté avec succès.' confirm />
+            <ConfirmButton message={handleMessage()} confirm />
         }
         {
           redirect &&
