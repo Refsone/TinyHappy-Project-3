@@ -117,7 +117,19 @@ const PasswordReset = (props) => {
           Axios.get(`http://localhost:7500/users/tempPwd/?mail=${formData.mail}&tempPwd=${value}`)
             .then(console.log('It\'s ok!'))
             .catch(error => {
-              console.log(error)
+              setInputError({ ...inputError, tempPwd: true })
+              switch (error.response.status) {
+                case 403:
+                  setMessageError({ ...messageError, tempPwd: 'La date d\'expiration du mot de passe temporaire a expiré' })
+                  break
+                case 404:
+                  setMessageError({ ...messageError, tempPwd: 'Mot de passe temporaire invalide' })
+                  break
+                default:
+                  setMessageError({ ...messageError, tempPwd: 'Une erreur interne est survenue' })
+                  break
+              }
+              console.log(error.response.status)
             })
           setInputError({ ...inputError, tempPwd: false })
           setMessageError({ ...messageError, tempPwd: '' })
