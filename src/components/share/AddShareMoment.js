@@ -74,7 +74,7 @@ function AddShareMoment (props) {
       .filter(moment => Moment(moment.moment_event_date).format(format) >= Moment(startDate).format(format) && Moment(moment.moment_event_date).format(format) <= Moment(endDate).format(format))
       .filter(moment => {
         for (const elt of moment.firstname_color) {
-          authorsSelect.includes(elt.firstname)
+          return authorsSelect.includes(elt.firstname)
         }
       })
       .filter(moment => {
@@ -90,7 +90,6 @@ function AddShareMoment (props) {
     if (authorsSelect.indexOf(userName) !== -1) {
       authorsSelect.splice(authorsSelect.indexOf(userName), 1)
     }
-    console.log(momentsToSend)
     axios.post('http://localhost:7500/share', { momentsToSend, userName, authorsSelect, selectedMail })
       .then(res => {
         if (res.status === 200) {
