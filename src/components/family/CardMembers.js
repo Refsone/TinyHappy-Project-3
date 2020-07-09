@@ -10,6 +10,8 @@ import Navbar from '../commons/footer/Navbar'
 
 import './CardMembers.css'
 
+const backUrl = process.env.REACT_APP_API_URL
+
 const CardMembers = () => {
   const [members, setMembers] = useState([])
   const [user, setUser] = useState([])
@@ -17,17 +19,21 @@ const CardMembers = () => {
   useEffect(() => {
     fetchUser()
   }, [])
+
   useEffect(() => {
     fetchFamilyMembers()
   }, [])
+
   const fetchFamilyMembers = (userId = 1) => {
-    axios.get(`http://localhost:7500/users/${userId}/family`)
+    axios.get(`${backUrl}/users/${userId}/family`)
       .then(res => setMembers(res.data))
   }
+
   const fetchUser = (userId = 1) => {
-    axios.get(`http://localhost:7500/users/${userId}`)
+    axios.get(`${backUrl}/users/${userId}`)
       .then(res => setUser(res.data))
   }
+
   const formatDate = (date) => {
     Moment.locale('fr')
     if (date !== null) {
@@ -37,6 +43,7 @@ const CardMembers = () => {
       return date
     }
   }
+
   return (
     <>
       <Header burger />
