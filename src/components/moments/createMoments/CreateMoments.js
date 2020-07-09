@@ -34,29 +34,27 @@ const CreateMoment = (props) => {
 
   useEffect(() => {
     axios.get(`${backUrl}/users/${id}/family`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then((res) => {
         setFamilyMember(res.data)
       })
       .catch(err => `L'erreur suivante s'est produite: ${err}`, {
-        headers: { Autorization: `Bearer ${myToken}` }
+        headers: { Authorization: `Bearer ${myToken}` }
       })
     axios.get(`${backUrl}/users/${id}`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then((res) => {
         setUser(res.data[0])
       })
       .catch(err => `L'erreur suivante s'est produite: ${err}`, {
-        headers: { Autorization: `Bearer ${myToken}` }
+        headers: { Authorization: `Bearer ${myToken}` }
       })
   }, [])
 
   const SendCreateMoment = () => {
     axios.post(`${backUrl}/moments/create`, {
-      headers: { Autorization: `Bearer ${myToken}` }
-    }, {
       user_isPresent: userIsPresent,
       moment_text: textInMomentArea,
       moment_context: textInContextArea,
@@ -64,6 +62,8 @@ const CreateMoment = (props) => {
       moment_type_id: momentTypeId,
       user_id: id,
       family_id: memberFamilyIsPresentAtMoment
+    }, {
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => res.status === 201 ? setSendMomentSucceed(true) : setSendError(true))
       .catch(err => console.log('an error is occured, the message is:' + err))

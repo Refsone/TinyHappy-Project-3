@@ -31,7 +31,7 @@ const DeleteMember = (props) => {
 
   const deleteMemberFromBdd = () => {
     Axios.delete(`${backUrl}/family-members/${id}`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => res.status === 200 && setDeleted(true))
       .catch(err => 'An error occured when deleted the members...' + err)

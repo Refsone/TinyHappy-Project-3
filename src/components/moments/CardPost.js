@@ -21,12 +21,12 @@ const CardPost = (props) => {
     props.refreshMethod()
     setFavorite(!favorite)
     axios.put(`${backUrl}/moments`, { moment_favorite: !favorite, id: e.target.id }, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
   }
   const fetchUser = () => {
     axios.get(`${backUrl}/users/1`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setUser(res.data))
   }

@@ -38,21 +38,21 @@ function AddShareMoment(props) {
 
   const fetchFamily = (id = 1) => {
     axios.get(`${backUrl}/users/${id}/family`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setFamily(res.data))
   }
 
   const fetchUser = (id = 1) => {
     axios.get(`${backUrl}/users/${id}`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setAuthor(family.concat(res.data)))
   }
 
   const fetchMoments = (id = 1) => {
     axios.get(`${backUrl}/users/${id}/moments`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setMoments(res.data))
   }
@@ -93,7 +93,7 @@ function AddShareMoment(props) {
         return ''
       })
     axios.post(`${backUrl}/share`, momentsToSend, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .catch(error => {
         console.log(error)

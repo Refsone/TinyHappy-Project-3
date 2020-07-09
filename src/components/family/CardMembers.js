@@ -27,14 +27,14 @@ const CardMembers = () => {
 
   const fetchFamilyMembers = (userId = 1) => {
     axios.get(`${backUrl}/users/${userId}/family`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setMembers(res.data))
   }
 
   const fetchUser = (userId = 1) => {
     axios.get(`${backUrl}/users/${userId}`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setUser(res.data))
   }

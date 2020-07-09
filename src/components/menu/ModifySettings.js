@@ -11,7 +11,7 @@ const myToken = (localStorage.getItem('x-access-token'))
 const ModifySettings = (props) => {
   const path = props.location.pathname
   axios.get(`${backUrl}`, {
-    headers: { Autorization: `Bearer ${myToken}` }
+    headers: { Authorization: `Bearer ${myToken}` }
   })
 
   return (

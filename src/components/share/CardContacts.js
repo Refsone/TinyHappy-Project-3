@@ -23,7 +23,7 @@ const CardContacts = () => {
 
   const recupEmail = () => {
     axios.get(`${backUrl}/users/${user_id}/contacts`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => res.status === 200 && SetContacts(res.data.result))
   }
@@ -34,7 +34,7 @@ const CardContacts = () => {
       mail: email
     }
     axios.post(`${backUrl}/contacts/new`, newDatas, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => {
         res.status === 201 && recupEmail()
@@ -46,7 +46,7 @@ const CardContacts = () => {
 
   const deleteContact = (e) => {
     axios.delete(`${backUrl}/contacts/${e.target.id}`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => res.status === 200 && recupEmail())
       .catch(err => console.log(err))

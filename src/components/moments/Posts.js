@@ -24,7 +24,7 @@ const Posts = (props) => {
 
   const fetchUserMoment = () => {
     axios.get(`${backUrl}/users/1/moments/`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setMoments(res.data))
   }

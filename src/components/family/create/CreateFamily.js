@@ -53,7 +53,7 @@ const CreateFamily = (props) => {
   // Fetch the colors in the bdd
   useEffect(() => {
     axios.get(`${backUrl}/colors`, {
-      headers: { Autorization: `Bearer ${myToken}` }
+      headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setBddColor(res.data))
       .catch(err => `L'erreur suivante s'est produite: ${err}`)
@@ -80,7 +80,7 @@ const CreateFamily = (props) => {
   const handleUsersDatas = () => {
     if (modify === 'user') { // Fetch the user datas
       axios.get(`${backUrl}/users/${userId}`, {
-        headers: { Autorization: `Bearer ${myToken}` }
+        headers: { Authorization: `Bearer ${myToken}` }
       })
         .then(res => {
           const data = res.data[0]
@@ -95,7 +95,7 @@ const CreateFamily = (props) => {
         .catch(err => `L'erreur suivante s'est produite: ${err}`)
     } else { // Fetch the member data
       axios.get(`${backUrl}/users/${userId}/family-members/${memberId}`, {
-        headers: { Autorization: `Bearer ${myToken}` }
+        headers: { Authorization: `Bearer ${myToken}` }
       })
         .then(res => {
           const data = res.data[0]
@@ -184,13 +184,13 @@ const CreateFamily = (props) => {
       if (newFormatDate !== '') { addToDb.family_birthday = newFormatDate }
       if (modify !== 'member') {
         return axios.post(`${backUrl}/family-members/new`, addToDb, {
-          headers: { Autorization: `Bearer ${myToken}` }
+          headers: { Authorization: `Bearer ${myToken}` }
         })
           .then(res => res.status === 201 && (setValidate(true)))
           .catch((err) => console.log('an error is occured, the message is:' + err))
       } else {
         axios.put(`${backUrl}/family-members/update`, addToDb, {
-          headers: { Autorization: `Bearer ${myToken}` }
+          headers: { Authorization: `Bearer ${myToken}` }
         })
           .then(res => res.status === 200 && (setValidate(true)))
           .catch((err) => console.log('an error is occured, the message is:' + err))
@@ -203,7 +203,7 @@ const CreateFamily = (props) => {
       if (surname.value !== '') { addToDb.user_surname = surname.value }
       if (newFormatDate !== '') { addToDb.user_birthday = newFormatDate }
       axios.put(`${backUrl}/users/update`, addToDb, {
-        headers: { Autorization: `Bearer ${myToken}` }
+        headers: { Authorization: `Bearer ${myToken}` }
       })
         .then(res => res.status === 200 && (setValidate(true)))
         .catch((err) => console.log('an error is occured, the message is:' + err))
