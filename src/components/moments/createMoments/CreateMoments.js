@@ -11,6 +11,8 @@ import './CreateMoments.css'
 import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css'
 import calendarIcon from '../../../images/calendrier.svg'
 
+const backUrl = process.env.REACT_APP_API_URL
+
 const CreateMoment = (props) => {
   const [active, setActive] = useState(false)
   const [date, setDate] = useState(new Date())
@@ -29,12 +31,12 @@ const CreateMoment = (props) => {
   const path = props.location.pathname
 
   useEffect(() => {
-    axios.get(`http://localhost:7500/users/${id}/family`)
+    axios.get(`${backUrl}/users/${id}/family`)
       .then((res) => {
         setFamilyMember(res.data)
       })
       .catch(err => `L'erreur suivante s'est produite: ${err}`)
-    axios.get(`http://localhost:7500/users/${id}`)
+    axios.get(`${backUrl}/users/${id}`)
       .then((res) => {
         setUser(res.data[0])
       })
@@ -42,7 +44,7 @@ const CreateMoment = (props) => {
   }, [])
 
   const SendCreateMoment = () => {
-    axios.post('http://localhost:7500/moments/create',
+    axios.post(`${backUrl}/moments/create`,
       {
         user_isPresent: userIsPresent,
         moment_text: textInMomentArea,
