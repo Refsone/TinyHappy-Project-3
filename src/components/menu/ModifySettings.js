@@ -5,9 +5,11 @@ import Header from './../commons/header/Header'
 import Email from './Email'
 import Password from './Password'
 
+const backUrl = process.env.REACT_APP_API_URL
+
 const ModifySettings = (props) => {
   const path = props.location.pathname
-  axios.get('http://localhost:8080/').then((res) => console.log('res axios', res.data))
+  axios.get(`${backUrl}`)
 
   return (
     <>
