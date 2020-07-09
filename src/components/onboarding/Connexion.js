@@ -23,8 +23,6 @@ const Connexion = (props) => {
     if (loggedIn) {
       setRedirect(true)
     }
-    console.log(values)
-    console.log(loggedIn)
   }, [loggedIn])
 
   async function submit (e) {
@@ -34,7 +32,6 @@ const Connexion = (props) => {
         .then(res => res.headers['x-access-token'])
         .then(data => {
           if (data) {
-            console.log(data)
             localStorage.setItem('x-access-token', data)
             setLoggedIn(true)
           }
