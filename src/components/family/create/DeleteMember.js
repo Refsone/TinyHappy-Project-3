@@ -11,6 +11,8 @@ import trash from '../../../images/trash-alt-regular-1.svg'
 import emojiHappy from '../../../images/Vector-happy.svg'
 import emojiSad from '../../../images/Vector-sad.svg'
 
+const backUrl = process.env.REACT_APP_API_URL
+
 const DeleteMember = (props) => {
   const { name, id } = props
 
@@ -27,7 +29,7 @@ const DeleteMember = (props) => {
   }
 
   const deleteMemberFromBdd = () => {
-    Axios.delete(`http://localhost:7500/family-members/${id}`)
+    Axios.delete(`${backUrl}/family-members/${id}`)
       .then(res => res.status === 200 && setDeleted(true))
       .catch(err => 'An error occured when deleted the members...' + err)
   }

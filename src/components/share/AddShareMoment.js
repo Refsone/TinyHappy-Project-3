@@ -12,7 +12,9 @@ import ValidateButton from '../commons/footer/ValidateButton'
 import './AddShareMoment.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
-function AddShareMoment (props) {
+const backUrl = process.env.REACT_APP_API_URL
+
+function AddShareMoment(props) {
   const [startDate, setStartDate] = useState(new Date('2020-05-12'))
   const [endDate, setEndDate] = useState(new Date())
   const [countSelect, setCountSelect] = useState(0)
@@ -34,17 +36,17 @@ function AddShareMoment (props) {
   }, [family])
 
   const fetchFamily = (id = 1) => {
-    axios.get(`http://localhost:7500/users/${id}/family`)
+    axios.get(`${backUrl}/users/${id}/family`)
       .then(res => setFamily(res.data))
   }
 
   const fetchUser = (id = 1) => {
-    axios.get(`http://localhost:7500/users/${id}`)
+    axios.get(`${backUrl}/users/${id}`)
       .then(res => setAuthor(family.concat(res.data)))
   }
 
   const fetchMoments = (id = 1) => {
-    axios.get(`http://localhost:7500/users/${id}/moments`)
+    axios.get(`${backUrl}/users/${id}/moments`)
       .then(res => setMoments(res.data))
   }
 
@@ -83,7 +85,7 @@ function AddShareMoment (props) {
         }
         return ''
       })
-    axios.post('http://localhost:7500/share', momentsToSend)
+    axios.post(`${backUrl}/share`, momentsToSend)
       .catch(error => {
         console.log(error)
       })
