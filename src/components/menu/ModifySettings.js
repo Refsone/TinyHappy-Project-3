@@ -6,10 +6,13 @@ import Email from './Email'
 import Password from './Password'
 
 const backUrl = process.env.REACT_APP_API_URL
+const myToken = (localStorage.getItem('x-access-token'))
 
 const ModifySettings = (props) => {
   const path = props.location.pathname
-  axios.get(`${backUrl}`)
+  axios.get(`${backUrl}`, {
+    headers: { Autorization: `Bearer ${myToken}` }
+  })
 
   return (
     <>

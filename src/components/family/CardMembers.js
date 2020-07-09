@@ -11,6 +11,7 @@ import Navbar from '../commons/footer/Navbar'
 import './CardMembers.css'
 
 const backUrl = process.env.REACT_APP_API_URL
+const myToken = (localStorage.getItem('x-access-token'))
 
 const CardMembers = () => {
   const [members, setMembers] = useState([])
@@ -25,12 +26,16 @@ const CardMembers = () => {
   }, [])
 
   const fetchFamilyMembers = (userId = 1) => {
-    axios.get(`${backUrl}/users/${userId}/family`)
+    axios.get(`${backUrl}/users/${userId}/family`, {
+      headers: { Autorization: `Bearer ${myToken}` }
+    })
       .then(res => setMembers(res.data))
   }
 
   const fetchUser = (userId = 1) => {
-    axios.get(`${backUrl}/users/${userId}`)
+    axios.get(`${backUrl}/users/${userId}`, {
+      headers: { Autorization: `Bearer ${myToken}` }
+    })
       .then(res => setUser(res.data))
   }
 
