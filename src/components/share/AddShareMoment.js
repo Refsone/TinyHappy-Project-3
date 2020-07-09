@@ -12,7 +12,9 @@ import ValidateButton from '../commons/footer/ValidateButton'
 import './AddShareMoment.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
-function AddShareMoment(props) {
+const backUrl = process.env.REACT_APP_API_URL
+
+function AddShareMoment (props) {
   const [startDate, setStartDate] = useState(new Date('2020-01-12'))
   const [endDate, setEndDate] = useState(new Date())
   const [countSelect, setCountSelect] = useState(0)
@@ -90,10 +92,9 @@ function AddShareMoment(props) {
     if (authorsSelect.indexOf(userName) !== -1) {
       authorsSelect.splice(authorsSelect.indexOf(userName), 1)
     }
-    axios.post(`${backUrl}/share`, momentsToSend)
-      .catch(error => {
-        console.log(error)
-      })
+    axios.post(`${backUrl}/share`, { momentsToSend, userName, authorsSelect, selectedMail })
+      .then(res => res.status === 200 && setTimeout(() => setIsSend(true), 500))
+      .catch(err => console.log('an error is occured, the message is:' + err))
   }
   return (
     <>
