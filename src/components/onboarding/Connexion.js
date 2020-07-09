@@ -42,7 +42,7 @@ const Connexion = (props) => {
       errors && setErrors(errors)
     }
 
-    const myToken = JSON.parse(localStorage.getItem('token', values))
+    /*     const myToken = JSON.parse(localStorage.getItem('token', values))
     if (myToken && values.token) {
       axios.get('http://localhost:7500/users', {
         headers: { Autorization: `Bearer ${myToken}` }
@@ -53,7 +53,7 @@ const Connexion = (props) => {
           console.log(err.res.data.message)
         }
       })
-    }
+    } */
   }
 
   return (
