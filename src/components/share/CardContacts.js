@@ -10,6 +10,7 @@ import ZeroContact from './ZeroContact'
 import './CardContacts.css'
 
 const backUrl = process.env.REACT_APP_API_URL
+const myToken = (localStorage.getItem('x-access-token'))
 
 const CardContacts = () => {
   const user_id = 1 // TODO: To modify where the id will be in the local storage
@@ -21,7 +22,9 @@ const CardContacts = () => {
   }, [])
 
   const recupEmail = () => {
-    axios.get(`${backUrl}/users/${user_id}/contacts`)
+    axios.get(`${backUrl}/users/${user_id}/contacts`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => res.status === 200 && SetContacts(res.data.result))
   }
 
@@ -30,7 +33,9 @@ const CardContacts = () => {
       user_id: user_id,
       mail: email
     }
-    axios.post(`${backUrl}/contacts/new`, newDatas)
+    axios.post(`${backUrl}/contacts/new`, newDatas, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => {
         res.status === 201 && recupEmail()
         document.getElementById('mail').value = ''
@@ -40,7 +45,9 @@ const CardContacts = () => {
   }
 
   const deleteContact = (e) => {
-    axios.delete(`${backUrl}/contacts/${e.target.id}`)
+    axios.delete(`${backUrl}/contacts/${e.target.id}`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => res.status === 200 && recupEmail())
       .catch(err => console.log(err))
   }
