@@ -10,6 +10,7 @@ import eyeOpen from '../../images/eye-open.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
+const userId = localStorage.getItem('userId')
 
 const Password = () => {
   const [visible1, setVisible1] = useState(false)
@@ -25,11 +26,10 @@ const Password = () => {
   const showType1 = visible1 ? 'text' : 'password'
   const showType2 = visible2 ? 'text' : 'password'
   const showType3 = visible3 ? 'text' : 'password'
-  const id = 13
 
   const submit = (e) => {
     e.preventDefault()
-    axios.put(`${backUrl}/users/${id}/modify-password`, { newPassword: newPassword, actualPassword: actualPassword }, { headers: { Authorization: `Bearer ${myToken}` } })
+    axios.put(`${backUrl}/users/${userId}/modify-password`, { newPassword: newPassword, actualPassword: actualPassword }, { headers: { Authorization: `Bearer ${myToken}` } })
       .then(res => {
         if (res.status === 201) {
           setChangeSuceed(true)

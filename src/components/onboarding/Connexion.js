@@ -30,7 +30,10 @@ const Connexion = (props) => {
     e.preventDefault()
     try {
       await axios.post(`${backUrl}/users/login`, values)
-        .then(res => res.headers['x-access-token'])
+        .then(res => {
+          localStorage.setItem('userId', res.data.id)
+          return res.headers['x-access-token']
+        })
         .then(data => {
           if (data) {
             localStorage.setItem('x-access-token', data)
