@@ -60,7 +60,6 @@ const Password = () => {
           <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
         </div>
         <input name='user_password' type={showType} id='user_password' onChange={handleChangePassword} className='input-psw-default plholder bold-12px-grey' placeholder='**********' />
-        {/* && <p className='msg-error'>Mot de passe incorrect</p>} */}
 
         <label htmlFor='new_password' className='label-settings bold-12px-grey'>Nouveau mot de passe</label>
         <div className='settings-container-eye'>
