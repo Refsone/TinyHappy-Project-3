@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import axios from 'axios'
 
 import DatePicker from 'react-datepicker'
@@ -26,7 +25,7 @@ const CreateMoment = (props) => {
   const [sendMomentSucceed, setSendMomentSucceed] = useState(false)
   const [textInContextArea, setTextInContextArea] = useState('')
   const [textInMomentArea, setTextInMomentArea] = useState('')
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState({})
   const [userIsPresent, setUserIsPresent] = useState(0)
 
   const id = 1
@@ -132,23 +131,6 @@ const CreateMoment = (props) => {
       </div>
     </>
   )
-}
-
-CreateMoment.propTypes = {
-  SwitchMomentType: PropTypes.func.isRequired,
-  momentTypeId: PropTypes.number.isRequired,
-  sendMomentSucceed: PropTypes.func.isRequired,
-  memberFamilyIsPresentAtMoment: PropTypes.array.isRequired,
-  userIsPresent: PropTypes.number.isRequired,
-  textInContextArea: PropTypes.string,
-  textInMomentArea: PropTypes.string,
-  buttonSelectAuthor: PropTypes.func.isRequired,
-  active: PropTypes.bool.isRequired,
-  SendCreateMoment: PropTypes.func.isRequired,
-  onChangeTextInContextArea: PropTypes.func.isRequired,
-  onChangeTextInMomentArea: PropTypes.func.isRequired,
-  user: PropTypes.array.isRequired,
-  familyMember: PropTypes.array.isRequired
 }
 
 export default CreateMoment

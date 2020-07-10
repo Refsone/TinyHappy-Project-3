@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import './ConfirmButton.css'
 import checkImg from '../../../images/check-circle.svg'
@@ -15,6 +16,12 @@ const ConfirmButton = (props) => {
       </div>
     </div>
   )
+}
+
+ConfirmButton.propTypes = {
+  message: PropTypes.string.isRequired,
+  confirm: PropTypes.bool,
+  deleted: PropTypes.bool
 }
 
 export default ConfirmButton
