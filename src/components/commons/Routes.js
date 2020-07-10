@@ -11,8 +11,8 @@ import CreateMoments from '../moments/createMoments/CreateMoments'
 import DisplaySettings from '../menu/DisplaySettings'
 import ModifySettings from '../menu/ModifySettings'
 import PasswordLost from '../onboarding/passwordLost/PasswordLost'
-import Post from '../moments/Posts'
 import PasswordReset from '../onboarding/passwordLost/PasswordReset'
+import Post from '../moments/Posts'
 import SignUp from '../onboarding/SignUp'
 
 const routes = (props) => {
