@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import Header from '../commons/header/Header'
 import { Redirect, Link } from 'react-router-dom'
+import axios from 'axios'
+
+import Header from '../commons/header/Header'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
 
