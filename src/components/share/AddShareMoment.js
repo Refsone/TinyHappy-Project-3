@@ -13,6 +13,7 @@ import './AddShareMoment.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const backUrl = process.env.REACT_APP_API_URL
+const myToken = (localStorage.getItem('x-access-token'))
 
 function AddShareMoment(props) {
   const [startDate, setStartDate] = useState(new Date('2020-05-12'))
@@ -36,17 +37,23 @@ function AddShareMoment(props) {
   }, [family])
 
   const fetchFamily = (id = 1) => {
-    axios.get(`${backUrl}/users/${id}/family`)
+    axios.get(`${backUrl}/users/${id}/family`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => setFamily(res.data))
   }
 
   const fetchUser = (id = 1) => {
-    axios.get(`${backUrl}/users/${id}`)
+    axios.get(`${backUrl}/users/${id}`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => setAuthor(family.concat(res.data)))
   }
 
   const fetchMoments = (id = 1) => {
-    axios.get(`${backUrl}/users/${id}/moments`)
+    axios.get(`${backUrl}/users/${id}/moments`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => setMoments(res.data))
   }
 
@@ -85,7 +92,9 @@ function AddShareMoment(props) {
         }
         return ''
       })
-    axios.post(`${backUrl}/share`, momentsToSend)
+    axios.post(`${backUrl}/share`, momentsToSend, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .catch(error => {
         console.log(error)
       })

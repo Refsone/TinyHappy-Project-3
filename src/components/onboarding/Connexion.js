@@ -30,12 +30,17 @@ const Connexion = (props) => {
     try {
       await axios.post(`${backUrl}/users/login`, values)
         .then(res => res.headers['x-access-token'])
-        .then(data => localStorage.setItem('x-access-token', data), setLoggedIn(true))
+        .then(data => {
+          if (data) {
+            localStorage.setItem('x-access-token', data)
+            setLoggedIn(true)
+          }
+        })
     } catch (err) {
       errors && setErrors(errors)
     }
   }
-  console.log('redirect', redirect, 'loggedIn', loggedIn)
+
   return (
     <div className='connexion-background'>
       <Header location={props.location.pathname} />
