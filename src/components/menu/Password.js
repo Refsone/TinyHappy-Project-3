@@ -18,11 +18,12 @@ const Password = () => {
   const [shortPassword, setShortPassword] = useState(false)
 
   const showType = visible ? 'text' : 'password'
-  const id = 15
+  const myToken = localStorage.getItem('x-acces-token')
+  const id = 14
 
   const submit = (e) => {
     e.preventDefault()
-    axios.put(`http://localhost:7500/modify-password/${id}/`, { newPassword: newPassword, actualPassword: actualPassword })
+    axios.put(`http://localhost:7500/users/${id}/modify-password`, { newPassword: newPassword, actualPassword: actualPassword }, { headers: { Autorization: `Bearer ${myToken}` } })
       .then(res => {
         if (res.status === 201) {
           setChangeSuceed(true)
