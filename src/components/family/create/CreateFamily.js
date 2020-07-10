@@ -12,6 +12,7 @@ import ValidateButton from '../../commons/footer/ValidateButton'
 import './CreateFamily.css'
 
 const backUrl = process.env.REACT_APP_API_URL
+const myToken = (localStorage.getItem('x-access-token'))
 
 // Test if the fields are corrects
 const regexInput = /[A-zÀ-ú]{2,}/
@@ -51,7 +52,9 @@ const CreateFamily = (props) => {
 
   // Fetch the colors in the bdd
   useEffect(() => {
-    axios.get(`${backUrl}/colors`)
+    axios.get(`${backUrl}/colors`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => setBddColor(res.data))
       .catch(err => `L'erreur suivante s'est produite: ${err}`)
   }, [])
@@ -76,7 +79,9 @@ const CreateFamily = (props) => {
   // Function to fetch the bdd datas
   const handleUsersDatas = () => {
     if (modify === 'user') { // Fetch the user datas
-      axios.get(`${backUrl}/users/${userId}`)
+      axios.get(`${backUrl}/users/${userId}`, {
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
         .then(res => {
           const data = res.data[0]
           const dateTemp = data.user_birthday &&
@@ -89,7 +94,9 @@ const CreateFamily = (props) => {
         })
         .catch(err => `L'erreur suivante s'est produite: ${err}`)
     } else { // Fetch the member data
-      axios.get(`${backUrl}/users/${userId}/family-members/${memberId}`)
+      axios.get(`${backUrl}/users/${userId}/family-members/${memberId}`, {
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
         .then(res => {
           const data = res.data[0]
           const dateTemp = data.family_birthday &&
@@ -176,11 +183,15 @@ const CreateFamily = (props) => {
       if (surname.value !== '') { addToDb.family_surname = surname.value }
       if (newFormatDate !== '') { addToDb.family_birthday = newFormatDate }
       if (modify !== 'member') {
-        return axios.post(`${backUrl}/family-members/new`, addToDb)
+        return axios.post(`${backUrl}/family-members/new`, addToDb, {
+          headers: { Authorization: `Bearer ${myToken}` }
+        })
           .then(res => res.status === 201 && (setValidate(true)))
           .catch((err) => console.log('an error is occured, the message is:' + err))
       } else {
-        axios.put(`${backUrl}/family-members/update`, addToDb)
+        axios.put(`${backUrl}/family-members/update`, addToDb, {
+          headers: { Authorization: `Bearer ${myToken}` }
+        })
           .then(res => res.status === 200 && (setValidate(true)))
           .catch((err) => console.log('an error is occured, the message is:' + err))
       }
@@ -191,7 +202,9 @@ const CreateFamily = (props) => {
       if (lastname.value !== '') { addToDb.user_lastname = lastname.value }
       if (surname.value !== '') { addToDb.user_surname = surname.value }
       if (newFormatDate !== '') { addToDb.user_birthday = newFormatDate }
-      axios.put(`${backUrl}/users/update`, addToDb)
+      axios.put(`${backUrl}/users/update`, addToDb, {
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
         .then(res => res.status === 200 && (setValidate(true)))
         .catch((err) => console.log('an error is occured, the message is:' + err))
     }

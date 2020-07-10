@@ -13,6 +13,7 @@ import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodul
 import calendarIcon from '../../../images/calendrier.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
+const myToken = (localStorage.getItem('x-access-token'))
 
 const CreateMoment = (props) => {
   const [active, setActive] = useState(false)
@@ -32,29 +33,38 @@ const CreateMoment = (props) => {
   const path = props.location.pathname
 
   useEffect(() => {
-    axios.get(`${backUrl}/users/${id}/family`)
+    axios.get(`${backUrl}/users/${id}/family`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then((res) => {
         setFamilyMember(res.data)
       })
-      .catch(err => `L'erreur suivante s'est produite: ${err}`)
-    axios.get(`${backUrl}/users/${id}`)
+      .catch(err => `L'erreur suivante s'est produite: ${err}`, {
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
+    axios.get(`${backUrl}/users/${id}`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then((res) => {
         setUser(res.data[0])
       })
-      .catch(err => `L'erreur suivante s'est produite: ${err}`)
+      .catch(err => `L'erreur suivante s'est produite: ${err}`, {
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
   }, [])
 
   const SendCreateMoment = () => {
-    axios.post(`${backUrl}/moments/create`,
-      {
-        user_isPresent: userIsPresent,
-        moment_text: textInMomentArea,
-        moment_context: textInContextArea,
-        moment_event_date: date.toISOString().slice(0, 10),
-        moment_type_id: momentTypeId,
-        user_id: id,
-        family_id: memberFamilyIsPresentAtMoment
-      })
+    axios.post(`${backUrl}/moments/create`, {
+      user_isPresent: userIsPresent,
+      moment_text: textInMomentArea,
+      moment_context: textInContextArea,
+      moment_event_date: date.toISOString().slice(0, 10),
+      moment_type_id: momentTypeId,
+      user_id: id,
+      family_id: memberFamilyIsPresentAtMoment
+    }, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => res.status === 201 ? setSendMomentSucceed(true) : setSendError(true))
       .catch(err => console.log('an error is occured, the message is:' + err))
   }

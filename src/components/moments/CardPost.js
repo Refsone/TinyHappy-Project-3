@@ -7,6 +7,7 @@ import emptyHeart from '../../images/favori-heart.svg'
 import fullHeart from '../../images/favoris-heart-pink.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
+const myToken = (localStorage.getItem('x-access-token'))
 
 const CardPost = (props) => {
   const { moment, boxStyle } = props
@@ -19,10 +20,14 @@ const CardPost = (props) => {
   const handleClickFavorite = (e) => {
     props.refreshMethod()
     setFavorite(!favorite)
-    axios.put(`${backUrl}/moments`, { moment_favorite: !favorite, id: e.target.id })
+    axios.put(`${backUrl}/moments`, { moment_favorite: !favorite, id: e.target.id }, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
   }
   const fetchUser = () => {
-    axios.get(`${backUrl}/users/1`)
+    axios.get(`${backUrl}/users/1`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => setUser(res.data))
   }
   return (

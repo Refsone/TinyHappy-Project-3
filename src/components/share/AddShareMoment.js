@@ -13,6 +13,7 @@ import './AddShareMoment.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const backUrl = process.env.REACT_APP_API_URL
+const myToken = (localStorage.getItem('x-access-token'))
 
 function AddShareMoment (props) {
   const [startDate, setStartDate] = useState(new Date('2020-01-12'))
@@ -36,17 +37,23 @@ function AddShareMoment (props) {
   }, [family])
 
   const fetchFamily = (id = 1) => {
-    axios.get(`${backUrl}/users/${id}/family`)
+    axios.get(`${backUrl}/users/${id}/family`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => setFamily(res.data))
   }
 
   const fetchUser = (id = 1) => {
-    axios.get(`${backUrl}/users/${id}`)
+    axios.get(`${backUrl}/users/${id}`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => setAuthor(family.concat(res.data)))
   }
 
   const fetchMoments = (id = 1) => {
-    axios.get(`${backUrl}/users/${id}/moments`)
+    axios.get(`${backUrl}/users/${id}/moments`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => setMoments(res.data))
   }
 
@@ -92,7 +99,9 @@ function AddShareMoment (props) {
     if (authorsSelect.indexOf(userName) !== -1) {
       authorsSelect.splice(authorsSelect.indexOf(userName), 1)
     }
-    axios.post(`${backUrl}/share`, { momentsToSend, userName, authorsSelect, selectedMail })
+    axios.post(`${backUrl}/share`, { momentsToSend, userName, authorsSelect, selectedMail}, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => res.status === 200 && setTimeout(() => setIsSend(true), 500))
       .catch(err => console.log('an error is occured, the message is:' + err))
   }
