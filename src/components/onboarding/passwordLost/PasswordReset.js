@@ -7,6 +7,8 @@ import ValidateButton from '../../commons/footer/ValidateButton'
 
 import './PasswordReset.css'
 
+const backUrl = process.env.REACT_APP_API_URL
+
 const PasswordReset = (props) => {
   // Define constraints for the different inputs
   const regexMail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/
@@ -52,16 +54,12 @@ const PasswordReset = (props) => {
   //* Verify if the password format is correct
   const verifPassword = (password) => {
     if (!regexPassword1.test(password)) {
-      console.log(password, 'p1')
       return 'Le mot de passe doit contenir au moins 8 caractères.'
     } else if (!regexPassword2.test(password)) {
-      console.log(password, 'p2')
       return 'Au minimum un caractère spécial est requis.'
     } else if (!regexPassword3.test(password)) {
-      console.log(password, 'p3')
       return 'Doit contenir au moins un chiffre.'
     } else if (!regexPassword4.test(password) || !regexPassword5.test(password)) {
-      console.log(password, 'p4')
       return 'Une lettre en minuscule et une lettre en majuscule requis.'
     } else {
       return 'ok'
@@ -114,8 +112,7 @@ const PasswordReset = (props) => {
           setInputError({ ...inputError, tempPwd: true })
           setMessageError({ ...messageError, tempPwd: 'Le format du mot de passe temporaire est invalide' })
         } else {
-          Axios.get(`http://localhost:7500/users/tempPwd/?mail=${formData.mail}&tempPwd=${value}`)
-            .then(console.log('It\'s ok!'))
+          Axios.get(`${backUrl}/users/tempPwd/?mail=${formData.mail}&tempPwd=${value}`)
             .catch(error => {
               setInputError({ ...inputError, tempPwd: true })
               switch (error.response.status) {
@@ -142,17 +139,8 @@ const PasswordReset = (props) => {
   }
 
   //* On validate
-  const handleClick = async () => {
-    await Axios.post('http://localhost:7500/mailing/tempPassword')
-      .then(res => {
-        console.log(res)
-        document.getElementById('mail').value = ''
-        setIsValidate(false)
-        console.log(`Envoi de l'Email vers ${formData.mail} réussi`)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+  const handleClick = () => {
+
   }
 
   //* Managing if the different passwords are showing
