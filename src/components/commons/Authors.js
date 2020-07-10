@@ -4,6 +4,8 @@ import './Authors.css'
 
 function Authors (props) {
   const { authors, clickAuthor } = props
+  console.log(`%c ${authors}`, 'color: red')
+  
   return (
     <div className='Authors'>
       {authors && authors.map((name, key) => {

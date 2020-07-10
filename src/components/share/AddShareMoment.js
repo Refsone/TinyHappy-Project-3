@@ -40,7 +40,8 @@ function AddShareMoment (props) {
     axios.get(`${backUrl}/users/${id}/family`, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
-      .then(res => setFamily(res.data))
+      .then(res => setFamily(res.data) && console.log(res.data))
+    .catch(err => err)
   }
 
   const fetchUser = (id = 1) => {
