@@ -51,13 +51,12 @@ const CardContacts = () => {
       .then(res => res.status === 200 && recupEmail())
       .catch(err => console.log(err))
   }
-
   return (
     <div>
       <Header burger />
       <div className='cardContact'>
-        {!contacts || contacts.length === 0
-          ?
+        {!contacts || contacts.length === 0 
+        ?
           <>
             <ZeroContact />
             <AddContact handleclick={handleclick} />

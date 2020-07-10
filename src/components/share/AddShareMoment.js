@@ -15,8 +15,8 @@ import 'react-datepicker/dist/react-datepicker.css'
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
 
-function AddShareMoment(props) {
-  const [startDate, setStartDate] = useState(new Date('2020-05-12'))
+function AddShareMoment (props) {
+  const [startDate, setStartDate] = useState(new Date('2020-01-12'))
   const [endDate, setEndDate] = useState(new Date())
   const [countSelect, setCountSelect] = useState(0)
   const [family, setFamily] = useState([])
@@ -77,10 +77,14 @@ function AddShareMoment(props) {
   const handleClick = () => {
     Moment.locale('fr')
     const format = 'YYYY-MM-DD'
+    const userName = 'Jérôme'
+    const { selectedMail } = props.location.data
     const momentsToSend = moments
       .filter(moment => Moment(moment.moment_event_date).format(format) >= Moment(startDate).format(format) && Moment(moment.moment_event_date).format(format) <= Moment(endDate).format(format))
       .filter(moment => {
-        return moment.firstname_color.map(name => authorsSelect.includes(name.firstname))
+        for (const elt of moment.firstname_color) {
+          return authorsSelect.includes(elt.firstname)
+        }
       })
       .filter(moment => {
         if (form.quoteCheck.checked && form.milestoneCheck.checked) {
@@ -92,15 +96,15 @@ function AddShareMoment(props) {
         }
         return ''
       })
-    axios.post(`${backUrl}/share`, momentsToSend, {
+    if (authorsSelect.indexOf(userName) !== -1) {
+      authorsSelect.splice(authorsSelect.indexOf(userName), 1)
+    }
+    axios.post(`${backUrl}/share`, { momentsToSend, userName, authorsSelect, selectedMail}, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
-      .catch(error => {
-        console.log(error)
-      })
-    setTimeout(() => setIsSend(true), 1000)
+      .then(res => res.status === 200 && setTimeout(() => setIsSend(true), 500))
+      .catch(err => console.log('an error is occured, the message is:' + err))
   }
-
   return (
     <>
       {isSend && <ShareSend />}
