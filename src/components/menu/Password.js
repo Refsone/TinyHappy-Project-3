@@ -19,16 +19,16 @@ const Password = () => {
 
   const showType = visible ? 'text' : 'password'
   const myToken = localStorage.getItem('x-acces-token')
-  const id = 14
+  const backUrl = process.env.REACT_APP_API_URL
+  const id = 1
 
   const submit = (e) => {
     e.preventDefault()
-    axios.put(`http://localhost:7500/users/${id}/modify-password`, { newPassword: newPassword, actualPassword: actualPassword }, { headers: { Autorization: `Bearer ${myToken}` } })
+    axios.put(`${backUrl}/users/${id}/modify-password`, { newPassword: newPassword, actualPassword: actualPassword }, { headers: { Autorization: `Bearer ${myToken}` } })
       .then(res => {
         if (res.status === 201) {
           setChangeSuceed(true)
         } else if (res.status === 400) {
-          console.log('salut')
         }
       })
   }
