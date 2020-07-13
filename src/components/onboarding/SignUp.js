@@ -53,11 +53,12 @@ const SignUp = (props) => {
     setUserConfirmPassword(e.target.value)
   }
   const sendSignUp = (e) => {
-    e.preventDefault()
+    e.preventDefault(user_firstname, user_mail)
     axios.post(`${backUrl}/sign-up`, loginData)
       .then(res => {
         if (res.status === 201) {
-          setSuccessfull(true)
+          axios.post(`${backUrl}/send-mails/register`, { userName: loginData.user_firstname, userMail: loginData.user_mail })
+            .then(res => res.status === 200 ? setSuccessfull(true) : '')
         } else {
           setError(true)
         }
