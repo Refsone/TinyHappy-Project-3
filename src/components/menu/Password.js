@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ConfirmButton from '../commons/footer/ConfirmButton'
+import { Redirect } from 'react-router-dom'
 
 import './../onboarding/Connexion.css'
 import './Password.css'
@@ -22,6 +23,9 @@ const Password = () => {
   const [actualPassword, setActualPasswor] = useState('')
   const [differentPassword, setDifferentPassword] = useState(false)
   const [shortPassword, setShortPassword] = useState(false)
+  const [redirect, setRedirect] = useState(false)
+  const [changeError, setChangeError] = useState(false)
+  const [errorActualPassword, setErrorActualPassword] = useState(false)
 
   const showType1 = visible1 ? 'text' : 'password'
   const showType2 = visible2 ? 'text' : 'password'
@@ -30,15 +34,38 @@ const Password = () => {
   const submit = (e) => {
     e.preventDefault()
     axios.put(`${backUrl}/users/${userId}/modify-password`, { newPassword: newPassword, actualPassword: actualPassword }, { headers: { Authorization: `Bearer ${myToken}` } })
-      .then(res => {
-        if (res.status === 201) {
-          setChangeSuceed(true)
-        } else if (res.status === 400) {
-        }
-      })
+      .then(res => (res.status === 201 ? setChangeSuceed(true) : setChangeError(true)))
+      .catch(err => (err.response.status === 401 ? setErrorActualPassword(true) : setChangeError(true)))
   }
 
+  useEffect(() => {
+    if (changeSuceed || changeError) {
+      const timer = setTimeout(() => {
+        setRedirect(true)
+      }, 2500)
+      return () => {
+        clearTimeout(timer)
+      }
+    }
+  }, [changeSuceed, changeError])
+
+  useEffect(() => {
+    if (errorActualPassword) {
+      document.getElementById('formChangePassword').reset()
+      setNewPassword('')
+      setConfirmPassword('')
+    }
+  }, [errorActualPassword])
+
+  useEffect(() => {
+    confirmPassword.length === newPassword.length && confirmPassword !== newPassword
+      ? setDifferentPassword(true) : setDifferentPassword(false)
+    newPassword.length >= 1 && newPassword.length < 8
+      ? setShortPassword(true) : setShortPassword(false)
+  }, [newPassword, confirmPassword])
+
   const handleChangePassword = (e) => {
+    setErrorActualPassword(false)
     setActualPasswor(e.target.value)
   }
 
@@ -50,21 +77,17 @@ const Password = () => {
     setConfirmPassword(e.target.value)
   }
 
-  useEffect(() => {
-    confirmPassword.length === newPassword.length && confirmPassword !== newPassword ? setDifferentPassword(true) : setDifferentPassword(false)
-    newPassword.length >= 1 && newPassword.length < 8 ? setShortPassword(true) : setShortPassword(false)
-  }, [newPassword, confirmPassword])
-
   return (
     <div className='settings-container-pwdmail modify-mdp'>
       <h1 className='settings-pwmail-title bold-16px-grey'>modification du mot de passe</h1>
 
-      <form className='general-form-connexion' noValidate>
+      <form className='general-form-connexion' id='formChangePassword' noValidate>
         <label htmlFor='user_password' className='label-settings bold-12px-grey'>Mot de passe actuel</label>
         <div className='settings-container-eye'>
           <img src={visible1 ? eyeOpen : eyeClosed} onClick={() => setVisible1(!visible1)} alt='' />
         </div>
         <input name='user_password' type={showType1} id='user_password' onChange={handleChangePassword} className='input-psw-default plholder bold-12px-grey' placeholder='**********' />
+        {errorActualPassword && <p className='msg-error'>Votre mot de passe est incorrecte</p>}
 
         <label htmlFor='new_password' className='label-settings bold-12px-grey'>Nouveau mot de passe</label>
         <div className='settings-container-eye'>
@@ -82,10 +105,10 @@ const Password = () => {
 
         {newPassword.length < 8 || newPassword !== confirmPassword
           ? <button type='submit' className='connexion-btn-inactif'>confirmer</button>
-          : <button type='submit' className='connexion-btn-actif' onClick={(e) => submit(e)}>confirmer</button>}
-        {changeSuceed && <ConfirmButton message='changement réussi' confirm />}
+          : <button type='submit' className={changeSuceed || changeError ? 'connexion-btn-none' : 'connexion-btn-actif'} onClick={(e) => submit(e)}>confirmer</button>}
+        {changeSuceed ? <ConfirmButton message='Votre mot de passe a été modifié avec succès !' confirm /> : changeError && <ConfirmButton message="Une erreur c'est produite" />}
+        {redirect && <Redirect to='/moments' />}
       </form>
-
     </div>
   )
 }
