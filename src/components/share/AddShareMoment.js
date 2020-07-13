@@ -80,7 +80,6 @@ function AddShareMoment (props) {
     Moment.locale('fr')
     const format = 'YYYY-MM-DD'
     const userName = authors[authors.length - 1].user_firstname
-    console.log(userName)
     const { selectedMail } = props.location.data
     const momentsToSend = moments
       .filter(moment => Moment(moment.moment_event_date).format(format) >= Moment(startDate).format(format) && Moment(moment.moment_event_date).format(format) <= Moment(endDate).format(format))
