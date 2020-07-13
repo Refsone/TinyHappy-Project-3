@@ -48,7 +48,6 @@ const DeleteMember = (props) => {
       }
     }
   }, [deleted])
-
   return (
     <>
       <div className='delete-member'>

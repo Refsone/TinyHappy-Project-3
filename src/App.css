@@ -73,7 +73,7 @@ html {
 }
 
 .btn-connexion {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   border: none;
@@ -86,7 +86,7 @@ html {
 }
 
 .btn-connexion-none {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   border: none;

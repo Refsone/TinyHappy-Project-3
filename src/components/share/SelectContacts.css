@@ -2,6 +2,11 @@
   margin-bottom: 9.5em;
 }
 
+.marge-contact {
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
 .contacts-list
 .select-contact-page {
   margin-bottom: 3em;
@@ -20,4 +25,5 @@
   display: flex;
   justify-content: flex-start;
   margin-left: 1.2rem;
+  margin-top: 2em;
 }

@@ -3,9 +3,7 @@ import React from 'react'
 import './Authors.css'
 
 function Authors (props) {
-  const { authors, clickAuthor } = props
-  console.log(`%c ${authors}`, 'color: red')
-  
+  const { authors, clickAuthor } = props  
   return (
     <div className='Authors'>
       {authors && authors.map((name, key) => {

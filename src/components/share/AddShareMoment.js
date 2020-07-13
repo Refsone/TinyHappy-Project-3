@@ -14,6 +14,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
+const userId = localStorage.getItem('userId')
 
 function AddShareMoment (props) {
   const [startDate, setStartDate] = useState(new Date('2020-01-12'))
@@ -36,23 +37,23 @@ function AddShareMoment (props) {
     fetchUser()
   }, [family])
 
-  const fetchFamily = (id = 1) => {
-    axios.get(`${backUrl}/users/${id}/family`, {
+  const fetchFamily = () => {
+    axios.get(`${backUrl}/users/${userId}/family`, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
-      .then(res => setFamily(res.data) && console.log(res.data))
+      .then(res => setFamily(res.data))
     .catch(err => err)
   }
 
-  const fetchUser = (id = 1) => {
-    axios.get(`${backUrl}/users/${id}`, {
+  const fetchUser = () => {
+    axios.get(`${backUrl}/users/${userId}`, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setAuthor(family.concat(res.data)))
   }
 
-  const fetchMoments = (id = 1) => {
-    axios.get(`${backUrl}/users/${id}/moments`, {
+  const fetchMoments = () => {
+    axios.get(`${backUrl}/users/${userId}/moments`, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setMoments(res.data))
@@ -78,7 +79,7 @@ function AddShareMoment (props) {
   const handleClick = () => {
     Moment.locale('fr')
     const format = 'YYYY-MM-DD'
-    const userName = 'Jérôme'
+    const userName = authors[authors.length - 1].user_firstname
     const { selectedMail } = props.location.data
     const momentsToSend = moments
       .filter(moment => Moment(moment.moment_event_date).format(format) >= Moment(startDate).format(format) && Moment(moment.moment_event_date).format(format) <= Moment(endDate).format(format))
@@ -104,7 +105,7 @@ function AddShareMoment (props) {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => res.status === 200 && setTimeout(() => setIsSend(true), 500))
-      .catch(err => console.log('an error is occured, the message is:' + err))
+      .catch(err => err)
   }
   return (
     <>

@@ -12,6 +12,7 @@ import './Posts.css'
 
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = localStorage.getItem('x-access-token')
+const userId = localStorage.getItem('userId')
 
 const Posts = (props) => {
   const [moments, setMoments] = useState([])
@@ -23,7 +24,7 @@ const Posts = (props) => {
   }, [refresh])
 
   const fetchUserMoment = () => {
-    axios.get(`${backUrl}/users/1/moments/`, {
+    axios.get(`${backUrl}/users/${userId}/moments`, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setMoments(res.data))
