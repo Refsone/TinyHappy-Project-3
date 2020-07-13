@@ -56,7 +56,7 @@ html {
   font-size: .75em;
 }
 
-.general-connexion-form .plholder::placeholder {
+.plholder::placeholder {
   font-style: italic;
   font-weight: 500;
   color: #98A7CD;
@@ -73,7 +73,7 @@ html {
 }
 
 .btn-connexion {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   border: none;
@@ -86,7 +86,7 @@ html {
 }
 
 .btn-connexion-none {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   border: none;
@@ -114,4 +114,5 @@ html {
   border-radius: 4px;
   background-color: #ffffff;
   height: 5em;
+  color: #98A7CD;
 }

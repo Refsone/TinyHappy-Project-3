@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom'
 
 import './Connexion.css'
 import '../menu/Password.css'
+import './SignUp.css'
 
 const backUrl = process.env.REACT_APP_API_URL
 
@@ -16,8 +17,7 @@ const SignUp = (props) => {
     user_firstname: '',
     user_lastname: '',
     user_mail: '',
-    user_password: '',
-    parameter_id: 1
+    user_password: ''
   }
 
   const [visibleOne, setVisibleOne] = useState(false)
@@ -71,7 +71,7 @@ const SignUp = (props) => {
   return (
     <>
       <Header location={props.location.pathname} />
-      <div className='settings-container-pwdmail'>
+      <div className='settings-container-pwdmail container-signup'>
 
         <form className='general-form-connexion' noValidate>
 

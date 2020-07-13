@@ -12,6 +12,7 @@ import emojiHappy from '../../../images/Vector-happy.svg'
 import emojiSad from '../../../images/Vector-sad.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
+const myToken = (localStorage.getItem('x-access-token'))
 
 const DeleteMember = (props) => {
   const { name, id } = props
@@ -29,7 +30,9 @@ const DeleteMember = (props) => {
   }
 
   const deleteMemberFromBdd = () => {
-    Axios.delete(`${backUrl}/family-members/${id}`)
+    Axios.delete(`${backUrl}/family-members/${id}`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
       .then(res => res.status === 200 && setDeleted(true))
       .catch(err => 'An error occured when deleted the members...' + err)
   }
@@ -45,7 +48,6 @@ const DeleteMember = (props) => {
       }
     }
   }, [deleted])
-
   return (
     <>
       <div className='delete-member'>
@@ -77,22 +79,22 @@ const DeleteMember = (props) => {
       </div>
       {
         cancel &&
-          <Redirect to={{
-            pathname: '/family/modify',
-            data: {
-              memberId: id,
-              modify: 'member'
-            }
-          }}
-          />
+        <Redirect to={{
+          pathname: '/family/modify',
+          data: {
+            memberId: id,
+            modify: 'member'
+          }
+        }}
+        />
       }
       {
         deleted &&
-          <ConfirmButton message={`Le membre ${name} a bien été supprimé.`} confirm deleted />
+          <ConfirmButton message={`${name} a bien été supprimé.`} confirm deleted />
       }
       {
         redirect &&
-          <Redirect to='/family' />
+        <Redirect to='/family' />
       }
     </>
   )

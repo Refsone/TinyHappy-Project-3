@@ -11,6 +11,7 @@ const SelectContacts = (props) => {
   const { contacts, handleclick, deleteContact } = props
 
   const [selectedIds, setSelectedIds] = useState([])
+  const [selectedMail, setSelectedMail] = useState([])
   const [bool, setBool] = useState([false])
 
   const handleChange = (e) => {
@@ -20,8 +21,11 @@ const SelectContacts = (props) => {
     const existId = tempTable.indexOf(tempId)
     if (existId === -1) {
       tempTable.push(tempId)
+      setSelectedMail([...selectedMail, e.target.nextSibling.textContent])
     } else {
       tempTable.splice(existId, 1)
+      selectedMail.splice(existId, 1)
+      setSelectedMail(selectedMail)
     }
     setSelectedIds(tempTable)
   }
@@ -32,6 +36,8 @@ const SelectContacts = (props) => {
   return (
     <div className='contacts-list'>
       <p className='bold-16px-grey title'>SÉLECTION DE VOS CONTACTS</p>
+      <p className='bold-12px-grey title-add marge-contact'>AJOUTER UN CONTACT</p>
+      <AddContact handleclick={handleclick} />
       <div className='select-contact-page'>
         {contacts && contacts.map(contact => {
           return (
@@ -41,9 +47,11 @@ const SelectContacts = (props) => {
         })}
       </div>
       <div>
-        <p className='bold-12px-grey title-add'>AJOUTER UN CONTACT</p>
-        <AddContact handleclick={handleclick} />
-        <SendButton actived={selectedIds.length > 0 && 'actived'} selectedIds={selectedIds.length > 0 && selectedIds} />
+        <SendButton
+          actived={selectedIds.length > 0 && 'actived'}
+          selectedIds={selectedIds.length > 0 && selectedIds}
+          selectedMail={selectedMail.length > 0 && selectedMail}
+        />
       </div>
     </div>
   )
