@@ -36,6 +36,8 @@ const SelectContacts = (props) => {
   return (
     <div className='contacts-list'>
       <p className='bold-16px-grey title'>SÉLECTION DE VOS CONTACTS</p>
+      <p className='bold-12px-grey title-add marge-contact'>AJOUTER UN CONTACT</p>
+      <AddContact handleclick={handleclick} />
       <div className='select-contact-page'>
         {contacts && contacts.map(contact => {
           return (
@@ -45,8 +47,6 @@ const SelectContacts = (props) => {
         })}
       </div>
       <div>
-        <p className='bold-12px-grey title-add'>AJOUTER UN CONTACT</p>
-        <AddContact handleclick={handleclick} />
         <SendButton
           actived={selectedIds.length > 0 && 'actived'}
           selectedIds={selectedIds.length > 0 && selectedIds}
