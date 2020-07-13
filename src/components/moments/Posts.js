@@ -7,6 +7,7 @@ import AddNewMoment from './AddNewMoment'
 import CardPost from './CardPost'
 import Header from './../commons/header/Header'
 import Navbar from '../commons/footer/Navbar'
+import NoMoment from './NoMoment'
 
 import './Posts.css'
 
@@ -29,13 +30,16 @@ const Posts = (props) => {
     })
       .then(res => setMoments(res.data))
   }
+
   const formatDate = (date) => {
     Moment.locale('fr')
     return Moment(date).format('LL')
   }
+
   const getRandom = () => {
     return Math.floor(Math.random() * Math.floor(100))
   }
+
   const createCardPost = (moment, id) => {
     if (date !== moment.moment_event_date) {
       date = moment.moment_event_date
@@ -54,6 +58,7 @@ const Posts = (props) => {
       )
     }
   }
+
   const refreshMethod = () => {
     setRefresh(!refresh)
   }
@@ -62,6 +67,7 @@ const Posts = (props) => {
     <>
       <Header burger />
       <div className='Posts'>
+        {moments.length === 0 && <NoMoment />}
         {moments.map((moment, key) => {
           if (props.location.pathname === '/favoris') {
             if (moment.moment_favorite) {
