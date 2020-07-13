@@ -105,7 +105,7 @@ function AddShareMoment (props) {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => res.status === 200 && setTimeout(() => setIsSend(true), 500))
-      .catch(err => console.log('an error is occured, the message is:' + err))
+      .catch(err => err)
   }
   return (
     <>
