@@ -44,7 +44,7 @@ const InputComponent = (props) => {
         onMouseOut={onMouseOut}
       />
       {id !== 'mail' &&
-        <img src={pwdShow[id] ? eyeClosed : eyeOpen} alt='' onClick={handleEyes} id={id} />}
+        <img src={!pwdShow[id] ? eyeClosed : eyeOpen} alt='' onClick={handleEyes} id={id} />}
       {inputError[id] &&
         <p className={id !== 'mail' ? 'msg-error' : 'msg-error-mail'}>{messageError[id]}</p>}
     </div>

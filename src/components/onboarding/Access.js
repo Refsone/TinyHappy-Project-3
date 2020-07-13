@@ -8,9 +8,10 @@ import Sign from './Sign'
 const Access = () => {
   const [load, setLoad] = useState(false)
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setLoad(true)
     }, 1500)
+    return () => clearTimeout(timer)
   }, [])
 
   return (

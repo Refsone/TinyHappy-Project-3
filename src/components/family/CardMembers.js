@@ -12,6 +12,7 @@ import './CardMembers.css'
 
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
+const userId = localStorage.getItem('userId')
 
 const CardMembers = () => {
   const [members, setMembers] = useState([])
@@ -25,14 +26,14 @@ const CardMembers = () => {
     fetchFamilyMembers()
   }, [])
 
-  const fetchFamilyMembers = (userId = 1) => {
+  const fetchFamilyMembers = () => {
     axios.get(`${backUrl}/users/${userId}/family`, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setMembers(res.data))
   }
 
-  const fetchUser = (userId = 1) => {
+  const fetchUser = () => {
     axios.get(`${backUrl}/users/${userId}`, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
@@ -48,7 +49,6 @@ const CardMembers = () => {
       return date
     }
   }
-
   return (
     <>
       <Header burger />

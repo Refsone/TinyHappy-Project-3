@@ -13,6 +13,7 @@ import './CreateFamily.css'
 
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
+const userId = localStorage.getItem('userId')
 
 // Test if the fields are corrects
 const regexInput = /[A-zÀ-ú]{2,}/
@@ -25,7 +26,6 @@ const CreateFamily = (props) => {
   const modify = props.location.pathname === '/family/modify' && props.location.data.modify
 
   const location = props.location.pathname
-  const userId = 1
 
   // Define the state
   const [lastname, setLastname] = useState({
