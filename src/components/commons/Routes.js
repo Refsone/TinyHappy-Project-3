@@ -14,6 +14,7 @@ import PasswordLost from '../onboarding/passwordLost/PasswordLost'
 import PasswordReset from '../onboarding/passwordLost/PasswordReset'
 import Post from '../moments/Posts'
 import SignUp from '../onboarding/SignUp'
+import Mentions from '../menu/Mentions'
 
 const routes = (props) => {
   return (
@@ -33,6 +34,7 @@ const routes = (props) => {
       <Route path='/onboarding/resetpwd' component={PasswordReset} />
       <Route path='/onboarding/signup' component={SignUp} />
       <Route exact path='/settings' component={DisplaySettings} />
+      <Route exact path='/settings/mentions' component={Mentions} />
       <Route path='/settings/modify/email' component={ModifySettings} />
       <Route path='/settings/modify/password' component={ModifySettings} />
       <Route exact path='/share' component={CardContacts} />

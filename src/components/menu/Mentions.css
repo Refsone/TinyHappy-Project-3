@@ -1,0 +1,25 @@
+.container-mentions{
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 6%;
+    margin-top: 15vh;
+    flex-direction: column;
+    color: #7180AC;
+}
+
+.container-mentions .title{
+    text-transform: uppercase;
+    padding-bottom: 2%;
+}
+.container-mentions .soustitle{
+    text-transform: uppercase;
+    padding-top: 5%;
+    padding-bottom: 2.5%;
+}
+
+.container-mentions .t-courant{
+  text-align: left;
+  line-height: 1.5;
+  padding-bottom: 5%;
+}

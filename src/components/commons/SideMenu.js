@@ -25,7 +25,7 @@ const SideMenu = () => {
               <p>Paramètres</p>
             </div>
           </Link>
-          <Link to='/settings'>
+          <Link to='/settings/Mentions'>
             <div className='menu-item'>
               <img src={logoLibra} alt='Logo légale' />
               <p>Mentions légales</p>
