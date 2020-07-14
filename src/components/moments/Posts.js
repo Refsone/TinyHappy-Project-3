@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import toast from 'toasted-notes'
 import Moment from 'moment'
 import 'moment/locale/fr'
 
@@ -10,6 +11,7 @@ import Navbar from '../commons/footer/Navbar'
 import NoMoment from './NoMoment'
 
 import './Posts.css'
+// import 'toasted-notes/src/styles.css'
 
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = localStorage.getItem('x-access-token')
@@ -23,6 +25,29 @@ const Posts = (props) => {
   useEffect(() => {
     fetchUserMoment()
   }, [refresh])
+
+  useEffect(() => {
+    const { params } = props.location
+    if (params && params.isSend) {
+      toast.notify(
+        <div className='sucess-toaster'>
+          <p>Votre moment a été posté avec succès !</p>
+        </div>,
+        {
+          duration: 3000,
+          position: 'bottom'
+        })
+    } else if (params && !params.isSend) {
+      toast.notify(
+        <div className='error-toaster'>
+          <p>Une erreur c'est produite dans l'ajout d'un moment!</p>
+        </div>,
+        {
+          duration: 3000,
+          position: 'bottom'
+        })
+    }
+  }, [])
 
   const fetchUserMoment = () => {
     axios.get(`${backUrl}/users/${userId}/moments`, {

@@ -116,3 +116,44 @@ html {
   height: 5em;
   color: #98A7CD;
 }
+
+/*TOASTER*/
+
+.Toaster__message-wrapper {
+  width: 90%;
+  padding-bottom: 8px;
+}
+
+.sucess-toaster, .error-toaster {
+  overflow: hidden;
+  border-radius: 0.2em;
+  padding: 1rem;
+}
+
+.sucess-toaster p, .error-toaster p {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.sucess-toaster {
+  background: url('images/green-tick.svg') 32px no-repeat, #D3FF9B;
+  border: solid 1px #7FB74E;
+}
+
+.sucess-toaster p {
+  color: #7FB74E;
+}
+
+.error-toaster {
+  background: #ff9b9b;
+  border: solid 1px #7FB74E;
+}
+
+.error-toaster p {
+  color: #b74e4e;
+}
+
+.Toaster__alert_close {
+  display: none;
+}
