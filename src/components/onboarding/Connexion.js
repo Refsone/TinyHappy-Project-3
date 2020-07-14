@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
+import jwt from 'jsonwebtoken'
 
 import Header from '../commons/header/Header'
 import useForm from './useForm'
@@ -30,14 +31,12 @@ const Connexion = (props) => {
     e.preventDefault()
     try {
       await axios.post(`${backUrl}/users/login`, values)
-        .then(res => {
-          localStorage.clear()
-          localStorage.setItem('userId', res.data.id)
-          return res.headers['x-access-token']
-        })
+        .then(res => res.headers['x-access-token'])
         .then(data => {
           if (data) {
+            localStorage.clear()
             localStorage.setItem('x-access-token', data)
+            localStorage.setItem('userId', jwt.decode(data).id)
             setLoggedIn(true)
           }
         })
