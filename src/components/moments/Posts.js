@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import toast from 'toasted-notes'
 import Moment from 'moment'
 import 'moment/locale/fr'
 
@@ -9,9 +8,10 @@ import CardPost from './CardPost'
 import Header from './../commons/header/Header'
 import Navbar from '../commons/footer/Navbar'
 import NoMoment from './NoMoment'
+import Toast from '../commons/Toast'
+import toaster from 'toasted-notes'
 
 import './Posts.css'
-// import 'toasted-notes/src/styles.css'
 
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = localStorage.getItem('x-access-token')
@@ -29,23 +29,9 @@ const Posts = (props) => {
   useEffect(() => {
     const { params } = props.location
     if (params && params.isSend) {
-      toast.notify(
-        <div className='sucess-toaster'>
-          <p>Votre moment a été posté avec succès !</p>
-        </div>,
-        {
-          duration: 3000,
-          position: 'bottom'
-        })
+      toaster.notify(<Toast classType='sucess-toaster' text='Votre moment a été posté avec succès !' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     } else if (params && !params.isSend) {
-      toast.notify(
-        <div className='error-toaster'>
-          <p>Une erreur c'est produite dans l'ajout d'un moment!</p>
-        </div>,
-        {
-          duration: 3000,
-          position: 'bottom'
-        })
+      toaster.notify(<Toast classType='error-toaster' text={'Une erreur c\'est produite dans l\'ajout d\'un moment!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     }
   }, [])
 
