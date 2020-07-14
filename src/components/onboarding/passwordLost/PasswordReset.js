@@ -14,10 +14,8 @@ const PasswordReset = (props) => {
   const regexMail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/
   const regexTempPassword = /.{12,}/
   const regexPassword1 = /.{8,}/
-  const regexPassword2 = /[!$%^&*/()_+|~=`{}[:;<>?,@#\]]{1,}/
-  const regexPassword3 = /[0-9]{1,}/
-  const regexPassword4 = /[a-z]{1,}/
-  const regexPassword5 = /[A-Z]{1,}/
+  const regexPassword2 = /[0-9]{1,}/
+  const regexPassword3 = /[A-Z]{1,}/
 
   //* STATE
   const [isValidate, setIsValidate] = useState(false)
@@ -56,11 +54,9 @@ const PasswordReset = (props) => {
     if (!regexPassword1.test(password)) {
       return 'Le mot de passe doit contenir au moins 8 caractères.'
     } else if (!regexPassword2.test(password)) {
-      return 'Au minimum un caractère spécial est requis.'
-    } else if (!regexPassword3.test(password)) {
       return 'Doit contenir au moins un chiffre.'
-    } else if (!regexPassword4.test(password) || !regexPassword5.test(password)) {
-      return 'Une lettre en minuscule et une lettre en majuscule requis.'
+    } else if (!regexPassword3.test(password)) {
+      return 'Doit contenir une lettre en majuscule.'
     } else {
       return 'ok'
     }
@@ -77,7 +73,7 @@ const PasswordReset = (props) => {
   useEffect(() => {
   }, [inUseEffect])
 
-  const onMouseOut = (e) => {
+  const handleBlur = (e) => {
     const value = e.target.value
     switch (e.target.id) {
       case 'mail':
@@ -165,7 +161,7 @@ const PasswordReset = (props) => {
           <div className='pwd-reset-input'>
             {
               inputs.map((input, id) =>
-                <InputComponent inputError={inputError} messageError={messageError} pwdShow={pwdShow} handleEyes={handleEyes} handleChange={handleChange} key={id} id={input} onMouseOut={onMouseOut} />
+                <InputComponent inputError={inputError} messageError={messageError} pwdShow={pwdShow} handleEyes={handleEyes} handleChange={handleChange} key={id} id={input} handleBlur={handleBlur} />
               )
             }
           </div>
