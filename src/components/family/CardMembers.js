@@ -33,7 +33,7 @@ const CardMembers = (props) => {
     const sucessType = params && params.isModify ? 'modifié' : params && params.isDelete ? 'supprimé' : 'crée'
     if ((params && params.isSend) || (params && params.isDelete)) {
       toaster.notify(<Toast classType='sucess-toaster' text={`Le membre a été ${sucessType} avec succès`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
-    } else if (params && !params.isSend) {
+    } else if (params && !params.isSend && params && !params.isDelete) {
       toaster.notify(<Toast classType='error-toaster' text={'Une erreur c\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     }
   }, [])
