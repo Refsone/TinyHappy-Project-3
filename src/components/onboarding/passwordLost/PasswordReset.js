@@ -20,7 +20,7 @@ const PasswordReset = (props) => {
   const regexPassword5 = /[A-Z]{1,}/
 
   //* STATE
-  const [isValidate, setIsValidate] = useState(false)
+  const [isValidate] = useState(false)
   const [inUseEffect, setInUseEffect] = useState(false)
 
   // Managing the errors
@@ -112,7 +112,7 @@ const PasswordReset = (props) => {
           setInputError({ ...inputError, tempPwd: true })
           setMessageError({ ...messageError, tempPwd: 'Le format du mot de passe temporaire est invalide' })
         } else {
-          Axios.post(`${backUrl}/users/tempPwd`, {mail: formData.mail, tempPwd: value})
+          Axios.post(`${backUrl}/users/tempPwd`, { mail: formData.mail, tempPwd: value })
             .catch(error => {
               setInputError({ ...inputError, tempPwd: true })
               switch (error.response.status) {

@@ -8,7 +8,6 @@ import Axios from 'axios'
 
 const backUrl = process.env.REACT_APP_API_URL
 
-
 const PasswordLost = (props) => {
   const regexMail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/
 
@@ -28,7 +27,7 @@ const PasswordLost = (props) => {
   }
 
   const handleClick = async () => {
-    await Axios.post(`${backUrl}/mailing/tempPassword`, { user_mail: email })
+    await Axios.post(`${backUrl}/send-mails/lost-pwd`, { user_mail: email })
       .then(res => {
         console.log(res)
         document.getElementById('email').value = ''

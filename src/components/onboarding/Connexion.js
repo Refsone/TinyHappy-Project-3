@@ -37,6 +37,8 @@ const Connexion = (props) => {
             localStorage.clear()
             localStorage.setItem('x-access-token', data)
             localStorage.setItem('userId', jwt.decode(data).id)
+            localStorage.setItem('userMail', jwt.decode(data).mail)
+            localStorage.setItem('userName', jwt.decode(data).name)
             setLoggedIn(true)
           }
         })
