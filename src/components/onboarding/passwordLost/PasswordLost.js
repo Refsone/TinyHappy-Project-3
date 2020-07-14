@@ -29,7 +29,6 @@ const PasswordLost = (props) => {
   const handleClick = async () => {
     await Axios.post(`${backUrl}/send-mails/lost-pwd`, { user_mail: email })
       .then(res => {
-        console.log(res)
         document.getElementById('email').value = ''
         setIsValidate(false)
         console.log(`Envoi de l'Email vers ${email} réussi`)
