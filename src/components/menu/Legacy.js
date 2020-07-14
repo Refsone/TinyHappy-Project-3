@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from './../commons/header/Header'
+import Header from '../commons/header/Header'
 
-import './Mentions.css'
+import './LegacyPrivacy.css'
 
-const Mentions = (props) => {
+const Legacy = (props) => {
   const path = props.location.pathname
   return (
     <>
@@ -52,4 +52,4 @@ est strictement interdite sans l’autorisation écrite et préalable de M. Jér
   )
 }
 
-export default Mentions
+export default Legacy

@@ -14,7 +14,8 @@ import PasswordLost from '../onboarding/passwordLost/PasswordLost'
 import PasswordReset from '../onboarding/passwordLost/PasswordReset'
 import Post from '../moments/Posts'
 import SignUp from '../onboarding/SignUp'
-import Mentions from '../menu/Mentions'
+import Legacy from '../menu/Legacy'
+import Privacy from '../menu/Privacy'
 
 const routes = (props) => {
   return (
@@ -34,7 +35,8 @@ const routes = (props) => {
       <Route path='/onboarding/resetpwd' component={PasswordReset} />
       <Route path='/onboarding/signup' component={SignUp} />
       <Route exact path='/settings' component={DisplaySettings} />
-      <Route exact path='/settings/mentions' component={Mentions} />
+      <Route exact path='/settings/legacy' component={Legacy} />
+      <Route exact path='/settings/privacy' component={Privacy} />
       <Route path='/settings/modify/email' component={ModifySettings} />
       <Route path='/settings/modify/password' component={ModifySettings} />
       <Route exact path='/share' component={CardContacts} />
