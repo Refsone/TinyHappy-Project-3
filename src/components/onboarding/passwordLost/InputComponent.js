@@ -7,7 +7,7 @@ import eyeClosed from '../../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../../images/eye-open.svg'
 
 const InputComponent = (props) => {
-  const { handleChange, handleEyes, id, inputError, messageError, pwdShow, onMouseOut } = props
+  const { handleChange, handleEyes, id, inputError, messageError, pwdShow, handleBlur } = props
 
   const definePlaceHolder = id === 'mail' ? 'prenom@exemple.com' : '**********'
   const labelName = () => {
@@ -41,10 +41,10 @@ const InputComponent = (props) => {
         onChange={(e) => handleChange(e)}
         id={id}
         placeholder={definePlaceHolder}
-        onMouseOut={onMouseOut}
+        onBlur={handleBlur}
       />
       {id !== 'mail' &&
-        <img src={pwdShow[id] ? eyeClosed : eyeOpen} alt='' onClick={handleEyes} id={id} />}
+        <img src={!pwdShow[id] ? eyeClosed : eyeOpen} alt='' onClick={handleEyes} id={id} />}
       {inputError[id] &&
         <p className={id !== 'mail' ? 'msg-error' : 'msg-error-mail'}>{messageError[id]}</p>}
     </div>
@@ -52,6 +52,7 @@ const InputComponent = (props) => {
 }
 
 InputComponent.propTypes = {
+  handleBlur: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleEyes: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,

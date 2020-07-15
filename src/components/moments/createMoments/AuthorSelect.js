@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ButtonAuthor from './ButtonAuthor'
 
 import './AuthorSelect.css'
@@ -19,4 +20,13 @@ const AuthorSelect = (props) => {
     </div>
   )
 }
+
+AuthorSelect.propTypes = {
+  familyMember: PropTypes.array.isRequired,
+  memberFamilyIsPresentAtMoment: PropTypes.array.isRequired,
+  userIsPresent: PropTypes.number.isRequired,
+  user: PropTypes.object.isRequired,
+  textInMomentArea: PropTypes.string
+}
+
 export default AuthorSelect

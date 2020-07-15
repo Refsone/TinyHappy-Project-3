@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ValidateButton from '../../commons/footer/ValidateButton'
 import ConfirmButton from '../../commons/footer/ConfirmButton'
 
@@ -18,6 +19,18 @@ const Textarea = (props) => {
       {props.sendMomentSucceed && <ConfirmButton message='Envoie reussi' confirm />}
     </div>
   )
+}
+
+Textarea.propTypes = {
+  sendMomentSucceed: PropTypes.bool.isRequired,
+  textInContextArea: PropTypes.string,
+  textInMomentArea: PropTypes.string,
+  onChangeTextInContextArea: PropTypes.func.isRequired,
+  onChangeTextInMomentArea: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  idQuoteArea: PropTypes.string,
+  idContextArea: PropTypes.string,
+  title: PropTypes.string
 }
 
 export default Textarea

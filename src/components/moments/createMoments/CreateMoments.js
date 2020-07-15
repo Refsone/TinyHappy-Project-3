@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import axios from 'axios'
 
 import DatePicker from 'react-datepicker'
@@ -14,6 +13,7 @@ import calendarIcon from '../../../images/calendrier.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
+const userId = localStorage.getItem('userId')
 
 const CreateMoment = (props) => {
   const [active, setActive] = useState(false)
@@ -26,14 +26,13 @@ const CreateMoment = (props) => {
   const [sendMomentSucceed, setSendMomentSucceed] = useState(false)
   const [textInContextArea, setTextInContextArea] = useState('')
   const [textInMomentArea, setTextInMomentArea] = useState('')
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState({})
   const [userIsPresent, setUserIsPresent] = useState(0)
 
-  const id = 1
   const path = props.location.pathname
 
   useEffect(() => {
-    axios.get(`${backUrl}/users/${id}/family`, {
+    axios.get(`${backUrl}/users/${userId}/family`, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then((res) => {
@@ -42,7 +41,7 @@ const CreateMoment = (props) => {
       .catch(err => `L'erreur suivante s'est produite: ${err}`, {
         headers: { Authorization: `Bearer ${myToken}` }
       })
-    axios.get(`${backUrl}/users/${id}`, {
+    axios.get(`${backUrl}/users/${userId}`, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then((res) => {
@@ -60,10 +59,9 @@ const CreateMoment = (props) => {
       moment_context: textInContextArea,
       moment_event_date: date.toISOString().slice(0, 10),
       moment_type_id: momentTypeId,
-      user_id: id,
+      user_id: userId,
       family_id: memberFamilyIsPresentAtMoment
-    }, {
-      headers: { Authorization: `Bearer ${myToken}` }
+    }, {headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => res.status === 201 ? setSendMomentSucceed(true) : setSendError(true))
       .catch(err => console.log('an error is occured, the message is:' + err))
@@ -132,23 +130,6 @@ const CreateMoment = (props) => {
       </div>
     </>
   )
-}
-
-CreateMoment.propTypes = {
-  SwitchMomentType: PropTypes.func.isRequired,
-  momentTypeId: PropTypes.number.isRequired,
-  sendMomentSucceed: PropTypes.func.isRequired,
-  memberFamilyIsPresentAtMoment: PropTypes.array.isRequired,
-  userIsPresent: PropTypes.number.isRequired,
-  textInContextArea: PropTypes.string,
-  textInMomentArea: PropTypes.string,
-  buttonSelectAuthor: PropTypes.func.isRequired,
-  active: PropTypes.bool.isRequired,
-  SendCreateMoment: PropTypes.func.isRequired,
-  onChangeTextInContextArea: PropTypes.func.isRequired,
-  onChangeTextInMomentArea: PropTypes.func.isRequired,
-  user: PropTypes.array.isRequired,
-  familyMember: PropTypes.array.isRequired
 }
 
 export default CreateMoment
