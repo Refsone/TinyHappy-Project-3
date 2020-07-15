@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
+import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 
 import ConfirmButton from '../../commons/footer/ConfirmButton'
-
 import Header from '../../commons/header/Header'
 import InputComponent from './InputComponent'
 import ValidateButton from '../../commons/footer/ValidateButton'
