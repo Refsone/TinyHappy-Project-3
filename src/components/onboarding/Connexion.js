@@ -14,8 +14,6 @@ import './Connexion.css'
 
 const backUrl = process.env.REACT_APP_API_URL
 
-console.log(backUrl)
-
 const Connexion = (props) => {
   const { handleChange, handleSubmit, values, errors, setErrors } = useForm(submit, validationLogIn)
   const [redirect, setRedirect] = useState(false)

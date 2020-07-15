@@ -66,13 +66,13 @@ const Header = (props) => {
       text = 'retour'
       link = '/settings'
       break
-    case '/setting/legacy':
+    case '/settings/legacy':
       text = 'retour'
-      link = location
+      link = '/settings'
       break
     case '/settings/privacy':
       text = 'retour'
-      link = location
+      link = '/settings'
       break
     default:
       text = 'retour'
