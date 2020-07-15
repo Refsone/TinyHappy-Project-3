@@ -61,10 +61,14 @@ const CreateMoment = (props) => {
       moment_type_id: momentTypeId,
       user_id: userId,
       family_id: memberFamilyIsPresentAtMoment
-    }, {headers: { Authorization: `Bearer ${myToken}` }
+    }, {
+      headers: { Authorization: `Bearer ${myToken}` }
     })
-      .then(res => res.status === 201 ? setSendMomentSucceed(true) : setSendError(true))
-      .catch(err => console.log('an error is occured, the message is:' + err))
+      .then(res => res.status === 201 ? setSendMomentSucceed(true) : '')
+      .catch(err => {
+        setSendError(true)
+        console.error(err)
+      })
   }
 
   useEffect(() => {
@@ -75,7 +79,7 @@ const CreateMoment = (props) => {
     if (sendMomentSucceed || sendError) {
       const timer = setTimeout(() => {
         setRedirect(true)
-      }, 2500)
+      }, 1000)
       return () => {
         clearTimeout(timer)
       }
@@ -125,8 +129,7 @@ const CreateMoment = (props) => {
         <MomentNavbar SwitchMomentType={SwitchMomentType} />
         <Moment momentTypeId={momentTypeId} sendMomentSucceed={sendMomentSucceed} memberFamilyIsPresentAtMoment={memberFamilyIsPresentAtMoment} userIsPresent={userIsPresent} textInContextArea={textInContextArea} textInMomentArea={textInMomentArea} buttonSelectAuthor={buttonSelectAuthor} active={active} SendCreateMoment={SendCreateMoment} onChangeTextInContextArea={onChangeTextInContextArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />
         <DatePicker selected={date} locale='fr' onChange={date => setDate(date)} dateFormat='EEEE dd MMMM yyyy' customInput={<CustomInput />} />
-        {sendError && <p className='sendError'>Une erreur s'est produite lors de l'envoi</p>}
-        {redirect && <Redirect to='/moments' />}
+        {redirect && <Redirect to={{ pathname: '/moments', params: { isSend: sendMomentSucceed } }} />}
       </div>
     </>
   )

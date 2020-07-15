@@ -42,7 +42,7 @@ function AddShareMoment (props) {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => setFamily(res.data))
-    .catch(err => err)
+      .catch(err => err)
   }
 
   const fetchUser = () => {
@@ -101,7 +101,7 @@ function AddShareMoment (props) {
     if (authorsSelect.indexOf(userName) !== -1) {
       authorsSelect.splice(authorsSelect.indexOf(userName), 1)
     }
-    axios.post(`${backUrl}/share`, { momentsToSend, userName, authorsSelect, selectedMail}, {
+    axios.post(`${backUrl}/share`, { momentsToSend, userName, authorsSelect, selectedMail }, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => res.status === 200 && setTimeout(() => setIsSend(true), 500))
