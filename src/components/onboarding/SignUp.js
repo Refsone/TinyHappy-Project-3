@@ -76,10 +76,10 @@ const SignUp = (props) => {
         <form className='general-form-connexion' noValidate>
 
           <label htmlFor='user_firstname' className='label-settings bold-12px-grey'>prénom</label>
-          <input name='user_firstname' type='text' id='user_firstname' value={user_firstname} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='Elise' autoComplete='off' required />
+          <input name='user_firstname' type='text' id='user_firstname' value={user_firstname} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='Prénom' autoComplete='off' required />
 
           <label htmlFor='user_lastname' className='label-settings bold-12px-grey'>nom</label>
-          <input name='user_lastname' type='text' id='user_lastname' value={user_lastname} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='Durand' autoComplete='off' required />
+          <input name='user_lastname' type='text' id='user_lastname' value={user_lastname} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' placeholder='Nom' autoComplete='off' required />
 
           <label htmlFor='user_mail' className='label-settings bold-12px-grey'>email</label>
           <input name='user_mail' type='email' id='user_mail' value={user_mail} onChange={handleChange} className='input-psw-default plholder bold-12px-grey' autoComplete='off' placeholder='mon@email.com' required />
@@ -94,6 +94,12 @@ const SignUp = (props) => {
             <img src={visibleTwo ? eyeOpen : eyeClosed} onClick={() => setVisibleTwo(!visibleTwo)} alt='' />
           </div>
           <input name='userConfirmPassword' type={showTypeTwo} id='userConfirmPassword' value={userConfirmPassword} onChange={confirmPassword} className='input-psw-default plholder bold-12px-grey' placeholder='**********' autoComplete='off' />
+          <p className='paragraphe'>Votre mot de passe doit contenir : </p>
+          <ul>
+            <li>au moins 8 caractères</li>
+            <li>1 chiffre</li>
+            <li>1 majuscule</li>
+          </ul>
           {successfull ? <ConfirmButton message='inscription reussie' confirm /> : btn}
           {error && <p className='signUp-error'>Une erreur s'est produite lors de l'inscription</p>}
           {redirect && <Redirect to='/onboarding/login' />}

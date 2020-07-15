@@ -10,9 +10,9 @@
     font-weight: 500;
     font-size: 15px;
     text-align: center;
-    position: relative;
     bottom: -20px;
     left: 5vw;
+    margin: 14px 0 0 23px;
 }
 
 .general-form-connexion-container {
