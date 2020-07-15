@@ -19,9 +19,11 @@ const userId = localStorage.getItem('userId')
 const CardMembers = (props) => {
   const [members, setMembers] = useState([])
   const [user, setUser] = useState([])
+  const [ageParams, setAgeParams] = useState()
 
   useEffect(() => {
     fetchUser()
+    fetchAgeParam()
   }, [])
 
   useEffect(() => {
@@ -45,6 +47,12 @@ const CardMembers = (props) => {
       .then(res => setMembers(res.data))
   }
 
+  const fetchAgeParam = () => {
+    axios.get(`${backUrl}/users/${userId}/parameter`, { headers: { Authorization: `Bearer ${myToken}` } })
+      .then(res => setAgeParams(res.data[0].display_birthday))
+      .catch(err => console.error(err))
+  }
+
   const fetchUser = () => {
     axios.get(`${backUrl}/users/${userId}`, {
       headers: { Authorization: `Bearer ${myToken}` }
@@ -66,9 +74,9 @@ const CardMembers = (props) => {
       <Header burger />
       <div className='CardMembers'>
         {members.map((member, key) => {
-          return <Member isUser={0} member={member} familyBirthday={formatDate(member.family_birthday)} key={key} />
+          return <Member displayBirthday={ageParams} isUser={0} member={member} familyBirthday={formatDate(member.family_birthday)} key={key} />
         })}
-        {user[0] && <Member isUser={1} member={user[0]} familyBirthday={formatDate(user[0].user_birthday)} />}
+        {user[0] && <Member displayBirthday={ageParams} isUser={1} member={user[0]} familyBirthday={formatDate(user[0].user_birthday)} />}
       </div>
       <AddNewFamily />
       <Navbar />

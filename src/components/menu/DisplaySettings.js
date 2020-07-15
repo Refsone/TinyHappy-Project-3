@@ -12,33 +12,30 @@ const myToken = localStorage.getItem('x-access-token')
 const userId = localStorage.getItem('userId')
 
 const DisplaySettings = (props) => {
-  const [toggle, setToggle] = useState()
+  const [toggle, setToggle] = useState(0)
 
   useEffect(() => {
     fetchAgeParam()
-    // document.getElementById('display_birthday').checked = toggle
   }, [])
 
   useEffect(() => {
     sendAgeParam()
+    document.getElementById('display_birthday').checked = toggle
+    console.log(toggle)
   }, [toggle])
 
   const toggler = (e) => {
     setToggle(!toggle)
-    console.log(e.target.checked)
   }
 
   const fetchAgeParam = () => {
     axios.get(`${backUrl}/users/${userId}/parameter`, { headers: { Authorization: `Bearer ${myToken}` } })
-      .then(res =>
-        sendAgeParam(res.data))
-    // setToggle(res.data[0].display_birthday)
-    // console.log(document.getElementById('display_birthday').checked = res.data[0].display_birthday)
+      .then(res => setToggle(res.data[0].display_birthday))
       .catch(err => console.error(err))
   }
 
   const sendAgeParam = () => {
-    axios.put(`${backUrl}/users/parameter`, { display_birthday: toggle, user_id: userId }, {
+    axios.put(`${backUrl}/parameters/display-birthday`, { display_birthday: toggle, user_id: userId }, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .catch(err => err)
