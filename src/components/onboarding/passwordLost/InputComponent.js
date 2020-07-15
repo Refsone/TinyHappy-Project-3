@@ -33,7 +33,7 @@ const InputComponent = (props) => {
   }
 
   return (
-    <div class='spin-input'>
+    <div className='spin-input'>
       <label htmlFor={id} className='bold-12px-grey'>{labelName().toUpperCase()}</label>
       <input
         className={inputError[id] ? 'error bold-12px-grey plholder' : 'bold-12px-grey plholder'}

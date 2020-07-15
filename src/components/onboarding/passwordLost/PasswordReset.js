@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
+import { Redirect } from 'react-router-dom'
+
+import ConfirmButton from '../../commons/footer/ConfirmButton'
 
 import Header from '../../commons/header/Header'
 import InputComponent from './InputComponent'
@@ -22,7 +25,9 @@ const PasswordReset = (props) => {
   //* STATE
   const [isValidate, setIsValidate] = useState(false)
   const [inUseEffect, setInUseEffect] = useState(false)
-
+  // Manage the redirection to the next page
+  const [redirect, setRedirect] = useState(false)
+  const [pwdChanged, setPwdChanged] = useState(false)
   // Managing the errors
   const [inputError, setInputError] = useState({
     mail: false,
@@ -72,10 +77,25 @@ const PasswordReset = (props) => {
     setMessageError({ ...messageError, [id]: '' })
     setInputError({ ...inputError, [id]: false })
     setFormData({ ...formData, [id]: e.target.value })
+    setInUseEffect(!inUseEffect)
+    verifyBeforeValidate()
   }
 
   useEffect(() => {
+    verifyBeforeValidate()
   }, [inUseEffect])
+
+  // Define a setTimeOut on validation before going to the login page
+  useEffect(() => {
+    if (pwdChanged) {
+      const timer = setTimeout(() => {
+        setRedirect(true)
+      }, 1500)
+      return () => {
+        clearTimeout(timer)
+      }
+    }
+  }, [pwdChanged])
 
   const onMouseOut = (e) => {
     const value = e.target.value
@@ -112,7 +132,7 @@ const PasswordReset = (props) => {
           setInputError({ ...inputError, tempPwd: true })
           setMessageError({ ...messageError, tempPwd: 'Le format du mot de passe temporaire est invalide' })
         } else {
-          Axios.get(`${backUrl}/users/tempPwd/?mail=${formData.mail}&tempPwd=${value}`)
+          Axios.post(`${backUrl}/users/tempPwd`, { mail: formData.mail, tempPwd: value })
             .catch(error => {
               setInputError({ ...inputError, tempPwd: true })
               switch (error.response.status) {
@@ -126,7 +146,6 @@ const PasswordReset = (props) => {
                   setMessageError({ ...messageError, tempPwd: 'Une erreur interne est survenue' })
                   break
               }
-              console.log(error.response.status)
             })
           setInputError({ ...inputError, tempPwd: false })
           setMessageError({ ...messageError, tempPwd: '' })
@@ -138,9 +157,21 @@ const PasswordReset = (props) => {
     setInUseEffect(!inUseEffect)
   }
 
+  //* Verify if no errors before validate
+  const verifyBeforeValidate = () => {
+    if (!messageError.confirmPwd && !messageError.mail && !messageError.newPwd && !messageError.tempPwd && formData.tempPwd && formData.mail && formData.newPwd && formData.confirmPwd && formData.newPwd === formData.confirmPwd) {
+      setIsValidate(true)
+    } else {
+      setIsValidate(false)
+    }
+  }
+
   //* On validate
   const handleClick = () => {
-
+    Axios.put(`${backUrl}/users/tempPwd`, { mail: formData.mail, newPwd: formData.newPwd, tempPwd: formData.tempPwd })
+      .then(setPwdChanged(true))
+      .catch(err => err)
+    setPwdChanged(true)
   }
 
   //* Managing if the different passwords are showing
@@ -177,6 +208,14 @@ const PasswordReset = (props) => {
           handleClick={handleClick}
         />
       </form>
+      {
+        pwdChanged &&
+          <ConfirmButton message='Votre mot de passe a été modifié.' confirm />
+      }
+      {
+        redirect &&
+          <Redirect to='/onboarding/login' />
+      }
     </div>
   )
 }
