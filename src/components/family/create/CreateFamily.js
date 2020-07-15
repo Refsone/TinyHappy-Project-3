@@ -208,7 +208,7 @@ const CreateFamily = (props) => {
         .catch((err) => console.log('an error is occured, the message is:' + err))
     }
   }
-  console.log(modify)
+
   return (
     <>
       {props.location.pathname === '/family/delete' && <DeleteMember id={idMember} name={firstname.value} />}
