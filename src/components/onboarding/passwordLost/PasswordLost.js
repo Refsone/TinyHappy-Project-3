@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import Axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 
+import ConfirmButton from '../../commons/footer/ConfirmButton'
 import Header from '../../commons/header/Header'
 import ValidateButton from '../../commons/footer/ValidateButton'
 
 import './PasswordLost.css'
-import Axios from 'axios'
 
 const backUrl = process.env.REACT_APP_API_URL
-
 
 const PasswordLost = (props) => {
   const regexMail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/
@@ -15,6 +16,8 @@ const PasswordLost = (props) => {
   const [isValidate, setIsValidate] = useState(false)
   const [mailError, setMailError] = useState(false)
   const [email, setEmail] = useState()
+  const [redirect, setRedirect] = useState(false)
+  const [pwdSend, setPwdSend] = useState(false)
 
   const handleChange = (value) => {
     if (regexMail.test(value)) {
@@ -30,15 +33,25 @@ const PasswordLost = (props) => {
   const handleClick = async () => {
     await Axios.post(`${backUrl}/mailing/tempPassword`, { user_mail: email })
       .then(res => {
-        console.log(res)
         document.getElementById('email').value = ''
-        setIsValidate(false)
-        console.log(`Envoi de l'Email vers ${email} réussi`)
+        setPwdSend(true)
       })
       .catch(err => {
-        console.log(err)
+        return err
       })
   }
+
+  // Define a setTimeOut on validation before going to resetpwd page
+  useEffect(() => {
+    if (pwdSend) {
+      const timer = setTimeout(() => {
+        setRedirect(true)
+      }, 1500)
+      return () => {
+        clearTimeout(timer)
+      }
+    }
+  }, [pwdSend])
 
   const submitForm = (e) => {
     e.preventDefault()
@@ -71,6 +84,14 @@ const PasswordLost = (props) => {
         name='valider'
         handleClick={handleClick}
       />
+      {
+        pwdSend &&
+          <ConfirmButton message='Mot de passe temporaire envoyé.' confirm />
+      }
+      {
+        redirect &&
+          <Redirect to='/onboarding/resetPwd' />
+      }
     </>
   )
 }
