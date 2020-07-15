@@ -12,23 +12,36 @@ const myToken = localStorage.getItem('x-access-token')
 const userId = localStorage.getItem('userId')
 
 const DisplaySettings = (props) => {
-  const [age, setAge] = useState([])
-  const [toggle, setToggle] = useState(true)
-  const toggler = (e) => {
-    toggle ? setToggle(true) : setToggle(false)
-  }
+  const [toggle, setToggle] = useState()
 
   useEffect(() => {
-    displayAge()
-  }, [age])
+    fetchAgeParam()
+    // document.getElementById('display_birthday').checked = toggle
+  }, [])
 
-  const displayAge = (age) => {
-    axios.put(`${backUrl}/users/${userId}/parameter`, age, {
+  useEffect(() => {
+    sendAgeParam()
+  }, [toggle])
+
+  const toggler = (e) => {
+    setToggle(!toggle)
+    console.log(e.target.checked)
+  }
+
+  const fetchAgeParam = () => {
+    axios.get(`${backUrl}/users/${userId}/parameter`, { headers: { Authorization: `Bearer ${myToken}` } })
+      .then(res =>
+        sendAgeParam(res.data))
+    // setToggle(res.data[0].display_birthday)
+    // console.log(document.getElementById('display_birthday').checked = res.data[0].display_birthday)
+      .catch(err => console.error(err))
+  }
+
+  const sendAgeParam = () => {
+    axios.put(`${backUrl}/users/parameter`, { display_birthday: toggle, user_id: userId }, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
-      .then(res => setAge(res.data))
       .catch(err => err)
-    console.log(age + ' no age')
   }
 
   const path = props.location.pathname
@@ -40,12 +53,13 @@ const DisplaySettings = (props) => {
         <h2 className='settings-soutitle bold-12px-grey'>Application</h2>
         <p className='settings-pseudoinput medium-12px-lightgrey'>Afficher les âges des membres</p>
         <div className='container-toggle-control'>
-          {toggle &&
-            <div className='toggle'>
-              <input type='checkbox' className='check' id='display_birthday' onClick={toggler} />
-              <span className='b switch' /> <span className='b track' />
-              <span className={`${toggle ? 'switch' : 'track'}`} />
-            </div>}
+          <div className='toggle'>
+
+            <input type='checkbox' className='check' id='display_birthday' onClick={(e) => toggler(e)} />
+
+            <span className='b switch' />
+            <span className='track' />
+          </div>
         </div>
         <h2 className='settings-soutitle bold-12px-grey'>Sécurité</h2>
         <Link to='/settings/modify/password' className='settings-pseudoinput medium-12px-lightgrey'>Modifier votre mot de passe</Link>
