@@ -54,9 +54,7 @@ const DisplaySettings = (props) => {
         <p className='settings-pseudoinput medium-12px-lightgrey'>Afficher les âges des membres</p>
         <div className='container-toggle-control'>
           <div className='toggle'>
-
             <input type='checkbox' className='check' id='display_birthday' onClick={(e) => toggler(e)} />
-
             <span className='b switch' />
             <span className='track' />
           </div>
