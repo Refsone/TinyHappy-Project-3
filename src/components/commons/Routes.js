@@ -1,21 +1,21 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-import AddShareMoment from '../share/AddShareMoment'
 import Access from '../onboarding/Access'
+import AddShareMoment from '../share/AddShareMoment'
 import CardContacts from '../share/CardContacts'
 import CardMembers from '../family/CardMembers'
 import Connexion from '../onboarding/Connexion'
 import CreateFamily from '../family/create/CreateFamily'
 import CreateMoments from '../moments/createMoments/CreateMoments'
 import DisplaySettings from '../menu/DisplaySettings'
+import Legacy from '../menu/Legacy'
 import ModifySettings from '../menu/ModifySettings'
 import PasswordLost from '../onboarding/passwordLost/PasswordLost'
 import PasswordReset from '../onboarding/passwordLost/PasswordReset'
 import Post from '../moments/Posts'
-import SignUp from '../onboarding/SignUp'
-import Legacy from '../menu/Legacy'
 import Privacy from '../menu/Privacy'
+import SignUp from '../onboarding/SignUp'
 
 const routes = (props) => {
   return (
