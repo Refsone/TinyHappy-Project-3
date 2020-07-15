@@ -7,6 +7,8 @@ import AddNewFamily from './AddNewFamily'
 import Header from '../commons/header/Header'
 import Member from './Member'
 import Navbar from '../commons/footer/Navbar'
+import Toast from '../commons/Toast'
+import toaster from 'toasted-notes'
 
 import './CardMembers.css'
 
@@ -14,7 +16,7 @@ const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
 const userId = localStorage.getItem('userId')
 
-const CardMembers = () => {
+const CardMembers = (props) => {
   const [members, setMembers] = useState([])
   const [user, setUser] = useState([])
 
@@ -24,6 +26,16 @@ const CardMembers = () => {
 
   useEffect(() => {
     fetchFamilyMembers()
+  }, [])
+
+  useEffect(() => {
+    const { params } = props.location
+    const sucessType = params && params.isModify ? 'modifié' : params && params.isDelete ? 'supprimé' : 'crée'
+    if ((params && params.isSend) || (params && params.isDelete)) {
+      toaster.notify(<Toast classType='sucess-toaster' text={`Le membre a été ${sucessType} avec succès`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+    } else if (params && !params.isSend && params && !params.isDelete) {
+      toaster.notify(<Toast classType='error-toaster' text={'Une erreur c\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+    }
   }, [])
 
   const fetchFamilyMembers = () => {

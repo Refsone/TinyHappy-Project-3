@@ -3,8 +3,6 @@ import Axios from 'axios'
 import Proptypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 
-import ConfirmButton from '../../commons/footer/ConfirmButton'
-
 import './DeleteMember.css'
 
 import trash from '../../../images/trash-alt-regular-1.svg'
@@ -42,7 +40,7 @@ const DeleteMember = (props) => {
     if (deleted) {
       const timer = setTimeout(() => {
         setRedirect(true)
-      }, 2000)
+      }, 1000)
       return () => {
         clearTimeout(timer)
       }
@@ -77,25 +75,8 @@ const DeleteMember = (props) => {
           </div>
         </div>
       </div>
-      {
-        cancel &&
-        <Redirect to={{
-          pathname: '/family/modify',
-          data: {
-            memberId: id,
-            modify: 'member'
-          }
-        }}
-        />
-      }
-      {
-        deleted &&
-          <ConfirmButton message={`${name} a bien été supprimé.`} confirm deleted />
-      }
-      {
-        redirect &&
-        <Redirect to='/family' />
-      }
+      {cancel && <Redirect to={{ pathname: '/family/modify', data: { memberId: id, modify: 'member' } }} />}
+      {redirect && <Redirect to={{ pathname: '/family', params: { isDelete: deleted } }} />}
     </>
   )
 }

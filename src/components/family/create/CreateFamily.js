@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
-import ConfirmButton from '../../commons/footer/ConfirmButton'
 import CreateInputFamily from './CreateInputFamily'
 import DeleteMember from './DeleteMember'
 import DisplayColors from './DisplayColors'
@@ -69,7 +68,7 @@ const CreateFamily = (props) => {
     if (validate) {
       const timer = setTimeout(() => {
         setRedirect(true)
-      }, 1500)
+      }, 1000)
       return () => {
         clearTimeout(timer)
       }
@@ -109,14 +108,6 @@ const CreateFamily = (props) => {
           setColor(data.color_family_id)
         })
         .catch(err => `L'erreur suivante s'est produite: ${err}`)
-    }
-  }
-
-  const handleMessage = () => {
-    if (modify) {
-      return modify === 'user' ? 'Vos informations ont bien été modifiées' : `${firstname.value} a bien été modifié`
-    } else {
-      return `${firstname.value} a été ajouté avec succès.`
     }
   }
 
@@ -217,6 +208,7 @@ const CreateFamily = (props) => {
         .catch((err) => console.log('an error is occured, the message is:' + err))
     }
   }
+
   return (
     <>
       {props.location.pathname === '/family/delete' && <DeleteMember id={idMember} name={firstname.value} />}
@@ -233,14 +225,7 @@ const CreateFamily = (props) => {
             name='sauvegarder' active={firstname.value && firstname.error === 0 && lastname.error === 0 && surname.error === 0 && birthday.error === 0} handleClick={handleClick}
           />
         </form>
-        {
-          validate &&
-            <ConfirmButton message={handleMessage()} confirm />
-        }
-        {
-          redirect &&
-            <Redirect to='/family' />
-        }
+        {redirect && <Redirect to={{ pathname: '/family', params: { isSend: validate, isModify: modify } }} />}
       </div>
     </>
   )
