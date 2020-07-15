@@ -80,9 +80,15 @@ const Password = () => {
   return (
     <div className='settings-container-pwdmail modify-mdp'>
       <h1 className='settings-pwmail-title bold-16px-grey'>modification du mot de passe</h1>
+      <p className='medium-12px-grey constraintPassword'>
+          Votre mot de passe doit contenir :<br />
+          - au moins 8 caractères<br />
+          - 1 chiffre<br />
+          - 1 majuscule<br />
+      </p>
 
       <form className='general-form-connexion' id='formChangePassword' noValidate>
-        <label htmlFor='user_password' className='label-settings bold-12px-grey'>Mot de passe actuel</label>
+        <label htmlFor='user_password' className='label-settings bold-12px-grey'>ancien mot de passe</label>
         <div className='settings-container-eye'>
           <img src={visible1 ? eyeOpen : eyeClosed} onClick={() => setVisible1(!visible1)} alt='' />
         </div>
@@ -96,7 +102,7 @@ const Password = () => {
         <input name='new_password' type={showType2} id='new_password' onChange={handleChangeNewPassword} className='input-psw-default plholder bold-12px-grey' placeholder='**********' />
         {shortPassword && <p className='msg-error'>Votre mot de passe doit avoir au moins 8 caractères</p>}
 
-        <label htmlFor='confirm_password' className='label-settings bold-12px-grey'>confirmer mot de passe</label>
+        <label htmlFor='confirm_password' className='label-settings bold-12px-grey'>confirmation</label>
         <div className='settings-container-eye'>
           <img src={visible3 ? eyeOpen : eyeClosed} onClick={() => setVisible3(!visible3)} alt='' />
         </div>
