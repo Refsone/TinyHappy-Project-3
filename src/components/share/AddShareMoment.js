@@ -16,7 +16,7 @@ const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
 const userId = localStorage.getItem('userId')
 
-function AddShareMoment(props) {
+function AddShareMoment (props) {
   const [startDate, setStartDate] = useState(new Date('2020-01-12'))
   const [endDate, setEndDate] = useState(new Date())
   const [countSelect, setCountSelect] = useState(0)
@@ -101,7 +101,7 @@ function AddShareMoment(props) {
     if (authorsSelect.indexOf(userName) !== -1) {
       authorsSelect.splice(authorsSelect.indexOf(userName), 1)
     }
-    axios.post(`${backUrl}/share`, { momentsToSend, userName, authorsSelect, selectedMail }, {
+    axios.post(`${backUrl}/send-mails/share`, { momentsToSend, userName, authorsSelect, selectedMail }, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => res.status === 200 && setTimeout(() => setIsSend(true), 500))
