@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 
+import ConfirmButton from '../../commons/footer/ConfirmButton'
 import Header from '../../commons/header/Header'
 import InputComponent from './InputComponent'
 import ValidateButton from '../../commons/footer/ValidateButton'
@@ -14,15 +16,15 @@ const PasswordReset = (props) => {
   const regexMail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/
   const regexTempPassword = /.{12,}/
   const regexPassword1 = /.{8,}/
-  const regexPassword2 = /[!$%^&*/()_+|~=`{}[:;<>?,@#\]]{1,}/
-  const regexPassword3 = /[0-9]{1,}/
-  const regexPassword4 = /[a-z]{1,}/
-  const regexPassword5 = /[A-Z]{1,}/
+  const regexPassword2 = /[0-9]{1,}/
+  const regexPassword3 = /[A-Z]{1,}/
 
   //* STATE
   const [isValidate] = useState(false)
   const [inUseEffect, setInUseEffect] = useState(false)
-
+  // Manage the redirection to the next page
+  const [redirect, setRedirect] = useState(false)
+  const [pwdChanged, setPwdChanged] = useState(false)
   // Managing the errors
   const [inputError, setInputError] = useState({
     mail: false,
@@ -56,11 +58,9 @@ const PasswordReset = (props) => {
     if (!regexPassword1.test(password)) {
       return 'Le mot de passe doit contenir au moins 8 caractères.'
     } else if (!regexPassword2.test(password)) {
-      return 'Au minimum un caractère spécial est requis.'
-    } else if (!regexPassword3.test(password)) {
       return 'Doit contenir au moins un chiffre.'
-    } else if (!regexPassword4.test(password) || !regexPassword5.test(password)) {
-      return 'Une lettre en minuscule et une lettre en majuscule requis.'
+    } else if (!regexPassword3.test(password)) {
+      return 'Doit contenir une lettre en majuscule.'
     } else {
       return 'ok'
     }
@@ -72,12 +72,27 @@ const PasswordReset = (props) => {
     setMessageError({ ...messageError, [id]: '' })
     setInputError({ ...inputError, [id]: false })
     setFormData({ ...formData, [id]: e.target.value })
+    setInUseEffect(!inUseEffect)
+    verifyBeforeValidate()
   }
 
   useEffect(() => {
+    verifyBeforeValidate()
   }, [inUseEffect])
 
-  const onMouseOut = (e) => {
+  // Define a setTimeOut on validation before going to the login page
+  useEffect(() => {
+    if (pwdChanged) {
+      const timer = setTimeout(() => {
+        setRedirect(true)
+      }, 1500)
+      return () => {
+        clearTimeout(timer)
+      }
+    }
+  }, [pwdChanged])
+
+  const handleBlur = (e) => {
     const value = e.target.value
     switch (e.target.id) {
       case 'mail':
@@ -126,7 +141,6 @@ const PasswordReset = (props) => {
                   setMessageError({ ...messageError, tempPwd: 'Une erreur interne est survenue' })
                   break
               }
-              console.log(error.response.status)
             })
           setInputError({ ...inputError, tempPwd: false })
           setMessageError({ ...messageError, tempPwd: '' })
@@ -138,9 +152,21 @@ const PasswordReset = (props) => {
     setInUseEffect(!inUseEffect)
   }
 
+  //* Verify if no errors before validate
+  const verifyBeforeValidate = () => {
+    if (!messageError.confirmPwd && !messageError.mail && !messageError.newPwd && !messageError.tempPwd && formData.tempPwd && formData.mail && formData.newPwd && formData.confirmPwd && formData.newPwd === formData.confirmPwd) {
+      setIsValidate(true)
+    } else {
+      setIsValidate(false)
+    }
+  }
+
   //* On validate
   const handleClick = () => {
-
+    Axios.put(`${backUrl}/users/tempPwd`, { mail: formData.mail, newPwd: formData.newPwd, tempPwd: formData.tempPwd })
+      .then(setPwdChanged(true))
+      .catch(err => err)
+    setPwdChanged(true)
   }
 
   //* Managing if the different passwords are showing
@@ -165,7 +191,7 @@ const PasswordReset = (props) => {
           <div className='pwd-reset-input'>
             {
               inputs.map((input, id) =>
-                <InputComponent inputError={inputError} messageError={messageError} pwdShow={pwdShow} handleEyes={handleEyes} handleChange={handleChange} key={id} id={input} onMouseOut={onMouseOut} />
+                <InputComponent inputError={inputError} messageError={messageError} pwdShow={pwdShow} handleEyes={handleEyes} handleChange={handleChange} key={id} id={input} handleBlur={handleBlur} />
               )
             }
           </div>
@@ -177,6 +203,14 @@ const PasswordReset = (props) => {
           handleClick={handleClick}
         />
       </form>
+      {
+        pwdChanged &&
+          <ConfirmButton message='Votre mot de passe a été modifié.' confirm />
+      }
+      {
+        redirect &&
+          <Redirect to='/onboarding/login' />
+      }
     </div>
   )
 }

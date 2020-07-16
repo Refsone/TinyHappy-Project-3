@@ -7,7 +7,7 @@ import eyeClosed from '../../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../../images/eye-open.svg'
 
 const InputComponent = (props) => {
-  const { handleChange, handleEyes, id, inputError, messageError, pwdShow, onMouseOut } = props
+  const { handleChange, handleEyes, id, inputError, messageError, pwdShow, handleBlur } = props
 
   const definePlaceHolder = id === 'mail' ? 'prenom@exemple.com' : '**********'
   const labelName = () => {
@@ -33,7 +33,7 @@ const InputComponent = (props) => {
   }
 
   return (
-    <div class='spin-input'>
+    <div className='spin-input'>
       <label htmlFor={id} className='bold-12px-grey'>{labelName().toUpperCase()}</label>
       <input
         className={inputError[id] ? 'error bold-12px-grey plholder' : 'bold-12px-grey plholder'}
@@ -41,7 +41,7 @@ const InputComponent = (props) => {
         onChange={(e) => handleChange(e)}
         id={id}
         placeholder={definePlaceHolder}
-        onMouseOut={onMouseOut}
+        onBlur={handleBlur}
       />
       {id !== 'mail' &&
         <img src={!pwdShow[id] ? eyeClosed : eyeOpen} alt='' onClick={handleEyes} id={id} />}
@@ -52,6 +52,7 @@ const InputComponent = (props) => {
 }
 
 InputComponent.propTypes = {
+  handleBlur: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleEyes: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,

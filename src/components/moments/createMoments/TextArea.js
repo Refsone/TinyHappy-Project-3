@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ValidateButton from '../../commons/footer/ValidateButton'
-import ConfirmButton from '../../commons/footer/ConfirmButton'
 
 import './TextArea.css'
 
@@ -16,7 +15,6 @@ const Textarea = (props) => {
         <textarea name='text' rows='4' cols='35' placeholder='Ajouter un contexte (facultatif)' id={props.idContextArea} onChange={props.onChangeTextInContextArea} />
       </form>
       <ValidateButton name='publier' active={props.active} handleClick={props.SendCreateMoment} />
-      {props.sendMomentSucceed && <ConfirmButton message='Envoie reussi' confirm />}
     </div>
   )
 }
