@@ -161,10 +161,13 @@ const SignUp = (props) => {
   const handleClick = () => {
     const formdata = { user_firstname: formData.firstname, user_lastname: formData.lastname, user_mail: formData.mail, user_password: formData.pwd }
     Axios.post(`${backUrl}/sign-up`, formdata)
-      .then(res => res.status === 201 && setIsSend(true))
-      .catch(err => {
-        toaster.notify(<Toast classType='error-toaster' text={'Une erreur s\'est produite'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+      .then(res => {
+        if (res.status === 201) {
+          Axios.post(`${backUrl}/send-mails/register`, { userName: formData.firstname, userMail: formData.mail })
+            .then(res => res.status === 200 ? setIsSend(true) : '')
+        }
       })
+      .catch(() => toaster.notify(<Toast classType='error-toaster' text={'Une erreur s\'est produite'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') }))
   }
 
   //* Managing if the different passwords are showing
@@ -200,10 +203,7 @@ const SignUp = (props) => {
           handleClick={handleClick}
         />
       </form>
-      {
-        redirect &&
-        <Redirect to={{ pathname: '/onboarding/login', params: { isSend: isSend } }} />
-      }
+      {redirect && <Redirect to={{ pathname: '/onboarding/login', params: { isSend: isSend } }} />}
     </div>
   )
 }
