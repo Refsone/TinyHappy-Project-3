@@ -2,7 +2,6 @@ import Axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 
-import ConfirmButton from '../../commons/footer/ConfirmButton'
 import Header from '../../commons/header/Header'
 import ValidateButton from '../../commons/footer/ValidateButton'
 
@@ -84,10 +83,6 @@ const PasswordLost = (props) => {
         name='valider'
         handleClick={handleClick}
       />
-      {
-        pwdSend &&
-          <ConfirmButton message='Mot de passe temporaire envoyé.' confirm />
-      }
       {
         redirect &&
           <Redirect to='/onboarding/resetPwd' />
