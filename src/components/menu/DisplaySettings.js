@@ -38,7 +38,7 @@ const DisplaySettings = (props) => {
     axios.put(`${backUrl}/parameters/display-birthday`, { display_birthday: toggle, user_id: userId }, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
-      .catch(err => err)
+      .catch(err => console.error(err))
   }
 
   const path = props.location.pathname
