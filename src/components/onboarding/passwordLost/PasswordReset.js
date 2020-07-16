@@ -20,7 +20,7 @@ const PasswordReset = (props) => {
   const regexPassword3 = /[A-Z]{1,}/
 
   //* STATE
-  const [isValidate] = useState(false)
+  const [isValidate, setIsValidate] = useState(false)
   const [inUseEffect, setInUseEffect] = useState(false)
   // Manage the redirection to the next page
   const [redirect, setRedirect] = useState(false)
