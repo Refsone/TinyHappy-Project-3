@@ -1,4 +1,4 @@
-.cont-passwordReset {
+.cont-global-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,31 +8,31 @@
   margin-bottom: 5em;
 }
 
-.cont-passwordReset .text {
+.cont-global-form .text {
   width: 90%;
   text-align: left;
   margin-left: 1em;
   margin-bottom: 2em;
 }
 
-.cont-passwordReset label {
+.cont-global-form label {
   text-align: left;
   margin-left: 0;
-  margin-top: -1em;
+  margin-top: -.5em;
 }
 
-.cont-passwordReset input.error {
+.cont-global-form input.error {
   border: solid 1px #ff0000;
 }
 
-.cont-passwordReset .msg-error {
+.cont-global-form .msg-error {
   position: relative;
   align-self: start;
   margin-left: 2em;
   margin-top: -1.25em;
 }
 
-.cont-passwordReset .msg-error-mail {
+.msg-error-mail {
   position: relative;
   align-self: start;
   color: #ff0000;
@@ -42,7 +42,7 @@
   left: 2em;
 }
 
-.cont-passwordReset img {
+.cont-global-form img {
   align-self: flex-end;
   position: relative;
   top: -2.2em;
@@ -51,14 +51,14 @@
   height: 16px;
 }
 
-.cont-passwordReset input {
+.cont-global-form input {
   width: 90%;
   color: #7180AC;
   padding-left: 1.5em;
   height: 5em;
   border: none;
   background-color: #ffffff;
-  margin: -1.5em auto 0;
+  margin: -1em auto 0;
   border-radius: 2px;
   font-weight: 700;
   font-size: 0.75em;

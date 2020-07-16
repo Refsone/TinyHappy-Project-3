@@ -4,6 +4,8 @@ import axios from 'axios'
 import jwt from 'jsonwebtoken'
 
 import Header from '../commons/header/Header'
+import Toast from '../commons/Toast'
+import toaster from 'toasted-notes'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
 
@@ -22,12 +24,19 @@ const Connexion = (props) => {
   const showType = visible ? 'text' : 'password'
 
   useEffect(() => {
+    const { params } = props.location
+    if (params && params.isSend) {
+      toaster.notify(<Toast classType='sucess-toaster' text='Inscription réussie !' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+    }
+  }, [])
+
+  useEffect(() => {
     if (loggedIn) {
       setRedirect(true)
     }
   }, [loggedIn])
 
-  async function submit (e) {
+  async function submit(e) {
     e.preventDefault()
     try {
       await axios.post(`${backUrl}/users/login`, values)
