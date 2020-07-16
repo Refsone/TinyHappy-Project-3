@@ -5,11 +5,11 @@ function validationEmail (values) {
   } else if (!/\S+@\S+\.\S+/.test(values.user_mail)) {
     errors.user_mail = 'Votre adresse email n\'est pas valide'
   } else if (!values.new_user_mail) {
-    errors.new_user_mail = 'Votre nouvelle acresse est requise'
+    errors.new_user_mail = 'Votre nouvelle adresse est requise'
   } else if (!/\S+@\S+\.\S+/.test(values.new_user_mail)) {
     errors.new_user_mail = 'Votre adresse email n\'est pas valide'
   } else if (values.user_mail !== values.new_user_mail) {
-    errors.new_user_mail = 'Votre mot de passe n\'est pas identique'
+    errors.new_user_mail = 'Votre nouvelle adresse n\'est pas identique'
   }
   return errors
 }
