@@ -33,21 +33,34 @@ const InputComponent = (props) => {
   }
 
   return (
-    <div className='spin-input'>
-      <label htmlFor={id} className='bold-12px-grey'>{labelName().toUpperCase()}</label>
-      <input
-        className={inputError[id] ? 'error bold-12px-grey plholder' : 'bold-12px-grey plholder'}
-        type={inputType()}
-        onChange={(e) => handleChange(e)}
-        id={id}
-        placeholder={definePlaceHolder}
-        onBlur={handleBlur}
-      />
-      {id !== 'mail' &&
-        <img src={!pwdShow[id] ? eyeClosed : eyeOpen} alt='' onClick={handleEyes} id={id} />}
-      {inputError[id] &&
-        <p className={id !== 'mail' ? 'msg-error' : 'msg-error-mail'}>{messageError[id]}</p>}
-    </div>
+    <>
+      <div className='spin-input'>
+        <label htmlFor={id} className='bold-12px-grey'>{labelName().toUpperCase()}</label>
+        <input
+          className={inputError[id] ? 'error bold-12px-grey plholder' : 'bold-12px-grey plholder'}
+          type={inputType()}
+          onChange={(e) => handleChange(e)}
+          id={id}
+          placeholder={definePlaceHolder}
+          onBlur={handleBlur}
+        />
+        {id !== 'mail' &&
+          <img src={!pwdShow[id] ? eyeClosed : eyeOpen} alt='' onClick={handleEyes} id={id} />}
+        {inputError[id] &&
+          <p className={id !== 'mail' ? 'msg-error' : 'msg-error-mail'}>{messageError[id]}</p>}
+      </div>
+      {
+        id === 'confirmPwd' &&
+          <div className='password-content'>
+            <p className='pwd-cont-p'> Votre mot de passe doit contenir : </p>
+            <ul>
+              <li>au moins 8 caractères</li>
+              <li>1 chiffre</li>
+              <li>1 majuscule</li>
+            </ul>
+          </div>
+      }
+    </>
   )
 }
 

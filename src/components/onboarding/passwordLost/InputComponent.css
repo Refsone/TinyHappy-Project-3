@@ -5,3 +5,16 @@
   margin-bottom: .75em;
   width: 100%;
 }
+
+.password-content {
+  text-align: left;
+}
+
+.password-content p {
+  margin-top: -0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 1em;
+  font-weight: 500;
+  font-size: 0.75em;
+  color: #7180AC;
+}
