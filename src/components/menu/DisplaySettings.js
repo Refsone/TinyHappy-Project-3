@@ -13,6 +13,7 @@ const userId = localStorage.getItem('userId')
 
 const DisplaySettings = (props) => {
   const [toggle, setToggle] = useState(0)
+  const path = props.location.pathname
 
   useEffect(() => {
     fetchAgeParam()
@@ -41,7 +42,6 @@ const DisplaySettings = (props) => {
       .catch(err => console.error(err))
   }
 
-  const path = props.location.pathname
   return (
     <>
       <Header location={path} burger />
