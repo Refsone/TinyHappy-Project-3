@@ -29,8 +29,38 @@ const CreateMoment = (props) => {
   const [user, setUser] = useState({})
   const [userIsPresent, setUserIsPresent] = useState(0)
 
+  console.log(props)
+
   const path = props.location.pathname
 
+  let textToModifyMoment = ''
+  let contextToModifyMoment = ''
+  let dateToModifyMoment = ''
+  let idToModifyMoment = ''
+  let typeToModifyMoment = ''
+  let isPresentModifyMoment = ''
+  let firstNameUserModifymoment = ''
+  let colorUserModifyMoment = ''
+  let firstnameColor = ''
+
+  useEffect(() => {
+    if (props.location.moment) {
+      setTextInContextArea(props.location.moment.moment_context)
+      setMemberFamilyIsPresentAtMoment(props.location.moment.firstname_color.map(person => person.id))
+      setMomentTypeId(props.location.moment.type === 'quote' ? 1 : 0)
+      setTextInMomentArea(props.location.moment.moment_text)
+      // contextToModifyMoment = props.location.moment.moment_context
+      // textToModifyMoment = props.location.moment.moment_text
+      // typeToModifyMoment = props.location.moment.type
+      // colorUserModifyMoment = props.location.user[0].color
+      dateToModifyMoment = props.location.moment.moment_event_date
+      idToModifyMoment = props.location.moment.momentId
+      isPresentModifyMoment = props.location.moment.user_isPresent
+      firstNameUserModifymoment = props.location.user[0].user_firstname
+    }
+  }, [props.location.moment])
+
+  {console.log(memberFamilyIsPresentAtMoment)}
   useEffect(() => {
     axios.get(`${backUrl}/users/${userId}/family`, {
       headers: { Authorization: `Bearer ${myToken}` }
@@ -83,21 +113,20 @@ const CreateMoment = (props) => {
   }, [sendMomentSucceed, sendError])
 
   const buttonSelectAuthor = (AuthorId, click) => {
-    if (click) {
-      AuthorId === user.user_firstname
-        ? setUserIsPresent(1)
-        : setMemberFamilyIsPresentAtMoment([...memberFamilyIsPresentAtMoment, AuthorId])
+  if (click) {
+    AuthorId === user.user_firstname
+      ? setUserIsPresent(1)
+      : setMemberFamilyIsPresentAtMoment([...memberFamilyIsPresentAtMoment, AuthorId])
+  } else {
+    if (AuthorId === user.user_firstname) {
+      setUserIsPresent(0)
     } else {
-      if (AuthorId === user.user_firstname) {
-        setUserIsPresent(0)
-      } else {
-        const idToDelete = memberFamilyIsPresentAtMoment.indexOf(AuthorId)
-        const newTab = [...memberFamilyIsPresentAtMoment]
-        newTab.splice(idToDelete, 1)
-        setMemberFamilyIsPresentAtMoment(newTab)
-      }
+      const idToDelete = memberFamilyIsPresentAtMoment.indexOf(AuthorId)
+      const newTab = [...memberFamilyIsPresentAtMoment]
+      newTab.splice(idToDelete, 1)
+      setMemberFamilyIsPresentAtMoment(newTab)
     }
-  }
+  }}
 
   const onChangeTextInMomentArea = (e) => {
     setTextInMomentArea(e.target.value)
