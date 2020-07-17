@@ -36,7 +36,7 @@ const Connexion = (props) => {
     }
   }, [loggedIn])
 
-  async function submit(e) {
+  async function submit (e) {
     e.preventDefault()
     try {
       await axios.post(`${backUrl}/users/login`, values)

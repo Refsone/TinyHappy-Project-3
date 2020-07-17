@@ -3,6 +3,9 @@ import axios from 'axios'
 import useForm from './../onboarding/useForm'
 import validationEmail from './validateEmail'
 
+import Toast from '../commons/Toast'
+import toaster from 'toasted-notes'
+
 import './../onboarding/Connexion.css'
 import './Password.css'
 import './Email.css'
@@ -13,10 +16,17 @@ const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
 const userId = localStorage.getItem('userId')
 
-const Email = () => {
+const Email = (props) => {
   const { handleChange, handleSubmit, values, errors } = useForm(submit, validationEmail)
 
   const [redirect, setRedirect] = useState(false)
+
+  useEffect(() => {
+    const { params } = props.location
+    if (params && params.isSend) {
+      toaster.notify(<Toast classType='sucess-toaster' text='Inscription réussie !' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+    }
+  }, [])
 
   function submit () {
     axios.put(`${backUrl}/users/${userId}/modify-email`, values, {
