@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
 import useForm from './../onboarding/useForm'
 import validationEmail from './validateEmail'
-
 import Toast from '../commons/Toast'
 import toaster from 'toasted-notes'
 
@@ -10,7 +9,7 @@ import './../onboarding/Connexion.css'
 import './Password.css'
 import './Email.css'
 
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
@@ -19,33 +18,27 @@ const userId = localStorage.getItem('userId')
 const Email = (props) => {
   const { handleChange, handleSubmit, values, errors } = useForm(submit, validationEmail)
 
-  const [redirect, setRedirect] = useState(false)
-
+  /*   const [redirect, setRedirect] = useState(false)
   useEffect(() => {
-    const { params } = props.location
-    if (params && params.isSend) {
-      toaster.notify(<Toast classType='sucess-toaster' text='Inscription réussie !' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+    if (redirect) {
+      setRedirect(true)
     }
-  }, [])
+  }, [redirect]) */
 
   function submit () {
     axios.put(`${backUrl}/users/${userId}/modify-email`, values, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => {
-        if (values.user_mail !== values.new_user_mail) {
-          console.log('Il y a une erreur dans votre email')
+        if (res.status === 500 && values.user_mail !== values.new_user_mail) {
+          // console.log('Il y a une erreur dans votre email')
+          toaster.notify(<Toast classType='error-toaster' text={'Une erreur c\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
         } else if (res.status === 200) {
-          console.log('votre email n\'existe pas')
+          // setRedirect(true)
+          toaster.notify(<Toast classType='sucess-toaster' text='Votre email a été bien modifié' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
         }
       })
   }
-
-  useEffect(() => {
-    if (redirect) {
-      setRedirect(true)
-    }
-  }, [redirect])
 
   return (
     <div className='settings-container-pwdmail'>
@@ -60,7 +53,7 @@ const Email = (props) => {
         {errors.new_user_mail && <p className='msg-error-email'>{errors.new_user_mail}</p>}
 
         {errors ? <button type='submit' className='connexion-btn-inactif'>confirmer</button> : <button type='submit' className='connexion-btn-actif' onClick={(e) => submit(e)}>confirmer</button>}
-        {redirect && <Redirect to='/settings' />}
+        {/* {redirect && <Redirect to='/settings' />} */}
       </form>
     </div>
   )
