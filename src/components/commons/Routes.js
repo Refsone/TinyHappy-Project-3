@@ -15,7 +15,7 @@ import PasswordLost from '../onboarding/passwordLost/PasswordLost'
 import PasswordReset from '../onboarding/passwordLost/PasswordReset'
 import Post from '../moments/Posts'
 import Privacy from '../menu/Privacy'
-import SignUp from '../onboarding/SignUp'
+import SignUp from '../onboarding/signUp/SignUp'
 
 const routes = (props) => {
   return (

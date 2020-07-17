@@ -11,6 +11,8 @@ import eyeOpen from '../../images/eye-open.svg'
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
 const userId = localStorage.getItem('userId')
+const userName = localStorage.getItem('userName')
+const userMail = localStorage.getItem('userMail')
 
 const Password = () => {
   const [visible1, setVisible1] = useState(false)
@@ -33,6 +35,9 @@ const Password = () => {
       .then(res => {
         if (res.status === 201) {
           setChangeSuceed(true)
+          axios.post(`${backUrl}/send-mails/new-pwd`, { user_mail: userMail, user_firstname: userName }, {
+            headers: { Authorization: `Bearer ${myToken}` }
+          })
         } else if (res.status === 400) {
         }
       })
