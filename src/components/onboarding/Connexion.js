@@ -35,10 +35,6 @@ const Connexion = (props) => {
       toaster.notify(<Toast classType='error-toaster' text={'Une erreur c\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     }
   }, [])
-  /*     if (params && params.isSend) {
-      toaster.notify(<Toast classType='sucess-toaster' text='Inscription réussie !' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
-    }
-  }, []) */
 
   async function submit (e) {
     e.preventDefault()
