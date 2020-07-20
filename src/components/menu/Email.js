@@ -16,16 +16,22 @@ const userId = localStorage.getItem('userId')
 const Email = (props) => {
   const { handleChange, handleSubmit, values, errors } = useForm(submit, validationEmail)
 
+  const handleServerError = (err) => {
+    return (err)
+  }
+
   function submit () {
     axios.put(`${backUrl}/users/${userId}/modify-email`, values, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => {
-        if (res.status === 500 && values.user_mail !== values.new_user_mail) {
-          toaster.notify(<Toast classType='error-toaster' text={'Une erreur c\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
-        } else if (res.status === 200) {
+        if (res.status === 200) {
           toaster.notify(<Toast classType='sucess-toaster' text='Votre email a été bien modifié' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
         }
+      })
+      .catch(err => {
+        const errorToasty = handleServerError(err)
+        toaster.notify(<Toast classType='error-toaster' text={`${errorToasty}, 'Cette adresse existe déjà !'`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
       })
   }
 
