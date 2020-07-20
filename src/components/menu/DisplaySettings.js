@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 import Header from './../commons/header/Header'
-import axios from 'axios'
+import Toast from '../commons/Toast'
+import toaster from 'toasted-notes'
 
 import './DisplaySettings.css'
 import './ToggleSettings.css'
@@ -24,6 +26,19 @@ const DisplaySettings = (props) => {
     document.getElementById('display_birthday').checked = toggle
     console.log(toggle)
   }, [toggle])
+
+  useEffect(() => {
+    const { params } = props.location
+    let message = ''
+    if (params) {
+      if (params.newMail) {
+        message = 'Adresse e-mail modifiée !'
+      } else if (params.newPwd) {
+        message = 'Mot de passe modifié !'
+      }
+      toaster.notify(<Toast classType='sucess-toaster' text={`${message}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+    }
+  }, [])
 
   const toggler = (e) => {
     setToggle(!toggle)

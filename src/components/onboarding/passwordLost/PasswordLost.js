@@ -45,7 +45,7 @@ const PasswordLost = (props) => {
     if (pwdSend) {
       const timer = setTimeout(() => {
         setRedirect(true)
-      }, 1500)
+      }, 250)
       return () => {
         clearTimeout(timer)
       }
