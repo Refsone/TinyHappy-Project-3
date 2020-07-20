@@ -25,8 +25,14 @@ const Connexion = (props) => {
 
   useEffect(() => {
     const { params } = props.location
-    if (params && params.isSend) {
-      toaster.notify(<Toast classType='sucess-toaster' text='Inscription réussie !' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+    let message = ''
+    if (params) {
+      if (params.isSend) {
+        message = 'Inscription réussie !'
+      } else if (params.newPwd) {
+        message = 'Nouveau mot de passe crée !'
+      }
+      toaster.notify(<Toast classType='sucess-toaster' text={`${message}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     }
   }, [])
 
@@ -36,7 +42,7 @@ const Connexion = (props) => {
     }
   }, [loggedIn])
 
-  async function submit(e) {
+  async function submit (e) {
     e.preventDefault()
     try {
       await axios.post(`${backUrl}/users/login`, values)

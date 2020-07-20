@@ -157,6 +157,15 @@ const SignUp = (props) => {
     }
   }
 
+  // Custom error message when an error occured in the server
+  const handleServerError = (err) => {
+    if (err.response.status === 403) {
+      return err.response.data === 'email already exist' ? "L'adresse E-mail existe déjà" : 'Erreur lors de la vérification du mot de passe'
+    } else {
+      return 'Une erreur serveur est survenue, veuillez réessayer'
+    }
+  }
+
   //* On validate
   const handleClick = () => {
     const formdata = { user_firstname: formData.firstname, user_lastname: formData.lastname, user_mail: formData.mail, user_password: formData.pwd }
@@ -167,7 +176,10 @@ const SignUp = (props) => {
             .then(res => res.status === 200 ? setIsSend(true) : '')
         }
       })
-      .catch(() => toaster.notify(<Toast classType='error-toaster' text={'Une erreur s\'est produite'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') }))
+      .catch(err => {
+        const errMessage = handleServerError(err)
+        toaster.notify(<Toast classType='error-toaster' text={`${errMessage}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+      })
   }
 
   //* Managing if the different passwords are showing
