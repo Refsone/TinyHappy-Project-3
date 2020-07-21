@@ -88,7 +88,7 @@ const CreateFamily = (props) => {
         .catch(err => {
           toaster.notify(<Toast classType='error-toaster' text={`Une erreur est survenue: ${err.response.data}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
         })
-    } else { // Fetch the member data
+    } else if (modify) { // Fetch the member data
       axios.get(`${backUrl}/users/${userId}/family-members/${memberId}`, {
         headers: { Authorization: `Bearer ${myToken}` }
       })
@@ -102,7 +102,7 @@ const CreateFamily = (props) => {
           setColor(data.color_family_id)
         })
         .catch(err => {
-          toaster.notify(<Toast classType='error-toaster' text={`Une erreur est survenue: ${err.response.data}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+          toaster.notify(<Toast classType='error-toaster' text={`Une erreur est survenue: ${err}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
         })
     }
   }

@@ -44,7 +44,11 @@ const CardMembers = (props) => {
     axios.get(`${backUrl}/users/${userId}/family`, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
-      .then(res => setMembers(res.data))
+      .then(res => {
+        console.log(res.data)
+        const data = res.data.sort((a, b) => triAlphaAsc(a, b))
+        setMembers(data)
+      })
   }
 
   const fetchAgeParam = () => {
@@ -69,14 +73,21 @@ const CardMembers = (props) => {
       return date
     }
   }
+
+  const triAlphaAsc = (a, b) => {
+    var x = a.family_firstname.toLowerCase()
+    var y = b.family_firstname.toLowerCase()
+    return x < y ? -1 : x > y ? 1 : 0
+  }
+
   return (
     <>
       <Header burger />
       <div className='CardMembers'>
+        {user[0] && <Member displayBirthday={ageParams} isUser={1} member={user[0]} familyBirthday={formatDate(user[0].user_birthday)} />}
         {members.map((member, key) => {
           return <Member displayBirthday={ageParams} isUser={0} member={member} familyBirthday={formatDate(member.family_birthday)} key={key} />
         })}
-        {user[0] && <Member displayBirthday={ageParams} isUser={1} member={user[0]} familyBirthday={formatDate(user[0].user_birthday)} />}
       </div>
       <AddNewFamily />
       <Navbar />
