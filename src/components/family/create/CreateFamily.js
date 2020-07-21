@@ -3,12 +3,16 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import CreateInputFamily from './CreateInputFamily'
+import DatePicker from 'react-datepicker'
 import DeleteMember from './DeleteMember'
 import DisplayColors from './DisplayColors'
 import Header from '../../commons/header/Header'
+import Toast from '../../commons/Toast'
+import toaster from 'toasted-notes'
 import ValidateButton from '../../commons/footer/ValidateButton'
 
 import './CreateFamily.css'
+import calendarIcon from '../../../images/calendrier.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
@@ -31,9 +35,7 @@ const CreateFamily = (props) => {
   const [surname, setSurname] = useState({
     value: ''
   })
-  const [birthday, setBirthday] = useState({
-    value: ''
-  })
+  const [birthday, setBirthday] = useState()
   const [color, setColor] = useState(1)
   const [bddColor, setBddColor] = useState()
   const [idMember, setIdMember] = useState()
@@ -74,31 +76,34 @@ const CreateFamily = (props) => {
       })
         .then(res => {
           const data = res.data[0]
-          const dateTemp = data.user_birthday &&
-            new Date(data.user_birthday).toLocaleDateString('fr-FR').split('-').reverse().join('/')
+          console.log(data.user_birthday)
+          // const dateTemp = data.user_birthday &&
+          //   new Date(data.user_birthday).toLocaleDateString('fr-FR').split('-').reverse().join('/')
           setFirstname({ ...firstname, value: data.user_firstname })
           setLastname({ ...lastname, value: data.user_lastname })
           setSurname({ ...surname, value: data.user_surname })
-          setBirthday({ ...birthday, value: dateTemp })
+          setBirthday(new Date(data.user_birthday))
           setColor(data.color_family_id)
         })
-        .catch(err => `L'erreur suivante s'est produite: ${err}`)
+        .catch(err => {
+          toaster.notify(<Toast classType='error-toaster' text={`Une erreur est survenue: ${err.response.data}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+        })
     } else { // Fetch the member data
       axios.get(`${backUrl}/users/${userId}/family-members/${memberId}`, {
         headers: { Authorization: `Bearer ${myToken}` }
       })
         .then(res => {
           const data = res.data[0]
-          const dateTemp = data.family_birthday &&
-            new Date(data.family_birthday).toLocaleDateString('fr-FR').split('-').reverse().join('/')
           setIdMember(data.id)
           setFirstname({ ...firstname, value: data.family_firstname })
           setLastname({ ...lastname, value: data.family_lastname })
           setSurname({ ...surname, value: data.family_surname })
-          setBirthday({ ...birthday, value: dateTemp })
+          setBirthday(new Date(data.family_birthday))
           setColor(data.color_family_id)
         })
-        .catch(err => `L'erreur suivante s'est produite: ${err}`)
+        .catch(err => {
+          toaster.notify(<Toast classType='error-toaster' text={`Une erreur est survenue: ${err.response.data}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+        })
     }
   }
 
@@ -117,14 +122,16 @@ const CreateFamily = (props) => {
       case 'family_surname':
         setSurname({ ...surname, value: value })
         break
-      case 'family_birthday':
-        console.log(value)
-        break
       case 'color_family_id':
         setColor(value)
         break
       default:
     }
+  }
+
+  const handleDate = (date) => {
+    console.log(date)
+    setBirthday(date)
   }
 
   const submitForm = (e) => {
@@ -139,7 +146,6 @@ const CreateFamily = (props) => {
   const handleClick = () => {
     // Define the datas to send to the database
     const addToDb = {}
-    const newFormatDate = birthday.value ? birthday.value.split('/').reverse().join('-') : null
     if (modify !== 'user') {
       addToDb.user_id = userId
       addToDb.family_firstname = firstname.value
@@ -147,7 +153,7 @@ const CreateFamily = (props) => {
       if (memberId) { addToDb.id = memberId }
       addToDb.family_lastname = lastname.value
       addToDb.family_surname = surname.value
-      addToDb.family_birthday = newFormatDate
+      addToDb.family_birthday = birthday
       if (modify !== 'member') {
         return axios.post(`${backUrl}/family-members/new`, addToDb, {
           headers: { Authorization: `Bearer ${myToken}` }
@@ -159,7 +165,9 @@ const CreateFamily = (props) => {
           headers: { Authorization: `Bearer ${myToken}` }
         })
           .then(res => res.status === 200 && (setValidate(true)))
-          .catch((err) => console.log('an error is occured, the message is:' + err))
+          .catch(err => {
+            toaster.notify(<Toast classType='error-toaster' text={`Une erreur est survenue: ${err.response.data}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+          })
       }
     } else {
       addToDb.id = userId
@@ -167,25 +175,34 @@ const CreateFamily = (props) => {
       addToDb.color_family_id = color
       if (lastname.value !== '') { addToDb.user_lastname = lastname.value }
       if (surname.value !== '') { addToDb.user_surname = surname.value }
-      if (newFormatDate !== '') { addToDb.user_birthday = newFormatDate }
+      if (birthday !== '') { addToDb.user_birthday = birthday }
       axios.put(`${backUrl}/users/update`, addToDb, {
         headers: { Authorization: `Bearer ${myToken}` }
       })
         .then(res => res.status === 200 && (setValidate(true)))
-        .catch((err) => console.log('an error is occured, the message is:' + err))
+        .catch(err => {
+          toaster.notify(<Toast classType='error-toaster' text={`Une erreur est survenue: ${err.response.data}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+        })
     }
   }
+
+  const CustomInput = ({ value, onClick }) => (
+    <div className='calendar-moment bold-12px-grey' onClick={onClick}>
+      <img src={calendarIcon} alt='calendar icon' />
+      <p>{value}</p>
+    </div>
+  )
 
   return (
     <>
       {props.location.pathname === '/family/delete' && <DeleteMember id={idMember} name={firstname.value} />}
       <div className='cont-family-create'>
-        <Header burger location={location} memberId={memberId} />
+        <Header burger location={location} memberId={memberId} createFamilyBack={modify && 'createFamilyBack'} />
         <form className='general-connexion-form' onSubmit={submitForm}>
-          <CreateInputFamily name='prénom' placeholder='Elise' id='family_firstname' handlechange={handleChange} fieldValue={firstname} handleBlur={handleBlur} required />
-          <CreateInputFamily name='nom' placeholder='Durand' id='family_lastname' handlechange={handleChange} fieldValue={lastname} />
-          <CreateInputFamily name='surnom' placeholder='Durand' id='family_surname' handlechange={handleChange} fieldValue={surname} />
-          <CreateInputFamily name='date de naissance' placeholder='22/01/2016' id='family_birthday' handlechange={handleChange} fieldValue={birthday} />
+          <CreateInputFamily name='prénom' placeholder='Prénom' id='family_firstname' handlechange={handleChange} fieldValue={firstname} handleBlur={handleBlur} required />
+          <CreateInputFamily name='nom' placeholder='Nom' id='family_lastname' handlechange={handleChange} fieldValue={lastname} />
+          <CreateInputFamily name='surnom' placeholder='Surnom' id='family_surname' handlechange={handleChange} fieldValue={surname} />
+          <DatePicker selected={birthday || new Date()} locale='fr' onChange={date => handleDate(date)} dateFormat='EEEE dd MMMM yyyy' maxDate={(new Date())} peekNextMonth showMonthDropdown showYearDropdown dropdownMode='select' customInput={<CustomInput />} />
           <DisplayColors colors={bddColor} handlechange={handleChange} selected={color} />
           <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
           <ValidateButton

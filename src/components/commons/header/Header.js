@@ -7,7 +7,7 @@ import monogramme from '../../../images/monogrammeTH.svg'
 import './Header.css'
 
 const Header = (props) => {
-  const { burger, location } = props
+  const { burger, location, createFamilyBack } = props
   const memberId = location === '/family/modify' && props.memberId
   let link = ''
   let text = ''
@@ -94,6 +94,19 @@ const Header = (props) => {
             >
               <p className='action-link'>
                 {text}
+                {createFamilyBack &&
+                  <>
+                    <br />
+                    <Link to={{
+                      pathname: '/family',
+                      memberId: memberId
+                    }}
+                    >
+                      <p className='double-action-link'>
+                    ANNULER
+                      </p>
+                    </Link>
+                  </>}
               </p>
             </Link>}
         </div>
