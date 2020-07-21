@@ -128,7 +128,7 @@ const CreateMoment = (props) => {
       <div className='create'>
         <MomentNavbar SwitchMomentType={SwitchMomentType} />
         <Moment momentTypeId={momentTypeId} sendMomentSucceed={sendMomentSucceed} memberFamilyIsPresentAtMoment={memberFamilyIsPresentAtMoment} userIsPresent={userIsPresent} textInContextArea={textInContextArea} textInMomentArea={textInMomentArea} buttonSelectAuthor={buttonSelectAuthor} active={active} SendCreateMoment={SendCreateMoment} onChangeTextInContextArea={onChangeTextInContextArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />
-        <DatePicker selected={date} locale='fr' onChange={date => setDate(date)} dateFormat='EEEE dd MMMM yyyy' customInput={<CustomInput />} />
+        <DatePicker selected={date} locale='fr' onChange={date => setDate(date)} dateFormat='EEEE dd MMMM yyyy' maxDate={(new Date())} customInput={<CustomInput />} />
         {redirect && <Redirect to={{ pathname: '/moments', params: { isSend: sendMomentSucceed } }} />}
       </div>
     </>
