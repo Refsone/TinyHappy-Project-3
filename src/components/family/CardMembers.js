@@ -36,7 +36,7 @@ const CardMembers = (props) => {
     if ((params && params.isSend) || (params && params.isDelete)) {
       toaster.notify(<Toast classType='sucess-toaster' text={`Le membre a bien été ${sucessType}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     } else if (params && !params.isSend && params && !params.isDelete) {
-      toaster.notify(<Toast classType='error-toaster' text={'Une erreur c\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+      toaster.notify(<Toast classType='error-toaster' text={'Une erreur s\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     }
   }, [])
 
