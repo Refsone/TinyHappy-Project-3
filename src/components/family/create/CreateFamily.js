@@ -225,9 +225,9 @@ const CreateFamily = (props) => {
       <div className='cont-family-create'>
         <Header burger location={location} memberId={memberId} />
         <form className='general-connexion-form' onSubmit={submitForm}>
-          <CreateInputFamily name='prénom' placeholder='Elise' id='family_firstname' handlechange={handleChange} fieldValue={firstname} required />
-          <CreateInputFamily name='nom' placeholder='Durand' id='family_lastname' handlechange={handleChange} fieldValue={lastname} />
-          <CreateInputFamily name='surnom' placeholder='Durand' id='family_surname' handlechange={handleChange} fieldValue={surname} />
+          <CreateInputFamily name='prénom' placeholder='Prénom' id='family_firstname' handlechange={handleChange} fieldValue={firstname} required />
+          <CreateInputFamily name='nom' placeholder='Nom' id='family_lastname' handlechange={handleChange} fieldValue={lastname} />
+          <CreateInputFamily name='surnom' placeholder='Surnom' id='family_surname' handlechange={handleChange} fieldValue={surname} />
           <DatePicker selected={date} locale='fr' onChange={date => setDate(date)} dateFormat='EEEE dd MMMM yyyy' maxDate={(new Date())} peekNextMonth showMonthDropdown showYearDropdown dropdownMode='select' customInput={<CustomInput />} />
           <DisplayColors colors={bddColor} handlechange={handleChange} selected={color} />
           <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
