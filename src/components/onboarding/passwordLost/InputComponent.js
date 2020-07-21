@@ -29,8 +29,7 @@ const InputComponent = (props) => {
       return pwdShow[id] ? 'text' : 'password'
     } else if (id === 'mail') {
       return 'email'
-    }
-    else {
+    } else {
       return 'texte'
     }
   }

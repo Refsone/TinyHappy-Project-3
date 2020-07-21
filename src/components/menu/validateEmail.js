@@ -10,6 +10,8 @@ function validationEmail (values) {
     errors.new_user_mail = 'Votre adresse email n\'est pas valide'
   } else if (values.user_mail !== values.new_user_mail) {
     errors.new_user_mail = 'Votre nouvelle adresse n\'est pas identique'
+  } else if (values.new_user_mail < 8) {
+    errors.new_user_mail = 'Votre n\'est pas au format'
   }
   return errors
 }

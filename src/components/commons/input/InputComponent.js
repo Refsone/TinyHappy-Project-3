@@ -54,8 +54,7 @@ const InputComponent = (props) => {
       return pwdShow[id] ? 'text' : 'password'
     } else if (id === 'mail') {
       return 'email'
-    }
-    else {
+    } else {
       return 'texte'
     }
   }
@@ -79,14 +78,14 @@ const InputComponent = (props) => {
       </div>
       {
         pwdContent === id &&
-        <div className='password-content'>
-          <p className='pwd-cont-p'> Votre mot de passe doit contenir : </p>
-          <ul>
-            <li>- au moins 8 caractères</li>
-            <li>- 1 chiffre</li>
-            <li>- 1 majuscule</li>
-          </ul>
-        </div>
+          <div className='password-content'>
+            <p className='pwd-cont-p'> Votre mot de passe doit contenir : </p>
+            <ul>
+              <li>- au moins 8 caractères</li>
+              <li>- 1 chiffre</li>
+              <li>- 1 majuscule</li>
+            </ul>
+          </div>
       }
     </>
   )
