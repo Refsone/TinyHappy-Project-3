@@ -1,13 +1,14 @@
 import React from 'react'
 import axios from 'axios'
-import useForm from './../onboarding/useForm'
-import validationEmail from './validateEmail'
+
 import Toast from '../commons/Toast'
 import toaster from 'toasted-notes'
+import useForm from './../onboarding/useForm'
+import validationEmail from './validateEmail'
 
+import './Email.css'
 import './../onboarding/Connexion.css'
 import './Password.css'
-import './Email.css'
 
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
