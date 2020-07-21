@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
+import DatePicker from 'react-datepicker'
 import CreateInputFamily from './CreateInputFamily'
 import DeleteMember from './DeleteMember'
 import DisplayColors from './DisplayColors'
 import Header from '../../commons/header/Header'
 import ValidateButton from '../../commons/footer/ValidateButton'
+import calendarIcon from '../../../images/calendrier.svg'
 
 import './CreateFamily.css'
 
@@ -44,6 +46,7 @@ const CreateFamily = (props) => {
     error: 0
   })
   const [color, setColor] = useState(1)
+  const [date, setDate] = useState(new Date())
   const [bddColor, setBddColor] = useState()
   const [idMember, setIdMember] = useState()
   const [validate, setValidate] = useState(false)
@@ -209,6 +212,13 @@ const CreateFamily = (props) => {
     }
   }
 
+  const CustomInput = ({ value, onClick }) => (
+    <div className='calendar-moment bold-12px-grey' onClick={onClick}>
+      <img src={calendarIcon} alt='calendar icon' />
+      <p>{value}</p>
+    </div>
+  )
+
   return (
     <>
       {props.location.pathname === '/family/delete' && <DeleteMember id={idMember} name={firstname.value} />}
@@ -218,7 +228,7 @@ const CreateFamily = (props) => {
           <CreateInputFamily name='prénom' placeholder='Elise' id='family_firstname' handlechange={handleChange} fieldValue={firstname} required />
           <CreateInputFamily name='nom' placeholder='Durand' id='family_lastname' handlechange={handleChange} fieldValue={lastname} />
           <CreateInputFamily name='surnom' placeholder='Durand' id='family_surname' handlechange={handleChange} fieldValue={surname} />
-          <CreateInputFamily name='date de naissance' placeholder='22/01/2016' id='family_birthday' handlechange={handleChange} fieldValue={birthday} />
+          <DatePicker selected={date} locale='fr' onChange={date => setDate(date)} dateFormat='EEEE dd MMMM yyyy' maxDate={(new Date())} peekNextMonth showMonthDropdown showYearDropdown dropdownMode='select' customInput={<CustomInput />} />
           <DisplayColors colors={bddColor} handlechange={handleChange} selected={color} />
           <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
           <ValidateButton
