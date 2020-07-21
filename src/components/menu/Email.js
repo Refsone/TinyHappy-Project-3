@@ -54,11 +54,6 @@ const Email = (props) => {
         )
       })
   }
-  /* {
-          toaster.notify(<Toast classType='sucess-toaster' text='Votre email a été bien modifié' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
-        }
-      })
-    }) } */
 
   return (
     <div className='settings-container-pwdmail'>
