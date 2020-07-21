@@ -6,8 +6,8 @@ import toaster from 'toasted-notes'
 import useFormEmail from '../menu/useFormEmail'
 import validationEmail from './validateEmail'
 
-import './../onboarding/Connexion.css'
 import './Email.css'
+import './../onboarding/Connexion.css'
 import './Password.css'
 
 const backUrl = process.env.REACT_APP_API_URL
