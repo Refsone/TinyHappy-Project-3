@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import useForm from './../onboarding/useForm'
-import validationEmail from './validateEmail'
+import { Redirect } from 'react-router-dom'
 import Toast from '../commons/Toast'
 import toaster from 'toasted-notes'
+import useForm from './../onboarding/useForm'
+import validationEmail from './validateEmail'
 
 import './../onboarding/Connexion.css'
-import './Password.css'
 import './Email.css'
+import './Password.css'
 
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = (localStorage.getItem('x-access-token'))
@@ -15,6 +16,14 @@ const userId = localStorage.getItem('userId')
 
 const Email = (props) => {
   const { handleChange, handleSubmit, values, errors } = useForm(submit, validationEmail)
+
+  const [redirect, setRedirect] = useState(false)
+  const [send, setSend] = useState(false)
+
+  useEffect(() => {
+    console.log('hello')
+    if (send) { setRedirect(true) }
+  })
 
   const handleServerError = (err) => {
     return (err)
@@ -24,16 +33,18 @@ const Email = (props) => {
     axios.put(`${backUrl}/users/${userId}/modify-email`, values, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
-      .then(res => {
-        if (res.status === 200) {
-          toaster.notify(<Toast classType='sucess-toaster' text='Votre email a été bien modifié' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
-        }
-      })
+      .then(res => res.status === 200 ? setSend(true) : '')
       .catch(err => {
+        console.log(err)
         const errorToasty = handleServerError(err)
         toaster.notify(<Toast classType='error-toaster' text={`${errorToasty}, 'Cette adresse existe déjà !'`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
       })
   }
+  /* {
+          toaster.notify(<Toast classType='sucess-toaster' text='Votre email a été bien modifié' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+        }
+      })
+    }) } */
 
   return (
     <div className='settings-container-pwdmail'>
@@ -48,6 +59,7 @@ const Email = (props) => {
         {errors.new_user_mail && <p className='msg-error-email'>{errors.new_user_mail}</p>}
 
         {errors ? <button type='submit' className='connexion-btn-inactif'>confirmer</button> : <button type='submit' className='connexion-btn-actif' onClick={(e) => submit(e)}>confirmer</button>}
+        {redirect && <Redirect to={{ pathname: '/settings', params: { send: send } }} />}
       </form>
     </div>
   )
