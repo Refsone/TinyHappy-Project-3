@@ -1,6 +1,7 @@
 import React from 'react'
-import Header from './../commons/header/Header'
+
 import Email from './Email'
+import Header from './../commons/header/Header'
 import Password from './Password'
 
 const ModifySettings = (props) => {
