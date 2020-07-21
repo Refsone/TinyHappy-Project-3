@@ -14,8 +14,8 @@
 
 .imgMilestone {
   position: relative;
-  top: 5px;
-  left: 3px;
+  top: 4px;
+  left: 1px;
 }
 
 .momentNavbar {
@@ -27,7 +27,7 @@
 
 .momentNavbar a {
   width: 50%;
-  padding: 6px 0 12px 0;
+  padding: 8px 0 12px 0;
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
