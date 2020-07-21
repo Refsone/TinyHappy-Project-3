@@ -1,4 +1,6 @@
 .authorList {
+    display: flex;
+    flex-wrap: wrap;
     margin-bottom: 20px;
 }
 
@@ -24,4 +26,8 @@
     font-size: 12px;
     position: relative;
     bottom: 22px;
+}
+
+.AddFamilyMember {
+    margin-top: 5px;
 }
