@@ -11,3 +11,19 @@
 .cont-family-create p {
   margin-left: 2.5em;
 }
+
+.cont-family-create .color-button {
+  border: none;
+  text-decoration: underline;
+  color: #7180AC;
+  font-size: .75em;
+  text-align: left;
+  margin-left: 3em;
+  background-color: #F5F9FD;
+}
+
+.cont-family-create .color-picker-button {
+  padding: 1em;
+  border: 5px solid #000;
+  border-radius: 20%;
+}

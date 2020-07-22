@@ -14,7 +14,7 @@ const Navbar = () => {
       <NavLink to='/share'>
         <div className='item-flex-navbar'>
           <img alt='Un avion en papier' src={plain} />
-          <p>PARTAGER</p>
+          <p>PARTAGE</p>
         </div>
       </NavLink>
       <NavLink to='/family'><div className='item-flex-navbar'><img alt='Un visage en smiley' src={family} /><p>FAMILLE</p></div></NavLink>

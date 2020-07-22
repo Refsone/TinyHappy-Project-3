@@ -45,7 +45,7 @@ const PasswordLost = (props) => {
     if (pwdSend) {
       const timer = setTimeout(() => {
         setRedirect(true)
-      }, 1500)
+      }, 250)
       return () => {
         clearTimeout(timer)
       }
@@ -83,10 +83,7 @@ const PasswordLost = (props) => {
         name='valider'
         handleClick={handleClick}
       />
-      {
-        redirect &&
-          <Redirect to='/onboarding/resetPwd' />
-      }
+      {redirect && <Redirect to={{ pathname: '/onboarding/resetPwd', params: { sendPwd: true } }} />}
     </>
   )
 }

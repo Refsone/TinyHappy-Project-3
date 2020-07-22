@@ -19,9 +19,9 @@ const SendButton = ({ actived, selectedIds, selectedMail }) => {
             }
           }}
           title='Choice moments to send'
-          >
+        >
           <img src={ActivePlane} alt='send' />
-          </Link> : <img src={NonActivePlane} alt='send' />}
+        </Link> : <img src={NonActivePlane} alt='send' />}
     </div>
   )
 }

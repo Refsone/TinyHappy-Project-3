@@ -2,9 +2,10 @@ import Axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 
-import ConfirmButton from '../../commons/footer/ConfirmButton'
 import Header from '../../commons/header/Header'
 import InputComponent from './InputComponent'
+import Toast from '../../commons/Toast'
+import toaster from 'toasted-notes'
 import ValidateButton from '../../commons/footer/ValidateButton'
 
 import './PasswordReset.css'
@@ -53,6 +54,13 @@ const PasswordReset = (props) => {
     confirmPwd: false
   })
 
+  useEffect(() => {
+    const { params } = props.location
+    if (params && params.sendPwd) {
+      toaster.notify(<Toast classType='sucess-toaster' text='Mot de passe temporaire envoyé !' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+    }
+  }, [])
+
   //* Verify if the password format is correct
   const verifPassword = (password) => {
     if (!regexPassword1.test(password)) {
@@ -85,7 +93,7 @@ const PasswordReset = (props) => {
     if (pwdChanged) {
       const timer = setTimeout(() => {
         setRedirect(true)
-      }, 1500)
+      }, 250)
       return () => {
         clearTimeout(timer)
       }
@@ -160,13 +168,26 @@ const PasswordReset = (props) => {
       setIsValidate(false)
     }
   }
+  // Custom error message when an error occured in the server
+  const handleServerError = (err) => {
+    if (err.response.status === 403) {
+      return 'Mot de passe temporaire plus valable'
+    } else if (err.response.status === 404) {
+      return "L'adresse Email indiquée n'existe pas"
+    } else {
+      return err.response.data === 'Error when compare the password' ? 'Erreur lors de la comparaison du mot de passe' : 'Une erreur serveur est survenue, veuillez réessayer'
+    }
+  }
 
   //* On validate
   const handleClick = () => {
     Axios.put(`${backUrl}/users/tempPwd`, { mail: formData.mail, newPwd: formData.newPwd, tempPwd: formData.tempPwd })
-      .then(setPwdChanged(true))
-      .catch(err => err)
-    setPwdChanged(true)
+      .then(res => res.status === 200 && setPwdChanged(true))
+      .catch(err => {
+        const errMessage = handleServerError(err)
+        toaster.notify(<Toast classType='error-toaster' text={`${errMessage}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') }
+        )
+      })
   }
 
   //* Managing if the different passwords are showing
@@ -203,14 +224,7 @@ const PasswordReset = (props) => {
           handleClick={handleClick}
         />
       </form>
-      {
-        pwdChanged &&
-          <ConfirmButton message='Votre mot de passe a été modifié.' confirm />
-      }
-      {
-        redirect &&
-          <Redirect to='/onboarding/login' />
-      }
+      {redirect && <Redirect to={{ pathname: '/onboarding/login', params: { newPwd: true } }} />}
     </div>
   )
 }

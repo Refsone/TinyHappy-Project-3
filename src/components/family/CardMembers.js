@@ -32,11 +32,11 @@ const CardMembers = (props) => {
 
   useEffect(() => {
     const { params } = props.location
-    const sucessType = params && params.isModify ? 'modifié' : params && params.isDelete ? 'supprimé' : 'crée'
+    const sucessType = params && params.isModify ? 'mis à jour' : params && params.isDelete ? 'supprimé' : 'crée'
     if ((params && params.isSend) || (params && params.isDelete)) {
-      toaster.notify(<Toast classType='sucess-toaster' text={`Le membre a été ${sucessType} avec succès`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+      toaster.notify(<Toast classType='sucess-toaster' text={`Le membre a bien été ${sucessType}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     } else if (params && !params.isSend && params && !params.isDelete) {
-      toaster.notify(<Toast classType='error-toaster' text={'Une erreur c\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+      toaster.notify(<Toast classType='error-toaster' text={'Une erreur s\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     }
   }, [])
 
@@ -44,7 +44,10 @@ const CardMembers = (props) => {
     axios.get(`${backUrl}/users/${userId}/family`, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
-      .then(res => setMembers(res.data))
+      .then(res => {
+        const data = res.data.sort((a, b) => triAlphaAsc(a, b))
+        setMembers(data)
+      })
   }
 
   const fetchAgeParam = () => {
@@ -69,14 +72,21 @@ const CardMembers = (props) => {
       return date
     }
   }
+
+  const triAlphaAsc = (a, b) => {
+    var x = a.family_firstname.toLowerCase()
+    var y = b.family_firstname.toLowerCase()
+    return x < y ? -1 : x > y ? 1 : 0
+  }
+
   return (
     <>
       <Header burger />
       <div className='CardMembers'>
+        {user[0] && <Member displayBirthday={ageParams} isUser={1} member={user[0]} familyBirthday={formatDate(user[0].user_birthday)} />}
         {members.map((member, key) => {
           return <Member displayBirthday={ageParams} isUser={0} member={member} familyBirthday={formatDate(member.family_birthday)} key={key} />
         })}
-        {user[0] && <Member displayBirthday={ageParams} isUser={1} member={user[0]} familyBirthday={formatDate(user[0].user_birthday)} />}
       </div>
       <AddNewFamily />
       <Navbar />

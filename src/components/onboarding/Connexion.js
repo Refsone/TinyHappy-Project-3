@@ -24,17 +24,23 @@ const Connexion = (props) => {
   const showType = visible ? 'text' : 'password'
 
   useEffect(() => {
+    const { params } = props.location
+    let message = ''
+    if (params) {
+      if (params.isSend) {
+        message = 'Inscription réussie !'
+      } else if (params.newPwd) {
+        message = 'Nouveau mot de passe crée !'
+      }
+      toaster.notify(<Toast classType='sucess-toaster' text={`${message}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+    }
+  }, [])
+
+  useEffect(() => {
     if (loggedIn) {
       setRedirect(true)
     }
   }, [loggedIn])
-
-  useEffect(() => {
-    const { params } = props.location
-    if (params && !params.isSend) {
-      toaster.notify(<Toast classType='error-toaster' text={'Une erreur c\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
-    }
-  }, [])
 
   async function submit (e) {
     e.preventDefault()
