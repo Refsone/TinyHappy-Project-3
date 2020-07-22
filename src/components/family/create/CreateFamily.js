@@ -76,9 +76,6 @@ const CreateFamily = (props) => {
       })
         .then(res => {
           const data = res.data[0]
-          console.log(data.user_birthday)
-          // const dateTemp = data.user_birthday &&
-          //   new Date(data.user_birthday).toLocaleDateString('fr-FR').split('-').reverse().join('/')
           setFirstname({ ...firstname, value: data.user_firstname })
           setLastname({ ...lastname, value: data.user_lastname })
           setSurname({ ...surname, value: data.user_surname })
@@ -130,7 +127,6 @@ const CreateFamily = (props) => {
   }
 
   const handleDate = (date) => {
-    console.log(date)
     setBirthday(date)
   }
 

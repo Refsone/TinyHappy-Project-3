@@ -45,7 +45,6 @@ const CardMembers = (props) => {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => {
-        console.log(res.data)
         const data = res.data.sort((a, b) => triAlphaAsc(a, b))
         setMembers(data)
       })

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
+import Toast from '../commons/Toast'
+import toaster from 'toasted-notes'
 import ValidateButton from '../commons/footer/ValidateButton'
 
 import './../onboarding/Connexion.css'
 import './Password.css'
-import Toast from '../commons/Toast'
-import toaster from 'toasted-notes'
 
 import eyeClosed from '../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../images/eye-open.svg'
