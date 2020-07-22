@@ -104,7 +104,13 @@ const CreateMoment = (props) => {
   }
 
   const onChangeTextInMomentArea = (e) => {
-    setTextInMomentArea(`"${e.target.value}"`)
+    let value = ''
+    if (momentTypeId === 1) {
+      value += `"${e.target.value}"`
+    } else {
+      value += e.target.value
+    }
+    setTextInMomentArea(value)
   }
 
   const onChangeTextInContextArea = (e) => {
