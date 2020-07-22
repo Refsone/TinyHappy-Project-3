@@ -39,7 +39,7 @@ const AddContact = ({ handleclick }) => {
         if (validate) { className += ' true' }
         return className
       case 'active':
-        return validate ? false : true
+        return !validate
       default:
     }
   }

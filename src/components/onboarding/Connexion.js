@@ -24,19 +24,19 @@ const Connexion = (props) => {
   const showType = visible ? 'text' : 'password'
 
   useEffect(() => {
-    const { params } = props.location
-    if (params && params.isSend) {
-      toaster.notify(<Toast classType='sucess-toaster' text='Inscription réussie !' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
-    }
-  }, [])
-
-  useEffect(() => {
     if (loggedIn) {
       setRedirect(true)
     }
   }, [loggedIn])
 
-  async function submit(e) {
+  useEffect(() => {
+    const { params } = props.location
+    if (params && !params.isSend) {
+      toaster.notify(<Toast classType='error-toaster' text={'Une erreur c\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+    }
+  }, [])
+
+  async function submit (e) {
     e.preventDefault()
     try {
       await axios.post(`${backUrl}/users/login`, values)

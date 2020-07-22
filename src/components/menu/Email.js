@@ -1,41 +1,132 @@
-import React, { useState } from 'react'
-import useForm from './../onboarding/useForm'
-import validationLogIn from './../onboarding/validateLogin'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { Redirect } from 'react-router-dom'
+import Toast from '../commons/Toast'
+import toaster from 'toasted-notes'
+import useFormEmail from '../menu/useFormEmail'
+import validationEmail from './validateEmail'
 
+import './Email.css'
 import './../onboarding/Connexion.css'
 import './Password.css'
 
-import eyeClosed from '../../images/eye-slash-regular1.svg'
-import eyeOpen from '../../images/eye-open.svg'
+const backUrl = process.env.REACT_APP_API_URL
+const myToken = localStorage.getItem('x-access-token')
+const userId = localStorage.getItem('userId')
 
-const Email = () => {
-  const { handleChange, handleSubmit, values, errors } = useForm(submit, validationLogIn)
-  function submit () {
-    console.log('sent succesfully')
+const Email = (props) => {
+  const { handleChange, handleSubmit, values, errors } = useFormEmail(
+    submit,
+    validationEmail
+  )
+
+  const [redirect, setRedirect] = useState(false)
+  const [send, setSend] = useState(false)
+
+  useEffect(() => {
+    if (send) {
+      setRedirect(true)
+    }
+  })
+
+  const handleServerError = (err) => {
+    return err
   }
 
-  const [visible, setVisible] = useState(false)
-  const showType = visible ? 'text' : 'password'
+  function submit (e) {
+    e.preventDefault()
+    axios
+      .put(`${backUrl}/users/${userId}/modify-email`, values, {
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
+      .then((res) => (res.status === 200 ? setSend(true) : ''))
+      .catch((err) => {
+        const errorToasty = handleServerError(err)
+        toaster.notify(
+          <Toast
+            classType='error-toaster'
+            text={`${errorToasty}, 'Cette adresse existe déjà !'`}
+          />,
+          {
+            duration: localStorage.getItem('toastDura'),
+            position: localStorage.getItem('toastPos')
+          }
+        )
+      })
+  }
 
   return (
     <div className='settings-container-pwdmail'>
-      <h1 className='settings-pwmail-title bold-16px-grey'>modification votre adresse email</h1>
-      <form onSubmit={handleSubmit} className='general-form-connexion' noValidate>
-        <label htmlFor='user_mail' name='user_mail' className='label-settings bold-12px-grey'>Nouvelle adresse mail</label>
-        <div className='settings-container-eye'>
-          <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
-        </div>
-        <input name='user_mail' type={showType} id='user_mail' value={values.email} onChange={handleChange} className={`${errors.user_mail ? 'input-pws-error' : 'input-psw-default plholder bold-12px-grey'}`} placeholder='**********' />
-        {errors.user_mail && <p className='msg-error'>{errors.user_mail}</p>}
+      <h1 className='settings-pwmail-title bold-16px-grey'>
+        modification votre adresse email
+      </h1>
+      <form
+        onSubmit={handleSubmit}
+        className='general-form-connexion'
+        noValidate
+      >
+        <label
+          htmlFor='user_mail'
+          name='user_mail'
+          className='label-settings bold-12px-grey'
+        >
+          Nouvelle adresse mail
+        </label>
+        <input
+          name='user_mail'
+          type='text'
+          id='user_mail'
+          value={values.user_mail}
+          onChange={handleChange}
+          className={`${
+            errors.user_mail
+              ? 'input-email-error'
+              : 'input-email plholder bold-12px-grey'
+          }`}
+          placeholder='prenom@exemple.com'
+          required
+        />
+        {errors.user_mail && (
+          <p className='msg-error-email'>{errors.user_mail}</p>
+        )}
 
-        <label htmlFor='user_mail' className='label-settings bold-12px-grey'>confirmation de la nouvelle adresse mail</label>
-        <div className='settings-container-eye'>
-          <img src={visible ? eyeOpen : eyeClosed} onClick={() => setVisible(!visible)} alt='' />
-        </div>
-        <input name='user_mail' type={showType} id='user_mail' value={values.email} onChange={handleChange} className={`${errors.user_mail ? 'input-pws-error' : 'input-psw-default plholder bold-12px-grey'}`} placeholder='**********' />
-        {errors.user_mail && <p className='msg-error'>{errors.user_mail}</p>}
+        <label htmlFor='user_mail' className='label-settings bold-12px-grey'>
+          confirmation de la nouvelle adresse mail
+        </label>
+        <input
+          name='new_user_mail'
+          type='text'
+          id='new_user_mail'
+          value={values.new_user_mail}
+          onChange={handleChange}
+          className={`${
+            errors.new_user_mail
+              ? 'input-email-error'
+              : 'input-email plholder bold-12px-grey'
+          }`}
+          placeholder='prenom@exemple.com'
+          required
+        />
+        {errors.new_user_mail && (
+          <p className='msg-error-email'>{errors.new_user_mail}</p>
+        )}
 
-        {errors && values.user_mail === '' ? <button type='submit' className='connexion-btn-inactif'>confirmer</button> : <button type='submit' className='connexion-btn-actif'>confirmer</button>}
+        {Object.keys(errors).length > 0 || !values.new_user_mail || !values.user_mail ? (
+          <button type='submit' className='connexion-btn-inactif' disabled>
+            confirmer
+          </button>
+        ) : (
+          <button
+            type='submit'
+            className='connexion-btn-actif'
+            onClick={(e) => submit(e)}
+          >
+            confirmer
+          </button>
+        )}
+        {redirect && (
+          <Redirect to={{ pathname: '/settings', params: { send: send } }} />
+        )}
       </form>
     </div>
   )
