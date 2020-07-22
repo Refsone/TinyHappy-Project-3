@@ -104,7 +104,7 @@ const CreateMoment = (props) => {
   }
 
   const onChangeTextInMomentArea = (e) => {
-    setTextInMomentArea(e.target.value)
+    setTextInMomentArea(`"${e.target.value}"`)
   }
 
   const onChangeTextInContextArea = (e) => {

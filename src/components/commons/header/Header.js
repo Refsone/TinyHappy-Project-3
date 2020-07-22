@@ -14,7 +14,7 @@ const Header = (props) => {
   switch (location) {
     case '/family/create':
       text = 'annuler'
-      link = '/family'
+      link = '/moments/create/quote'
       break
     case '/family/modify':
       if (props.memberId) {
