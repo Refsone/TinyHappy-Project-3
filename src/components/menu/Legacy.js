@@ -13,13 +13,13 @@ const Legacy = (props) => {
         <h2 className='soustitle regular-16px-grey'>IDENTIFICATION</h2>
         <p className='t-courant medium-14px-grey'>
 Le site tinyhappy.app ainsi que l'application associée Tinyhappy
-sont édités et maintenus par Mr Jérôme Benoit.
+sont édités et maintenus par Mr Jérôme Benoit.<br />
 L'application a été initialement développée par Mme Veronica Pattou,
 Mr Auxence Blondel, Mr Jérôme Potie, Mr Nicolas Régnier,
 Mr Tristan Manaut, Mr Jérémie Neret.
         </p>
         <p className='t-courant medium-14px-grey'>
-Adresse email : hello@tinyhappy.app
+Adresse email : hello@tinyhappy.app<br />
 Directeur de la publication : Mr Jérôme Benoit<br />
 
 Hébergement du site : 1&1 IONOS SARL, 7 place de la Gare, 57201 Sarreguemines - France<br />
