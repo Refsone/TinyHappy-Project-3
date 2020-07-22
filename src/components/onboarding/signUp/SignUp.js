@@ -87,7 +87,7 @@ const SignUp = (props) => {
     if (isSend) {
       const timer = setTimeout(() => {
         setRedirect(true)
-      }, 1500)
+      }, 250)
       return () => {
         clearTimeout(timer)
       }

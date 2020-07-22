@@ -9,14 +9,15 @@ import NonActivePlane from '../../images/send-inactif-btn.svg'
 const SendButton = ({ actived, selectedIds, selectedMail }) => {
   return (
     <div className='share-button'>
-      {actived ?
-        <Link to={{
-          pathname: '/share/moments',
-          data: {
-            selectedIds: selectedIds,
-            selectedMail: selectedMail
-          }
-        }}
+      {actived
+        ? <Link
+          to={{
+            pathname: '/share/moments',
+            data: {
+              selectedIds: selectedIds,
+              selectedMail: selectedMail
+            }
+          }}
           title='Choice moments to send'
         >
           <img src={ActivePlane} alt='send' />
