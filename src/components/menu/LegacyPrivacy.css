@@ -27,4 +27,8 @@
 .container-mentions ul{
     width: 92%;
     padding-left: 2.5em;
-  }
+}
+
+.container-mentions ul li{
+  line-height: 1.5;
+}
