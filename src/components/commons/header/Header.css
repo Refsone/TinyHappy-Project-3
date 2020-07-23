@@ -31,3 +31,18 @@
 .action-link a {
   text-decoration: none;
 }
+
+.double-action-link {
+  display: block;
+  position: absolute;
+  right: 5%;
+  font-weight: 700;
+  font-size: 12px;
+  color: #7180AC;
+  text-transform: uppercase;
+  margin-top: 1.5em;
+}
+
+.double-action-link a {
+  text-decoration: none;
+}

@@ -57,7 +57,7 @@ const DeleteMember = (props) => {
             Vous êtes sur le point de supprimer <b>{name}</b>.<br /><b>Êtes-vous sur?</b>
           </p>
           <p className='part-2'>
-            Tous les moments (citations et évènements) associés à ce profil seront définitivement supprimés.
+            Tous les moments (citations et faits notables) associés à ce profil seront définitivement supprimés.
           </p>
         </div>
         <div className='div-button'>

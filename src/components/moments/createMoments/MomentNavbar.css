@@ -14,11 +14,12 @@
 
 .imgMilestone {
   position: relative;
-  top: 2px;
-  left: 3px;
+  top: 4px;
+  left: 1px;
 }
 
 .momentNavbar {
+  display: flex;
   margin-bottom: 20px;
   box-shadow: 0px 10px 10px #E3E9F2;
   height: 42px;
@@ -26,17 +27,15 @@
 
 .momentNavbar a {
   width: 50%;
-  display: inline-block;
-  padding: 12px 0;
+  padding: 8px 0 12px 0;
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
-  color: #7180AC;
+  color: #4991B6;
   text-align: center;
 }
 
 .momentNavbar img {
   padding-right: 10px;
-  height: 15px;
 }
 
