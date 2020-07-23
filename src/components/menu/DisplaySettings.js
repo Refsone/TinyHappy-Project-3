@@ -6,7 +6,6 @@ import Toast from '../commons/Toast'
 import toaster from 'toasted-notes'
 
 import './DisplaySettings.css'
-import './ToggleSettings.css'
 
 const DisplaySettings = (props) => {
   const path = props.location.pathname
