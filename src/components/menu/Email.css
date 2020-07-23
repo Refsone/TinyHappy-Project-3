@@ -1,3 +1,16 @@
+.emial-background {
+  height: 100vh;
+  background-color: #F5F9FD;
+  width: 100%;
+  margin-top: 5em;
+}
+
+.email-background .title{
+  text-transform: uppercase;
+  margin-top: 7rem;
+  padding-left: 4%;
+}
+
 .general-form-connexion .input-email {
     display: block;
     width: 100%;

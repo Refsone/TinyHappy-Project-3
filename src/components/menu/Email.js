@@ -56,8 +56,8 @@ const Email = (props) => {
   }
 
   return (
-    <div className='settings-container-pwdmail'>
-      <h1 className='settings-pwmail-title bold-16px-grey'>
+    <div className='email-background'>
+      <h1 className='email-background title bold-16px-grey'>
         modification votre adresse email
       </h1>
       <form
