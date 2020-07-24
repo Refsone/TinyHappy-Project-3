@@ -37,7 +37,7 @@ const SideMenu = () => {
               <p>Confidentialité</p>
             </div>
           </Link>
-          <Link to='/'>
+          <Link to='/' onClick={() => localStorage.clear()}>
             <div className='menu-item'>
               <img src={logoLogOut} alt='Logo déconnexion' />
               <p>Déconnexion</p>
