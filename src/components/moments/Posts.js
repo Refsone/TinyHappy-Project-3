@@ -19,11 +19,13 @@ const userId = localStorage.getItem('userId')
 
 const Posts = (props) => {
   const [moments, setMoments] = useState([])
+  const [user, setUser] = useState()
   const [refresh, setRefresh] = useState([false])
   let date = ''
 
   useEffect(() => {
     fetchUserMoment()
+    fetchUser()
   }, [refresh])
 
   useEffect(() => {
@@ -42,6 +44,13 @@ const Posts = (props) => {
       .then(res => setMoments(res.data))
   }
 
+  const fetchUser = () => {
+    axios.get(`${backUrl}/users/${userId}`, {
+      headers: { Authorization: `Bearer ${myToken}` }
+    })
+      .then(res => setUser(res.data))
+  }
+
   const formatDate = (date) => {
     Moment.locale('fr')
     return Moment(date).format('LL')
@@ -57,14 +66,14 @@ const Posts = (props) => {
       return (
         <>
           <p className='moment-date' key={id}>{formatDate(moment.moment_event_date)}</p>
-          <CardPost refreshMethod={refreshMethod} locationPath={props.location.pathname} moment={moment} key={getRandom()} />
+          <CardPost refreshMethod={refreshMethod} locationPath={props.location.pathname} moment={moment} user={user} key={getRandom()} />
         </>
       )
     } else {
       date = moment.moment_event_date
       return (
         <>
-          <CardPost refreshMethod={refreshMethod} locationPath={props.location.pathname} moment={moment} key={getRandom()} boxStyle='8px' />
+          <CardPost refreshMethod={refreshMethod} locationPath={props.location.pathname} moment={moment} user={user} key={getRandom()} boxStyle='8px' />
         </>
       )
     }
