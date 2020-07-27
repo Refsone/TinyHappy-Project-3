@@ -1,26 +1,47 @@
+.email-background-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height:100vh;
+  width: 100%;
+}
+
+.email-background {
+  margin-top: 4em;
+  margin-bottom: 6em;
+}
+
+
+.email-background .title{
+  text-transform: uppercase;
+  padding-top: 3rem;
+  padding-left: 1em;
+}
+
 .general-form-connexion .input-email {
     display: block;
-    width: 100%;
+    width: 95%;
     border: solid 1px #E9EAFA;
     border-radius: 4px;
     background-color: #ffffff;
     height: 5em;
-    margin-bottom: 2.5em;
 }
 
 .general-form-connexion .input-email-error {
     display: block;
-    width: 100%;
+    width: 95%;
     border: solid 1px #ff0000;
     border-radius: 4px;
     background-color: #ffffff;
     height: 5em;
     margin-bottom: 2.5em;
 }
+
+
 .general-form-connexion .msg-error-email {
     position: absolute;
     display: block;
-    width: 90%;
+    width: 95%;
     margin-left: 5%;
     margin-top: -2em;
     color: #ff0000;
