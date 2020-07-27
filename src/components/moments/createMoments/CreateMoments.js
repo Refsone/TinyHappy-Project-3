@@ -27,9 +27,11 @@ const CreateMoment = (props) => {
   const [textInContextArea, setTextInContextArea] = useState('')
   const [textInMomentArea, setTextInMomentArea] = useState('')
   const [user, setUser] = useState({})
-  const [userIsPresent, setUserIsPresent] = useState(0)
+  const [userIsPresent, setUserIsPresent] = useState(1)
+  const [modifyMoment, setModifyMoment] = useState(false)
+  const [idForModifyMoment, setIdForModifyMoment] = useState()
 
-  console.log(props)
+  // console.log(props)
 
   const path = props.location.pathname
 
@@ -45,21 +47,26 @@ const CreateMoment = (props) => {
 
   useEffect(() => {
     if (props.location.moment) {
-      setTextInContextArea(props.location.moment.moment_context)
-      setMemberFamilyIsPresentAtMoment(props.location.moment.firstname_color.map(person => person.id))
-      setMomentTypeId(props.location.moment.type === 'quote' ? 1 : 0)
-      setTextInMomentArea(props.location.moment.moment_text)
+      const { moment_context, firstname_color, type, moment_text, moment_event_date, momentId, user_isPresent } = props.location.moment
+      setModifyMoment(true)
+      setTextInContextArea(moment_context)
+      setMemberFamilyIsPresentAtMoment(firstname_color.map(person => person.id))
+      setMomentTypeId(type === 'quote' ? 1 : 0)
+      setTextInMomentArea(moment_text)
+      setDate(new Date(moment_event_date))
+      setUserIsPresent(user_isPresent)
+      setIdForModifyMoment(momentId)
       // contextToModifyMoment = props.location.moment.moment_context
       // textToModifyMoment = props.location.moment.moment_text
       // typeToModifyMoment = props.location.moment.type
       // colorUserModifyMoment = props.location.user[0].color
-      dateToModifyMoment = props.location.moment.moment_event_date
-      idToModifyMoment = props.location.moment.momentId
-      isPresentModifyMoment = props.location.moment.user_isPresent
-      firstNameUserModifymoment = props.location.user[0].user_firstname
+      // dateToModifyMoment = moment_event_date
+      // idToModifyMoment = momentId
+      // isPresentModifyMoment = user_isPresent
+      // firstNameUserModifymoment = props.location.user[0].user_firstname
     }
   }, [props.location.moment])
-
+console.log(modifyMoment)
   useEffect(() => {
     axios.get(`${backUrl}/users/${userId}/family`, {
       headers: { Authorization: `Bearer ${myToken}` }
@@ -82,7 +89,7 @@ const CreateMoment = (props) => {
   }, [])
 
   const SendCreateMoment = () => {
-    axios.post(`${backUrl}/moments/create`, {
+    const dataToSend = {
       user_isPresent: userIsPresent,
       moment_text: textInMomentArea,
       moment_context: textInContextArea,
@@ -90,14 +97,29 @@ const CreateMoment = (props) => {
       moment_type_id: momentTypeId,
       user_id: userId,
       family_id: memberFamilyIsPresentAtMoment
-    }, {
-      headers: { Authorization: `Bearer ${myToken}` }
-    })
-      .then(res => res.status === 201 ? setSendMomentSucceed(true) : '')
-      .catch(err => {
-        setSendError(true)
-        console.error(err)
+    }
+
+    if (!modifyMoment) {
+      axios.post(`${backUrl}/moments/create`, dataToSend, {
+        headers: { Authorization: `Bearer ${myToken}` }
       })
+        .then(res => res.status === 201 ? setSendMomentSucceed(true) : '')
+        .catch(err => {
+          setSendError(true)
+          console.error(err)
+        })
+    } else {
+      dataToSend.moment_id = idForModifyMoment
+      console.log('modifie')
+      axios.put(`${backUrl}/moments/modify`, dataToSend, {
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
+        .then(res => res.status === 200 ? setSendMomentSucceed(true) : '')
+        .catch(err => {
+          setSendError(true)
+          console.error(err)
+        })
+    }
   }
 
   useEffect(() => {
@@ -116,20 +138,21 @@ const CreateMoment = (props) => {
   }, [sendMomentSucceed, sendError])
 
   const buttonSelectAuthor = (AuthorId, click) => {
-  if (click) {
-    AuthorId === user.user_firstname
-      ? setUserIsPresent(1)
-      : setMemberFamilyIsPresentAtMoment([...memberFamilyIsPresentAtMoment, AuthorId])
-  } else {
-    if (AuthorId === user.user_firstname) {
-      setUserIsPresent(0)
+    if (click) {
+      AuthorId === user.user_firstname
+        ? setUserIsPresent(1)
+        : setMemberFamilyIsPresentAtMoment([...memberFamilyIsPresentAtMoment, AuthorId])
     } else {
-      const idToDelete = memberFamilyIsPresentAtMoment.indexOf(AuthorId)
-      const newTab = [...memberFamilyIsPresentAtMoment]
-      newTab.splice(idToDelete, 1)
-      setMemberFamilyIsPresentAtMoment(newTab)
+      if (AuthorId === user.user_firstname) {
+        setUserIsPresent(0)
+      } else {
+        const idToDelete = memberFamilyIsPresentAtMoment.indexOf(AuthorId)
+        const newTab = [...memberFamilyIsPresentAtMoment]
+        newTab.splice(idToDelete, 1)
+        setMemberFamilyIsPresentAtMoment(newTab)
+      }
     }
-  }}
+  }
 
   const onChangeTextInMomentArea = (e) => {
     let value = ''
@@ -161,7 +184,20 @@ const CreateMoment = (props) => {
       <Header location={path} burger />
       <div className='create'>
         <MomentNavbar SwitchMomentType={SwitchMomentType} />
-        <Moment momentTypeId={momentTypeId} sendMomentSucceed={sendMomentSucceed} memberFamilyIsPresentAtMoment={memberFamilyIsPresentAtMoment} userIsPresent={userIsPresent} textInContextArea={textInContextArea} textInMomentArea={textInMomentArea} buttonSelectAuthor={buttonSelectAuthor} active={active} SendCreateMoment={SendCreateMoment} onChangeTextInContextArea={onChangeTextInContextArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />
+        <Moment
+          momentTypeId={momentTypeId}
+          sendMomentSucceed={sendMomentSucceed}
+          memberFamilyIsPresentAtMoment={memberFamilyIsPresentAtMoment}
+          userIsPresent={userIsPresent}
+          textInContextArea={textInContextArea}
+          textInMomentArea={textInMomentArea}
+          buttonSelectAuthor={buttonSelectAuthor}
+          active={active} SendCreateMoment={SendCreateMoment}
+          onChangeTextInContextArea={onChangeTextInContextArea}
+          onChangeTextInMomentArea={onChangeTextInMomentArea}
+          user={user}
+          familyMember={familyMember}
+        />
         <DatePicker selected={date} locale='fr' onChange={date => setDate(date)} dateFormat='EEEE dd MMMM yyyy' maxDate={(new Date())} customInput={<CustomInput />} />
         {redirect && <Redirect to={{ pathname: '/moments', params: { isSend: sendMomentSucceed } }} />}
       </div>

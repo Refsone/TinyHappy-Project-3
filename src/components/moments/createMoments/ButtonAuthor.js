@@ -3,16 +3,24 @@ import PropTypes from 'prop-types'
 import './ButtonAuthor.css'
 
 const Button = (props) => {
-  const [color, setColor] = useState(props.click ? props.color : '')
-  const [click, setClick] = useState(props.click)
+  const [color, setColor] = useState(props.color && props.color)
+  const [click, setClick] = useState()
 
   useEffect(() => {
-    if(click){
-      console.log('useEffect')
       props.buttonSelectAuthor(props.id, click)
       click ? setColor(props.color) : setColor('')
-    }
   }, [click])
+
+  useEffect(() => {
+    if (props.userIsPresent === 1) {
+      setClick(true)
+      return setColor(props.color)
+    }
+  }, [props.user])
+
+  useEffect(() => {
+    setClick(props.click)
+  },[])
 
   return (
     <>
