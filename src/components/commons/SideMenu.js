@@ -45,7 +45,7 @@ const SideMenu = () => {
           </Link>
           {/* <Link to='/' onClick={() => localStorage.clear()}> */}
           <div className='menu-item'>
-            <button onClick={handleLogout}>
+            <button className='btn-logOut' onClick={handleLogout}>
               <img src={logoLogOut} alt='Logo déconnexion' />
               <p>Déconnexion</p>
             </button>

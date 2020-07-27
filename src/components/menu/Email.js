@@ -11,8 +11,6 @@ import './../onboarding/Connexion.css'
 import './Password.css'
 
 const backUrl = process.env.REACT_APP_API_URL
-const myToken = localStorage.getItem('x-access-token')
-const userId = localStorage.getItem('userId')
 
 const Email = (props) => {
   const { handleChange, handleSubmit, values, errors } = useFormEmail(
@@ -22,6 +20,9 @@ const Email = (props) => {
 
   const [redirect, setRedirect] = useState(false)
   const [send, setSend] = useState(false)
+
+  const myToken = localStorage.getItem('x-access-token')
+  const userId = localStorage.getItem('userId')
 
   useEffect(() => {
     if (send) {

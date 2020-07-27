@@ -7,11 +7,12 @@ import emptyHeart from '../../images/favori-heart.svg'
 import fullHeart from '../../images/favoris-heart-pink.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
-const myToken = (localStorage.getItem('x-access-token'))
 
 const CardPost = (props) => {
   const { moment, boxStyle, user } = props
   const [favorite, setFavorite] = useState(moment.moment_favorite)
+
+  const myToken = (localStorage.getItem('x-access-token'))
 
   const handleClickFavorite = (e) => {
     props.refreshMethod()

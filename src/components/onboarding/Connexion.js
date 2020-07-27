@@ -42,6 +42,10 @@ const Connexion = (props) => {
     }
   }, [loggedIn])
 
+  const handleServerError = (err) => {
+    return err
+  }
+
   async function submit (e) {
     e.preventDefault()
     try {
@@ -50,7 +54,7 @@ const Connexion = (props) => {
         .then(data => {
           if (data) {
             localStorage.clear()
-            localStorage.removeItem('x-access-token')
+            /* localStorage.removeItem('x-access-token') */
             localStorage.setItem('x-access-token', data)
             localStorage.setItem('userId', jwt.decode(data).id)
             localStorage.setItem('userMail', jwt.decode(data).mail)
@@ -60,6 +64,17 @@ const Connexion = (props) => {
         })
     } catch (err) {
       errors && setErrors(errors)
+      const errorToasty = handleServerError(err)
+      toaster.notify(
+        <Toast
+          classType='error-toaster'
+          text={`${errorToasty}, 'Adresse email ou mot de passe incorrect !'`}
+        />,
+        {
+          duration: localStorage.getItem('toastDura'),
+          position: localStorage.getItem('toastPos')
+        }
+      )
     }
   }
 
