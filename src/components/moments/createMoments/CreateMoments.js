@@ -37,11 +37,11 @@ const CreateMoment = (props) => {
 
   // let textToModifyMoment = ''
   // let contextToModifyMoment = ''
-  let dateToModifyMoment = ''
-  let idToModifyMoment = ''
+  // let dateToModifyMoment = ''
+  // let idToModifyMoment = ''
   // let typeToModifyMoment = ''
-  let isPresentModifyMoment = ''
-  let firstNameUserModifymoment = ''
+  // let isPresentModifyMoment = ''
+  // let firstNameUserModifymoment = ''
   // let colorUserModifyMoment = ''
   // let firstnameColor = ''
 
@@ -65,8 +65,7 @@ const CreateMoment = (props) => {
       // isPresentModifyMoment = user_isPresent
       // firstNameUserModifymoment = props.location.user[0].user_firstname
     }
-  }, [props.location.moment])
-console.log(modifyMoment)
+  }, [])
   useEffect(() => {
     axios.get(`${backUrl}/users/${userId}/family`, {
       headers: { Authorization: `Bearer ${myToken}` }
@@ -109,8 +108,8 @@ console.log(modifyMoment)
           console.error(err)
         })
     } else {
+      console.log(dataToSend)
       dataToSend.moment_id = idForModifyMoment
-      console.log('modifie')
       axios.put(`${backUrl}/moments/modify`, dataToSend, {
         headers: { Authorization: `Bearer ${myToken}` }
       })
@@ -138,14 +137,19 @@ console.log(modifyMoment)
   }, [sendMomentSucceed, sendError])
 
   const buttonSelectAuthor = (AuthorId, click) => {
+    console.count()
     if (click) {
+      console.log('click')
       AuthorId === user.user_firstname
-        ? setUserIsPresent(1)
-        : setMemberFamilyIsPresentAtMoment([...memberFamilyIsPresentAtMoment, AuthorId])
+        ? console.log('user') || setUserIsPresent(1)
+        : console.log('family') || setMemberFamilyIsPresentAtMoment([...memberFamilyIsPresentAtMoment, AuthorId])
     } else {
+      console.log('noClick')
       if (AuthorId === user.user_firstname) {
+        console.log('user')
         setUserIsPresent(0)
       } else {
+        console.log('family')
         const idToDelete = memberFamilyIsPresentAtMoment.indexOf(AuthorId)
         const newTab = [...memberFamilyIsPresentAtMoment]
         newTab.splice(idToDelete, 1)
@@ -153,6 +157,10 @@ console.log(modifyMoment)
       }
     }
   }
+
+  useEffect(() => {
+    console.log(memberFamilyIsPresentAtMoment)
+  })
 
   const onChangeTextInMomentArea = (e) => {
     let value = ''

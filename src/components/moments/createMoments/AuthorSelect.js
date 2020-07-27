@@ -8,7 +8,9 @@ import './AuthorSelect.css'
 
 const AuthorSelect = (props) => {
   const authors = props.familyMember
+  console.log(authors)
   const membersPresent = props.memberFamilyIsPresentAtMoment
+  console.log(membersPresent)
   const authorPresent = authors.map( author => {
     membersPresent.forEach(member => {
       if (member === author.member_id) {
@@ -17,6 +19,7 @@ const AuthorSelect = (props) => {
     })
     return author
   })
+  console.log(authorPresent)
 
   const AddButtonPlus = () => (
     <div className='AddFamilyMember'>
@@ -34,7 +37,7 @@ const AuthorSelect = (props) => {
           )}
         {<AddButtonPlus />}
       </div>
-      <p className='error-author' style={props.textInMomentArea.length > 0 && props.memberFamilyIsPresentAtMoment.length === 0 && props.userIsPresent === 0 ? { visibility: 'visible' } : { visibility: 'hidden' }}>Veuillez selectionner un auteur </p>
+      <p className='error-author' style={props.textInMomentArea.length > 0 && (props.memberFamilyIsPresentAtMoment.length === 0 && props.userIsPresent === 0) ? { visibility: 'visible' } : { visibility: 'hidden' }}>Veuillez selectionner un auteur </p>
     </div>
   )
 }

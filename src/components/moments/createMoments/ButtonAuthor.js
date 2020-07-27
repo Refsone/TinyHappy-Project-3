@@ -14,7 +14,7 @@ const Button = (props) => {
   useEffect(() => {
     if (props.userIsPresent === 1) {
       setClick(true)
-      return setColor(props.color)
+      setColor(props.color)
     }
   }, [props.user])
 
