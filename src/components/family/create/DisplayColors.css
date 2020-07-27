@@ -1,17 +1,16 @@
 .family_palette {
+  margin: 0 auto;
   border: none;
   white-space: nowrap;
-  /* overflow-x: scroll; */
-  margin: -.2em 0 .2em 2em;
 }
 
 .family_palette input {
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
+  appearance: none; 
   border-radius: 90%;
-  width: 2.5em;
-  height: 2.5em;
+  width: 2.3em;
+  height: 2.3em;
   border: 2px solid #98A7CD;
 }
 
@@ -23,40 +22,40 @@
 
 .family_palette .cyan {
   background-color: #E9FEFC;
-  margin: .5em;
+
 }
 
 .family_palette .green {
   background-color: #F2FFD7;
-  margin: .5em;
+
 }
 
 .family_palette .navy {
   background-color: #E9EFFA;
-  margin: .5em;
+
 }
 
 .family_palette .pink {
   background-color: #FFE7EC;
-  margin: .5em;
+
 }
 
 .family_palette .peach {
   background-color: #FFEDD7;
-  margin: .5em;
+
 }
 
 .family_palette .yellow {
   background-color: #FEFFC5;
-  margin: .5em;
+
 }
 
 .family_palette .purple {
   background-color: #F6EAFF;
-  margin: .5em;
+
 }
 
 .family_palette .mint {
   background-color: #DAFFD7;
-  margin: .5em;
+
 }

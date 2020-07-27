@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import './CreateInputFamily.css'
 
 const CreateInputFamily = (props) => {
-  const { name, id, placeholder, handlechange, fieldValue, required } = { ...props }
+  const { name, id, placeholder, handlechange, handleBlur, fieldValue, required } = { ...props }
 
   return (
     <div className='absolute'>
@@ -14,21 +14,15 @@ const CreateInputFamily = (props) => {
         placeholder={placeholder}
         name={id}
         id={id}
-        className={fieldValue.error === 2 ? 'input-error' : 'general-input bold-12px-grey plholder'}
+        className={fieldValue.error ? 'error' : 'general-input bold-12px-grey plholder'}
         onChange={handlechange}
+        onBlur={handleBlur}
         required={required}
         value={fieldValue.value ? fieldValue.value : ''}
         autoComplete='off'
-        aria-required='true'
+        aria-required={required && true}
       />
-      {id.includes('name') && fieldValue.value && fieldValue.error === 1 &&
-        <p className='msg-error'>Le {name} doit contenir au moins 2 caractères</p>}
-      {id.includes('name') && id && fieldValue.error === 2 &&
-        <p className='msg-error'>Caractère spécial non-autorisé</p>}
-      {id.includes('name') && id && fieldValue.error === 3 &&
-        <p className='msg-error'>Les chiffres ne sont pas autorisés</p>}
-      {id.includes('birthday') && fieldValue.value && fieldValue.error === 1 &&
-        <p className='msg-error'>Le format de la date n'est pas valide (jj/mm/aaaa)</p>}
+      {fieldValue.error && <p className='msg-error'>{fieldValue.error}</p>}
     </div>
   )
 }
@@ -38,6 +32,7 @@ CreateInputFamily.propTypes = {
   id: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   handlechange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func.isRequired,
   required: PropTypes.bool,
   fieldValue: PropTypes.object.isRequired
 }

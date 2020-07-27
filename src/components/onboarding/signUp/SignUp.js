@@ -3,19 +3,18 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 
 import Header from '../../commons/header/Header'
-import InputComponent from './InputComponent'
+import InputComponent from '../../commons/input/InputComponent'
 import Toast from '../../commons/Toast'
 import toaster from 'toasted-notes'
 import ValidateButton from '../../commons/footer/ValidateButton'
 
-import './PasswordReset.css'
+import './Signup.css'
 
 const backUrl = process.env.REACT_APP_API_URL
 
-const PasswordReset = (props) => {
+const SignUp = (props) => {
   // Define constraints for the different inputs
   const regexMail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/
-  const regexTempPassword = /.{12,}/
   const regexPassword1 = /.{8,}/
   const regexPassword2 = /[0-9]{1,}/
   const regexPassword3 = /[A-Z]{1,}/
@@ -25,41 +24,36 @@ const PasswordReset = (props) => {
   const [inUseEffect, setInUseEffect] = useState(false)
   // Manage the redirection to the next page
   const [redirect, setRedirect] = useState(false)
-  const [pwdChanged, setPwdChanged] = useState(false)
+  const [isSend, setIsSend] = useState(false)
   // Managing the errors
   const [inputError, setInputError] = useState({
+    firstname: false,
+    lastname: false,
     mail: false,
-    tempPwd: false,
-    newPwd: false,
+    pwd: false,
     confirmPwd: false
   })
   // Managing the error messages
   const [messageError, setMessageError] = useState({
+    firstname: '',
+    lastname: '',
     mail: '',
-    tempPwd: '',
-    newPwd: '',
+    pwd: '',
     confirmPwd: ''
   })
   // Managing the field values
   const [formData, setFormData] = useState({
+    firstname: '',
+    lastname: '',
     mail: '',
-    tempPwd: '',
-    newPwd: '',
+    pwd: '',
     confirmPwd: ''
   })
   // Managing display of the eyes
   const [pwdShow, setPwdShow] = useState({
-    tempPwd: false,
-    newPwd: false,
+    pwd: false,
     confirmPwd: false
   })
-
-  useEffect(() => {
-    const { params } = props.location
-    if (params && params.sendPwd) {
-      toaster.notify(<Toast classType='sucess-toaster' text='Mot de passe temporaire envoyé !' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
-    }
-  }, [])
 
   //* Verify if the password format is correct
   const verifPassword = (password) => {
@@ -90,7 +84,7 @@ const PasswordReset = (props) => {
 
   // Define a setTimeOut on validation before going to the login page
   useEffect(() => {
-    if (pwdChanged) {
+    if (isSend) {
       const timer = setTimeout(() => {
         setRedirect(true)
       }, 250)
@@ -98,11 +92,29 @@ const PasswordReset = (props) => {
         clearTimeout(timer)
       }
     }
-  }, [pwdChanged])
+  }, [isSend])
 
   const handleBlur = (e) => {
     const value = e.target.value
     switch (e.target.id) {
+      case 'firstname':
+        if (!formData.firstname) {
+          setInputError({ ...inputError, firstname: true })
+          setMessageError({ ...messageError, firstname: 'Ce champs est requis.' })
+        } else {
+          setInputError({ ...inputError, firstname: false })
+          setMessageError({ ...messageError, firstname: '' })
+        }
+        break
+      case 'lastname':
+        if (!formData.lastname) {
+          setInputError({ ...inputError, lastname: true })
+          setMessageError({ ...messageError, lastname: 'Ce champs est requis.' })
+        } else {
+          setInputError({ ...inputError, lastname: false })
+          setMessageError({ ...messageError, lastname: '' })
+        }
+        break
       case 'mail':
         if (!regexMail.test(value) && formData.mail !== '') {
           setInputError({ ...inputError, mail: true })
@@ -113,7 +125,7 @@ const PasswordReset = (props) => {
         }
         break
       case 'confirmPwd':
-        if (formData.newPwd !== formData.confirmPwd && formData.confirmPwd !== '') {
+        if (formData.pwd !== formData.confirmPwd && formData.confirmPwd !== '') {
           setInputError({ ...inputError, confirmPwd: true })
           setMessageError({ ...messageError, confirmPwd: 'Erreur ! Le mot de passe ne correspond pas.' })
         } else {
@@ -121,37 +133,13 @@ const PasswordReset = (props) => {
           setMessageError({ ...messageError, confirmPwd: '' })
         }
         break
-      case 'newPwd':
-        if (verifPassword(value) !== 'ok' && formData.newPwd !== '') {
-          setInputError({ ...inputError, newPwd: true })
-          setMessageError({ ...messageError, newPwd: verifPassword(value) })
+      case 'pwd':
+        if (verifPassword(value) !== 'ok' && formData.pwd !== '') {
+          setInputError({ ...inputError, pwd: true })
+          setMessageError({ ...messageError, pwd: verifPassword(value) })
         } else {
-          setInputError({ ...inputError, newPwd: false })
-          setMessageError({ ...messageError, newPwd: '' })
-        }
-        break
-      case 'tempPwd':
-        if (!regexTempPassword.test(value) && formData.tmpPassword !== '') {
-          setInputError({ ...inputError, tempPwd: true })
-          setMessageError({ ...messageError, tempPwd: 'Le format du mot de passe temporaire est invalide' })
-        } else {
-          Axios.post(`${backUrl}/users/tempPwd`, { mail: formData.mail, tempPwd: value })
-            .catch(error => {
-              setInputError({ ...inputError, tempPwd: true })
-              switch (error.response.status) {
-                case 403:
-                  setMessageError({ ...messageError, tempPwd: 'La date d\'expiration du mot de passe temporaire a expiré' })
-                  break
-                case 404:
-                  setMessageError({ ...messageError, tempPwd: 'Mot de passe temporaire invalide' })
-                  break
-                default:
-                  setMessageError({ ...messageError, tempPwd: 'Une erreur interne est survenue' })
-                  break
-              }
-            })
-          setInputError({ ...inputError, tempPwd: false })
-          setMessageError({ ...messageError, tempPwd: '' })
+          setInputError({ ...inputError, pwd: false })
+          setMessageError({ ...messageError, pwd: '' })
         }
         break
       default:
@@ -162,31 +150,35 @@ const PasswordReset = (props) => {
 
   //* Verify if no errors before validate
   const verifyBeforeValidate = () => {
-    if (!messageError.confirmPwd && !messageError.mail && !messageError.newPwd && !messageError.tempPwd && formData.tempPwd && formData.mail && formData.newPwd && formData.confirmPwd && formData.newPwd === formData.confirmPwd) {
+    if (formData.firstname && !messageError.confirmPwd && !messageError.mail && !messageError.pwd && formData.mail && formData.pwd && formData.confirmPwd && formData.pwd === formData.confirmPwd && formData.lastname) {
       setIsValidate(true)
     } else {
       setIsValidate(false)
     }
   }
+
   // Custom error message when an error occured in the server
   const handleServerError = (err) => {
     if (err.response.status === 403) {
-      return 'Mot de passe temporaire plus valable'
-    } else if (err.response.status === 404) {
-      return "L'adresse Email indiquée n'existe pas"
+      return err.response.data === 'email already exist' ? "L'adresse E-mail existe déjà" : 'Erreur lors de la vérification du mot de passe'
     } else {
-      return err.response.data === 'Error when compare the password' ? 'Erreur lors de la comparaison du mot de passe' : 'Une erreur serveur est survenue, veuillez réessayer'
+      return 'Une erreur serveur est survenue, veuillez réessayer'
     }
   }
 
   //* On validate
   const handleClick = () => {
-    Axios.put(`${backUrl}/users/tempPwd`, { mail: formData.mail, newPwd: formData.newPwd, tempPwd: formData.tempPwd })
-      .then(res => res.status === 200 && setPwdChanged(true))
+    const formdata = { user_firstname: formData.firstname, user_lastname: formData.lastname, user_mail: formData.mail, user_password: formData.pwd }
+    Axios.post(`${backUrl}/sign-up`, formdata)
+      .then(res => {
+        if (res.status === 201) {
+          Axios.post(`${backUrl}/send-mails/register`, { userName: formData.firstname, userMail: formData.mail })
+            .then(res => res.status === 200 ? setIsSend(true) : '')
+        }
+      })
       .catch(err => {
         const errMessage = handleServerError(err)
-        toaster.notify(<Toast classType='error-toaster' text={`${errMessage}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') }
-        )
+        toaster.notify(<Toast classType='error-toaster' text={`${errMessage}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
       })
   }
 
@@ -200,19 +192,18 @@ const PasswordReset = (props) => {
     e.preventDefault()
   }
 
-  const inputs = ['mail', 'tempPwd', 'newPwd', 'confirmPwd']
+  const inputs = ['firstname', 'lastname', 'mail', 'pwd', 'confirmPwd']
+  const required = ['firstname', 'lastname', 'mail', 'pwd', 'confirmPwd']
 
   return (
     <div>
       <Header location={props.location.pathname} />
       <form onSubmit={submitForm}>
-        <div className='cont-passwordReset'>
-          <div className='bold-16px-grey text'>MOT DE PASSE PERDU</div>
-          <div className='regular-16px-grey text'>Indiquez votre email et le mot de passe temporaire reçu, puis définissez votre nouveau mot de passe.</div>
-          <div className='pwd-reset-input'>
+        <div className='cont-global-form'>
+          <div>
             {
               inputs.map((input, id) =>
-                <InputComponent inputError={inputError} messageError={messageError} pwdShow={pwdShow} handleEyes={handleEyes} handleChange={handleChange} key={id} id={input} handleBlur={handleBlur} pwdContent='confirmPwd' />
+                <InputComponent inputError={inputError} messageError={messageError} pwdShow={pwdShow} handleEyes={handleEyes} handleChange={handleChange} key={id} id={input} handleBlur={handleBlur} pwdContent='confirmPwd' required={required} />
               )
             }
           </div>
@@ -224,9 +215,9 @@ const PasswordReset = (props) => {
           handleClick={handleClick}
         />
       </form>
-      {redirect && <Redirect to={{ pathname: '/onboarding/login', params: { newPwd: true } }} />}
+      {redirect && <Redirect to={{ pathname: '/onboarding/login', params: { isSend: isSend } }} />}
     </div>
   )
 }
 
-export default PasswordReset
+export default SignUp

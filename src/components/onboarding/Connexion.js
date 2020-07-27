@@ -4,6 +4,8 @@ import axios from 'axios'
 import jwt from 'jsonwebtoken'
 
 import Header from '../commons/header/Header'
+import Toast from '../commons/Toast'
+import toaster from 'toasted-notes'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
 
@@ -22,6 +24,19 @@ const Connexion = (props) => {
   const showType = visible ? 'text' : 'password'
 
   useEffect(() => {
+    const { params } = props.location
+    let message = ''
+    if (params) {
+      if (params.isSend) {
+        message = 'Inscription réussie !'
+      } else if (params.newPwd) {
+        message = 'Nouveau mot de passe crée !'
+      }
+      toaster.notify(<Toast classType='sucess-toaster' text={`${message}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+    }
+  }, [])
+
+  useEffect(() => {
     if (loggedIn) {
       setRedirect(true)
     }
@@ -35,8 +50,11 @@ const Connexion = (props) => {
         .then(data => {
           if (data) {
             localStorage.clear()
+            localStorage.removeItem('x-access-token')
             localStorage.setItem('x-access-token', data)
             localStorage.setItem('userId', jwt.decode(data).id)
+            localStorage.setItem('userMail', jwt.decode(data).mail)
+            localStorage.setItem('userName', jwt.decode(data).name)
             setLoggedIn(true)
           }
         })

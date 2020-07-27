@@ -33,13 +33,14 @@ const AddContact = ({ handleclick }) => {
   }
 
   const handleButton = (action) => {
+    let className = ''
     switch (action) {
       case 'className':
-        let className = 'bold-14px-white add-contact-button'
+        className = 'bold-14px-white add-contact-button'
         if (validate) { className += ' true' }
         return className
       case 'active':
-        return validate ? false : true
+        return !validate
       default:
     }
   }

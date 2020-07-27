@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 
-const useForm = (callback, validating) => {
+const useFormEmail = (callback, validating) => {
   const [values, setValues] = useState({ user_mail: '', user_password: '', new_user_mail: '' })
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (event) => {
     const { name, value } = event.target
-    setValues({ ...values, [name]: value })
+    const nextValues = { ...values, [name]: value }
+    setErrors(validating(nextValues))
+    setValues(nextValues)
   }
 
   const handleSubmit = (event) => {
@@ -26,10 +28,11 @@ const useForm = (callback, validating) => {
     handleChange,
     handleSubmit,
     setErrors,
+    setValues,
     values,
     errors
 
   }
 }
 
-export default useForm
+export default useFormEmail

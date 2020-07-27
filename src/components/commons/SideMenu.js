@@ -25,19 +25,19 @@ const SideMenu = () => {
               <p>Paramètres</p>
             </div>
           </Link>
-          <Link to='/settings'>
+          <Link to='/settings/legacy'>
             <div className='menu-item'>
               <img src={logoLibra} alt='Logo légale' />
               <p>Mentions légales</p>
             </div>
           </Link>
-          <Link to='/settings'>
+          <Link to='/settings/privacy'>
             <div className='menu-item'>
               <img src={logoMask} alt='Logo masque' />
               <p>Confidentialité</p>
             </div>
           </Link>
-          <Link to='/'>
+          <Link to='/' onClick={() => localStorage.clear()}>
             <div className='menu-item'>
               <img src={logoLogOut} alt='Logo déconnexion' />
               <p>Déconnexion</p>

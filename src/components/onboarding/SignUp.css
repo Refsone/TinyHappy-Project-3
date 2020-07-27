@@ -2,3 +2,23 @@
   margin-top: 5em;
   margin-bottom: 5em;
 }
+
+.paragraphe {
+  margin: 10px 0 5px 15px;
+  font-weight: 500;
+  font-size: 0.75em;
+  color: #7180AC;
+  margin-top: 2em;
+}
+
+li {
+  list-style-type: none;
+  margin: 0 0 2px 15px;
+  font-weight: 500;
+  font-size: 0.75em;
+  color: #7180AC;
+}
+
+li:before {
+  content: "- "
+}

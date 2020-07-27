@@ -33,15 +33,15 @@ const CreateMoment = (props) => {
 
   const path = props.location.pathname
 
-  let textToModifyMoment = ''
-  let contextToModifyMoment = ''
+  // let textToModifyMoment = ''
+  // let contextToModifyMoment = ''
   let dateToModifyMoment = ''
   let idToModifyMoment = ''
-  let typeToModifyMoment = ''
+  // let typeToModifyMoment = ''
   let isPresentModifyMoment = ''
   let firstNameUserModifymoment = ''
-  let colorUserModifyMoment = ''
-  let firstnameColor = ''
+  // let colorUserModifyMoment = ''
+  // let firstnameColor = ''
 
   useEffect(() => {
     if (props.location.moment) {
@@ -60,7 +60,6 @@ const CreateMoment = (props) => {
     }
   }, [props.location.moment])
 
-  {console.log(memberFamilyIsPresentAtMoment)}
   useEffect(() => {
     axios.get(`${backUrl}/users/${userId}/family`, {
       headers: { Authorization: `Bearer ${myToken}` }
@@ -91,10 +90,14 @@ const CreateMoment = (props) => {
       moment_type_id: momentTypeId,
       user_id: userId,
       family_id: memberFamilyIsPresentAtMoment
-    }, {headers: { Authorization: `Bearer ${myToken}` }
+    }, {
+      headers: { Authorization: `Bearer ${myToken}` }
     })
-      .then(res => res.status === 201 ? setSendMomentSucceed(true) : setSendError(true))
-      .catch(err => console.log('an error is occured, the message is:' + err))
+      .then(res => res.status === 201 ? setSendMomentSucceed(true) : '')
+      .catch(err => {
+        setSendError(true)
+        console.error(err)
+      })
   }
 
   useEffect(() => {
@@ -105,7 +108,7 @@ const CreateMoment = (props) => {
     if (sendMomentSucceed || sendError) {
       const timer = setTimeout(() => {
         setRedirect(true)
-      }, 2500)
+      }, 1000)
       return () => {
         clearTimeout(timer)
       }
@@ -129,7 +132,13 @@ const CreateMoment = (props) => {
   }}
 
   const onChangeTextInMomentArea = (e) => {
-    setTextInMomentArea(e.target.value)
+    let value = ''
+    if (momentTypeId === 1) {
+      value += `"${e.target.value}"`
+    } else {
+      value += e.target.value
+    }
+    setTextInMomentArea(value)
   }
 
   const onChangeTextInContextArea = (e) => {
@@ -153,9 +162,8 @@ const CreateMoment = (props) => {
       <div className='create'>
         <MomentNavbar SwitchMomentType={SwitchMomentType} />
         <Moment momentTypeId={momentTypeId} sendMomentSucceed={sendMomentSucceed} memberFamilyIsPresentAtMoment={memberFamilyIsPresentAtMoment} userIsPresent={userIsPresent} textInContextArea={textInContextArea} textInMomentArea={textInMomentArea} buttonSelectAuthor={buttonSelectAuthor} active={active} SendCreateMoment={SendCreateMoment} onChangeTextInContextArea={onChangeTextInContextArea} onChangeTextInMomentArea={onChangeTextInMomentArea} user={user} familyMember={familyMember} />
-        <DatePicker selected={date} locale='fr' onChange={date => setDate(date)} dateFormat='EEEE dd MMMM yyyy' customInput={<CustomInput />} />
-        {sendError && <p className='sendError'>Une erreur s'est produite lors de l'envoi</p>}
-        {redirect && <Redirect to='/moments' />}
+        <DatePicker selected={date} locale='fr' onChange={date => setDate(date)} dateFormat='EEEE dd MMMM yyyy' maxDate={(new Date())} customInput={<CustomInput />} />
+        {redirect && <Redirect to={{ pathname: '/moments', params: { isSend: sendMomentSucceed } }} />}
       </div>
     </>
   )

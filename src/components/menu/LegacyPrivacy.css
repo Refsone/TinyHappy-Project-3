@@ -1,0 +1,34 @@
+.container-mentions{
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 6%;
+    margin-top: 5rem;
+    flex-direction: column;
+    color: #7180AC;
+}
+
+.container-mentions .title{
+    text-transform: uppercase;
+    padding-bottom: 2vh;
+}
+.container-mentions .soustitle{
+    text-transform: uppercase;
+    padding-top: 3vh;
+    padding-bottom: 2vh;
+}
+
+.container-mentions .t-courant{
+  text-align: left;
+  line-height: 1.5;
+  padding-bottom: 3vh;
+}
+
+.container-mentions ul{
+    width: 92%;
+    padding-left: 2.5em;
+}
+
+.container-mentions ul li{
+  line-height: 1.5;
+}
