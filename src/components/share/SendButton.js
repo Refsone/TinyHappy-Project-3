@@ -10,8 +10,7 @@ const SendButton = ({ actived, selectedIds, selectedMail }) => {
   return (
     <div className='share-button'>
       {actived
-        ? 
-        <Link
+        ? <Link
           to={{
             pathname: '/share/moments',
             data: {
@@ -21,8 +20,8 @@ const SendButton = ({ actived, selectedIds, selectedMail }) => {
           }}
           title='Choice moments to send'
         >
-        <img src={ActivePlane} alt='send' />
-          </Link> : <img src={NonActivePlane} alt='send' />}
+          <img src={ActivePlane} alt='send' />
+        </Link> : <img src={NonActivePlane} alt='send' />}
     </div>
   )
 }
