@@ -35,7 +35,7 @@ const Posts = (props) => {
     } else if (params && !params.isSend) {
       toaster.notify(<Toast classType='error-toaster' text={'Une erreur c\'est produite dans l\'ajout d\'un moment!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     }
-  }, [])
+  }, [props.location])
 
   const fetchUserMoment = () => {
     axios.get(`${backUrl}/users/${userId}/moments`, {

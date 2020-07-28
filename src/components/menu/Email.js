@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import Toast from '../commons/Toast'
 import toaster from 'toasted-notes'
 import useFormEmail from '../menu/useFormEmail'
 import validationEmail from './validateEmail'
+import ValidateButton from '../commons/footer/ValidateButton'
 
 import './Email.css'
 import './../onboarding/Connexion.css'
@@ -13,6 +14,7 @@ import './Password.css'
 const backUrl = process.env.REACT_APP_API_URL
 const myToken = localStorage.getItem('x-access-token')
 const userId = localStorage.getItem('userId')
+const userName = localStorage.getItem('userName')
 
 const Email = (props) => {
   const { handleChange, handleSubmit, values, errors } = useFormEmail(
@@ -20,12 +22,12 @@ const Email = (props) => {
     validationEmail
   )
 
-  const [redirect, setRedirect] = useState(false)
+  // const [redirect, setRedirect] = useState(false)
   const [send, setSend] = useState(false)
 
-  useEffect(() => {
-    setRedirect(true)
-  }, [send])
+  // useEffect(() => {
+  //   setRedirect(true)
+  // }, [send])
 
   const handleServerError = (err) => {
     return err
@@ -37,8 +39,14 @@ const Email = (props) => {
       .put(`${backUrl}/users/${userId}/modify-email`, values, {
         headers: { Authorization: `Bearer ${myToken}` }
       })
-      .then((res) => (res.status === 200 ? setSend(true) : ''))
+      .then(res => {
+        axios.post(`${backUrl}/send-mails/new-mail`, { user_mail: values.user_mail, user_firstname: userName }, {
+          headers: { Authorization: `Bearer ${myToken}` }
+        })
+      })
+      .then((res) => (res.status === 204 ? setSend(true) : ''))
       .catch((err) => {
+        console.log(err)
         const errorToasty = handleServerError(err)
         toaster.notify(
           <Toast
@@ -101,10 +109,10 @@ const Email = (props) => {
           <p className='msg-error-email'>{errors.new_user_mail}</p>
         )}
 
-        {Object.keys(errors).length > 0 || !values.new_user_mail || !values.user_mail
-          ? <button type='submit' className='connexion-btn-inactif' disabled>confirmer</button>
-          : <button type='submit' className='connexion-btn-actif' onClick={(e) => submit(e)}>confirmer</button>}
-        {redirect && (
+        <ValidateButton
+          name='CONFIRMER' active={!(Object.keys(errors).length > 0 || !values.new_user_mail || !values.user_mail)} handleClick={(e) => submit(e)}
+        />
+        {send && (
           <Redirect to={{ pathname: '/settings', params: { send: send } }} />
         )}
       </form>

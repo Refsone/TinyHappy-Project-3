@@ -35,7 +35,7 @@ const Connexion = (props) => {
       }
       toaster.notify(<Toast classType='sucess-toaster' text={`${message}`} />, { duration: 3000, position: 'bottom' })
     }
-  }, [])
+  }, [props.location])
 
   useEffect(() => {
     if (loggedIn) {

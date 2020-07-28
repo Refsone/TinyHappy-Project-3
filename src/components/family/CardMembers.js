@@ -47,7 +47,7 @@ const CardMembers = (props) => {
     } else if (params && !params.isSend && params && !params.isDelete) {
       toaster.notify(<Toast classType='error-toaster' text={'Une erreur s\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     }
-  }, [])
+  }, [props.location])
 
   const fetchAgeParam = () => {
     axios.get(`${backUrl}/users/${userId}/parameter`, { headers: { Authorization: `Bearer ${myToken}` } })

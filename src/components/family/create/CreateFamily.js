@@ -52,42 +52,8 @@ const CreateFamily = (props) => {
   }, [])
   // Fetch user datas or members datas for the modify page
   useEffect(() => {
-    // Function to fetch the bdd datas
-    const handleUsersDatas = () => {
-      if (modify === 'user') { // Fetch the user datas
-        axios.get(`${backUrl}/users/${userId}`, {
-          headers: { Authorization: `Bearer ${myToken}` }
-        })
-          .then(res => {
-            const data = res.data[0]
-            setFirstname({ ...firstname, value: data.user_firstname })
-            setLastname({ ...lastname, value: data.user_lastname })
-            setSurname({ ...surname, value: data.user_surname })
-            setBirthday(new Date(data.user_birthday))
-            setColor(data.color_family_id)
-          })
-          .catch(err => {
-            toaster.notify(<Toast classType='error-toaster' text={`Une erreur est survenue: ${err.response.data}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
-          })
-      } else if (modify) { // Fetch the member data
-        axios.get(`${backUrl}/users/${userId}/family-members/${memberId}`, {
-          headers: { Authorization: `Bearer ${myToken}` }
-        })
-          .then(res => {
-            const data = res.data[0]
-            setIdMember(data.id)
-            setFirstname({ ...firstname, value: data.family_firstname })
-            setLastname({ ...lastname, value: data.family_lastname })
-            setSurname({ ...surname, value: data.family_surname })
-            setBirthday(new Date(data.family_birthday))
-            setColor(data.color_family_id)
-          })
-          .catch(err => {
-            toaster.notify(<Toast classType='error-toaster' text={`Une erreur est survenue: ${err}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
-          })
-      }
-    }
     handleUsersDatas()
+    return handleUsersDatas()
   }, [modify])
 
   // Define a setTimeOut on validation before return to the members family list
@@ -101,6 +67,42 @@ const CreateFamily = (props) => {
       }
     }
   }, [validate])
+
+  // Function to fetch the bdd datas
+  const handleUsersDatas = () => {
+    if (modify === 'user') { // Fetch the user datas
+      axios.get(`${backUrl}/users/${userId}`, {
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
+        .then(res => {
+          const data = res.data[0]
+          setFirstname({ ...firstname, value: data.user_firstname })
+          setLastname({ ...lastname, value: data.user_lastname })
+          setSurname({ ...surname, value: data.user_surname })
+          setBirthday(new Date(data.user_birthday))
+          setColor(data.color_family_id)
+        })
+        .catch(err => {
+          toaster.notify(<Toast classType='error-toaster' text={`Une erreur est survenue: ${err.response.data}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+        })
+    } else if (modify) { // Fetch the member data
+      axios.get(`${backUrl}/users/${userId}/family-members/${memberId}`, {
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
+        .then(res => {
+          const data = res.data[0]
+          setIdMember(data.id)
+          setFirstname({ ...firstname, value: data.family_firstname })
+          setLastname({ ...lastname, value: data.family_lastname })
+          setSurname({ ...surname, value: data.family_surname })
+          setBirthday(new Date(data.family_birthday))
+          setColor(data.color_family_id)
+        })
+        .catch(err => {
+          toaster.notify(<Toast classType='error-toaster' text={`Une erreur est survenue: ${err}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+        })
+    }
+  }
 
   // Manage the fields datas
   const handleChange = (e) => {
