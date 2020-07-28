@@ -33,8 +33,8 @@ const CardPost = (props) => {
           })}
           {moment.user_isPresent && user ? <p className='family-name' style={{ backgroundColor: user[0].color }}>{user[0].user_firstname}</p> : ''}
         </div>
-        <Link to={moment.type === 'quote' 
-          ? { pathname: '/moments/create/quote',  moment: moment, user: user } 
+        <Link to={moment.type === 'quote'
+          ? { pathname: '/moments/create/quote',  moment: moment, user: user }
           : { pathname: '/moments/create/milestone', moment: moment, user: user }}>
           <img id='modifyMoment' src={pencil} alt='modify moment' />
         </Link>

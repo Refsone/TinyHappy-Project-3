@@ -5,9 +5,9 @@ import { Redirect } from 'react-router-dom'
 
 import './DeleteMember.css'
 
-import trash from '../../../images/trash-alt-regular-1.svg'
 import emojiHappy from '../../../images/Vector-happy.svg'
 import emojiSad from '../../../images/Vector-sad.svg'
+import trash from '../../../images/trash-alt-regular-1.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
 
