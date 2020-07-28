@@ -3,23 +3,28 @@ import PropTypes from 'prop-types'
 import './ButtonAuthor.css'
 
 const Button = (props) => {
-  const [color, setColor] = useState('')
-  const [click, setClick] = useState(false)
+  const { handleSelectAuthors, id, name, userIsPresent, color, selected } = props
+
+  const [thisColor, setThisColor] = useState()
 
   useEffect(() => {
-    props.buttonSelectAuthor(props.id, click)
-    click ? setColor(props.color) : setColor('')
-  }, [click])
-
+    const userId = localStorage.getItem('userId')
+    const userName = localStorage.getItem('userName')
+    if (parseInt(userId) === parseInt(id) && userName === name) {
+      userIsPresent ? setThisColor(color) : setThisColor('')
+    } else {
+      selected ? setThisColor(color) : setThisColor('')
+    }
+  })
   return (
     <>
-      <button onClick={() => setClick(!click)} id={props.id} style={{ backgroundColor: `${color}` }} className='author'>{props.name}</button>
+      <button onClick={handleSelectAuthors} id={id} name={name} style={{ backgroundColor: `${thisColor}` }} className='author'>{name}</button>
     </>
   )
 }
 
 Button.propTypes = {
-  buttonSelectAuthor: PropTypes.func.isRequired,
+  handleSelectAuthors: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   color: PropTypes.string
 }

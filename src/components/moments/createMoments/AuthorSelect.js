@@ -7,7 +7,6 @@ import BoutonPlus from '../../../images/BoutonPlus.svg'
 import './AuthorSelect.css'
 
 const AuthorSelect = (props) => {
-  const authors = props.familyMember
 
   const AddButtonPlus = () => (
     <div className='AddFamilyMember'>
@@ -19,21 +18,38 @@ const AuthorSelect = (props) => {
     <div className='authorSelect'>
       <p className='authorTitle'>{props.title}</p>
       <div className='authorList'>
-        {props.user && <ButtonAuthor buttonSelectAuthor={props.buttonSelectAuthor} color={props.user.color} name={props.user.user_firstname} id={props.user.user_firstname} />}
-        {authors.map((author, index) =>
-          <ButtonAuthor key={index} buttonSelectAuthor={props.buttonSelectAuthor} color={author.color} name={author.family_firstname} id={author.member_id} />
-        )}
+        {
+          props.user &&
+          <ButtonAuthor
+            color={props.user.color}
+            name={props.user.user_firstname}
+            id={props.user.id}
+            userIsPresent={props.userIsPresent}
+            handleSelectAuthors={props.handleSelectAuthors}
+          />
+        }
+        {
+          props.familyMember.map((author, index) =>
+            <ButtonAuthor
+              key={index}
+              color={author.color}
+              name={author.family_firstname}
+              id={author.member_id}
+              selected={author.selected}
+              handleSelectAuthors={props.handleSelectAuthors}
+            />
+          )
+        }
         {<AddButtonPlus />}
       </div>
-      <p className='error-author' style={props.textInMomentArea.length > 0 && props.memberFamilyIsPresentAtMoment.length === 0 && props.userIsPresent === 0 ? { visibility: 'visible' } : { visibility: 'hidden' }}>Veuillez selectionner un auteur </p>
+      <p className='error-author' style={!props.authorPresent && props.textInMomentArea.length > 0 ? { visibility: 'visible' } : { visibility: 'hidden' }}>Veuillez selectionner un auteur </p>
     </div>
   )
 }
 
 AuthorSelect.propTypes = {
   familyMember: PropTypes.array.isRequired,
-  memberFamilyIsPresentAtMoment: PropTypes.array.isRequired,
-  userIsPresent: PropTypes.number.isRequired,
+  userIsPresent: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
   textInMomentArea: PropTypes.string
 }

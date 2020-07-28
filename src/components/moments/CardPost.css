@@ -49,6 +49,10 @@
     color: #98A7CD;
 }
 
+.CardPost #modifyMoment{
+    margin-right: 12px;
+}
+
 .rose {
     background-color: #FFE7EC;
 }

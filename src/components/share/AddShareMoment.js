@@ -13,8 +13,6 @@ import './AddShareMoment.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const backUrl = process.env.REACT_APP_API_URL
-const myToken = (localStorage.getItem('x-access-token'))
-const userId = localStorage.getItem('userId')
 
 function AddShareMoment (props) {
   const [startDate, setStartDate] = useState(null)
@@ -27,6 +25,9 @@ function AddShareMoment (props) {
   const [onType, setOnType] = useState(false)
   const [isSend, setIsSend] = useState(false)
   const form = document.getElementById('formShareMoment')
+
+  const myToken = (localStorage.getItem('x-access-token'))
+  const userId = localStorage.getItem('userId')
 
   useEffect(() => {
     fetchMoments()

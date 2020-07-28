@@ -58,6 +58,11 @@
   width: 16px;
 }
 
+.SideMenu .menu-item .btn-logOut{
+  background-color: transparent;
+  border: none;
+}
+
 .SideMenu .menu-item p {
   color: #fff;
   font-size: 16px;

@@ -13,13 +13,14 @@ import toaster from 'toasted-notes'
 import './CardMembers.css'
 
 const backUrl = process.env.REACT_APP_API_URL
-const myToken = (localStorage.getItem('x-access-token'))
-const userId = localStorage.getItem('userId')
 
 const CardMembers = (props) => {
   const [members, setMembers] = useState([])
   const [user, setUser] = useState([])
   const [ageParams, setAgeParams] = useState()
+
+  const myToken = (localStorage.getItem('x-access-token'))
+  const userId = localStorage.getItem('userId')
 
   useEffect(() => {
     fetchUser()

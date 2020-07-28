@@ -10,11 +10,12 @@ import ZeroContact from './ZeroContact'
 import './CardContacts.css'
 
 const backUrl = process.env.REACT_APP_API_URL
-const myToken = (localStorage.getItem('x-access-token'))
-const userId = localStorage.getItem('userId')
 
 const CardContacts = () => {
   const [contacts, SetContacts] = useState()
+
+  const myToken = (localStorage.getItem('x-access-token'))
+  const userId = localStorage.getItem('userId')
 
   useEffect(() => {
     recupEmail()
@@ -54,7 +55,8 @@ const CardContacts = () => {
       <Header burger />
       <div className='cardContact'>
         {!contacts || contacts.length === 0
-          ? <>
+          ? 
+          <>
             <ZeroContact />
             <AddContact handleclick={handleclick} />
           </>
