@@ -65,7 +65,7 @@ const Posts = (props) => {
       date = moment.moment_event_date
       return (
         <>
-          <p className='moment-date' key={id}>{formatDate(moment.moment_event_date)}</p>
+          <p className='moment-date'>{formatDate(moment.moment_event_date)}</p>
           <CardPost refreshMethod={refreshMethod} locationPath={props.location.pathname} moment={moment} user={user} key={getRandom()} />
         </>
       )

@@ -92,7 +92,7 @@ const Header = (props) => {
               memberId: memberId
             }}
             >
-              <p className='action-link'>
+              <div className='action-link'>
                 {text}
                 {createFamilyBack &&
                   <>
@@ -107,7 +107,7 @@ const Header = (props) => {
                       </p>
                     </Link>
                   </>}
-              </p>
+              </div>
             </Link>}
         </div>
       </div>
