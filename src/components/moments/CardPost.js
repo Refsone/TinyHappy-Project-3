@@ -20,7 +20,6 @@ const CardPost = (props) => {
       headers: { Authorization: `Bearer ${myToken}` }
     })
   }
-
   return (
     <div className='CardPost' style={moment.type === 'quote' ? { borderLeft: '0.4rem solid #91E9FE', marginTop: boxStyle } : { borderLeft: '0.4rem solid #D3FF9B', marginTop: boxStyle }}>
       <div className='block-names-favorite'>
@@ -30,7 +29,7 @@ const CardPost = (props) => {
           })}
           {moment.user_isPresent && user ? <p className='family-name' style={{ backgroundColor: user[0].color }}>{user[0].user_firstname}</p> : ''}
         </div>
-        <img id={moment.id} onClick={handleClickFavorite} src={favorite ? fullHeart : emptyHeart} alt='favorite' />
+        <img id={moment.momentId} onClick={handleClickFavorite} src={favorite ? fullHeart : emptyHeart} alt='favorite' />
       </div>
       <h4>{moment.moment_text}</h4>
       {moment.moment_context !== '' ? <p className='context'>{moment.moment_context}</p> : ''}

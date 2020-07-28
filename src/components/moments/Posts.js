@@ -82,7 +82,6 @@ const Posts = (props) => {
   const refreshMethod = () => {
     setRefresh(!refresh)
   }
-
   return (
     <>
       <Header burger />
