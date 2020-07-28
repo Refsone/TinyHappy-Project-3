@@ -30,6 +30,7 @@ const routes = (props) => {
       <Route path='/favoris' component={Post} />
       <Route path='/moments/create/quote' component={CreateMoments} />
       <Route path='/moments/create/milestone' component={CreateMoments} />
+      <Route path='/moments/delete' component={CreateMoments} />
       <Route path='/onboarding/login' component={Connexion} />
       <Route path='/onboarding/lostpwd' component={PasswordLost} />
       <Route path='/onboarding/resetpwd' component={PasswordReset} />

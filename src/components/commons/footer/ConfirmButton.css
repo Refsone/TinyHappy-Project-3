@@ -5,12 +5,16 @@
   position: fixed;
   bottom: 0;
   z-index: 500;
-  width: 100%;
+  width: 92%;
   border: 1px solid #7FB74E;
   height: 62px;
   color: #7180AC;
-  font-size: 1em;
+  font-size: 0.9em;
   background-color: #D3FF9B;
+  position: absolute;
+  bottom: 12px;
+  left: 4vw;
+  border-radius: 5px;
 }
 
 .confirm-button .deleted {
@@ -20,16 +24,37 @@
   position: fixed;
   bottom: 0;
   z-index: 500;
-  width: 100%;
+  width: 92%;
   border: 1px solid #7FB74E;
   height: 5em;
   color: #7180AC;
-  font-size: 1em;
+  font-size: 0.9em;
   background-color: #D3FF9B;
+  position: absolute;
+  bottom: 12px;
+  left: 4vw;
+  border-radius: 5px;
 }
 
-.confirm-button .btn-confirm .error {
+.confirm-button .btn-confirm-error {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 500;
+  width: 92%;
+  height: 62px;
+  font-size: 0.9em;
   border: 1px solid #d12f12;
-  color: #7180AC;
-  background-color: #f37340;
+  color: #f80101;
+  background-color: #fad9d9;
+  position: absolute;
+  bottom: 12px;
+  left: 4vw;
+  border-radius: 5px;
+}
+
+.imgNone {
+  display: none;
 }

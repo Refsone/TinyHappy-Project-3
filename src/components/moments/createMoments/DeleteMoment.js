@@ -3,36 +3,36 @@ import Axios from 'axios'
 import Proptypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 
-import './DeleteMember.css'
+import './DeleteMoment.css'
 
 import emojiHappy from '../../../images/Vector-happy.svg'
 import emojiSad from '../../../images/Vector-sad.svg'
 import trash from '../../../images/trash-alt-regular-1.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
+const myToken = (localStorage.getItem('x-access-token'))
 
-const DeleteMember = (props) => {
-  const { name, id } = props
+const DeleteMoment = (props) => {
+  const moment = props.moment
+  const id = moment.momentId
 
   const [cancel, setCancel] = useState(false)
   const [deleted, setDeleted] = useState(false)
   const [redirect, setRedirect] = useState(false)
 
-  const myToken = (localStorage.getItem('x-access-token'))
-
   const handleClick = (value) => {
     if (value === 'delete') {
-      deleteMemberFromBdd()
+      deleteMomentFromBdd()
     } else {
       setCancel(true)
     }
   }
 
-  const deleteMemberFromBdd = () => {
-    Axios.delete(`${backUrl}/family-members/${id}`, {
+  const deleteMomentFromBdd = () => {
+    Axios.delete(`${backUrl}/moments/delete/${id}`, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
-      .then(res => res.status === 200 && setDeleted(true))
+      .then(res => res.status === 204 && setDeleted(true))
       .catch(err => 'An error occured when deleted the members...' + err)
   }
 
@@ -41,7 +41,7 @@ const DeleteMember = (props) => {
     if (deleted) {
       const timer = setTimeout(() => {
         setRedirect(true)
-      }, 1000)
+      }, 250)
       return () => {
         clearTimeout(timer)
       }
@@ -55,10 +55,7 @@ const DeleteMember = (props) => {
             <img src={trash} alt='Trash' />
           </div>
           <p className='part-1'>
-            Vous êtes sur le point de supprimer <b>{name}</b>.<br /><b>Êtes-vous sur?</b>
-          </p>
-          <p className='part-2'>
-            Tous les moments (citations et faits notables) associés à ce profil seront définitivement supprimés.
+            Vous êtes sur le point de supprimer le moment.<br /><b>Êtes-vous sur?</b>
           </p>
         </div>
         <div className='div-button'>
@@ -76,15 +73,17 @@ const DeleteMember = (props) => {
           </div>
         </div>
       </div>
-      {cancel && <Redirect to={{ pathname: '/family/modify', data: { memberId: id, modify: 'member' } }} />}
-      {redirect && <Redirect to={{ pathname: '/family', params: { isDelete: deleted } }} />}
+
+      {cancel && <Redirect to={moment.type === 'quote'
+        ? { pathname: '/moments/create/quote', moment: moment, user: props.user }
+        : { pathname: '/moments/create/milestone', moment: moment, user: props.user }} />}
+      {redirect && <Redirect to={{ pathname: '/moments', params: { isDelete: deleted } }} />}
     </>
   )
 }
 
-DeleteMember.propTypes = {
-  id: Proptypes.number.isRequired,
-  name: Proptypes.string.isRequired
+DeleteMoment.propTypes = {
+  id: Proptypes.number.isRequired
 }
 
-export default DeleteMember
+export default DeleteMoment
