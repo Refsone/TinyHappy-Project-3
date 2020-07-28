@@ -34,6 +34,12 @@ function AddShareMoment (props) {
   }, [])
 
   useEffect(() => {
+    const fetchUser = () => {
+      axios.get(`${backUrl}/users/${userId}`, {
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
+        .then(res => setAuthor(family.concat(res.data)))
+    }
     fetchUser()
   }, [family])
 
@@ -43,13 +49,6 @@ function AddShareMoment (props) {
     })
       .then(res => setFamily(res.data))
       .catch(err => err)
-  }
-
-  const fetchUser = () => {
-    axios.get(`${backUrl}/users/${userId}`, {
-      headers: { Authorization: `Bearer ${myToken}` }
-    })
-      .then(res => setAuthor(family.concat(res.data)))
   }
 
   const fetchMoments = () => {

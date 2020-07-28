@@ -56,6 +56,8 @@ const Connexion = (props) => {
             localStorage.setItem('userId', jwt.decode(data).id)
             localStorage.setItem('userMail', jwt.decode(data).mail)
             localStorage.setItem('userName', jwt.decode(data).name)
+            localStorage.setItem('toastDura', 3000)
+            localStorage.setItem('toastPos', 'bottom')
             setLoggedIn(true)
           }
         })
@@ -63,7 +65,6 @@ const Connexion = (props) => {
       errors && setErrors(errors)
     }
   }
-  console.log(errors)
   return (
     <div className='connexion-background'>
       <Header location={props.location.pathname} />
@@ -81,7 +82,6 @@ const Connexion = (props) => {
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
         <p className='connexion-lien'><Link to='/onboarding/lostpwd'>Mot de passe perdu ?</Link></p>
 
-        {errors && values.user_password < 8 ? <button onChange={handleChange} className='connexion-btn-inactif'> se connecter</button> : <button onChange={handleChange} onClick={(e) => submit(e)} className='connexion-btn-actif'>se connecter</button>}
         <ValidateButton
           name='Se connecter' active={values.user_password.length >= 8} handleClick={(e) => submit(e)}
         />
