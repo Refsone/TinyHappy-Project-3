@@ -7,8 +7,11 @@ import monogramme from '../../../images/monogrammeTH.svg'
 import './Header.css'
 
 const Header = (props) => {
-  const { burger, location, createFamilyBack } = props
+  const { burger, location, createFamilyBack, createMomentBack } = props
   const memberId = location === '/family/modify' && props.memberId
+  const momentId = location && location.includes('/moments/create') && props.momentId
+  console.log(location);
+
   let link = ''
   let text = ''
   switch (location) {
@@ -22,13 +25,23 @@ const Header = (props) => {
         link = '/family/delete'
       }
       break
-    case 'moments/create/quote':
+    case '/moments/create/quote':
+    if (momentId) {
+        text = 'supprimer'
+        link = '/moments/delete'
+      } else {
       text = 'annuler'
       link = '/moments'
+      }
       break
-    case 'moments/create/milestone':
-      text = 'annuler'
-      link = '/moments'
+    case '/moments/create/milestone':
+    if (momentId) {
+        text = 'supprimer'
+        link = '/moments/delete'
+      } else {
+        text = 'annuler'
+        link = '/moments'
+      }
       break
     case '/onboarding/lostpwd':
       text = 'annuler'
@@ -75,6 +88,7 @@ const Header = (props) => {
       link = '/settings'
       break
     default:
+    console.log('coucoyu')
       text = 'retour'
       link = '/moments'
       break
@@ -106,7 +120,20 @@ const Header = (props) => {
                     ANNULER
                       </p>
                     </Link>
-                  </>}
+                </>}
+              {createMomentBack &&
+                <>
+                  <br />
+                  <Link to={{
+                    pathname: '/moments',
+                    memberId: momentId
+                  }}
+                  >
+                    <p className='double-action-link'>
+                      ANNULER
+                      </p>
+                  </Link>
+                </>}
               </p>
             </Link>}
         </div>
