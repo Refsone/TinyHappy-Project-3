@@ -14,9 +14,7 @@ const myToken = (localStorage.getItem('x-access-token'))
 
 const DeleteMoment = (props) => {
   const moment = props.moment
-  console.log(props);
   const id = moment.momentId
-  console.log(id);
 
   const [cancel, setCancel] = useState(false)
   const [deleted, setDeleted] = useState(false)

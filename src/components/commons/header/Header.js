@@ -10,7 +10,6 @@ const Header = (props) => {
   const { burger, location, createFamilyBack, createMomentBack } = props
   const memberId = location === '/family/modify' && props.memberId
   const momentId = location && location.includes('/moments/create') && props.momentId
-  console.log(location);
 
   let link = ''
   let text = ''
@@ -88,7 +87,6 @@ const Header = (props) => {
       link = '/settings'
       break
     default:
-    console.log('coucoyu')
       text = 'retour'
       link = '/moments'
       break
