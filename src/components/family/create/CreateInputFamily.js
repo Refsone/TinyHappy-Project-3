@@ -32,6 +32,7 @@ CreateInputFamily.propTypes = {
   id: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   handlechange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func,
   required: PropTypes.bool,
   fieldValue: PropTypes.object.isRequired
 }
