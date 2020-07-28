@@ -14,14 +14,15 @@ import toaster from 'toasted-notes'
 import './Posts.css'
 
 const backUrl = process.env.REACT_APP_API_URL
-const myToken = localStorage.getItem('x-access-token')
-const userId = localStorage.getItem('userId')
 
 const Posts = (props) => {
   const [moments, setMoments] = useState([])
   const [user, setUser] = useState()
   const [refresh, setRefresh] = useState([false])
   let date = ''
+
+  const myToken = localStorage.getItem('x-access-token')
+  const userId = localStorage.getItem('userId')
 
   useEffect(() => {
     fetchUserMoment()

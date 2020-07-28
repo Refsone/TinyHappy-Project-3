@@ -12,8 +12,6 @@ import '../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodul
 import calendarIcon from '../../../images/calendrier.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
-const myToken = (localStorage.getItem('x-access-token'))
-const userId = localStorage.getItem('userId')
 
 const CreateMoment = (props) => {
   const [active, setActive] = useState(false)
@@ -30,6 +28,9 @@ const CreateMoment = (props) => {
   const [userIsPresent, setUserIsPresent] = useState(0)
 
   const path = props.location.pathname
+
+  const myToken = (localStorage.getItem('x-access-token'))
+  const userId = localStorage.getItem('userId')
 
   useEffect(() => {
     axios.get(`${backUrl}/users/${userId}/family`, {

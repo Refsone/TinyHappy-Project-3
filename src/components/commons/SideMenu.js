@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { slide as Menu } from 'react-burger-menu'
 
 import './SideMenu.css'
@@ -13,6 +13,12 @@ import logoLogOut from '../../images/menu-params-close.svg'
 import logoMB from '../../images/menu-burger-logo.svg'
 
 const SideMenu = () => {
+  const history = useHistory()
+
+  const handleLogout = () => {
+    localStorage.clear()
+    history.push('/')
+  }
   return (
     <div className='SideMenu'>
       <Menu width='85%' disableAutoFocus customBurgerIcon={<img className='scalable-mb-logo' src={logoMB} alt='icon menu burger' />}>
@@ -37,12 +43,12 @@ const SideMenu = () => {
               <p>Confidentialité</p>
             </div>
           </Link>
-          <Link to='/' onClick={() => localStorage.clear()}>
-            <div className='menu-item'>
+          <div className='menu-item'>
+            <button className='btn-logOut' onClick={handleLogout}>
               <img src={logoLogOut} alt='Logo déconnexion' />
               <p>Déconnexion</p>
-            </div>
-          </Link>
+            </button>
+          </div>
           <Link to='/onboarding/login'>
             <div className='block-love'>
               <img src={logoHeart} alt='heart' />
