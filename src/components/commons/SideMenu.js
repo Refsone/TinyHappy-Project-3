@@ -43,14 +43,12 @@ const SideMenu = () => {
               <p>Confidentialité</p>
             </div>
           </Link>
-          {/* <Link to='/' onClick={() => localStorage.clear()}> */}
           <div className='menu-item'>
             <button className='btn-logOut' onClick={handleLogout}>
               <img src={logoLogOut} alt='Logo déconnexion' />
               <p>Déconnexion</p>
             </button>
           </div>
-          {/* </Link> */}
           <Link to='/onboarding/login'>
             <div className='block-love'>
               <img src={logoHeart} alt='heart' />

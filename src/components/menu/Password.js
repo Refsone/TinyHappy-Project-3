@@ -13,7 +13,6 @@ import eyeClosed from '../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../images/eye-open.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
-/* const userId = localStorage.getItem('userId') */
 const userName = localStorage.getItem('userName')
 const userMail = localStorage.getItem('userMail')
 

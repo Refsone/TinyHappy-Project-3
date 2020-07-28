@@ -54,7 +54,6 @@ const Connexion = (props) => {
         .then(data => {
           if (data) {
             localStorage.clear()
-            /* localStorage.removeItem('x-access-token') */
             localStorage.setItem('x-access-token', data)
             localStorage.setItem('userId', jwt.decode(data).id)
             localStorage.setItem('userMail', jwt.decode(data).mail)

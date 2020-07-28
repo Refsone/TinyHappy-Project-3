@@ -9,6 +9,7 @@ import trash from '../../../images/trash-alt-regular-1.svg'
 import emojiHappy from '../../../images/Vector-happy.svg'
 import emojiSad from '../../../images/Vector-sad.svg'
 
+const backUrl = process.env.REACT_APP_API_URL
 
 const DeleteMember = (props) => {
   const { name, id } = props
@@ -17,7 +18,6 @@ const DeleteMember = (props) => {
   const [deleted, setDeleted] = useState(false)
   const [redirect, setRedirect] = useState(false)
 
-  const backUrl = process.env.REACT_APP_API_URL
   const myToken = (localStorage.getItem('x-access-token'))
 
   const handleClick = (value) => {
