@@ -62,7 +62,6 @@
   "devDependencies": {
     "husky": "^4.2.5",
     "lint-staged": "^10.2.7",
-    "ngrok": "^3.2.7",
     "prop-types": "^15.7.2",
     "standard": "^14.3.4"
   }

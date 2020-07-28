@@ -17,7 +17,7 @@ const myToken = (localStorage.getItem('x-access-token'))
 const userId = localStorage.getItem('userId')
 
 function AddShareMoment (props) {
-  const [startDate, setStartDate] = useState(new Date('2020-01-12'))
+  const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(new Date())
   const [countSelect, setCountSelect] = useState(0)
   const [family, setFamily] = useState([])
@@ -126,7 +126,7 @@ function AddShareMoment (props) {
         <DateRange dateType='début' date={startDate} onChange={date => setStartDate(date)} />
         <DateRange dateType='fin' date={endDate} onChange={date => setEndDate(date)} />
       </form>
-      {form && !isSend && <ValidateButton handleClick={handleClick} active={countSelect > 0 && startDate <= endDate && (form.quoteCheck.checked || form.milestoneCheck.checked)} name='Envoyer les moments' />}
+      {form && !isSend && <ValidateButton handleClick={handleClick} active={startDate && countSelect > 0 && startDate <= endDate && (form.quoteCheck.checked || form.milestoneCheck.checked)} name='Envoyer les moments' />}
     </>
   )
 }
