@@ -13,8 +13,6 @@ import eyeClosed from '../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../images/eye-open.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
-const myToken = (localStorage.getItem('x-access-token'))
-const userId = localStorage.getItem('userId')
 const userName = localStorage.getItem('userName')
 const userMail = localStorage.getItem('userMail')
 
@@ -31,6 +29,7 @@ const Password = () => {
     new_password: '',
     confirm_password: ''
   })
+  const myToken = (localStorage.getItem('x-access-token'))
 
   // Manage the redirection to the next page
   const [redirect, setRedirect] = useState(false)
@@ -62,7 +61,7 @@ const Password = () => {
   }, [pwdChanged])
 
   const handleClick = (e) => {
-    axios.put(`${backUrl}/users/${userId}/modify-password`, { newPassword: newPassword, actualPassword: actualPassword }, { headers: { Authorization: `Bearer ${myToken}` } })
+    axios.put(`${backUrl}/users/modify-password`, { newPassword: newPassword, actualPassword: actualPassword }, { headers: { Authorization: `Bearer ${myToken}` } })
       .then(res => {
         axios.post(`${backUrl}/send-mails/new-pwd`, { user_mail: userMail, user_firstname: userName }, {
           headers: { Authorization: `Bearer ${myToken}` }

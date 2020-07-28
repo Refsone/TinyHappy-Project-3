@@ -15,14 +15,15 @@ import './CreateFamily.css'
 import calendarIcon from '../../../images/calendrier.svg'
 
 const backUrl = process.env.REACT_APP_API_URL
-const myToken = (localStorage.getItem('x-access-token'))
-const userId = localStorage.getItem('userId')
 
 const CreateFamily = (props) => {
   const memberId = props.location.pathname === '/family/modify' && props.location.data.memberId
   const modify = props.location.pathname === '/family/modify' && props.location.data.modify
 
   const location = props.location.pathname
+
+  const myToken = (localStorage.getItem('x-access-token'))
+  const userId = localStorage.getItem('userId')
 
   // Define the state
   const [lastname, setLastname] = useState({
