@@ -11,6 +11,7 @@ const ValidateButton = (props) => {
       <button
         type='submit'
         className={props.active ? 'btn-active' : 'btn-inactive'}
+        style={name === 'RETOUR' ? { zIndex: '2' } : {}}
         disabled={!props.active && 'disabled'}
         onClick={handleClick}
       >

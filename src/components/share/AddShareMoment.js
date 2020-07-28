@@ -80,6 +80,7 @@ function AddShareMoment (props) {
     Moment.locale('fr')
     const format = 'YYYY-MM-DD'
     const userName = authors[authors.length - 1].user_firstname
+    const userColor = authors[authors.length - 1].color
     const { selectedMail } = props.location.data
     const momentsToSend = moments
       .filter(moment => Moment(moment.moment_event_date).format(format) >= Moment(startDate).format(format) && Moment(moment.moment_event_date).format(format) <= Moment(endDate).format(format))
@@ -101,7 +102,7 @@ function AddShareMoment (props) {
     if (authorsSelect.indexOf(userName) !== -1) {
       authorsSelect.splice(authorsSelect.indexOf(userName), 1)
     }
-    axios.post(`${backUrl}/send-mails/share`, { momentsToSend, userName, authorsSelect, selectedMail }, {
+    axios.post(`${backUrl}/send-mails/share`, { momentsToSend, userName, authorsSelect, selectedMail, userColor }, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => res.status === 200 && setTimeout(() => setIsSend(true), 500))

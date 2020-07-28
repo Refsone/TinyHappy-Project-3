@@ -24,10 +24,8 @@ const Email = (props) => {
   const [send, setSend] = useState(false)
 
   useEffect(() => {
-    if (send) {
-      setRedirect(true)
-    }
-  })
+    setRedirect(true)
+  }, [send])
 
   const handleServerError = (err) => {
     return err
@@ -78,11 +76,7 @@ const Email = (props) => {
           id='user_mail'
           value={values.user_mail}
           onChange={handleChange}
-          className={`${
-            errors.user_mail
-              ? 'input-email-error'
-              : 'input-email plholder bold-12px-grey'
-          }`}
+          className={`${errors.user_mail ? 'input-email-error' : 'input-email plholder bold-12px-grey'}`}
           placeholder='prenom@exemple.com'
           required
         />
@@ -99,11 +93,7 @@ const Email = (props) => {
           id='new_user_mail'
           value={values.new_user_mail}
           onChange={handleChange}
-          className={`${
-            errors.new_user_mail
-              ? 'input-email-error'
-              : 'input-email plholder bold-12px-grey'
-          }`}
+          className={`${errors.new_user_mail ? 'input-email-error' : 'input-email plholder bold-12px-grey'}`}
           placeholder='prenom@exemple.com'
           required
         />
@@ -111,19 +101,9 @@ const Email = (props) => {
           <p className='msg-error-email'>{errors.new_user_mail}</p>
         )}
 
-        {Object.keys(errors).length > 0 || !values.new_user_mail || !values.user_mail ? (
-          <button type='submit' className='connexion-btn-inactif' disabled>
-            confirmer
-          </button>
-        ) : (
-          <button
-            type='submit'
-            className='connexion-btn-actif'
-            onClick={(e) => submit(e)}
-          >
-            confirmer
-          </button>
-        )}
+        {Object.keys(errors).length > 0 || !values.new_user_mail || !values.user_mail
+          ? <button type='submit' className='connexion-btn-inactif' disabled>confirmer</button>
+          : <button type='submit' className='connexion-btn-actif' onClick={(e) => submit(e)}>confirmer</button>}
         {redirect && (
           <Redirect to={{ pathname: '/settings', params: { send: send } }} />
         )}

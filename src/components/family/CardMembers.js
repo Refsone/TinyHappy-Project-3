@@ -27,6 +27,15 @@ const CardMembers = (props) => {
   }, [])
 
   useEffect(() => {
+    const fetchFamilyMembers = () => {
+      axios.get(`${backUrl}/users/${userId}/family`, {
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
+        .then(res => {
+          const data = res.data.sort((a, b) => triAlphaAsc(a, b))
+          setMembers(data)
+        })
+    }
     fetchFamilyMembers()
   }, [])
 
@@ -39,16 +48,6 @@ const CardMembers = (props) => {
       toaster.notify(<Toast classType='error-toaster' text={'Une erreur s\'est produite!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     }
   }, [])
-
-  const fetchFamilyMembers = () => {
-    axios.get(`${backUrl}/users/${userId}/family`, {
-      headers: { Authorization: `Bearer ${myToken}` }
-    })
-      .then(res => {
-        const data = res.data.sort((a, b) => triAlphaAsc(a, b))
-        setMembers(data)
-      })
-  }
 
   const fetchAgeParam = () => {
     axios.get(`${backUrl}/users/${userId}/parameter`, { headers: { Authorization: `Bearer ${myToken}` } })
