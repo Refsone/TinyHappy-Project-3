@@ -207,13 +207,14 @@ const SignUp = (props) => {
               )
             }
           </div>
+          <ValidateButton
+            location={props.location.pathname}
+            active={isValidate && true}
+            name='valider'
+            handleClick={handleClick}
+          />
         </div>
-        <ValidateButton
-          location={props.location.pathname}
-          active={isValidate && true}
-          name='valider'
-          handleClick={handleClick}
-        />
+
       </form>
       {redirect && <Redirect to={{ pathname: '/onboarding/login', params: { isSend: isSend } }} />}
     </div>

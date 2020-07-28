@@ -8,6 +8,7 @@ import Toast from '../commons/Toast'
 import toaster from 'toasted-notes'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
+import ValidateButton from '../commons/footer/ValidateButton'
 
 import eyeClosed from '../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../images/eye-open.svg'
@@ -62,7 +63,7 @@ const Connexion = (props) => {
       errors && setErrors(errors)
     }
   }
-
+  console.log(errors)
   return (
     <div className='connexion-background'>
       <Header location={props.location.pathname} />
@@ -81,6 +82,9 @@ const Connexion = (props) => {
         <p className='connexion-lien'><Link to='/onboarding/lostpwd'>Mot de passe perdu ?</Link></p>
 
         {errors && values.user_password < 8 ? <button onChange={handleChange} className='connexion-btn-inactif'> se connecter</button> : <button onChange={handleChange} onClick={(e) => submit(e)} className='connexion-btn-actif'>se connecter</button>}
+        <ValidateButton
+          name='Se connecter' active={values.user_password.length >= 8} handleClick={(e) => submit(e)}
+        />
         {redirect && <Redirect to='/moments' />}
       </form>
     </div>

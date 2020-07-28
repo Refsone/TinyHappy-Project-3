@@ -74,7 +74,7 @@ html {
   height: 5em;
 }
 
-.btn-connexion {
+/* .btn-connexion {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -98,7 +98,7 @@ html {
   color: #ffffff;
   font-weight: 700;
   font-size: 14px;
-}
+} */
 
 .msg-error {
   position: absolute;

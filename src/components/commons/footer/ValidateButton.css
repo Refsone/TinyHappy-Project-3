@@ -1,5 +1,5 @@
-.validateButton .btn-active, .validateButton .btn-inactive{
-  position: fixed;
+.validateButton .btn-active, .validateButton .btn-inactive {
+  position: absolute;
   bottom: 0px;
   width: 100%;
   border: none;
@@ -8,8 +8,13 @@
   color: #ffffff;
   font-weight: 700;
   font-size: 14px;
-  z-index: 0;
+  z-index: -1;
 }
-.validateButton .btn-inactive {background-color: #D4E0F6;}
 
-.validateButton .btn-active {background-color: #FF89D2;}
+.validateButton .btn-inactive {
+  background-color: #D4E0F6;
+}
+
+.validateButton .btn-active {
+  background-color: #FF89D2;
+}
