@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Redirect } from 'react-router-dom'
 
 import Header from '../../commons/header/Header'
@@ -67,6 +67,17 @@ const SignUp = (props) => {
       return 'ok'
     }
   }
+  //* Verify if no errors before validate
+  const verifyBeforeValidate = useCallback(
+    () => {
+      if (formData.firstname && !messageError.confirmPwd && !messageError.mail && !messageError.pwd && formData.mail && formData.pwd && formData.confirmPwd && formData.pwd === formData.confirmPwd && formData.lastname) {
+        setIsValidate(true)
+      } else {
+        setIsValidate(false)
+      }
+    },
+    [formData, messageError]
+  )
 
   //* Managing the fields datas on change
   const handleChange = (e) => {
@@ -80,7 +91,7 @@ const SignUp = (props) => {
 
   useEffect(() => {
     verifyBeforeValidate()
-  }, [inUseEffect])
+  }, [verifyBeforeValidate, inUseEffect])
 
   // Define a setTimeOut on validation before going to the login page
   useEffect(() => {
@@ -146,15 +157,6 @@ const SignUp = (props) => {
         break
     }
     setInUseEffect(!inUseEffect)
-  }
-
-  //* Verify if no errors before validate
-  const verifyBeforeValidate = () => {
-    if (formData.firstname && !messageError.confirmPwd && !messageError.mail && !messageError.pwd && formData.mail && formData.pwd && formData.confirmPwd && formData.pwd === formData.confirmPwd && formData.lastname) {
-      setIsValidate(true)
-    } else {
-      setIsValidate(false)
-    }
   }
 
   // Custom error message when an error occured in the server

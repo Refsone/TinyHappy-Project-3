@@ -33,7 +33,7 @@ const Connexion = (props) => {
       } else if (params.newPwd) {
         message = 'Nouveau mot de passe crée !'
       }
-      toaster.notify(<Toast classType='sucess-toaster' text={`${message}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+      toaster.notify(<Toast classType='sucess-toaster' text={`${message}`} />, { duration: 3000, position: 'bottom' })
     }
   }, [])
 

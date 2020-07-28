@@ -87,6 +87,7 @@ function AddShareMoment (props) {
         for (const elt of moment.firstname_color) {
           return authorsSelect.includes(elt.firstname)
         }
+        return ''
       })
       .filter(moment => {
         if (form.quoteCheck.checked && form.milestoneCheck.checked) {

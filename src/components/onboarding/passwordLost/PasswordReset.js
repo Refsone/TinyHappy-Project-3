@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Redirect } from 'react-router-dom'
 
 import Header from '../../commons/header/Header'
@@ -59,7 +59,7 @@ const PasswordReset = (props) => {
     if (params && params.sendPwd) {
       toaster.notify(<Toast classType='sucess-toaster' text='Mot de passe temporaire envoyé !' />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     }
-  }, [])
+  }, [props])
 
   //* Verify if the password format is correct
   const verifPassword = (password) => {
@@ -73,7 +73,17 @@ const PasswordReset = (props) => {
       return 'ok'
     }
   }
-
+  //* Verify if no errors before validate
+  const verifyBeforeValidate = useCallback(
+    () => {
+      if (!messageError.confirmPwd && !messageError.mail && !messageError.newPwd && !messageError.tempPwd && formData.tempPwd && formData.mail && formData.newPwd && formData.confirmPwd && formData.newPwd === formData.confirmPwd) {
+        setIsValidate(true)
+      } else {
+        setIsValidate(false)
+      }
+    },
+    [formData, messageError]
+  )
   //* Managing the fields datas on change
   const handleChange = (e) => {
     const id = e.target.id
@@ -86,7 +96,7 @@ const PasswordReset = (props) => {
 
   useEffect(() => {
     verifyBeforeValidate()
-  }, [inUseEffect])
+  }, [inUseEffect, verifyBeforeValidate])
 
   // Define a setTimeOut on validation before going to the login page
   useEffect(() => {
@@ -160,14 +170,6 @@ const PasswordReset = (props) => {
     setInUseEffect(!inUseEffect)
   }
 
-  //* Verify if no errors before validate
-  const verifyBeforeValidate = () => {
-    if (!messageError.confirmPwd && !messageError.mail && !messageError.newPwd && !messageError.tempPwd && formData.tempPwd && formData.mail && formData.newPwd && formData.confirmPwd && formData.newPwd === formData.confirmPwd) {
-      setIsValidate(true)
-    } else {
-      setIsValidate(false)
-    }
-  }
   // Custom error message when an error occured in the server
   const handleServerError = (err) => {
     if (err.response.status === 403) {
