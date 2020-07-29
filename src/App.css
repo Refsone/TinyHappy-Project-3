@@ -14,6 +14,8 @@ body {
 html {
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
+  position: relative;
+  min-height: 100%;
 }
 
 /* --------------------------------------- */
@@ -28,7 +30,6 @@ html {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 110vh;
   color: #7180AC;
   background-color: #F5F9FD;
 }
@@ -71,32 +72,6 @@ html {
   background-color: #ffffff;
   border: none;
   height: 5em;
-}
-
-.btn-connexion {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  border: none;
-  height: 60px;
-  text-transform: uppercase;
-  background-color: #FF89D2;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.btn-connexion-none {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  border: none;
-  height: 60px;
-  text-transform: uppercase;
-  background-color: #D4E0F6;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 14px;
 }
 
 .msg-error {

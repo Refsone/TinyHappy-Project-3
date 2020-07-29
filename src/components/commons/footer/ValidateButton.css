@@ -1,7 +1,6 @@
-.validateButton .btn-inactive {
-  position: fixed;
-  bottom: 0px;
-  /* For the demonstration Default:0 */
+.validateButton .btn-active, .validateButton .btn-inactive {
+  position: absolute;
+  bottom: 0;
   width: 100%;
   border: none;
   height: 60px;
@@ -9,20 +8,13 @@
   color: #ffffff;
   font-weight: 700;
   font-size: 14px;
-  background-color: #D4E0F6;
   z-index: -1;
 }
 
+.validateButton .btn-inactive {
+  background-color: #D4E0F6;
+}
+
 .validateButton .btn-active {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-  border: none;
-  height: 60px;
-  text-transform: uppercase;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 14px;
   background-color: #FF89D2;
-  z-index: 0;
 }

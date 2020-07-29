@@ -203,7 +203,7 @@ const CreateFamily = (props) => {
           <DisplayColors colors={bddColor} handlechange={handleChange} selected={color} />
           <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
           <ValidateButton
-            name='sauvegarder' active={firstname} handleClick={handleClick}
+            name='sauvegarder' active={firstname.value.length > 0} handleClick={handleClick}
           />
         </form>
         {redirect && <Redirect to={{ pathname: '/family', params: { isSend: validate, isModify: modify } }} />}

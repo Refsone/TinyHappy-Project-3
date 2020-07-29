@@ -21,7 +21,7 @@ const DisplaySettings = (props) => {
       }
       toaster.notify(<Toast classType='sucess-toaster' text={`${message}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     }
-  }, [])
+  }, [props.location])
 
   return (
     <>

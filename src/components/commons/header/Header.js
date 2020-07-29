@@ -25,16 +25,16 @@ const Header = (props) => {
       }
       break
     case '/moments/create/quote':
-    if (momentId) {
+      if (momentId) {
         text = 'supprimer'
         link = '/moments/delete'
       } else {
-      text = 'annuler'
-      link = '/moments'
+        text = 'annuler'
+        link = '/moments'
       }
       break
     case '/moments/create/milestone':
-    if (momentId) {
+      if (momentId) {
         text = 'supprimer'
         link = '/moments/delete'
       } else {
@@ -104,7 +104,7 @@ const Header = (props) => {
               memberId: memberId
             }}
             >
-              <p className='action-link'>
+              <div className='action-link'>
                 {text}
                 {createFamilyBack &&
                   <>
@@ -115,24 +115,24 @@ const Header = (props) => {
                     }}
                     >
                       <p className='double-action-link'>
-                    ANNULER
+                        ANNULER
                       </p>
                     </Link>
-                </>}
-              {createMomentBack &&
-                <>
-                  <br />
-                  <Link to={{
-                    pathname: '/moments',
-                    memberId: momentId
-                  }}
-                  >
-                    <p className='double-action-link'>
-                      ANNULER
+                  </>}
+                {createMomentBack &&
+                  <>
+                    <br />
+                    <Link to={{
+                      pathname: '/moments',
+                      memberId: momentId
+                    }}
+                    >
+                      <p className='double-action-link'>
+                        ANNULER
                       </p>
-                  </Link>
-                </>}
-              </p>
+                    </Link>
+                  </>}
+              </div>
             </Link>}
         </div>
       </div>

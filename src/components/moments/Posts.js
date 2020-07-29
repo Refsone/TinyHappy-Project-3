@@ -39,7 +39,7 @@ const Posts = (props) => {
     } else if (params && !params.isSend) {
       toaster.notify(<Toast classType='error-toaster' text={' Une erreur c\'est produite dans l\'ajout d\'un moment!'} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
     }
-  }, [])
+  }, [props.location])
 
   const fetchUserMoment = () => {
     axios.get(`${backUrl}/users/${userId}/moments`, {
@@ -69,7 +69,7 @@ const Posts = (props) => {
       date = moment.moment_event_date
       return (
         <>
-          <p className='moment-date' key={id}>{formatDate(moment.moment_event_date)}</p>
+          <p className='moment-date'>{formatDate(moment.moment_event_date)}</p>
           <CardPost refreshMethod={refreshMethod} locationPath={props.location.pathname} moment={moment} user={user} key={getRandom()} />
         </>
       )
@@ -86,7 +86,6 @@ const Posts = (props) => {
   const refreshMethod = () => {
     setRefresh(!refresh)
   }
-
   return (
     <>
       <Header burger />

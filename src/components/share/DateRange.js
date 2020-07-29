@@ -12,7 +12,7 @@ function DateRange (props) {
   const CustomInput = ({ value, onClick }) => (
     <div className='bold-12px-grey date-container' onClick={onClick}>
       <img src={calendarIcon} alt='calendar icon' />
-      <p>{value}</p>
+      <p>{value || 'Entrez une date'}</p>
     </div>
   )
   return (
@@ -20,8 +20,8 @@ function DateRange (props) {
       <p className='bold-12px-grey'>Date de {props.dateType}</p>
       <DatePicker
         selected={props.date}
-        locale='fr'
         onChange={props.onChange}
+        locale='fr'
         dateFormat='EEEE dd MMMM yyyy'
         customInput={<CustomInput />}
       />

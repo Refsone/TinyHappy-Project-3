@@ -10,13 +10,12 @@ const Button = (props) => {
   useEffect(() => {
     const userId = localStorage.getItem('userId')
     const userName = localStorage.getItem('userName')
-    if(parseInt(userId) === parseInt(id) && userName === name){
-      userIsPresent ? setThisColor(color) : setThisColor ('')
+    if (parseInt(userId) === parseInt(id) && userName === name) {
+      userIsPresent ? setThisColor(color) : setThisColor('')
     } else {
       selected ? setThisColor(color) : setThisColor('')
     }
   })
-
   return (
     <>
       <button onClick={handleSelectAuthors} id={id} name={name} style={{ backgroundColor: `${thisColor}` }} className='author'>{name}</button>

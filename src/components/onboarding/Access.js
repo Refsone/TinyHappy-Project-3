@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import './Access.css'
 
@@ -6,18 +6,10 @@ import LOGO from '../../images/LOGO.svg'
 import Sign from './Sign'
 
 const Access = () => {
-  const [load, setLoad] = useState(false)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoad(true)
-    }, 1500)
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
     <div className='access'>
       <img className='logo' src={LOGO} alt='logo tinyhappy' />
-      {load && <Sign />}
+      <Sign />
     </div>
   )
 }

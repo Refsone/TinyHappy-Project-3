@@ -15,7 +15,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 const backUrl = process.env.REACT_APP_API_URL
 
 function AddShareMoment (props) {
-  const [startDate, setStartDate] = useState(new Date('2020-01-12'))
+  const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(new Date())
   const [countSelect, setCountSelect] = useState(0)
   const [family, setFamily] = useState([])
@@ -35,6 +35,12 @@ function AddShareMoment (props) {
   }, [])
 
   useEffect(() => {
+    const fetchUser = () => {
+      axios.get(`${backUrl}/users/${userId}`, {
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
+        .then(res => setAuthor(family.concat(res.data)))
+    }
     fetchUser()
   }, [family])
 
@@ -44,13 +50,6 @@ function AddShareMoment (props) {
     })
       .then(res => setFamily(res.data))
       .catch(err => err)
-  }
-
-  const fetchUser = () => {
-    axios.get(`${backUrl}/users/${userId}`, {
-      headers: { Authorization: `Bearer ${myToken}` }
-    })
-      .then(res => setAuthor(family.concat(res.data)))
   }
 
   const fetchMoments = () => {
@@ -81,6 +80,7 @@ function AddShareMoment (props) {
     Moment.locale('fr')
     const format = 'YYYY-MM-DD'
     const userName = authors[authors.length - 1].user_firstname
+    const userColor = authors[authors.length - 1].color
     const { selectedMail } = props.location.data
     const momentsToSend = moments
       .filter(moment => Moment(moment.moment_event_date).format(format) >= Moment(startDate).format(format) && Moment(moment.moment_event_date).format(format) <= Moment(endDate).format(format))
@@ -88,6 +88,7 @@ function AddShareMoment (props) {
         for (const elt of moment.firstname_color) {
           return authorsSelect.includes(elt.firstname)
         }
+        return ''
       })
       .filter(moment => {
         if (form.quoteCheck.checked && form.milestoneCheck.checked) {
@@ -102,7 +103,7 @@ function AddShareMoment (props) {
     if (authorsSelect.indexOf(userName) !== -1) {
       authorsSelect.splice(authorsSelect.indexOf(userName), 1)
     }
-    axios.post(`${backUrl}/send-mails/share`, { momentsToSend, userName, authorsSelect, selectedMail }, {
+    axios.post(`${backUrl}/send-mails/share`, { momentsToSend, userName, authorsSelect, selectedMail, userColor }, {
       headers: { Authorization: `Bearer ${myToken}` }
     })
       .then(res => res.status === 200 && setTimeout(() => setIsSend(true), 500))
@@ -127,7 +128,7 @@ function AddShareMoment (props) {
         <DateRange dateType='début' date={startDate} onChange={date => setStartDate(date)} />
         <DateRange dateType='fin' date={endDate} onChange={date => setEndDate(date)} />
       </form>
-      {form && !isSend && <ValidateButton handleClick={handleClick} active={countSelect > 0 && startDate <= endDate && (form.quoteCheck.checked || form.milestoneCheck.checked)} name='Envoyer les moments' />}
+      {form && !isSend && <ValidateButton handleClick={handleClick} active={startDate && countSelect > 0 && startDate <= endDate && (form.quoteCheck.checked || form.milestoneCheck.checked)} name='Envoyer les moments' />}
     </>
   )
 }

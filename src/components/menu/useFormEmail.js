@@ -22,7 +22,7 @@ const useFormEmail = (callback, validating) => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
       callback()
     }
-  }, [errors])
+  }, [callback, errors, isSubmitting])
 
   return {
     handleChange,

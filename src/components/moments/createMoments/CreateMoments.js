@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import DatePicker from 'react-datepicker'
-import DeleteMoment from './DeleteMoment';
+import DeleteMoment from './DeleteMoment'
 import Header from '../../commons/header/Header'
 import Moment from './Moment'
 import MomentNavbar from './MomentNavbar'
@@ -53,7 +53,12 @@ const CreateMoment = (props) => {
   useEffect(() => {
     if (props.location.moment) {
       const { firstname_color } = props.location.moment
-      firstname_color && firstname_color.map(selected => familyMember.map(member => member.selected = member.member_id === selected.id ? true : member.selected))
+      firstname_color && firstname_color.map(selected => {
+        return familyMember.map(member => {
+          return member.selected = member.member_id === selected.id ? true : member.selected
+        }
+        )
+      })
     }
   }, [loadFamilyMember])
 
@@ -101,7 +106,8 @@ const CreateMoment = (props) => {
     }
     if (!modifyMoment) {
       axios.post(`${backUrl}/moments/create`, dataToSend, {
-        headers: { Authorization: `Bearer ${myToken}` }})
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
         .then(res => res.status === 201 ? setSendMomentSucceed('create') : '')
         .catch(err => {
           setSendError(true)
@@ -109,7 +115,8 @@ const CreateMoment = (props) => {
     } else {
       dataToSend.moment_id = idForModifyMoment
       axios.put(`${backUrl}/moments/modify`, dataToSend, {
-        headers: { Authorization: `Bearer ${myToken}` } })
+        headers: { Authorization: `Bearer ${myToken}` }
+      })
         .then(res => res.status === 200 ? setSendMomentSucceed('modify') : '')
         .catch(err => {
           setSendError(true)
@@ -170,7 +177,6 @@ const CreateMoment = (props) => {
       <p>{value}</p>
     </div>
   )
-
   return (
     <>
       {props.location.pathname === '/moments/delete' && <DeleteMoment moment={dataMoments} user={user} />}

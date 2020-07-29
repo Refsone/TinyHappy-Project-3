@@ -8,6 +8,7 @@ import Toast from '../commons/Toast'
 import toaster from 'toasted-notes'
 import useForm from './useForm'
 import validationLogIn from './validateLogin'
+import ValidateButton from '../commons/footer/ValidateButton'
 
 import eyeClosed from '../../images/eye-slash-regular1.svg'
 import eyeOpen from '../../images/eye-open.svg'
@@ -32,9 +33,9 @@ const Connexion = (props) => {
       } else if (params.newPwd) {
         message = 'Nouveau mot de passe crée !'
       }
-      toaster.notify(<Toast classType='sucess-toaster' text={`${message}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
+      toaster.notify(<Toast classType='sucess-toaster' text={`${message}`} />, { duration: 3000, position: 'bottom' })
     }
-  }, [])
+  }, [props.location])
 
   useEffect(() => {
     if (loggedIn) {
@@ -58,6 +59,8 @@ const Connexion = (props) => {
             localStorage.setItem('userId', jwt.decode(data).id)
             localStorage.setItem('userMail', jwt.decode(data).mail)
             localStorage.setItem('userName', jwt.decode(data).name)
+            localStorage.setItem('toastDura', 3000)
+            localStorage.setItem('toastPos', 'bottom')
             setLoggedIn(true)
           }
         })
@@ -76,7 +79,6 @@ const Connexion = (props) => {
       )
     }
   }
-
   return (
     <div className='connexion-background'>
       <Header location={props.location.pathname} />
@@ -94,7 +96,9 @@ const Connexion = (props) => {
         {errors.user_password && <p className='msg-error'>{errors.user_password}</p>}
         <p className='connexion-lien'><Link to='/onboarding/lostpwd'>Mot de passe perdu ?</Link></p>
 
-        {errors && values.user_password < 8 ? <button onChange={handleChange} className='connexion-btn-inactif'> se connecter</button> : <button onChange={handleChange} onClick={(e) => submit(e)} className='connexion-btn-actif'>se connecter</button>}
+        <ValidateButton
+          name='Se connecter' active={values.user_password.length >= 8} handleClick={(e) => submit(e)}
+        />
         {redirect && <Redirect to='/moments' />}
       </form>
     </div>

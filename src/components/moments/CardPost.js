@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import './CardPost.css'
 
-import emptyHeart from '../../images/favori-heart.svg'
+import emptyHeart from '../../images/heart-light.svg'
 import fullHeart from '../../images/favoris-heart-pink.svg'
 import pencil from '../../images/Vector.svg'
 
@@ -23,7 +23,6 @@ const CardPost = (props) => {
       headers: { Authorization: `Bearer ${myToken}` }
     })
   }
-
   return (
     <div className='CardPost' style={moment.type === 'quote' ? { borderLeft: '0.4rem solid #91E9FE', marginTop: boxStyle } : { borderLeft: '0.4rem solid #D3FF9B', marginTop: boxStyle }}>
       <div className='block-names-favorite'>
@@ -34,7 +33,7 @@ const CardPost = (props) => {
           {moment.user_isPresent && user ? <p className='family-name' style={{ backgroundColor: user[0].color }}>{user[0].user_firstname}</p> : ''}
         </div>
         <Link to={moment.type === 'quote'
-          ? { pathname: '/moments/create/quote',  moment: moment, user: user }
+          ? { pathname: '/moments/create/quote', moment: moment, user: user }
           : { pathname: '/moments/create/milestone', moment: moment, user: user }}>
           <img id='modifyMoment' src={pencil} alt='modify moment' />
         </Link>

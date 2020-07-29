@@ -7,7 +7,6 @@ import BoutonPlus from '../../../images/BoutonPlus.svg'
 import './AuthorSelect.css'
 
 const AuthorSelect = (props) => {
-
   const AddButtonPlus = () => (
     <div className='AddFamilyMember'>
       <Link to='/family/create'><img src={BoutonPlus} alt='Bouton Plus icon' /></Link>
@@ -20,13 +19,13 @@ const AuthorSelect = (props) => {
       <div className='authorList'>
         {
           props.user &&
-          <ButtonAuthor
-            color={props.user.color}
-            name={props.user.user_firstname}
-            id={props.user.id}
-            userIsPresent={props.userIsPresent}
-            handleSelectAuthors={props.handleSelectAuthors}
-          />
+            <ButtonAuthor
+              color={props.user.color}
+              name={props.user.user_firstname}
+              id={props.user.id}
+              userIsPresent={props.userIsPresent}
+              handleSelectAuthors={props.handleSelectAuthors}
+            />
         }
         {
           props.familyMember.map((author, index) =>
