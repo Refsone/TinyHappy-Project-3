@@ -15,8 +15,6 @@ import calendarIcon from '../../../images/calendrier.svg'
 const backUrl = process.env.REACT_APP_API_URL
 
 const CreateMoment = (props) => {
-
-
   const [active, setActive] = useState(false)
   const [date, setDate] = useState(new Date())
   const [familyMember, setFamilyMember] = useState([])
@@ -42,7 +40,7 @@ const CreateMoment = (props) => {
       const { moment_context, type, moment_text, moment_event_date, momentId, user_isPresent } = props.location.moment
       setModifyMoment(true)
       setTextInContextArea(moment_context)
-      setMomentTypeId(type === 'quote' ? 1 : 0)
+      setMomentTypeId(type === 'quote' ? 1 : 2)
       setTextInMomentArea(moment_text)
       setDate(new Date(moment_event_date))
       user_isPresent && setUserIsPresent(true)
@@ -109,23 +107,19 @@ const CreateMoment = (props) => {
         headers: { Authorization: `Bearer ${myToken}` }
       })
         .then(res => res.status === 201 ? setSendMomentSucceed('create') : '')
-        .catch(err => {
-          setSendError(true)
-        })
+        .catch(err => setSendError(true))
     } else {
       dataToSend.moment_id = idForModifyMoment
       axios.put(`${backUrl}/moments/modify`, dataToSend, {
         headers: { Authorization: `Bearer ${myToken}` }
       })
         .then(res => res.status === 200 ? setSendMomentSucceed('modify') : '')
-        .catch(err => {
-          setSendError(true)
-        })
+        .catch(err => setSendError(true))
     }
   }
 
   useEffect(() => {
-    const Userselected = userIsPresent ? true : false
+    const Userselected = !!userIsPresent
     const FamilySelected = familyMember.some(member => member.selected)
     const existAuthors = Userselected || FamilySelected
     const validate = textInMomentArea.length > 0 && existAuthors
@@ -160,14 +154,14 @@ const CreateMoment = (props) => {
   }
 
   const onChangeTextInMomentArea = (e) => {
-      let value = ''
-      if (momentTypeId === 1) {
-        value += `"${e.target.value}"`
-      } else {
-        value += e.target.value
-      }
-      setTextInMomentArea(value)
+    let value = ''
+    if (momentTypeId === 1) {
+      value += `"${e.target.value}"`
+    } else {
+      value += e.target.value
     }
+    setTextInMomentArea(value)
+  }
 
   const onChangeTextInContextArea = (e) => {
     setTextInContextArea(e.target.value)
@@ -207,10 +201,10 @@ const CreateMoment = (props) => {
         <DatePicker selected={date} locale='fr' onChange={date => setDate(date)} dateFormat='EEEE dd MMMM yyyy' maxDate={(new Date())} customInput={<CustomInput />} />
         {
           redirect &&
-          <>
+            <>
 
-            <Redirect to={{ pathname: '/moments', params: { isSend: sendMomentSucceed } }} />
-          </>
+              <Redirect to={{ pathname: '/moments', params: { isSend: sendMomentSucceed } }} />
+            </>
         }
       </div>
     </>

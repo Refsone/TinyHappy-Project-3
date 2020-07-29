@@ -34,7 +34,8 @@ const CardPost = (props) => {
         </div>
         <Link to={moment.type === 'quote'
           ? { pathname: '/moments/create/quote', moment: moment, user: user }
-          : { pathname: '/moments/create/milestone', moment: moment, user: user }}>
+          : { pathname: '/moments/create/milestone', moment: moment, user: user }}
+        >
           <img id='modifyMoment' src={pencil} alt='modify moment' />
         </Link>
         <img id={moment.momentId} onClick={handleClickFavorite} src={favorite ? fullHeart : emptyHeart} alt='favorite' />

@@ -40,7 +40,8 @@ const Moment = (props) => {
           familyMember={props.familyMember} user={props.user}
           handleSelectAuthors={props.handleSelectAuthors}
           authorPresent={props.authorPresent}
-          titleAuthor='SELECTIONNER LE(S) PARTICIPANT(S)' />
+          titleAuthor='SELECTIONNER LE(S) PARTICIPANT(S)'
+        />
         <TextArea
           textInContextArea={props.textInContextArea}
           textInMomentArea={props.textInMomentArea}

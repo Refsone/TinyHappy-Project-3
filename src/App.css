@@ -113,7 +113,9 @@ html {
 }
 
 .sucess-toaster {
-  background: url('images/green-tick.svg') 32px no-repeat, #D3FF9B;
+  display: flex;
+  justify-content: space-around;
+  background:#D3FF9B;
   border: solid 1px #7FB74E;
 }
 

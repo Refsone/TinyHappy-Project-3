@@ -86,7 +86,7 @@ function AddShareMoment (props) {
       .filter(moment => Moment(moment.moment_event_date).format(format) >= Moment(startDate).format(format) && Moment(moment.moment_event_date).format(format) <= Moment(endDate).format(format))
       .filter(moment => {
         for (const elt of moment.firstname_color) {
-          return authorsSelect.includes(elt.firstname)
+          return authorsSelect.includes(elt.firstname) || moment.user_isPresent
         }
         return ''
       })
