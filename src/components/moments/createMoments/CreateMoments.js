@@ -99,7 +99,7 @@ const CreateMoment = (props) => {
       user_isPresent: userIsPresent,
       moment_text: textInMomentArea,
       moment_context: textInContextArea,
-      moment_event_date: date.toISOString().slice(0, 10),
+      moment_event_date: date.toISOString(),
       moment_type_id: momentTypeId,
       user_id: userId,
       family_id: selected
@@ -160,8 +160,14 @@ const CreateMoment = (props) => {
   }
 
   const onChangeTextInMomentArea = (e) => {
-    setTextInMomentArea(e.target.value)
-  }
+      let value = ''
+      if (momentTypeId === 1) {
+        value += `"${e.target.value}"`
+      } else {
+        value += e.target.value
+      }
+      setTextInMomentArea(value)
+    }
 
   const onChangeTextInContextArea = (e) => {
     setTextInContextArea(e.target.value)
