@@ -145,7 +145,6 @@ const CreateMoment = (props) => {
   }, [sendMomentSucceed, sendError])
 
   const handleSelectAuthors = (e) => {
-    console.log(e.target.id)
     const userId = localStorage.getItem('userId')
     const userName = localStorage.getItem('userName')
     if (parseInt(userId) === parseInt(e.target.id) && userName === e.target.name) {
@@ -178,7 +177,6 @@ const CreateMoment = (props) => {
       <p>{value}</p>
     </div>
   )
-  console.log(user)
   return (
     <>
       {props.location.pathname === '/moments/delete' && <DeleteMoment moment={dataMoments} user={user} />}

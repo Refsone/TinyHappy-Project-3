@@ -19,17 +19,10 @@ const Email = (props) => {
     validationEmail
   )
 
-  // const [redirect, setRedirect] = useState(false)
   const [send, setSend] = useState(false)
 
   const myToken = localStorage.getItem('x-access-token')
   const userId = localStorage.getItem('userId')
-
-  // useEffect(() => {
-  // //   if (send) {
-  // //     setRedirect(true)
-  // //   }
-  // // })
 
   const handleServerError = (err) => {
     return err
