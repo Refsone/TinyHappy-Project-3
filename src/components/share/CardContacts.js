@@ -55,11 +55,10 @@ const CardContacts = () => {
       <Header burger />
       <div className='cardContact'>
         {!contacts || contacts.length === 0
-          ? 
-          <>
+          ? <>
             <ZeroContact />
             <AddContact handleclick={handleclick} />
-          </>
+            </>
           : <SelectContacts contacts={contacts} handleclick={handleclick} deleteContact={deleteContact} />}
         <Navbar />
       </div>
