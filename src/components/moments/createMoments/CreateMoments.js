@@ -42,7 +42,7 @@ const CreateMoment = (props) => {
       const { moment_context, type, moment_text, moment_event_date, momentId, user_isPresent } = props.location.moment
       setModifyMoment(true)
       setTextInContextArea(moment_context)
-      setMomentTypeId(type === 'quote' ? 1 : 0)
+      setMomentTypeId(type === 'quote' ? 1 : 2)
       setTextInMomentArea(moment_text)
       setDate(new Date(moment_event_date))
       user_isPresent && setUserIsPresent(true)
