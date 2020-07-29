@@ -28,7 +28,7 @@ const Email = (props) => {
     return err
   }
 
-  function submit(e) {
+  function submit (e) {
     e.preventDefault()
     axios
       .put(`${backUrl}/users/${userId}/modify-email`, values, {

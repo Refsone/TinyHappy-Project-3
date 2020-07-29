@@ -4,15 +4,16 @@
     border-radius: 4px;
     width: 90vw;
     margin-top: 5px;
-    padding:20px 15px;
+    padding: 20px 15px;
     margin-left: 5vw;
     margin-bottom: 12px;
+    color: #2E3080;
 }
 
 .area label {
     color: #7180AC;
     font-weight: bold;
-    margin-left: 5vw ;
+    margin-left: 5vw;
     padding-left: 0;
     font-size: 12px;
     margin-top: 5px;

@@ -76,7 +76,8 @@ const DeleteMoment = (props) => {
 
       {cancel && <Redirect to={moment.type === 'quote'
         ? { pathname: '/moments/create/quote', moment: moment, user: props.user }
-        : { pathname: '/moments/create/milestone', moment: moment, user: props.user }} />}
+        : { pathname: '/moments/create/milestone', moment: moment, user: props.user }}
+      />}
       {redirect && <Redirect to={{ pathname: '/moments', params: { isDelete: deleted } }} />}
     </>
   )

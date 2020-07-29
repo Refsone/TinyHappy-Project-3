@@ -24,6 +24,7 @@ function DateRange (props) {
         locale='fr'
         dateFormat='EEEE dd MMMM yyyy'
         customInput={<CustomInput />}
+        maxDate={(new Date())}
       />
     </div>
   )
