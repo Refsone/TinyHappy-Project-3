@@ -201,7 +201,6 @@ const CreateFamily = (props) => {
           <CreateInputFamily name='surnom' placeholder='Surnom' id='family_surname' handlechange={handleChange} fieldValue={surname} />
           <DatePicker selected={birthday || new Date()} locale='fr' onChange={date => handleDate(date)} dateFormat='EEEE dd MMMM yyyy' maxDate={(new Date())} peekNextMonth showMonthDropdown showYearDropdown dropdownMode='select' customInput={<CustomInput />} />
           <DisplayColors colors={bddColor} handlechange={handleChange} selected={color} />
-          <p><a title='Ouvrir la palette' href='/'>Couleur personnalisée</a></p>
           <ValidateButton
             name='sauvegarder' active={firstname.value.length > 0} handleClick={handleClick}
           />

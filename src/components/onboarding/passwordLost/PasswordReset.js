@@ -187,7 +187,7 @@ const PasswordReset = (props) => {
       .then(res => res.status === 200 && setPwdChanged(true))
       .catch(err => {
         const errMessage = handleServerError(err)
-        toaster.notify(<Toast classType='error-toaster' text={`${errMessage}`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') }
+        toaster.notify(<Toast classType='error-toaster' text={`${errMessage}`} />, { duration: 3000, position: 'bottom' }
         )
       })
   }

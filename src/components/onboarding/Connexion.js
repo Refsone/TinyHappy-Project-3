@@ -18,6 +18,8 @@ import './Connexion.css'
 const backUrl = process.env.REACT_APP_API_URL
 
 const Connexion = (props) => {
+  localStorage.setItem('toastDura', 3000)
+  localStorage.setItem('toastPos', 'bottom')
   const { handleChange, handleSubmit, values, errors, setErrors } = useForm(submit, validationLogIn)
   const [redirect, setRedirect] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
@@ -59,8 +61,6 @@ const Connexion = (props) => {
             localStorage.setItem('userId', jwt.decode(data).id)
             localStorage.setItem('userMail', jwt.decode(data).mail)
             localStorage.setItem('userName', jwt.decode(data).name)
-            localStorage.setItem('toastDura', 3000)
-            localStorage.setItem('toastPos', 'bottom')
             setLoggedIn(true)
           }
         })
