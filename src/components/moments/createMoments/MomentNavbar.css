@@ -4,6 +4,7 @@
 
 .activeMilestone {
   background-color: #D3FF9B;
+  color: #7FB74E;
 }
 
 .imgQuote {
@@ -31,12 +32,8 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
-  color: #4991B6;
+  color: #7180AC;
   text-align: center;
-}
-
-.momentNavbar a:last-of-type {
-  color: #7FB74E;
 }
 
 .momentNavbar img {
