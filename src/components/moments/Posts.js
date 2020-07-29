@@ -31,7 +31,6 @@ const Posts = (props) => {
 
   useEffect(() => {
     const { params } = props.location
-    console.log(params && params.isDelete)
     if ((params && params.isSend) || (params && params.isDelete)) {
       const sucessType = params && params.isSend === 'modify' ? 'mis à jour' : params.isDelete ? 'supprimé' : 'crée'
       toaster.notify(<Toast classType='sucess-toaster' text={` Votre moment a été ${sucessType} avec succès !`} />, { duration: localStorage.getItem('toastDura'), position: localStorage.getItem('toastPos') })
