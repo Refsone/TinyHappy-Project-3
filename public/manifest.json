@@ -3,6 +3,11 @@
   "name": "tinyhappy",
   "icons": [
     {
+      "src": "logo_TH512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
       "src": "logo_TH1000.png",
       "type": "image/png",
       "sizes": "1000x1000"
