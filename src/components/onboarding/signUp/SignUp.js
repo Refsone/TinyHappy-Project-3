@@ -14,7 +14,7 @@ const backUrl = process.env.REACT_APP_API_URL
 
 const SignUp = (props) => {
   // Define constraints for the different inputs
-  const regexMail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/
+  const regexMail = /^[a-zA-Z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/
   const regexPassword1 = /.{8,}/
   const regexPassword2 = /[0-9]{1,}/
   const regexPassword3 = /[A-Z]{1,}/
