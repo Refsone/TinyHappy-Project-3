@@ -6,7 +6,7 @@ import './AddContact.css'
 const AddContact = ({ handleclick }) => {
   const [mail, setMail] = useState()
   const [validate, setValidate] = useState(false)
-  const regexMail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/
+  const regexMail = /^[a-zA-Z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/
 
   const handleChange = (e) => {
     e ? setMail(e.target.value) : setMail(null)
